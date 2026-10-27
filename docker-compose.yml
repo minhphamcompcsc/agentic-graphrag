@@ -1,0 +1,36 @@
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: odoo
+      POSTGRES_PASSWORD: odoo
+      POSTGRES_DB: postgres
+    ports: ["5432:5432"]
+    volumes: [pgdata:/var/lib/postgresql/data]
+
+  odoo:
+    image: odoo:18.0
+    depends_on: [db]
+    ports: ["8069:8069"]
+    environment:
+      HOST: db
+      USER: odoo
+      PASSWORD: odoo
+    volumes:
+      - ./oca:/mnt/oca
+      - odoodata:/var/lib/odoo
+    command: >
+      odoo --addons-path=/usr/lib/python3/dist-packages/odoo/addons,/mnt/oca/stock-logistics-workflow,/mnt/oca/stock-logistics-warehouse
+
+  neo4j:
+    image: neo4j:5
+    ports: ["7474:7474", "7687:7687"]
+    environment:
+      NEO4J_AUTH: neo4j/thesis12345
+      NEO4J_PLUGINS: '["apoc"]'
+    volumes: [neo4jdata:/data]
+
+volumes:
+  pgdata:
+  odoodata:
+  neo4jdata:

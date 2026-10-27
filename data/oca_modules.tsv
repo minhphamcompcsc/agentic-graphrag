@@ -1,0 +1,249 @@
+stock-logistics-warehouse	account_move_line_product	Displays the product in the journal entries and items	account	
+stock-logistics-warehouse	account_move_line_stock_info	Account Move Line Stock Info	stock_account	
+stock-logistics-warehouse	procurement_auto_create_group	Allows to configure the system to propose automatically new procurement groups during the procurement run.	stock	
+stock-logistics-warehouse	product_route_profile	Add Route profile concept on product	stock	
+stock-logistics-warehouse	product_route_profile_internal_resupply	Add dedicated Internal Routes on products.	product_route_profile	
+stock-logistics-warehouse	stock_archive_constraint	Stock archive constraint	stock	
+stock-logistics-warehouse	stock_change_qty_reason	
+        Stock Quantity Change Reason 	stock	
+stock-logistics-warehouse	stock_cycle_count	Adds the capability to schedule cycle counts in a warehouse through different rules defined by the user.	stock_account,stock_inventory_discrepancy,stock_inventory	
+stock-logistics-warehouse	stock_demand_estimate	Allows to create demand estimates.	stock	
+stock-logistics-warehouse	stock_demand_estimate_matrix	Allows to create demand estimates.	stock_demand_estimate,web_widget_x2many_2d_matrix,date_range	
+stock-logistics-warehouse	stock_inventory	Allows to do an easier follow up of the Inventory Adjustments	stock	
+stock-logistics-warehouse	stock_inventory_count_to_zero	Request an inventory count filling the quantities to zero as default	stock	
+stock-logistics-warehouse	stock_inventory_discrepancy	Adds the capability to show the discrepancy of every line in an inventory and to block the inventory validation when the discrepancy is over a user defined threshold.	stock	
+stock-logistics-warehouse	stock_inventory_hide_apply_all	Hide the 'Apply All' button on the inventory adjustment list	stock	
+stock-logistics-warehouse	stock_inventory_location_state	Verify that all locations are counted.	stock_inventory	
+stock-logistics-warehouse	stock_inventory_lockdown	Lock down stock locations during inventories.	stock,stock_inventory	
+stock-logistics-warehouse	stock_inventory_preparation_filter	More filters for inventory adjustments	stock,stock_inventory,base_view_inheritance_extension	
+stock-logistics-warehouse	stock_inventory_restriction	Restrict inventory modifications to assigned users	stock_inventory	
+stock-logistics-warehouse	stock_inventory_verification_request	Adds the capability to request a Slot Verification when a inventory is Pending to Approve	stock_inventory,stock_inventory_discrepancy,mail	
+stock-logistics-warehouse	stock_location_bin_name	Compute bin stock location name automatically	stock_location_zone,stock_location_position	
+stock-logistics-warehouse	stock_location_children	Add relation between stock location and all its children	stock	
+stock-logistics-warehouse	stock_location_empty	Adds a filter for empty stock location	stock	
+stock-logistics-warehouse	stock_location_fill_state	This module allows to identify the fill state of stock locations	base_partition,stock,stock_location_pending_move	
+stock-logistics-warehouse	stock_location_fill_state_qty_picked	Glue module between stock_location_fill_state and stock_move_line_qty_picked	stock_location_fill_state,stock_move_line_qty_picked	
+stock-logistics-warehouse	stock_location_is_sublocation	Add method to check stock location is sublocation	stock	
+stock-logistics-warehouse	stock_location_lockdown	Prevent to add stock on locked locations	stock	
+stock-logistics-warehouse	stock_location_pending_move	
+        This module allows to show pending stock moves (outgoing and incoming)
+        on a stock location	stock	
+stock-logistics-warehouse	stock_location_position	Add coordinate attributes on stock location.	stock	
+stock-logistics-warehouse	stock_location_tray	Organize a location as a matrix of cells	stock,base_sparse_field	
+stock-logistics-warehouse	stock_location_zone	Classify locations with zones.	stock	
+stock-logistics-warehouse	stock_lot_catalog	Stock Lot Catalog	stock	
+stock-logistics-warehouse	stock_lot_catalog_condition	Stock Lot Catalog Condition	stock_lot_catalog,stock_lot_condition	
+stock-logistics-warehouse	stock_lot_catalog_price	StockLot Catalog Price	stock_lot_catalog,stock_lot_list_price	
+stock-logistics-warehouse	stock_lot_catalog_sale	Sale Stock Lot Catalog	stock_lot_catalog,sale_order_lot_selection	
+stock-logistics-warehouse	stock_lot_catalog_warehouse	Stock Lot Catalog Warehouse	stock_lot_catalog,stock_lot_warehouse	
+stock-logistics-warehouse	stock_lot_condition	Stock Lot Condition	stock	
+stock-logistics-warehouse	stock_lot_image	Stock Lot Image	stock	
+stock-logistics-warehouse	stock_lot_list_price	Stock Lot List Price	stock_account	
+stock-logistics-warehouse	stock_lot_multi_image	This module implements the possibility to
+    have multiple images for a stock lot	stock,base_multi_image	
+stock-logistics-warehouse	stock_lot_warehouse	Stock Lot Warehouse	stock	
+stock-logistics-warehouse	stock_move_common_dest	Adds field for common destination moves	stock	
+stock-logistics-warehouse	stock_move_line_lot_link	Display Lot/SN column on Detailed Operations to allow navigation.	stock	
+stock-logistics-warehouse	stock_move_line_reference_link	Add link in stock move line references.	stock	
+stock-logistics-warehouse	stock_move_location	This module allows to move all stock in a stock location to an other one.	stock	
+stock-logistics-warehouse	stock_move_location_purchase_uom	This module 'glues' the modules stock_move_location and stock_move_purchase_uom.	stock_move_location,stock_move_purchase_uom	
+stock-logistics-warehouse	stock_move_packaging_qty	Add packaging fields in the stock moves	stock	
+stock-logistics-warehouse	stock_move_purchase_uom	Allow to use the purchase UoM in a stock move	stock	
+stock-logistics-warehouse	stock_move_reset_quantity	Reset quantity to zero	stock	
+stock-logistics-warehouse	stock_mts_mto_rule	Add a MTS+MTO route	stock	
+stock-logistics-warehouse	stock_package_type_volume	Compute volume of a package type	stock	
+stock-logistics-warehouse	stock_packaging_calculator	Compute product quantity to pick by packaging	product_packaging_calculator	openupgradelib
+stock-logistics-warehouse	stock_picking_batch_packaging_qty	Add packaging fields in stock picking batch	stock_picking_batch,stock_move_packaging_qty	
+stock-logistics-warehouse	stock_picking_commercial_partner	
+        Add Commercial Partner on the Stock Picking	stock	
+stock-logistics-warehouse	stock_picking_completion_info	Display on current document completion information according to next operations	stock_move_common_dest	
+stock-logistics-warehouse	stock_picking_procure_method	Allows to force the procurement method from the picking	stock	
+stock-logistics-warehouse	stock_picking_product_assortment	Stock Picking Product Assortment	base_view_inheritance_extension,product_assortment,stock	
+stock-logistics-warehouse	stock_picking_show_linked	
+       This addon allows to easily access related pickings
+       (in the case of chained routes) through a button
+       in the parent picking view.
+    	stock	
+stock-logistics-warehouse	stock_picking_stage	Stock Picking Stages	stock	
+stock-logistics-warehouse	stock_picking_supplier_ref	
+        Adds a supplier reference field inside supplier's pickings and
+        allows search for this reference.	stock	
+stock-logistics-warehouse	stock_picking_volume	
+        Compute volume information on stock moves and pickings	product_dimension,stock	
+stock-logistics-warehouse	stock_picking_volume_packaging	
+        Use volume information on potential product packaging to compute the
+        volume of a stock.move	stock_picking_volume,stock_packaging_calculator,product_packaging_dimension	
+stock-logistics-warehouse	stock_product_qty_by_packaging	Compute product quantity to pick by packaging	product_packaging_calculator,stock	
+stock-logistics-warehouse	stock_putaway_product_template	Add product template in putaway strategies from the product view	stock	
+stock-logistics-warehouse	stock_quant_cost_info	Shows the cost of the quants	stock	
+stock-logistics-warehouse	stock_quant_reservation_info	Allows to see the reserved info of Products	stock	
+stock-logistics-warehouse	stock_quant_reservation_info_mrp	Allows to see the manufacturing order related to the reserved info of Products	stock_quant_reservation_info,mrp	
+stock-logistics-warehouse	stock_removal_location_by_priority	Establish a removal priority on stock locations.	stock	
+stock-logistics-warehouse	stock_restrict_immediate_adjustment	Restrict immediate stock adjustments from Stock On Hand view	stock	
+stock-logistics-warehouse	stock_route_location_source	Add method to get source location of Inventory Routes	stock	
+stock-logistics-warehouse	stock_route_mto	
+        Allows to identify MTO routes through a checkbox and availability to filter
+        them.	stock	
+stock-logistics-warehouse	stock_secondary_unit	Get product quantities in a secondary unit	stock,product_secondary_unit	
+stock-logistics-warehouse	stock_storage_category_capacity_name	Allows to have a better display name for Stock Storage Category Capacity model	stock	
+stock-logistics-warehouse	stock_valuation_layer_inventory_filter	Allows to filter Inventory Adjustments on Stock Valuation Layers	stock_account	
+stock-logistics-warehouse	stock_vertical_lift	Provides the core for integration with Vertical Lifts	stock,barcodes,base_sparse_field,stock_location_tray,web_notify	
+stock-logistics-warehouse	stock_vertical_lift_empty_tray_check	Checks if the tray is actually empty.	stock,stock_vertical_lift	
+stock-logistics-warehouse	stock_vertical_lift_packaging_level	Provides integration with Vertical Lifts and packaging levels	stock_vertical_lift,product_packaging_level	
+stock-logistics-warehouse	stock_vertical_lift_pick_priority	Pick first the goods awaited by the most urgent deliveries	stock_vertical_lift	
+stock-logistics-warehouse	stock_vertical_lift_qty_by_packaging	
+    Glue module for `stock_product_qty_by_packaging` and `stock_vertical_lift`.
+    	stock_product_qty_by_packaging,stock_vertical_lift	
+stock-logistics-warehouse	stock_vertical_lift_server_env	Server Environment layer for Vertical Lift	stock_vertical_lift,server_environment	
+stock-logistics-warehouse	stock_vertical_lift_storage_type	Compatibility layer for storage types on vertical lifts	stock_vertical_lift,stock_storage_type	
+stock-logistics-warehouse	stock_vlm_mgmt	Light self contained alternative for VLM integrations	stock,base_sparse_field	
+stock-logistics-warehouse	stock_vlm_mgmt_kardex	Light alternative for Kardex VLM integrations	stock_vlm_mgmt	
+stock-logistics-warehouse	stock_vlm_mgmt_modula	Light alternative for Modula VLM integrations	stock_vlm_mgmt	
+stock-logistics-warehouse	stock_warehouse_calendar	Adds a calendar to the Warehouse	stock,resource	
+stock-logistics-warehouse	stock_warehouse_out_pull	Restore delivery pull rules as in Odoo <= 17.0	stock	
+stock-logistics-warehouse	stock_warehouse_resupply_route_push	Use push rules for resupply from other warehouse routes.	stock	
+stock-logistics-warehouse	stock_warehouse_security	Restrict user access in multi-warehouse environment	stock	
+stock-logistics-workflow	delivery_procurement_group_carrier	Delivery Procurement Group Carrier	sale_stock,stock_delivery	
+stock-logistics-workflow	delivery_total_weight_from_packaging	Include packaging weight on move, transfer and package.	stock_delivery,product_total_weight_from_packaging	
+stock-logistics-workflow	procurement_auto_create_group_carrier	Procurement Auto Create Group Carrier	delivery_procurement_group_carrier,procurement_auto_create_group	
+stock-logistics-workflow	product_cost_price_avco_sync	Set product cost price from updated moves	stock_account	
+stock-logistics-workflow	product_customerinfo_picking	This module makes the product customer code visible in the stock moves of a picking.	stock,product_customerinfo	
+stock-logistics-workflow	purchase_stock_picking_invoice_link	Adds link between purchases, pickings and invoices	stock_picking_invoice_link,purchase_stock	
+stock-logistics-workflow	sale_line_returned_qty	Track returned quantity of sale order lines.	sale_stock	
+stock-logistics-workflow	sale_line_returned_qty_mrp	Track returned quantity of sale order lines for BoM products.	sale_line_returned_qty,mrp	
+stock-logistics-workflow	sale_order_global_stock_route	Add the possibility to choose one warehouse path for an order	sale_stock	
+stock-logistics-workflow	sale_stock_picking_invoice_link	Adds link between pickings and invoices	sale_stock,stock_picking_invoice_link	
+stock-logistics-workflow	sale_stock_restocking_fee_invoicing	
+        On demand charge restocking fee for accepting returned goods .	sale,stock,sale_stock,stock_account,stock_picking_kind	
+stock-logistics-workflow	scrap_reason_code	Reason code for scrapping	stock	
+stock-logistics-workflow	stock_account_product_run_fifo_hook	Add more flexibility in the run fifo method.	stock_account	
+stock-logistics-workflow	stock_account_show_automatic_valuation	Allow automatic valuation for stock moves in community edition	stock_account	
+stock-logistics-workflow	stock_checkout_sync	Sync location for Checkout operations	stock_move_common_dest	
+stock-logistics-workflow	stock_customer_deposit	Customer deposits in your warehouse	sale_stock	
+stock-logistics-workflow	stock_dangerous_goods	Adds utility fields to manage dangerous goods	stock,l10n_eu_product_adr_dangerous_goods	
+stock-logistics-workflow	stock_dynamic_routing	Dynamic routing of stock moves	stock	
+stock-logistics-workflow	stock_dynamic_routing_checkout_sync	Glue module for tests when dynamic routing and checkout sync are used 	stock_dynamic_routing,stock_checkout_sync	
+stock-logistics-workflow	stock_dynamic_routing_delivery	Glue module between stock dynamic routing and delivery	stock_dynamic_routing,stock_delivery	
+stock-logistics-workflow	stock_dynamic_routing_delivery_procurement_group_carrier	Use the carrier set on the procurement group for propagation	stock_dynamic_routing_delivery,delivery_procurement_group_carrier	
+stock-logistics-workflow	stock_dynamic_routing_reserve_rule	Glue module between dynamic routing and reservation rules	stock_dynamic_routing,stock_reserve_rule	
+stock-logistics-workflow	stock_landed_costs_currency	Stock Landed Costs Currency	stock_landed_costs	
+stock-logistics-workflow	stock_landed_costs_priority	Add priority to landed costs	stock_landed_costs	
+stock-logistics-workflow	stock_landed_costs_purchase_auto	Stock landed costs purchase auto	stock_landed_costs,purchase_stock	
+stock-logistics-workflow	stock_lock_lot	Stock Lock Lot	stock,product	
+stock-logistics-workflow	stock_lot_scrap	This module adds a button in Production Lot/Serial Number view form to Scrap all products contained.	stock	
+stock-logistics-workflow	stock_move_actual_date	Stock Move Actual Date	stock_account	
+stock-logistics-workflow	stock_move_auto_assign_auto_release	
+        Auto release moves after auto assign	stock_available_to_promise_release,stock_move_auto_assign	
+stock-logistics-workflow	stock_move_backdating	Stock Move Backdating	stock_account	
+stock-logistics-workflow	stock_move_forced_lot	
+        This module allows you to set a lot_id in a procurement
+         to force the stock move generated to only reserve the selected lot.
+    	stock	
+stock-logistics-workflow	stock_move_line_change_lot	Stock Move Line Change Lot	stock	
+stock-logistics-workflow	stock_move_line_dates	Add Date Scheduled and Deadline dates in move lines	stock	
+stock-logistics-workflow	stock_move_line_expiration_date_required	Stock Move Line Expiration Date Required	product_expiry	
+stock-logistics-workflow	stock_move_line_qty_picked	Separate quantity picked from the reserved quantity	stock	
+stock-logistics-workflow	stock_move_original_date	adds the Original Date Scheduled to stock moves.	stock	
+stock-logistics-workflow	stock_move_propagate_first_move	
+        This addon propagate the picking type of the original move to all next moves
+        created from procurement	stock	
+stock-logistics-workflow	stock_move_quantity_product_uom	computes stock.move's quantity in the uom of the product.	stock	
+stock-logistics-workflow	stock_move_source_relocate	Change source location of unavailable moves	stock,stock_location_is_sublocation,stock_route_location_source	
+stock-logistics-workflow	stock_move_source_relocate_dynamic_routing	Glue module	stock_dynamic_routing,stock_move_source_relocate	
+stock-logistics-workflow	stock_move_vendor_comment	Add the vendor comment field to stock move	stock	
+stock-logistics-workflow	stock_no_negative	Disallow negative stock levels by default	stock	
+stock-logistics-workflow	stock_override_procurement	
+        This technical module allow to override procurement values	stock	
+stock-logistics-workflow	stock_owner_restriction	Do not reserve quantity with assigned owner	stock	
+stock-logistics-workflow	stock_partner_delivery_window	Define preferred delivery time windows for partners	base_time_window,partner_tz,stock	
+stock-logistics-workflow	stock_picking_auto_create_lot	Auto create lots for incoming pickings	stock	
+stock-logistics-workflow	stock_picking_auto_create_lot_sequence	Stock Picking Auto Create Lot Sequence	product_lot_sequence,stock_picking_auto_create_lot	
+stock-logistics-workflow	stock_picking_auto_create_package	
+        Put all move lines in packs on validation.	stock	
+stock-logistics-workflow	stock_picking_back2draft	Reopen canceled transfers	stock	
+stock-logistics-workflow	stock_picking_backorder_strategy_cancel	Picking backordering strategies	stock	
+stock-logistics-workflow	stock_picking_batch_account	Generates invoices when batch is set to Done state	stock_picking_batch,sale	
+stock-logistics-workflow	stock_picking_batch_account_sale_type	Generates invoices when batch is set to Done state	stock_picking_batch_account,sale_order_type	
+stock-logistics-workflow	stock_picking_batch_creation	
+        Create a batch of pickings to be processed all together	delivery,stock_picking_batch,stock_picking_volume,stock_split_picking_dimension	
+stock-logistics-workflow	stock_picking_batch_creation_split_kit	Split picking by kit quantity when exceeding limits	stock_picking_batch_creation,stock_split_picking_kit	
+stock-logistics-workflow	stock_picking_batch_extended	Allows manage a lot of pickings in batch	stock_picking_batch,stock_delivery	
+stock-logistics-workflow	stock_picking_batch_invoice_frequency	Invoice Sale Orders from Stock Pickin Batch	sale_stock,stock_picking_batch,sale_invoice_frequency	
+stock-logistics-workflow	stock_picking_batch_operation_quick_change	Change location of all picking batch operations	stock_picking_batch	
+stock-logistics-workflow	stock_picking_batch_outgoing	Allows set on pickings the batch picking from last picking (out)	stock_move_propagate_first_move,stock_picking_batch	
+stock-logistics-workflow	stock_picking_batch_planner	Allow planning origin batches/waves from destination batch/wave	stock_picking_batch	
+stock-logistics-workflow	stock_picking_batch_print_invoices	Print invoices from stock picking batchs	sale,stock_picking_batch_print_pickings	
+stock-logistics-workflow	stock_picking_batch_print_pickings	Print Picking from Stock Picking Batch	stock_picking_batch	
+stock-logistics-workflow	stock_picking_batch_validate_confirm	Request confirmation when validating batch if any pending origin moves	stock_picking_batch	
+stock-logistics-workflow	stock_picking_consolidation_priority	Raise priority of all transfers for a chain when started	stock,stock_warehouse_out_pull	
+stock-logistics-workflow	stock_picking_customer_ref	This module displays the sale reference/description in the pickings	sale_stock	
+stock-logistics-workflow	stock_picking_date_deadline_syncs_scheduled_date	Sync Scheduled Date with Date Deadline in Stock Picking	stock	
+stock-logistics-workflow	stock_picking_filter_lot	In picking out lots' selection, filter lots based on their location	stock	
+stock-logistics-workflow	stock_picking_group_by_base	
+        Allows to define a way to create index on extensible domain	stock	
+stock-logistics-workflow	stock_picking_group_by_partner_by_carrier	Stock Picking: group by partner and carrier	delivery_procurement_group_carrier,sale_stock,stock_delivery,stock_picking_group_by_base,stock_warehouse_out_pull	
+stock-logistics-workflow	stock_picking_group_by_partner_by_carrier_by_date	Stock Picking: group by partner and carrier and scheduled date	partner_tz,stock_picking_group_by_partner_by_carrier	
+stock-logistics-workflow	stock_picking_group_by_partner_by_carrier_force_move_type	Glue module for Picking Type Force Shipping Policy and Group Transfers by Partner and Carrier	stock_picking_type_force_move_type,stock_picking_group_by_partner_by_carrier	
+stock-logistics-workflow	stock_picking_immediate_transfer_warning	
+        Warn before processing a reserved transfer when no
+        moves have been explicitly picked.
+    	stock	
+stock-logistics-workflow	stock_picking_import_serial_number	Import S/N from excel file for incoming pickings	stock	xlrd
+stock-logistics-workflow	stock_picking_invoice_link	Adds link between pickings and invoices	stock_account	
+stock-logistics-workflow	stock_picking_kind	
+        Computes the kind of picking based on locations	stock	
+stock-logistics-workflow	stock_picking_line_sequence	Manages the order of stock moves by displaying its sequence	stock,sale,sale_stock	
+stock-logistics-workflow	stock_picking_mass_action	Stock Picking Mass Action	stock_account	
+stock-logistics-workflow	stock_picking_move_package_to_package	Move entire package to another package	stock	
+stock-logistics-workflow	stock_picking_operation_quick_change	Change location of all picking operations	stock	
+stock-logistics-workflow	stock_picking_origin_reference	Add clickable button to the Transfer Source Document.	stock	
+stock-logistics-workflow	stock_picking_origin_reference_purchase	Transfer to Purchase Order navigation from the Source Document.	stock_picking_origin_reference,purchase	
+stock-logistics-workflow	stock_picking_origin_reference_sale	Transfer to Sales Order navigation from the Source Document.	stock_picking_origin_reference,sale	
+stock-logistics-workflow	stock_picking_partner_note	Add partner notes on picking	sale_stock	
+stock-logistics-workflow	stock_picking_partner_vat	
+        This module extends the picking functionality. It allows:
+        * Displaying the partner's VAT on the picking form view.
+        * Displaying the partner's VAT on reports:
+            * Picking Operations
+            * Delivery Slip
+    	stock	
+stock-logistics-workflow	stock_picking_progress	Compute the stock.picking progression	stock	openupgradelib
+stock-logistics-workflow	stock_picking_propagate_scheduled_date	Propagate Stock Picking Scheduled Date	stock	
+stock-logistics-workflow	stock_picking_purchase_order_link	Link between picking and purchase order	purchase_stock	
+stock-logistics-workflow	stock_picking_restrict_cancel_printed	Prevent canceling a stock transfer if printed.	stock	
+stock-logistics-workflow	stock_picking_restrict_cancel_with_orig_move	Restrict cancellation of dest moves according to origin.	stock	
+stock-logistics-workflow	stock_picking_restrict_partial_validation	Block validation of transfers that are not fully reserved and processed in full	stock	
+stock-logistics-workflow	stock_picking_return_empty_package	Ensure that only package content is put in stock during
+    a picking return	stock	
+stock-logistics-workflow	stock_picking_return_lot	Propagate SN/lots from origin picking to return picking.	stock_restrict_lot,stock_picking_return_restricted_qty	
+stock-logistics-workflow	stock_picking_return_restricted_qty	Restrict the return to delivered quantity	stock	
+stock-logistics-workflow	stock_picking_sale_order_link	Link between picking and sale order	sale_stock	
+stock-logistics-workflow	stock_picking_send_by_mail	Send stock picking by email	stock,mail	
+stock-logistics-workflow	stock_picking_show_backorder	Provides a new field on stock pickings, allowing to display the corresponding backorders.	stock	
+stock-logistics-workflow	stock_picking_show_lot	Stock Picking Show Lot	stock	
+stock-logistics-workflow	stock_picking_show_return	Show returns on stock pickings	stock	
+stock-logistics-workflow	stock_picking_tier_validation	Extends the functionality of Transfers to support a tier validation process.	stock,base_tier_validation	
+stock-logistics-workflow	stock_picking_to_batch_group_fields	Allows to create batches grouped by picking fields.	stock_picking_batch	
+stock-logistics-workflow	stock_picking_type_bypass_reservation	Bypass reservation on desired Stock Picking Types	stock	
+stock-logistics-workflow	stock_picking_type_force_move_type	Force shipping policies on operation types	stock	
+stock-logistics-workflow	stock_picking_variable_qty	Handle variable quantity in multi-step deliveries/receptions	sale_stock	
+stock-logistics-workflow	stock_picking_warn_message	
+        Add a popup warning on picking to ensure warning is populated	stock	
+stock-logistics-workflow	stock_picking_whole_scrap	Create whole scrap from a picking for move lines	stock	
+stock-logistics-workflow	stock_product_set	Add product sets in pickings	stock,product_set	
+stock-logistics-workflow	stock_production_lot_active	Allow to archive/unarchive lots/serial numbers	stock	
+stock-logistics-workflow	stock_putaway_last_location	Use the last putaway location of a product as the defaultputaway location for this product.	stock	
+stock-logistics-workflow	stock_receipt_lot_info	Be able to introduce more info on lot/serial number while processing a receipt.	stock,product_expiry	
+stock-logistics-workflow	stock_reception_discrepancy_distribution	Change demand in stock moves linked to reception one	sale_purchase_stock	
+stock-logistics-workflow	stock_reporting_access	Add a security group for inventory reporting access	stock	
+stock-logistics-workflow	stock_restrict_lot	Base module that add back the concept of restrict lot on stock move	stock	
+stock-logistics-workflow	stock_scrap_cancel	Stock Scrap Cancel	stock	
+stock-logistics-workflow	stock_scrap_security	
+        Manage stock scrap access rights with dedicated security groups.
+    	stock	
+stock-logistics-workflow	stock_scrap_tier_validation	Stock Scrap Tier Validation	stock,base_tier_validation	
+stock-logistics-workflow	stock_split_picking	Split a picking in two not transferred pickings	stock	
+stock-logistics-workflow	stock_split_picking_dimension	Split a picking in two not transferred pickings to ensure that the first one doesn't exceed given dimensions (nbr lines, volume, weight)	stock_picking_volume,stock_split_picking	
+stock-logistics-workflow	stock_split_picking_kit	Split a picking by a number of kits.	stock_split_picking,mrp	
+stock-logistics-workflow	stock_valuation_layer_usage	Trace where has the stock valuation been used in, including the quantities taken.	sale,stock_account_product_run_fifo_hook	
+stock-logistics-workflow	stock_warn_option	Add Options to Stock Warn Messages	stock,base_warn_option	

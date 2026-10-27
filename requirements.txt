@@ -1,0 +1,8 @@
+lightrag-hku
+itext2kg
+neo4j>=5.28,<6
+langchain-core<0.4
+langchain-google-genai<3
+langchain-ollama<0.4
+psycopg2-binary
+python-dotenv
