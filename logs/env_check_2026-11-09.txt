@@ -1,0 +1,9 @@
+[OK  ] 1. Python + venv       Python 3.12.3, venv: /home/minhpham/agentic-graphrag/.venv
+[OK  ] 2. Thư viện pin        6 thư viện đúng version đã pin
+[OK  ] 3. PostgreSQL          439 model, 2512 field quan hệ, dependency stock_account: có
+[OK  ] 4. Odoo + module OCA   Odoo 18.0-20261015, 5/5 module đã thấy installed, stock_request chưa cài
+[OK  ] 5. Neo4j + APOC        Kết nối được, APOC 5.26.32, hiện có 0 node
+[OK  ] 6. Ollama bge-m3       bge-m3 embed câu tiếng Việt: 1024 chiều
+[OK  ] 7. Gemini API          gemini-3.8-flash phản hồi: 'OK'
+
+Kết luận: Môi trường sẵn sàng

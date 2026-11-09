@@ -1,0 +1,34 @@
+1) Đọc schema từ PostgreSQL ...
+  modules            66 dòng
+  deps              128 dòng
+  models            439 dòng
+  model_owners      764 dòng
+  fields           7755 dòng
+  field_owners     7830 dòng
+  Snapshot: data/snapshots/schema_20261109.json
+2) Ghi vào Neo4j ...
+  Đã xoá graph cũ
+  Module             66 dòng
+  DEPENDS_ON        128 dòng
+  Model             439 dòng
+  DEFINES           439 dòng
+  EXTENDS           325 dòng
+  Field            7755 dòng
+  RELATES_TO       2512 dòng
+  ADDS_FIELD       7750 dòng
+3) Gắn cờ cạnh LINKS_TO ...
+  oca                23 cạnh
+  technical         824 cạnh (9 field: activity_ids, activity_type_id, activity_user_id, create_uid, message_follower_ids, message_ids, message_partner_ids, website_message_ids, write_uid)
+4) Thống kê graph:
+  ADDS_FIELD       7750
+  DEFINES           439
+  DEPENDS_ON        128
+  EXTENDS           325
+  Field            7755
+  HAS_FIELD        7755
+  LINKS_TO         2512
+  Model             439
+  Module             66
+  RELATES_TO       2512
+  Thống kê lưu tại: data/snapshots/kg_stats_20261109.json
+Xong.

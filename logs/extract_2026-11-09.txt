@@ -1,0 +1,30 @@
+1) Đọc schema từ PostgreSQL ...
+  modules            66 dòng
+  deps              128 dòng
+  models            439 dòng
+  model_owners      764 dòng
+  fields           7755 dòng
+  field_owners     7830 dòng
+  Snapshot: data/snapshots/schema_20261109.json
+2) Ghi vào Neo4j ...
+  Đã xoá graph cũ
+  Module             66 dòng
+  DEPENDS_ON        128 dòng
+  Model             439 dòng
+  DEFINES           439 dòng
+  EXTENDS           325 dòng
+  Field            7755 dòng
+  RELATES_TO       2512 dòng
+  ADDS_FIELD       7750 dòng
+3) Thống kê graph:
+  ADDS_FIELD       7750
+  DEFINES           439
+  DEPENDS_ON        128
+  EXTENDS           325
+  Field            7755
+  HAS_FIELD        7755
+  LINKS_TO         2512
+  Model             439
+  Module             66
+  RELATES_TO       2512
+Xong.

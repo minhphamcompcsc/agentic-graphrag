@@ -1,0 +1,38 @@
+{
+  "date": "20261109",
+  "graph": {
+    "ADDS_FIELD": 7750,
+    "DEFINES": 439,
+    "DEPENDS_ON": 128,
+    "EXTENDS": 325,
+    "Field": 7755,
+    "HAS_FIELD": 7755,
+    "LINKS_TO": 2512,
+    "Model": 439,
+    "Module": 66,
+    "RELATES_TO": 2512
+  },
+  "links_to_oca": 23,
+  "links_to_technical": 824,
+  "technical_fields": [
+    "activity_ids",
+    "activity_type_id",
+    "activity_user_id",
+    "create_uid",
+    "message_follower_ids",
+    "message_ids",
+    "message_partner_ids",
+    "website_message_ids",
+    "write_uid"
+  ],
+  "technical_criteria": {
+    "audit_fields": [
+      "create_uid",
+      "write_uid"
+    ],
+    "mixins": [
+      "mail.thread",
+      "mail.activity.mixin"
+    ]
+  }
+}
