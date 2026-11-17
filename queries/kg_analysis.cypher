@@ -120,3 +120,14 @@ WHERE none(l IN relationships(p) WHERE l.oca OR l.technical)
 RETURN [n IN nodes(p) | n.name][1] AS model_trung_gian,
        [l IN relationships(p) | l.via] AS qua_field
 ORDER BY model_trung_gian;
+
+// ===== Query D: chuỗi DEPENDS_ON của stock_picking_invoice_link (17/11/2026) =====
+// D1. Phụ thuộc trực tiếp. Kết quả: stock_account (khớp PostgreSQL 1/1)
+MATCH (m:Module {name:'stock_picking_invoice_link'})-[:DEPENDS_ON]->(d:Module)
+RETURN d.name AS module ORDER BY module;
+
+// D2. Chuỗi bắc cầu. Kết quả: 22 module, độ sâu 1 đến 5
+// (khớp PostgreSQL WITH RECURSIVE 22/22; 353 đường đi)
+MATCH p = (m:Module {name:'stock_picking_invoice_link'})-[:DEPENDS_ON*]->(d:Module)
+RETURN d.name AS module, min(length(p)) AS depth
+ORDER BY depth, module;

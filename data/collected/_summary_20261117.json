@@ -1,0 +1,74 @@
+{
+  "collected_at": "2026-11-17T08:14:57+00:00",
+  "results": [
+    {
+      "module": "stock_no_negative",
+      "status": "ok",
+      "repo": "stock-logistics-workflow",
+      "readme_sections": [
+        "DESCRIPTION",
+        "USAGE",
+        "CONFIGURE"
+      ],
+      "n_chars": 2064,
+      "has_description": true
+    },
+    {
+      "module": "stock_picking_invoice_link",
+      "status": "ok",
+      "repo": "stock-logistics-workflow",
+      "readme_sections": [
+        "DESCRIPTION",
+        "USAGE"
+      ],
+      "n_chars": 476,
+      "has_description": true
+    },
+    {
+      "module": "stock_picking_auto_create_lot",
+      "status": "ok",
+      "repo": "stock-logistics-workflow",
+      "readme_sections": [
+        "DESCRIPTION",
+        "USAGE",
+        "CONFIGURE"
+      ],
+      "n_chars": 1718,
+      "has_description": true
+    },
+    {
+      "module": "stock_move_location",
+      "status": "ok",
+      "repo": "stock-logistics-warehouse",
+      "readme_sections": [
+        "DESCRIPTION",
+        "USAGE",
+        "ROADMAP"
+      ],
+      "n_chars": 2992,
+      "has_description": true
+    },
+    {
+      "module": "stock_picking_back2draft",
+      "status": "ok",
+      "repo": "stock-logistics-workflow",
+      "readme_sections": [
+        "DESCRIPTION",
+        "USAGE"
+      ],
+      "n_chars": 206,
+      "has_description": true
+    },
+    {
+      "module": "sale_stock_picking_invoice_link",
+      "status": "ok",
+      "repo": "stock-logistics-workflow",
+      "readme_sections": [
+        "DESCRIPTION",
+        "USAGE"
+      ],
+      "n_chars": 893,
+      "has_description": true
+    }
+  ]
+}

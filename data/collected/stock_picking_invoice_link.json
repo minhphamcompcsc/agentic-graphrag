@@ -1,0 +1,42 @@
+{
+  "module": "stock_picking_invoice_link",
+  "source": {
+    "repo": "stock-logistics-workflow",
+    "commit": "5294fea02fd83db850c4c6244bdbce156cadc92d",
+    "branch": "18.0",
+    "remote": "https://github.com/OCA/stock-logistics-workflow.git",
+    "path": "oca/stock-logistics-workflow/stock_picking_invoice_link"
+  },
+  "collected_at": "2026-11-17T08:14:57+00:00",
+  "collector_version": "v0",
+  "manifest": {
+    "name": "Stock Picking Invoice Link",
+    "summary": "Adds link between pickings and invoices",
+    "version": "18.0.2.0.1",
+    "category": "Warehouse Management",
+    "depends": [
+      "stock_account"
+    ],
+    "website": "https://github.com/OCA/stock-logistics-workflow",
+    "license": "AGPL-3"
+  },
+  "readme": {
+    "DESCRIPTION": {
+      "file": "readme/DESCRIPTION.md",
+      "text": "The base module used by sale_stock_picking_invoice_link and purchase_stock_picking_invoice_link \nto adds a link between pickings and invoices as well as on the lines."
+    },
+    "USAGE": {
+      "file": "readme/USAGE.md",
+      "text": "- Create a Sales Order and confirm.\n- Deliver its pickings totally or partially.\n- Create an invoice of the goods delivered.\n- If you open invoice form, you must see a new Pickings tab with\n  information about them."
+    }
+  },
+  "text": "Stock Picking Invoice Link\n\nAdds link between pickings and invoices\n\n## DESCRIPTION\nThe base module used by sale_stock_picking_invoice_link and purchase_stock_picking_invoice_link \nto adds a link between pickings and invoices as well as on the lines.\n\n## USAGE\n- Create a Sales Order and confirm.\n- Deliver its pickings totally or partially.\n- Create an invoice of the goods delivered.\n- If you open invoice form, you must see a new Pickings tab with\n  information about them.",
+  "stats": {
+    "readme_sections": [
+      "DESCRIPTION",
+      "USAGE"
+    ],
+    "n_chars": 476,
+    "has_description": true
+  }
+}

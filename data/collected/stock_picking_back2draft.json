@@ -1,0 +1,42 @@
+{
+  "module": "stock_picking_back2draft",
+  "source": {
+    "repo": "stock-logistics-workflow",
+    "commit": "5294fea02fd83db850c4c6244bdbce156cadc92d",
+    "branch": "18.0",
+    "remote": "https://github.com/OCA/stock-logistics-workflow.git",
+    "path": "oca/stock-logistics-workflow/stock_picking_back2draft"
+  },
+  "collected_at": "2026-11-17T08:14:57+00:00",
+  "collector_version": "v0",
+  "manifest": {
+    "name": "Pickings back to draft",
+    "summary": "Reopen canceled transfers",
+    "version": "18.0.1.0.0",
+    "category": "Warehouse Management",
+    "depends": [
+      "stock"
+    ],
+    "website": "https://github.com/OCA/stock-logistics-workflow",
+    "license": "AGPL-3"
+  },
+  "readme": {
+    "DESCRIPTION": {
+      "file": "readme/DESCRIPTION.md",
+      "text": "This module allows to bring canceled transfers back to draft"
+    },
+    "USAGE": {
+      "file": "readme/USAGE.md",
+      "text": "Just open a canceled transfer and click on the 'back to draft' button"
+    }
+  },
+  "text": "Pickings back to draft\n\nReopen canceled transfers\n\n## DESCRIPTION\nThis module allows to bring canceled transfers back to draft\n\n## USAGE\nJust open a canceled transfer and click on the 'back to draft' button",
+  "stats": {
+    "readme_sections": [
+      "DESCRIPTION",
+      "USAGE"
+    ],
+    "n_chars": 206,
+    "has_description": true
+  }
+}

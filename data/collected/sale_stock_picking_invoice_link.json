@@ -1,0 +1,44 @@
+{
+  "module": "sale_stock_picking_invoice_link",
+  "source": {
+    "repo": "stock-logistics-workflow",
+    "commit": "5294fea02fd83db850c4c6244bdbce156cadc92d",
+    "branch": "18.0",
+    "remote": "https://github.com/OCA/stock-logistics-workflow.git",
+    "path": "oca/stock-logistics-workflow/sale_stock_picking_invoice_link"
+  },
+  "collected_at": "2026-11-17T08:14:57+00:00",
+  "collector_version": "v0",
+  "manifest": {
+    "name": "Stock Picking Invoice Link",
+    "summary": "Adds link between pickings and invoices",
+    "version": "18.0.1.0.0",
+    "category": "Warehouse Management",
+    "depends": [
+      "sale_stock",
+      "stock_picking_invoice_link"
+    ],
+    "auto_install": true,
+    "website": "https://github.com/OCA/stock-logistics-workflow",
+    "license": "AGPL-3"
+  },
+  "readme": {
+    "DESCRIPTION": {
+      "file": "readme/DESCRIPTION.md",
+      "text": "This module adds a link between pickings and invoices as well as on the lines.\nInvoices are generated from sales orders. With this module, you can find back\nwhich deliveries an invoice relates to.\n\nIn standard, if you make a partial delivery and invoice it, then make remaining\ndelivery and invoice it, it is impossible to known to what delivery the\ninvoices relate to. You only have the quantity.\n\nThis module is also useful if you want to present data on the invoice report\ngrouped by deliveries.\n\nNote that the links are only for products with an invoicing policy set on\ndelivery."
+    },
+    "USAGE": {
+      "file": "readme/USAGE.md",
+      "text": "* Create a Sales Order and confirm.\n* Deliver its pickings totally or partially.\n* Create an invoice of the goods delivered.\n* If you open invoice form, you must see a new Pickings tab with information\n  about them."
+    }
+  },
+  "text": "Stock Picking Invoice Link\n\nAdds link between pickings and invoices\n\n## DESCRIPTION\nThis module adds a link between pickings and invoices as well as on the lines.\nInvoices are generated from sales orders. With this module, you can find back\nwhich deliveries an invoice relates to.\n\nIn standard, if you make a partial delivery and invoice it, then make remaining\ndelivery and invoice it, it is impossible to known to what delivery the\ninvoices relate to. You only have the quantity.\n\nThis module is also useful if you want to present data on the invoice report\ngrouped by deliveries.\n\nNote that the links are only for products with an invoicing policy set on\ndelivery.\n\n## USAGE\n* Create a Sales Order and confirm.\n* Deliver its pickings totally or partially.\n* Create an invoice of the goods delivered.\n* If you open invoice form, you must see a new Pickings tab with information\n  about them.",
+  "stats": {
+    "readme_sections": [
+      "DESCRIPTION",
+      "USAGE"
+    ],
+    "n_chars": 893,
+    "has_description": true
+  }
+}
