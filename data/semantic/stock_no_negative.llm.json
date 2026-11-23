@@ -1,0 +1,108 @@
+{
+  "module": "stock_no_negative",
+  "extractor_version": "sem-v0.1",
+  "llm": "gemini-3.6-flash",
+  "temperature": 0,
+  "itext2kg_version": "1.1.0",
+  "extracted_at": "2026-11-23T08:42:40+00:00",
+  "source": {
+    "repo": "stock-logistics-workflow",
+    "commit": "5294fea02fd83db850c4c6244bdbce156cadc92d",
+    "branch": "18.0",
+    "remote": "https://github.com/OCA/stock-logistics-workflow.git",
+    "path": "oca/stock-logistics-workflow/stock_no_negative"
+  },
+  "input_sha256": "2bbfc325cf47d4e7",
+  "input_text": "# Stock Disallow Negative\n\n## SUMMARY\nDisallow negative stock levels by default\n\n## DESCRIPTION\nBy default, Odoo allows negative stock. The advantage of negative stock\nis that, if some stock levels are wrong in the ERP, you will not be\nblocked when validating the picking for a customer... so you will still\nbe able to ship the products on time (it's an example !). The problem is\nthat, after you forced the stock level to negative, you are supposed to\nfix the stock level later via an inventory ; but this action is often\nforgotten by users, so you end up with negative stock levels in your ERP\nand it can stay like this forever (or at least until the next full\ninventory).\n\nIf you disallow negative stock in Odoo with this module, you will be\nblocked when trying to validate a stock operation that will set the\nstock level of a product and/or location as negative. So you will have\nto fix the wrong stock level of that product without delay, in order to\nvalidate the stock operation in Odoo...you can't forget it anymore !\n\n## USAGE\nWhen you validate a stock operation (a stock move, a picking, a\nmanufacturing order, etc.) that will set the stock level of a stockable\nproduct as negative, you will be blocked by an error message. The\nconsumable products can still have a negative stock level.\n\n## CONFIGURE\nBy default, the stockable products will not be allowed to have a\nnegative stock. If you want to make some exceptions for some products,\nproduct categories or locations, you can activate the option *Allow\nNegative Stock*:\n\nFor products:\n\n1.  Go to *Inventory / Master Data / Products* and in the tab *General\n    Information* activate this option.\n\nFor product categories:\n\n1.  Go to *Inventory / Configuration / Products / Product Categories*\n    and activate this option.\n\nFor individual locations:\n\n1.  Go to *Inventory / Configuration / Settings* and activate the option\n    *Storage Locations*.\n2.  Go to *Inventory / Configuration / Warehouse Management / Locations*\n    and activate the option the option *Allow Negative Stock* for the\n    locations you choose.",
+  "output": {
+    "functions": [
+      {
+        "name": "Block stock operations resulting in negative stock",
+        "description": "Prevents stock operations such as stock moves, pickings, or manufacturing orders from being validated if they would result in a negative stock level for stockable products or locations.",
+        "evidence": "When you validate a stock operation (a stock move, a picking, a manufacturing order, etc.) that will set the stock level of a stockable product as negative, you will be blocked by an error message.",
+        "section": "USAGE",
+        "objects": [
+          {
+            "mention": "stock move",
+            "odoo_model": "stock.move"
+          },
+          {
+            "mention": "picking",
+            "odoo_model": "stock.picking"
+          },
+          {
+            "mention": "manufacturing order",
+            "odoo_model": "mrp.production"
+          },
+          {
+            "mention": "stockable product",
+            "odoo_model": "product.product"
+          }
+        ],
+        "fields": []
+      },
+      {
+        "name": "Allow negative stock for specific products",
+        "description": "Allows negative stock levels for specific products by enabling the Allow Negative Stock option on the product form.",
+        "evidence": "Go to *Inventory / Master Data / Products* and in the tab *General Information* activate this option.",
+        "section": "CONFIGURE",
+        "objects": [
+          {
+            "mention": "Products",
+            "odoo_model": "product.template"
+          }
+        ],
+        "fields": [
+          {
+            "mention": "Allow Negative Stock",
+            "odoo_model": "product.template",
+            "odoo_field": "allow_negative_stock"
+          }
+        ]
+      },
+      {
+        "name": "Allow negative stock for product categories",
+        "description": "Permits negative stock levels for all products within a specific category by enabling the Allow Negative Stock setting on the product category.",
+        "evidence": "Go to *Inventory / Configuration / Products / Product Categories* and activate this option.",
+        "section": "CONFIGURE",
+        "objects": [
+          {
+            "mention": "Product Categories",
+            "odoo_model": "product.category"
+          }
+        ],
+        "fields": [
+          {
+            "mention": "Allow Negative Stock",
+            "odoo_model": "product.category",
+            "odoo_field": "allow_negative_stock"
+          }
+        ]
+      },
+      {
+        "name": "Allow negative stock for individual locations",
+        "description": "Enables negative stock levels for individual inventory locations by setting the Allow Negative Stock flag on the selected locations.",
+        "evidence": "Go to *Inventory / Configuration / Warehouse Management / Locations* and activate the option the option *Allow Negative Stock* for the locations you choose.",
+        "section": "CONFIGURE",
+        "objects": [
+          {
+            "mention": "Locations",
+            "odoo_model": "stock.location"
+          }
+        ],
+        "fields": [
+          {
+            "mention": "Storage Locations",
+            "odoo_model": null,
+            "odoo_field": null
+          },
+          {
+            "mention": "Allow Negative Stock",
+            "odoo_model": "stock.location",
+            "odoo_field": "allow_negative_stock"
+          }
+        ]
+      }
+    ]
+  }
+}

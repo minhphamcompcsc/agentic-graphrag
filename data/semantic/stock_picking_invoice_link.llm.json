@@ -1,0 +1,44 @@
+{
+  "module": "stock_picking_invoice_link",
+  "extractor_version": "sem-v0.1",
+  "llm": "gemini-3.6-flash",
+  "temperature": 0,
+  "itext2kg_version": "1.1.0",
+  "extracted_at": "2026-11-23T08:44:15+00:00",
+  "source": {
+    "repo": "stock-logistics-workflow",
+    "commit": "5294fea02fd83db850c4c6244bdbce156cadc92d",
+    "branch": "18.0",
+    "remote": "https://github.com/OCA/stock-logistics-workflow.git",
+    "path": "oca/stock-logistics-workflow/stock_picking_invoice_link"
+  },
+  "input_sha256": "f344870aebff798b",
+  "input_text": "# Stock Picking Invoice Link\n\n## SUMMARY\nAdds link between pickings and invoices\n\n## DESCRIPTION\nThe base module used by sale_stock_picking_invoice_link and purchase_stock_picking_invoice_link \nto adds a link between pickings and invoices as well as on the lines.\n\n## USAGE\n- Create a Sales Order and confirm.\n- Deliver its pickings totally or partially.\n- Create an invoice of the goods delivered.\n- If you open invoice form, you must see a new Pickings tab with\n  information about them.",
+  "output": {
+    "functions": [
+      {
+        "name": "Link stock pickings and invoices",
+        "description": "Establishes a link between stock pickings and invoices at both the header and line levels, providing visibility of related pickings in a dedicated tab on the invoice.",
+        "evidence": "The base module used by sale_stock_picking_invoice_link and purchase_stock_picking_invoice_link to adds a link between pickings and invoices as well as on the lines.",
+        "section": "DESCRIPTION",
+        "objects": [
+          {
+            "mention": "pickings",
+            "odoo_model": "stock.picking"
+          },
+          {
+            "mention": "invoices",
+            "odoo_model": "account.move"
+          }
+        ],
+        "fields": [
+          {
+            "mention": "Pickings tab",
+            "odoo_model": "account.move",
+            "odoo_field": null
+          }
+        ]
+      }
+    ]
+  }
+}

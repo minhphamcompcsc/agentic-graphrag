@@ -1,0 +1,40 @@
+{
+  "module": "stock_picking_back2draft",
+  "extractor_version": "sem-v0.1",
+  "llm": "gemini-3.6-flash",
+  "temperature": 0,
+  "itext2kg_version": "1.1.0",
+  "extracted_at": "2026-11-23T08:43:37+00:00",
+  "source": {
+    "repo": "stock-logistics-workflow",
+    "commit": "5294fea02fd83db850c4c6244bdbce156cadc92d",
+    "branch": "18.0",
+    "remote": "https://github.com/OCA/stock-logistics-workflow.git",
+    "path": "oca/stock-logistics-workflow/stock_picking_back2draft"
+  },
+  "input_sha256": "d01d124244489281",
+  "input_text": "# Pickings back to draft\n\n## SUMMARY\nReopen canceled transfers\n\n## DESCRIPTION\nThis module allows to bring canceled transfers back to draft\n\n## USAGE\nJust open a canceled transfer and click on the 'back to draft' button",
+  "output": {
+    "functions": [
+      {
+        "name": "Reopen canceled transfers",
+        "description": "Allows users to reset canceled inventory transfers back to the draft state by clicking a button on the canceled picking.",
+        "evidence": "This module allows to bring canceled transfers back to draft",
+        "section": "DESCRIPTION",
+        "objects": [
+          {
+            "mention": "canceled transfer",
+            "odoo_model": "stock.picking"
+          }
+        ],
+        "fields": [
+          {
+            "mention": "back to draft",
+            "odoo_model": null,
+            "odoo_field": null
+          }
+        ]
+      }
+    ]
+  }
+}

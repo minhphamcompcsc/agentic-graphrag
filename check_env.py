@@ -15,7 +15,7 @@ PG = dict(host="localhost", port=5432, dbname="kg_demo",
           user=os.getenv("PG_USER", "odoo"), password=os.getenv("PG_PASSWORD", "odoo"))
 ODOO_URL, ODOO_DB, ODOO_USER, ODOO_PWD = "http://localhost:8069", "kg_demo", "admin", "admin"
 NEO4J_URI, NEO4J_AUTH = "bolt://localhost:7687", ("neo4j", "thesis12345")
-GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-3.8-flash")
+GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-3.6-flash")
 EMBED_MODEL, EMBED_DIM = "bge-m3", 1024
 
 SEEN = ["stock_no_negative", "stock_picking_invoice_link", "stock_picking_auto_create_lot",

@@ -1,0 +1,47 @@
+Extractor sem-v0.2: 6 module, LLM gemini-3.6-flash, embedding bge-m3, ngưỡng 0.7, lớp cấu trúc từ neo4j
+  Lớp cấu trúc: 439 model, 7755 field
+1) Embedding danh mục model ...
+2) Trích chức năng bằng LLM (DocumentsDistiller) ...
+  sale_stock_picking_invoice_link     1 chức năng (cache)
+    - Link stock pickings and invoices | bằng chứng có trong văn bản
+      đối tượng: pickings->stock.picking[exact_name], invoices->account.move[exact_name], lines->account.move.line[exact_name], sales orders->sale.order[exact_name]
+      field: product.template.invoice_policy
+  stock_move_location                 3 chức năng (cache)
+    - Move stock between locations via wizard | bằng chứng có trong văn bản
+      đối tượng: stock location->stock.location[exact_name], picking->stock.picking[exact_name]
+      field: stock.picking.type.show_move_onhand
+    - Move specific stock quants | bằng chứng có trong văn bản
+      đối tượng: quants->stock.quant[exact_name], Products->product.product[exact_name], location->stock.location[exact_name]
+    - Fill draft picking with products from source location | bằng chứng có trong văn bản
+      đối tượng: draft picking->stock.picking[exact_name], moves lines->stock.move[exact_name], location->stock.location[exact_name]
+  stock_no_negative                   4 chức năng (cache)
+    - Block stock operations resulting in negative stock | bằng chứng có trong văn bản
+      đối tượng: stock move->stock.move[exact_name], picking->stock.picking[exact_name], manufacturing order->NEW[new], stockable product->product.product[exact_name]
+    - Allow negative stock for specific products | bằng chứng có trong văn bản
+      đối tượng: Products->product.template[exact_name]
+      field: product.template.allow_negative_stock
+    - Allow negative stock for product categories | bằng chứng có trong văn bản
+      đối tượng: Product Categories->product.category[exact_name]
+      field: product.category.allow_negative_stock
+    - Allow negative stock for individual locations | bằng chứng có trong văn bản
+      đối tượng: Locations->stock.location[exact_name]
+      field: stock.location.allow_negative_stock
+  stock_picking_auto_create_lot       1 chức năng (cache)
+    - Auto create lots for incoming stock pickings | bằng chứng có trong văn bản
+      đối tượng: incoming pickings->stock.picking[exact_name], Product->product.template[exact_name], Operation Types->stock.picking.type[exact_name], lot->stock.lot[exact_name]
+      field: product.template.auto_create_lot, product.template.tracking, stock.picking.type.auto_create_lot
+  stock_picking_back2draft            1 chức năng (cache)
+    - Reopen canceled transfers | bằng chứng có trong văn bản
+      đối tượng: canceled transfer->stock.picking[exact_name]
+  stock_picking_invoice_link          1 chức năng (cache)
+    - Link stock pickings and invoices | bằng chứng có trong văn bản
+      đối tượng: pickings->stock.picking[exact_name], invoices->account.move[exact_name]
+3) Ghi vào Neo4j ...
+  Đã ghi 11 chức năng; tạo vector index (dim 1024)
+4) Thống kê:
+  11 chức năng / 6 module; bằng chứng có trong văn bản 11/11
+  26 đối tượng; cách gộp: {'exact_name': 25, 'new': 1}
+  Gắn được vào Model: 0.962; khớp lớp cấu trúc (own hoặc dependency): 1.0 {'dependency': 12, 'own': 13}
+  Lời gọi LLM mới: 0; thời gian 287.1 giây
+  Lưu: data/snapshots/semantic_stats_20261123.json, data/semantic/links_20261123.csv
+  Bước tiếp: điền cột gold_model trong file CSV, rồi chạy eval_entity_links.py

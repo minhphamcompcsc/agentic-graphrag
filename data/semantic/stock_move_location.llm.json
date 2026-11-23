@@ -1,0 +1,96 @@
+{
+  "module": "stock_move_location",
+  "extractor_version": "sem-v0.1",
+  "llm": "gemini-3.6-flash",
+  "temperature": 0,
+  "itext2kg_version": "1.1.0",
+  "extracted_at": "2026-11-23T08:41:23+00:00",
+  "source": {
+    "repo": "stock-logistics-warehouse",
+    "commit": "6e16bc1f6f96d71e0f008cd39f359232a0a9290e",
+    "branch": "18.0",
+    "remote": "https://github.com/OCA/stock-logistics-warehouse.git",
+    "path": "oca/stock-logistics-warehouse/stock_move_location"
+  },
+  "input_sha256": "675ff0afe3d0672a",
+  "input_text": "# Move Stock Location\n\n## SUMMARY\nThis module allows to move all stock in a stock location to an other one.\n\n## DESCRIPTION\nThis module allows to move entire location of products from one place to\nanother and move only selected quantities.\n\n## USAGE\n- A new menu item Operations \\> Move from location... opens a wizard where 2 locations\n  can be specified.\n- Select origin and destination locations and press \"IMMEDIATE TRANSFER\" or \"PLANNED\n  TRANSFER\"\n- Those lines can be edited. Move quantity can't be more than a max available quantity\n- Move doesn't care about the reservations and will move stuff anyway\n- If during your operation with the wizard the real quantity will change it will move\n  only the available quantity at the button press\n- Products will be moved and a form view of picking that did that will show up\n- If \"PLANNED TRANSFER\" is used - the picking won't be validated automatically\n\nIf you want to transfer a full quant:\n\n- Go to Inventory \\> Products \\> Products and click \"On hand\" smart button or Inventory\n  \\> Reporting \\> Inventory, the quants view will be opened.\n- Select the quantities which you want move to another location\n\nIf you go to the Inventory Dashboard you can see the button \"Move from location\" in each\nof the picking types (only applicable to internal and outgoing transfers). Press it and\nyou will be directed to the wizard.\n\nTo enable this option, check \"Show Move On Hand Stock\" in the Picking Type\nconfiguration.\n\nIf you want transfer everything from stock.location\n\nOn a draft picking, add a button to fill with moves lines for all products in the source\ndestination. This allows to create a picking to move all the content of a location. The\nOrigin Location must have stock. The Destination Location has to be a final location. If\nsome quants are not available (i.e. reserved) the picking will be in partially available\nstate and reserved moves won't be listed in the operations. Use barcode interface to\nscan a location and create an empty picking. Then use the fill with stock button.",
+  "output": {
+    "functions": [
+      {
+        "name": "Move stock between locations via wizard",
+        "description": "Transfers entire stock or selected product quantities from an origin location to a destination location using a specialized wizard, supporting both immediate and planned transfers.",
+        "evidence": "This module allows to move all stock in a stock location to an other one.",
+        "section": "SUMMARY",
+        "objects": [
+          {
+            "mention": "stock location",
+            "odoo_model": "stock.location"
+          },
+          {
+            "mention": "picking",
+            "odoo_model": "stock.picking"
+          }
+        ],
+        "fields": [
+          {
+            "mention": "IMMEDIATE TRANSFER",
+            "odoo_model": null,
+            "odoo_field": null
+          },
+          {
+            "mention": "PLANNED TRANSFER",
+            "odoo_model": null,
+            "odoo_field": null
+          },
+          {
+            "mention": "Show Move On Hand Stock",
+            "odoo_model": "stock.picking.type",
+            "odoo_field": null
+          }
+        ]
+      },
+      {
+        "name": "Move specific stock quants",
+        "description": "Enables users to select specific quants from the product on-hand or inventory reporting views and transfer them to a designated location.",
+        "evidence": "Select the quantities which you want move to another location",
+        "section": "USAGE",
+        "objects": [
+          {
+            "mention": "quants",
+            "odoo_model": "stock.quant"
+          },
+          {
+            "mention": "Products",
+            "odoo_model": "product.product"
+          },
+          {
+            "mention": "location",
+            "odoo_model": "stock.location"
+          }
+        ],
+        "fields": []
+      },
+      {
+        "name": "Fill draft picking with products from source location",
+        "description": "Populates a draft picking with stock move lines for all available products in the specified source location.",
+        "evidence": "On a draft picking, add a button to fill with moves lines for all products in the source destination.",
+        "section": "USAGE",
+        "objects": [
+          {
+            "mention": "draft picking",
+            "odoo_model": "stock.picking"
+          },
+          {
+            "mention": "moves lines",
+            "odoo_model": "stock.move"
+          },
+          {
+            "mention": "location",
+            "odoo_model": "stock.location"
+          }
+        ],
+        "fields": []
+      }
+    ]
+  }
+}

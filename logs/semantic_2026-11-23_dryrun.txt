@@ -1,0 +1,149 @@
+Extractor sem-v0.1: 6 module, LLM gemini-3.8-flash, embedding bge-m3, ngưỡng 0.7, lớp cấu trúc từ snapshot, DRY RUN
+  Lớp cấu trúc: 439 model, 7755 field
+1) Embedding danh mục model ...
+2) Trích chức năng bằng LLM (DocumentsDistiller) ...
+  sale_stock_picking_invoice_link: gọi LLM ...
+[2026-11-23 03:09:48] [ WARNING] [itext2kg.llm_output_parsing.langchain_output_parser] ⚠️  Could not auto-detect provider from model: chatgooglegenerativeai
+[2026-11-23 03:09:48] [ WARNING] [itext2kg.llm_output_parsing.langchain_output_parser]    Module: langchain_google_genai.chat_models
+[2026-11-23 03:09:48] [ WARNING] [itext2kg.llm_output_parsing.langchain_output_parser]    Using conservative defaults for unknown provider
+[2026-11-23 03:09:48] [    INFO] [itext2kg.llm_output_parsing.langchain_output_parser] 🔍 Detected LLM Provider: Unknown
+[2026-11-23 03:09:48] [    INFO] [itext2kg.llm_output_parsing.langchain_output_parser] 📊 Rate Limiting Config: 5 requests/batch, 4000 tokens/batch
+[2026-11-23 03:09:48] [    INFO] [itext2kg.llm_output_parsing.langchain_output_parser] 📦 Split 1 prompts into 1 batches for Unknown API
+[2026-11-23 03:09:48] [    INFO] [itext2kg.llm_output_parsing.langchain_output_parser] 🚀 Processing 1 contexts in 1 batches for Unknown API
+[2026-11-23 03:09:48] [    INFO] [itext2kg.llm_output_parsing.langchain_output_parser] 📋 Processing batch 1/1 with 1 requests (Unknown)
+[2026-11-23 03:10:40] [    INFO] [itext2kg.llm_output_parsing.langchain_output_parser] ✅ Successfully processed all 1 requests for Unknown
+  sale_stock_picking_invoice_link     1 chức năng
+    - Link pickings to invoices and invoice lines | bằng chứng có trong văn bản
+      đối tượng: pickings->stock.picking[exact_name], invoices->account.move[exact_name], lines->account.move.line[exact_name], sales orders->sale.order[exact_name]
+      field: product.template.invoice_policy
+  stock_move_location: gọi LLM ...
+[2026-11-23 03:12:29] [ WARNING] [itext2kg.llm_output_parsing.langchain_output_parser] ⚠️  Could not auto-detect provider from model: chatgooglegenerativeai
+[2026-11-23 03:12:29] [ WARNING] [itext2kg.llm_output_parsing.langchain_output_parser]    Module: langchain_google_genai.chat_models
+[2026-11-23 03:12:29] [ WARNING] [itext2kg.llm_output_parsing.langchain_output_parser]    Using conservative defaults for unknown provider
+[2026-11-23 03:12:29] [    INFO] [itext2kg.llm_output_parsing.langchain_output_parser] 🔍 Detected LLM Provider: Unknown
+[2026-11-23 03:12:29] [    INFO] [itext2kg.llm_output_parsing.langchain_output_parser] 📊 Rate Limiting Config: 5 requests/batch, 4000 tokens/batch
+[2026-11-23 03:12:29] [    INFO] [itext2kg.llm_output_parsing.langchain_output_parser] 📦 Split 1 prompts into 1 batches for Unknown API
+[2026-11-23 03:12:29] [    INFO] [itext2kg.llm_output_parsing.langchain_output_parser] 🚀 Processing 1 contexts in 1 batches for Unknown API
+[2026-11-23 03:12:29] [    INFO] [itext2kg.llm_output_parsing.langchain_output_parser] 📋 Processing batch 1/1 with 1 requests (Unknown)
+[2026-11-23 03:12:30] [ WARNING] [itext2kg.llm_output_parsing.langchain_output_parser] ⚠️  Unexpected error in batch 1, attempt 1/3: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash, description: Generate content requests per day limit exceeded on Free Tier. See https://aistudio.google.com/docs/rate-limits.
+Please retry in 4h47m30.11065619s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://aistudio.google.com/docs/rate-limits"
+}
+, violations {
+  description: "Generate content requests per day limit exceeded on Free Tier. See https://aistudio.google.com/docs/rate-limits."
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-3.8-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 17250
+}
+]
+[2026-11-23 03:12:30] [ WARNING] [itext2kg.llm_output_parsing.langchain_output_parser]    Sleeping for 5 seconds before retry
+[2026-11-23 03:13:21] [    INFO] [itext2kg.llm_output_parsing.langchain_output_parser] ✅ Successfully processed all 1 requests for Unknown
+  stock_move_location                 3 chức năng
+    - Transfer stock between locations via wizard | bằng chứng có trong văn bản
+      đối tượng: stock location->stock.location[exact_name], picking->stock.picking[exact_name], picking types->stock.picking.type[exact_name]
+      field: stock.picking.type.show_move_onhand
+    - Transfer full quants from inventory view | bằng chứng có trong văn bản
+      đối tượng: quant->stock.quant[exact_name], location->stock.location[exact_name]
+    - Fill draft picking with stock from source location | bằng chứng có trong văn bản
+      đối tượng: draft picking->stock.picking[exact_name], stock.location->stock.location[exact_name]
+  stock_no_negative: gọi LLM ...
+[2026-11-23 03:13:36] [ WARNING] [itext2kg.llm_output_parsing.langchain_output_parser] ⚠️  Could not auto-detect provider from model: chatgooglegenerativeai
+[2026-11-23 03:13:36] [ WARNING] [itext2kg.llm_output_parsing.langchain_output_parser]    Module: langchain_google_genai.chat_models
+[2026-11-23 03:13:36] [ WARNING] [itext2kg.llm_output_parsing.langchain_output_parser]    Using conservative defaults for unknown provider
+[2026-11-23 03:13:36] [    INFO] [itext2kg.llm_output_parsing.langchain_output_parser] 🔍 Detected LLM Provider: Unknown
+[2026-11-23 03:13:36] [    INFO] [itext2kg.llm_output_parsing.langchain_output_parser] 📊 Rate Limiting Config: 5 requests/batch, 4000 tokens/batch
+[2026-11-23 03:13:36] [    INFO] [itext2kg.llm_output_parsing.langchain_output_parser] 📦 Split 1 prompts into 1 batches for Unknown API
+[2026-11-23 03:13:36] [    INFO] [itext2kg.llm_output_parsing.langchain_output_parser] 🚀 Processing 1 contexts in 1 batches for Unknown API
+[2026-11-23 03:13:36] [    INFO] [itext2kg.llm_output_parsing.langchain_output_parser] 📋 Processing batch 1/1 with 1 requests (Unknown)
+[2026-11-23 03:13:37] [ WARNING] [itext2kg.llm_output_parsing.langchain_output_parser] ⚠️  Unexpected error in batch 1, attempt 1/3: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash, description: Generate content requests per day limit exceeded on Free Tier. See https://aistudio.google.com/docs/rate-limits.
+Please retry in 4h46m22.597465297s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://aistudio.google.com/docs/rate-limits"
+}
+, violations {
+  description: "Generate content requests per day limit exceeded on Free Tier. See https://aistudio.google.com/docs/rate-limits."
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-3.8-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 17182
+}
+]
+[2026-11-23 03:13:37] [ WARNING] [itext2kg.llm_output_parsing.langchain_output_parser]    Sleeping for 5 seconds before retry
+[2026-11-23 03:13:42] [ WARNING] [itext2kg.llm_output_parsing.langchain_output_parser] ⚠️  Unexpected error in batch 1, attempt 2/3: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash, description: Generate content requests per day limit exceeded on Free Tier. See https://aistudio.google.com/docs/rate-limits.
+Please retry in 4h46m17.354683622s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://aistudio.google.com/docs/rate-limits"
+}
+, violations {
+  description: "Generate content requests per day limit exceeded on Free Tier. See https://aistudio.google.com/docs/rate-limits."
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-3.8-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 17177
+}
+]
+[2026-11-23 03:13:42] [ WARNING] [itext2kg.llm_output_parsing.langchain_output_parser]    Sleeping for 5 seconds before retry
+[2026-11-23 03:13:48] [   ERROR] [itext2kg.llm_output_parsing.langchain_output_parser] 💥 Final retry failed for batch 1 after 2 attempts: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash, description: Generate content requests per day limit exceeded on Free Tier. See https://aistudio.google.com/docs/rate-limits.
+Please retry in 4h46m11.984020399s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://aistudio.google.com/docs/rate-limits"
+}
+, violations {
+  description: "Generate content requests per day limit exceeded on Free Tier. See https://aistudio.google.com/docs/rate-limits."
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-3.8-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 17171
+}
+]
+
+DỪNG: hết quota Gemini trong ngày (gemini-3.8-flash).
+  Module đã có cache: ['sale_stock_picking_invoice_link', 'stock_move_location']
+  Chạy lại lệnh này khi quota được làm mới; module đã có cache không bị gọi lại.
+  Chi tiết: ResourceExhausted('You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelangu
