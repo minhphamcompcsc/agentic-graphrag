@@ -1,0 +1,29 @@
+{
+  "file": "data/semantic/links_20261123.csv",
+  "labeled": 26,
+  "total_rows": 26,
+  "accuracy": 0.962,
+  "correct": 25,
+  "by_method": {
+    "exact_name": {
+      "correct": 24,
+      "total": 25,
+      "accuracy": 0.96
+    },
+    "new": {
+      "correct": 1,
+      "total": 1,
+      "accuracy": 1.0
+    }
+  },
+  "errors": [
+    {
+      "module": "stock_move_location",
+      "mention": "Products",
+      "linked_model": "product.product",
+      "method": "exact_name",
+      "score": "1.0",
+      "gold_model": "product.template"
+    }
+  ]
+}

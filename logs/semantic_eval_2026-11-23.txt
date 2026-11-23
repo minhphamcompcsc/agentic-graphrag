@@ -1,0 +1,5 @@
+Gắn đúng: 25/26 = 0.962
+  exact_name   24/25 = 0.96
+  new          1/1 = 1.0
+  SAI: [stock_move_location] 'Products' -> product.product (exact_name), đúng: product.template
+Lưu: data/semantic/links_20261123_eval.json
