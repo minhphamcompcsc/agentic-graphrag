@@ -1,0 +1,164 @@
+{
+  "run": {
+    "module": "stock_picking_back2draft",
+    "chars": 219,
+    "llm": "gemini-3.6-flash",
+    "insert_seconds": 20.1,
+    "query": "Allow users to reset a cancelled transfer back to draft",
+    "retrieval": {
+      "local": "\nKnowledge Graph Data (Entity):\n\n```json\n{\"entity\": \"Draft Status\", \"type\": \"concept\", \"description\": \"A preliminary state in a transfer workflow to which canceled transfers can be reset.\"}\n{\"entity\": \"Back To Draft Button\", \"type\": \"artifact\", \"description\": \"A user interface button on a canceled transfer interface that resets the transfer back to draft status.\"}\n{\"entity\": \"Pickings Back To Draft Module\", \"type\": \"artifact\", \"description\": \"A software module that allows users to reopen canceled transfers by bringing them back to draft status.\"}\n{\"entity\": \"Canceled Transfer\", \"type\": \"concept\", \"description\": \"A transfer process or record that has been canceled and can be reopened.\"}\n```\n\nKnowledge Graph Data (Relationship):\n\n```json\n{\"entity1\": \"Back To Draft Button\", \"entity2\": \"Draft Status\", \"description\": \"Clicking the Back to Draft button changes the status of a canceled transfer back to draft status.\"}\n{\"entity1\": \"Draft Status\", \"entity2\": \"Pickings Back To Draft Module\", \"description\": \"The Pickings Back to Draft Module enables canceled transfers to be brought back to draft status.\"}\n{\"entity1\": \"Back To Draft Button\", \"entity2\": \"Canceled Transfer\", \"description\": \"The Back to Draft button is clicked within a canceled transfer to reopen it.\"}\n{\"entity1\": \"Canceled Transfer\", \"entity2\": \"Pickings Back To Draft Module\", \"description\": \"The Pickings Back to Draft Module allows users to reopen canceled transfers.\"}\n```\n\nDocument Chunks (Each entry has a reference_id refer to the `Reference Document List`; the optional `content_headings` field gives the chunk's heading path within its source document, e.g. `Section 1 → Subsection 1.2`):\n\n```json\n{\"reference_id\": \"\", \"content\": \"# Pickings back to draft\\n\\n## SUMMARY\\nReopen canceled transfers\\n\\n## DESCRIPTION\\nThis module allows to bring canceled transfers back to draft\\n\\n## USAGE\\nJust open a canceled transfer and click on the 'back to draft' button\"}\n```\n\nReference Document List (Each entry starts with a [reference_id] that corresponds to entries in the Document Chunks):\n\n```\n\n```\n\n",
+      "hybrid": "\nKnowledge Graph Data (Entity):\n\n```json\n{\"entity\": \"Draft Status\", \"type\": \"concept\", \"description\": \"A preliminary state in a transfer workflow to which canceled transfers can be reset.\"}\n{\"entity\": \"Back To Draft Button\", \"type\": \"artifact\", \"description\": \"A user interface button on a canceled transfer interface that resets the transfer back to draft status.\"}\n{\"entity\": \"Pickings Back To Draft Module\", \"type\": \"artifact\", \"description\": \"A software module that allows users to reopen canceled transfers by bringing them back to draft status.\"}\n{\"entity\": \"Canceled Transfer\", \"type\": \"concept\", \"description\": \"A transfer process or record that has been canceled and can be reopened.\"}\n```\n\nKnowledge Graph Data (Relationship):\n\n```json\n{\"entity1\": \"Back To Draft Button\", \"entity2\": \"Draft Status\", \"description\": \"Clicking the Back to Draft button changes the status of a canceled transfer back to draft status.\"}\n{\"entity1\": \"Draft Status\", \"entity2\": \"Pickings Back To Draft Module\", \"description\": \"The Pickings Back to Draft Module enables canceled transfers to be brought back to draft status.\"}\n{\"entity1\": \"Back To Draft Button\", \"entity2\": \"Canceled Transfer\", \"description\": \"The Back to Draft button is clicked within a canceled transfer to reopen it.\"}\n{\"entity1\": \"Canceled Transfer\", \"entity2\": \"Pickings Back To Draft Module\", \"description\": \"The Pickings Back to Draft Module allows users to reopen canceled transfers.\"}\n```\n\nDocument Chunks (Each entry has a reference_id refer to the `Reference Document List`; the optional `content_headings` field gives the chunk's heading path within its source document, e.g. `Section 1 → Subsection 1.2`):\n\n```json\n{\"reference_id\": \"\", \"content\": \"# Pickings back to draft\\n\\n## SUMMARY\\nReopen canceled transfers\\n\\n## DESCRIPTION\\nThis module allows to bring canceled transfers back to draft\\n\\n## USAGE\\nJust open a canceled transfer and click on the 'back to draft' button\"}\n```\n\nReference Document List (Each entry starts with a [reference_id] that corresponds to entries in the Document Chunks):\n\n```\n\n```\n\n"
+    }
+  },
+  "llm_calls": 3,
+  "before": {
+    "nodes": {
+      "Module": 66,
+      "Model": 439,
+      "Field": 7755,
+      "Function": 11,
+      "Concept": 1
+    },
+    "rels": {
+      "DEPENDS_ON": 128,
+      "DEFINES": 439,
+      "EXTENDS": 325,
+      "HAS_FIELD": 7755,
+      "ADDS_FIELD": 7750,
+      "RELATES_TO": 2512,
+      "LINKS_TO": 2512,
+      "PROVIDES": 11,
+      "INVOLVES": 25,
+      "INVOLVES_FIELD": 8,
+      "MENTIONS": 1
+    },
+    "lightrag_nodes": 0
+  },
+  "after": {
+    "nodes": {
+      "Module": 66,
+      "Model": 439,
+      "Field": 7755,
+      "Function": 11,
+      "Concept": 1
+    },
+    "rels": {
+      "DEPENDS_ON": 128,
+      "DEFINES": 439,
+      "EXTENDS": 325,
+      "HAS_FIELD": 7755,
+      "ADDS_FIELD": 7750,
+      "RELATES_TO": 2512,
+      "LINKS_TO": 2512,
+      "PROVIDES": 11,
+      "INVOLVES": 25,
+      "INVOLVES_FIELD": 8,
+      "MENTIONS": 1
+    },
+    "lightrag_nodes": 4
+  },
+  "kg_unchanged": true,
+  "report": {
+    "labels": [
+      {
+        "label": "lightrag_test",
+        "c": 4
+      }
+    ],
+    "node_keys": [
+      {
+        "key": "created_at",
+        "c": 4
+      },
+      {
+        "key": "description",
+        "c": 4
+      },
+      {
+        "key": "entity_id",
+        "c": 4
+      },
+      {
+        "key": "entity_type",
+        "c": 4
+      },
+      {
+        "key": "file_path",
+        "c": 4
+      },
+      {
+        "key": "source_id",
+        "c": 4
+      },
+      {
+        "key": "truncate",
+        "c": 4
+      }
+    ],
+    "rels_inside": [
+      {
+        "type": "DIRECTED",
+        "c": 4
+      }
+    ],
+    "rel_keys": [
+      {
+        "key": "created_at",
+        "c": 4
+      },
+      {
+        "key": "description",
+        "c": 4
+      },
+      {
+        "key": "file_path",
+        "c": 4
+      },
+      {
+        "key": "keywords",
+        "c": 4
+      },
+      {
+        "key": "source_id",
+        "c": 4
+      },
+      {
+        "key": "truncate",
+        "c": 4
+      },
+      {
+        "key": "weight",
+        "c": 4
+      }
+    ],
+    "rels_to_our_kg": [],
+    "label_collision": [],
+    "name_match": [
+      {
+        "entity": "Back To Draft Button",
+        "type": "artifact",
+        "models": [],
+        "modules": []
+      },
+      {
+        "entity": "Canceled Transfer",
+        "type": "concept",
+        "models": [],
+        "modules": []
+      },
+      {
+        "entity": "Draft Status",
+        "type": "concept",
+        "models": [],
+        "modules": []
+      },
+      {
+        "entity": "Pickings Back To Draft Module",
+        "type": "artifact",
+        "models": [],
+        "modules": []
+      }
+    ],
+    "name_match_rate": "0/4"
+  }
+}

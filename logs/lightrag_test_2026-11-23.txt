@@ -1,0 +1,157 @@
+INFO: Using NEO4J_WORKSPACE environment variable: 'lightrag_test' (overriding 'lightrag_test/chunk_entity_relation')
+INFO:nano-vectordb:Init {'embedding_dim': 1024, 'metric': 'cosine', 'storage_file': 'data/lightrag_test/lightrag_test/vdb_entities.json'} 0 data
+INFO:nano-vectordb:Init {'embedding_dim': 1024, 'metric': 'cosine', 'storage_file': 'data/lightrag_test/lightrag_test/vdb_relationships.json'} 0 data
+INFO:nano-vectordb:Init {'embedding_dim': 1024, 'metric': 'cosine', 'storage_file': 'data/lightrag_test/lightrag_test/vdb_chunks.json'} 0 data
+INFO: Role LLM Configuration (initialized):
+INFO:  - extract: None/None, host=None, max_async=1, timeout=240
+INFO:  - keyword: None/None, host=None, max_async=1, timeout=240
+INFO:  - query: None/None, host=None, max_async=1, timeout=240
+INFO:  - vlm: None/None, host=None, max_async=1, timeout=240
+INFO: [lightrag_test] Process 7960 KV load full_docs with 0 records
+INFO: [lightrag_test] Process 7960 KV load text_chunks with 0 records
+INFO: [lightrag_test] Process 7960 KV load full_entities with 0 records
+INFO: [lightrag_test] Process 7960 KV load full_relations with 0 records
+INFO: [lightrag_test] Process 7960 KV load entity_chunks with 0 records
+INFO: [lightrag_test] Process 7960 KV load relation_chunks with 0 records
+INFO: [lightrag_test] Connected to neo4j at neo4j://localhost:7687
+INFO: [lightrag_test] Ensured B-Tree index on entity_id for lightrag_test in neo4j
+INFO: [lightrag_test] No existing index 'entity_id_fulltext_idx_lightrag_test' found. Creating new index.
+INFO: [lightrag_test] Creating full-text index 'entity_id_fulltext_idx_lightrag_test' with Chinese tokenizer support.
+INFO: [lightrag_test] Successfully created full-text index 'entity_id_fulltext_idx_lightrag_test' with CJK analyzer.
+INFO: [lightrag_test] Process 7960 KV load llm_response_cache with 0 records
+INFO: [lightrag_test] Process 7960 doc status load doc_status with 0 records
+INFO: Processing 1 document(s)
+INFO: Parsing (native): doc-c70ff2bade605e38a77b5995dc7fb406
+INFO: Extracting stage 1/1: unknown_source
+INFO: Processing d-id: doc-c70ff2bade605e38a77b5995dc7fb406
+INFO: Chunking F(legacy): size=1200, split_only=False, overlap=100, doc_id: doc-c70ff2bade605e38a77b5995dc7fb406
+INFO: extract LLM func: 1 new workers initialized (Timeouts: Func: 240s, Worker: 480s, Health Check: 495s)
+INFO:  == LLM cache == saving: default:extract:270878395df23751af70741e7cf66719
+INFO: Chunk 1 of 1 extracted 4 Ent + 4 Rel doc-c70ff2bade605e38a77b5995dc7fb406-chunk-000
+INFO: Merging stage 1/1: unknown_source
+INFO: Phase 0: Writing recovery indexes for doc-c70ff2bade605e38a77b5995dc7fb406: 4 candidate entities, 4 candidate relations
+INFO: Phase 1: Processing 4 entities from doc-c70ff2bade605e38a77b5995dc7fb406 (async: 2)
+INFO: Phase 2: Processing 4 relations from doc-c70ff2bade605e38a77b5995dc7fb406 (async: 2)
+INFO: Upserting relation VDB: `Canceled Transfer->Pickings Back To Draft Module`
+INFO: Upserting relation VDB: `Back To Draft Button->Canceled Transfer`
+INFO: Upserting relation VDB: `Draft Status->Pickings Back To Draft Module`
+INFO: Upserting relation VDB: `Back To Draft Button->Draft Status`
+INFO: Phase 2 relation processing completed for doc-c70ff2bade605e38a77b5995dc7fb406: edges=4 added_entities=0
+INFO: Completed merging: 4 entities, 0 extra entities, 4 relations
+INFO: [lightrag_test] entities flush: embedding 4 vectors in 1 batch(es) (batch_num=10)
+INFO: [lightrag_test] relationships flush: applied 0 deferred deletes (4 queued, 0 awaiting save)
+INFO: [lightrag_test] relationships flush: embedding 4 vectors in 1 batch(es) (batch_num=10)
+INFO: [lightrag_test] chunks flush: embedding 1 vectors in 1 batch(es) (batch_num=10)
+INFO: Embedding func: 8 new workers initialized (Timeouts: Func: 30s, Worker: 60s, Health Check: 75s)
+INFO: In memory DB persist to disk
+INFO: Completed processing file 1/1: unknown_source
+INFO: Enqueued document processing pipeline stopped
+INFO: keyword LLM func: 1 new workers initialized (Timeouts: Func: 240s, Worker: 480s, Health Check: 495s)
+INFO:  == LLM cache == saving: local:keywords:ce0080c95bd0b126342c6224cd6e77d9
+INFO: Query nodes: cancelled transfer, draft status, reset (top_k:40, cosine:0.2)
+INFO: Local query: 4 entites, 4 relations
+INFO: Raw search results: 4 entities, 4 relations, 0 vector chunks
+INFO: After truncation: 4 entities, 4 relations
+INFO: Selecting 1 from 1 entity-related chunks by vector similarity
+INFO: Find no additional relations-related chunks from 4 relations
+INFO: Round-robin merged chunks: 1 -> 1 (deduplicated 0)
+WARNING: Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+INFO: Final context: 4 entities, 4 relations, 1 chunks
+INFO: Final chunks S+F/O: E4/1
+INFO:  == LLM cache == saving: hybrid:keywords:73cd09e41388a308b31e71aad7cd31ed
+INFO: Query nodes: cancelled transfer, draft status, reset (top_k:40, cosine:0.2)
+INFO: Local query: 4 entites, 4 relations
+INFO: Query edges: transfer management, status reset (top_k:40, cosine:0.2)
+INFO: Global query: 4 entites, 4 relations
+INFO: Raw search results: 4 entities, 4 relations, 0 vector chunks
+INFO: After truncation: 4 entities, 4 relations
+INFO: Selecting 1 from 1 entity-related chunks by vector similarity
+INFO: Find no additional relations-related chunks from 4 relations
+INFO: Round-robin merged chunks: 1 -> 1 (deduplicated 0)
+WARNING: Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+INFO: Final context: 4 entities, 4 relations, 1 chunks
+INFO: Final chunks S+F/O: E4/1
+INFO: Successfully finalized 12 storages
+
+== KG hiện tại ==
+  Nút KG 2 lớp : Module 66, Model 439, Field 7.755, Function 11, Concept 1
+  Quan hệ      : DEPENDS_ON 128, DEFINES 439, EXTENDS 325, HAS_FIELD 7.755, ADDS_FIELD 7.750, RELATES_TO 2.512, LINKS_TO 2.512, PROVIDES 11, INVOLVES 25, INVOLVES_FIELD 8, MENTIONS 1
+  Nút LightRAG (có entity_id): 0
+
+== Chạy LightRAG: module stock_picking_back2draft (219 ký tự), LLM gemini-3.6-flash ==
+  [LLM 1] gemini-3.6-flash, 11.4 giây, trích thực thể/khác
+  Insert xong: 20.1 giây, 1 lời gọi LLM
+  [LLM 2] gemini-3.6-flash, 10.7 giây, trích thực thể/khác
+
+== Truy hồi mode=local (chỉ lấy ngữ cảnh, không sinh câu trả lời) ==
+  
+  Knowledge Graph Data (Entity):
+  
+  ```json
+  {"entity": "Draft Status", "type": "concept", "description": "A preliminary state in a transfer workflow to which canceled transfers can be reset."}
+  {"entity": "Back To Draft Button", "type": "artifact", "description": "A user interface button on a canceled transfer interface that resets the transfer back to draft status."}
+  {"entity": "Pickings Back To Draft Module", "type": "artifact", "description": "A software module that allows users to reopen canceled transfers by bringing them back to draft status."}
+  {"entity": "Canceled Transfer", "type": "concept", "description": "A transfer process or record that has been canceled and can be reopened."}
+  ```
+  
+  Knowledge Graph Data (Relationship):
+  
+  ```json
+  {"entity1": "Back To Draft Button", "entity2": "Draft Status", "description": "Clicking the Back to Draft button changes the status of a canceled transfer back to draft status."}
+  {"entity1": "Draft Status", "entity2": "Pickings Back To Draft Module", "description": "The Pickings Back to Draft Module enables canceled transfers to be brought back to draft status."}
+  {"entity1": "Back To Draft Button", "entity2": "Canceled Transfer", "description": "The Back to Draft button is clicked within a canceled transfer to reopen it."}
+  {"entity1": "Canceled Transfer", "entity2": "Pickings Back To Draft Module", "description": "The Pickings Back to Draft Module allows users to reopen canceled transfers."}
+  ```
+  
+  Document Chunks (Each entry has a reference_id r
+  [LLM 3] gemini-3.6-flash, 19.1 giây, trích thực thể/khác
+
+== Truy hồi mode=hybrid (chỉ lấy ngữ cảnh, không sinh câu trả lời) ==
+  
+  Knowledge Graph Data (Entity):
+  
+  ```json
+  {"entity": "Draft Status", "type": "concept", "description": "A preliminary state in a transfer workflow to which canceled transfers can be reset."}
+  {"entity": "Back To Draft Button", "type": "artifact", "description": "A user interface button on a canceled transfer interface that resets the transfer back to draft status."}
+  {"entity": "Pickings Back To Draft Module", "type": "artifact", "description": "A software module that allows users to reopen canceled transfers by bringing them back to draft status."}
+  {"entity": "Canceled Transfer", "type": "concept", "description": "A transfer process or record that has been canceled and can be reopened."}
+  ```
+  
+  Knowledge Graph Data (Relationship):
+  
+  ```json
+  {"entity1": "Back To Draft Button", "entity2": "Draft Status", "description": "Clicking the Back to Draft button changes the status of a canceled transfer back to draft status."}
+  {"entity1": "Draft Status", "entity2": "Pickings Back To Draft Module", "description": "The Pickings Back to Draft Module enables canceled transfers to be brought back to draft status."}
+  {"entity1": "Back To Draft Button", "entity2": "Canceled Transfer", "description": "The Back to Draft button is clicked within a canceled transfer to reopen it."}
+  {"entity1": "Canceled Transfer", "entity2": "Pickings Back To Draft Module", "description": "The Pickings Back to Draft Module allows users to reopen canceled transfers."}
+  ```
+  
+  Document Chunks (Each entry has a reference_id r
+
+== KG sau khi chạy LightRAG ==
+  Nút KG 2 lớp : Module 66, Model 439, Field 7.755, Function 11, Concept 1
+  Quan hệ      : DEPENDS_ON 128, DEFINES 439, EXTENDS 325, HAS_FIELD 7.755, ADDS_FIELD 7.750, RELATES_TO 2.512, LINKS_TO 2.512, PROVIDES 11, INVOLVES 25, INVOLVES_FIELD 8, MENTIONS 1
+  Nút LightRAG (có entity_id): 4
+  KG 2 lớp không đổi so với trước khi chạy
+
+== (1) Nút, quan hệ LightRAG ghi vào Neo4j ==
+  Nhãn       : lightrag_test (4)
+  Thuộc tính : created_at, description, entity_id, entity_type, file_path, source_id, truncate
+  Quan hệ    : DIRECTED (4)
+  Thuộc tính quan hệ: created_at, description, file_path, keywords, source_id, truncate, weight
+
+== (2) Quan hệ nối sang KG 2 lớp ==
+  Không có (LightRAG không tự nối vào Module, Model, Field, Function)
+
+== (3) Tên thực thể so với Model, Module có sẵn ==
+  Back To Draft Button                          [artifact] -> không khớp
+  Canceled Transfer                             [concept] -> không khớp
+  Draft Status                                  [concept] -> không khớp
+  Pickings Back To Draft Module                 [artifact] -> không khớp
+  Khớp tên: 0/4
+
+== (4) Xung đột nhãn với KG 2 lớp ==
+  Không có
+
+Tổng lời gọi LLM: 3
+Lưu: data/experiments/lightrag_neo4j_20261123.json

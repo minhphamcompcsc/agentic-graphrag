@@ -1,0 +1,5 @@
+
+== KG hiện tại ==
+  Nút KG 2 lớp : Module 66, Model 439, Field 7.755, Function 11, Concept 1
+  Quan hệ      : DEPENDS_ON 128, DEFINES 439, EXTENDS 325, HAS_FIELD 7.755, ADDS_FIELD 7.750, RELATES_TO 2.512, LINKS_TO 2.512, PROVIDES 11, INVOLVES 25, INVOLVES_FIELD 8, MENTIONS 1
+  Nút LightRAG (có entity_id): 0
