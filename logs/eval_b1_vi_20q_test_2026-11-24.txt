@@ -1,0 +1,21 @@
+B1 (vi), split test: 16 requirements
+  Module  Hit@1 0.500  Hit@3 0.750  Hit@5 0.938  MRR 0.637
+  Module  P 0.500  R 0.438  F1 0.438  (strict P 0.438, F1 0.438)
+  Model   P 0.083  R 0.062  F1 0.050  (strict P 0.021, F1 0.031)
+  Q01: first correct rank 1, model P 0.00 R 0.00
+  Q02: first correct rank 1, model P 0.00 R 0.00
+  Q03: first correct rank 1, model P 0.00 R 0.00
+  Q04: first correct rank 1, model P 0.33 R 0.00
+  Q05: first correct rank 1, model P 0.00 R 0.00
+  Q06: first correct rank 1, model P 0.00 R 0.00
+  Q07: first correct rank 3, model P 0.00 R 0.00
+  Q09: first correct rank 3, model P 0.00 R 0.00
+  Q10: first correct rank 5, model P 0.00 R 0.00
+  Q12: first correct rank 1, model P 0.00 R 0.00
+  Q14: first correct rank 3, model P 0.00 R 0.00
+  Q15: first correct rank 4, model P 0.00 R 0.00
+  Q17: first correct rank 4, model P 0.33 R 0.00
+  Q18: first correct rank 3, model P 0.67 R 1.00
+  Q19: first correct rank 1, model P 0.00 R 0.00
+  Q20: first correct rank 6, model P 0.00 R 0.00
+Saved: data/runs/b1_vi_20261124/metrics_test.json, per_question_test.csv

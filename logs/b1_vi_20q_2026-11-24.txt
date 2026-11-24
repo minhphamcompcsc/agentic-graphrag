@@ -1,0 +1,23 @@
+B1 (vi): 67 modules (7 from the Collector), 443 models, 20 requirements; new embeddings 0; 0.0 s; 0 LLM calls
+  Q01: stock_no_negative 0.532, stock_picking_auto_create_lot 0.500, stock_request 0.486 | models: stock.warn.insufficient.qty, stock.warn.insufficient.qty.scrap, stock.warehouse.orderpoint
+  Q02: sale_stock_picking_invoice_link 0.659, stock_picking_invoice_link 0.591, account 0.571 | models: report.account.report_invoice_with_payments, report.account.report_invoice, account.invoice.report
+  Q03: stock_picking_auto_create_lot 0.685, stock 0.552, stock_request 0.552 | models: account.automatic.entry.wizard, stock.lot, lot.label.layout
+  Q04: stock_move_location 0.638, stock_request 0.526, stock_picking_invoice_link 0.475 | models: stock.picking, stock.change.product.qty, sale.mass.cancel.orders
+  Q05: stock_picking_back2draft 0.543, sale_stock_picking_invoice_link 0.504, stock 0.501 | models: stock.inventory.adjustment.name, stock.replenishment.info, stock.replenishment.option
+  Q06: sale_stock_picking_invoice_link 0.546, sale_stock 0.522, account 0.503 | models: sale.order, lot.label.layout, report.account.report_invoice_with_payments
+  Q07: sale_stock 0.504, stock_move_location 0.504, stock_no_negative 0.481 | models: stock.warehouse.orderpoint, stock.backorder.confirmation, stock.warn.insufficient.qty.scrap
+  Q08: sale_stock 0.569, sale_management 0.564, sale_stock_picking_invoice_link 0.538 | models: sale.order.cancel, report.account.report_invoice, stock.backorder.confirmation.line
+  Q09: sale_management 0.571, sale_stock 0.571, sale_stock_picking_invoice_link 0.568 | models: report.account.report_invoice_with_payments, account.invoice.report, account.report.line
+  Q10: stock_picking_auto_create_lot 0.586, sale_stock 0.581, stock_picking_invoice_link 0.579 | models: stock.replenishment.option, stock.warehouse, report.account.report_invoice
+  Q11: stock_picking_auto_create_lot 0.597, sale_stock_picking_invoice_link 0.565, stock_picking_invoice_link 0.544 | models: product.supplierinfo, stock.warehouse.orderpoint, stock.request.order
+  Q12: stock_move_location 0.628, stock_request 0.578, sale_stock 0.539 | models: stock.inventory.adjustment.name, stock.replenishment.option, stock.request.count
+  Q13: stock_move_location 0.643, stock_picking_invoice_link 0.607, sale_management 0.606 | models: stock.change.product.qty, account.move.send, lot.label.layout
+  Q14: stock_picking_invoice_link 0.541, sale_stock_picking_invoice_link 0.532, stock_picking_back2draft 0.526 | models: sale.order.cancel, account.reconcile.model.line, mail.resend.partner
+  Q15: account 0.601, sale_management 0.585, sale_stock 0.573 | models: report.account.report_invoice, report.account.report_invoice_with_payments, account.invoice.report
+  Q16: account_payment 0.568, sale_management 0.559, sale_stock 0.558 | models: stock.backorder.confirmation, report.account.report_invoice_with_payments, stock.backorder.confirmation.line
+  Q17: sale_stock_picking_invoice_link 0.639, stock_picking_invoice_link 0.600, sale_stock 0.600 | models: stock.request.count, stock.request.order, stock.replenishment.info
+  Q18: sale_stock 0.618, sale_management 0.594, stock_request 0.587 | models: stock.request.count, stock.request.order, stock.request
+  Q19: stock_request 0.559, stock_picking_auto_create_lot 0.541, sale_stock 0.533 | models: stock.request.order, stock.request.count, stock.warehouse.orderpoint
+  Q20: sale_stock 0.641, sale_stock_picking_invoice_link 0.640, sale_management 0.627 | models: mail.tracking.duration.mixin, stock.request.count, sale.order.cancel
+Saved: data/runs/b1_vi_20261124/predictions.json, corpus.json
+Next: python src/evaluation/evaluate.py data/runs/b1_vi_20261124/predictions.json

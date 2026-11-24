@@ -1,0 +1,15 @@
+module,relation,model,transient
+stock_request,DEFINES,stock.request,FALSE
+stock_request,DEFINES,stock.request.abstract,FALSE
+stock_request,DEFINES,stock.request.allocation,FALSE
+stock_request,DEFINES,stock.request.order,FALSE
+stock_request,EXTENDS,procurement.group,FALSE
+stock_request,EXTENDS,res.company,FALSE
+stock_request,EXTENDS,res.config.settings,TRUE
+stock_request,EXTENDS,stock.location,FALSE
+stock_request,EXTENDS,stock.move,FALSE
+stock_request,EXTENDS,stock.move.line,FALSE
+stock_request,EXTENDS,stock.picking,FALSE
+stock_request,EXTENDS,stock.route,FALSE
+stock_request,EXTENDS,stock.rule,FALSE
+stock_request,EXTENDS,stock.warehouse,FALSE

@@ -15,8 +15,8 @@
     "modules_from_collector": 7
   },
   "requirements_file": "data/eval/requirements_v0.csv",
-  "new_embeddings": 516,
-  "seconds": 132.3,
+  "new_embeddings": 0,
+  "seconds": 0.0,
   "items": [
     {
       "id": "Q01",
@@ -1005,6 +1005,2316 @@
         {
           "model": "stock.backorder.confirmation.line",
           "score": 0.4955
+        }
+      ]
+    },
+    {
+      "id": "Q07",
+      "query": "The main warehouse must never ship more than it has on hand, but one consignment location should still allow outgoing moves even when its quantities are not yet reconciled.",
+      "module_ranking": [
+        "stock_move_location",
+        "sale_stock",
+        "stock",
+        "stock_request",
+        "sale_management",
+        "base_import",
+        "stock_account",
+        "stock_picking_auto_create_lot",
+        "stock_no_negative",
+        "http_routing",
+        "onboarding",
+        "resource",
+        "sale_async_emails",
+        "sale_stock_picking_invoice_link",
+        "account_payment",
+        "account_add_gln",
+        "stock_picking_invoice_link",
+        "account",
+        "google_gmail",
+        "digest",
+        "sale",
+        "uom",
+        "stock_picking_back2draft",
+        "base_import_module",
+        "stock_sms",
+        "portal",
+        "auth_signup",
+        "product",
+        "iap_mail",
+        "sale_edi_ubl",
+        "sales_team",
+        "resource_mail",
+        "snailmail",
+        "base_install_request",
+        "sale_sms",
+        "snailmail_account",
+        "base_setup",
+        "utm",
+        "mail",
+        "analytic",
+        "spreadsheet",
+        "auth_totp",
+        "base",
+        "sale_pdf_quote_builder",
+        "html_editor",
+        "iap",
+        "barcodes",
+        "spreadsheet_dashboard_sale",
+        "privacy_lookup",
+        "bus",
+        "payment",
+        "spreadsheet_dashboard",
+        "partner_autocomplete",
+        "phone_validation",
+        "sms",
+        "spreadsheet_dashboard_stock_account",
+        "barcodes_gs1_nomenclature",
+        "auth_totp_portal",
+        "spreadsheet_dashboard_account",
+        "auth_totp_mail",
+        "web_tour",
+        "web",
+        "web_unsplash",
+        "spreadsheet_account",
+        "account_edi_ubl_cii",
+        "web_editor",
+        "mail_bot"
+      ],
+      "modules": [
+        "stock_move_location"
+      ],
+      "models": [
+        "stock.warehouse.orderpoint",
+        "stock.warehouse",
+        "stock.location"
+      ],
+      "top_modules": [
+        {
+          "module": "stock_move_location",
+          "score": 0.5466
+        },
+        {
+          "module": "sale_stock",
+          "score": 0.5233
+        },
+        {
+          "module": "stock",
+          "score": 0.5139
+        },
+        {
+          "module": "stock_request",
+          "score": 0.4751
+        },
+        {
+          "module": "sale_management",
+          "score": 0.4656
+        },
+        {
+          "module": "base_import",
+          "score": 0.4514
+        },
+        {
+          "module": "stock_account",
+          "score": 0.4457
+        },
+        {
+          "module": "stock_picking_auto_create_lot",
+          "score": 0.4417
+        },
+        {
+          "module": "stock_no_negative",
+          "score": 0.4403
+        },
+        {
+          "module": "http_routing",
+          "score": 0.4301
+        }
+      ],
+      "top_models": [
+        {
+          "model": "stock.warehouse.orderpoint",
+          "score": 0.556
+        },
+        {
+          "model": "stock.warehouse",
+          "score": 0.4824
+        },
+        {
+          "model": "stock.location",
+          "score": 0.478
+        },
+        {
+          "model": "stock.inventory.conflict",
+          "score": 0.472
+        },
+        {
+          "model": "stock.inventory.warning",
+          "score": 0.4621
+        },
+        {
+          "model": "stock.inventory.adjustment.name",
+          "score": 0.4572
+        },
+        {
+          "model": "stock.warn.insufficient.qty.scrap",
+          "score": 0.4563
+        },
+        {
+          "model": "stock.backorder.confirmation",
+          "score": 0.4545
+        },
+        {
+          "model": "stock.backorder.confirmation.line",
+          "score": 0.4477
+        },
+        {
+          "model": "stock.warn.insufficient.qty",
+          "score": 0.4427
+        }
+      ]
+    },
+    {
+      "id": "Q08",
+      "query": "After rushed deliveries, accounting keeps finding items with on-hand quantity below zero; the system should refuse to validate such transfers, except for the spare-parts product category that is only counted at month end.",
+      "module_ranking": [
+        "sale_stock",
+        "stock_no_negative",
+        "sale_management",
+        "stock_account",
+        "stock_picking_back2draft",
+        "account",
+        "sale_stock_picking_invoice_link",
+        "stock_request",
+        "stock_move_location",
+        "account_payment",
+        "base_import",
+        "sale_async_emails",
+        "analytic",
+        "stock_picking_auto_create_lot",
+        "onboarding",
+        "stock",
+        "stock_sms",
+        "product",
+        "resource",
+        "digest",
+        "uom",
+        "phone_validation",
+        "sale_sms",
+        "snailmail_account",
+        "http_routing",
+        "sales_team",
+        "partner_autocomplete",
+        "sale_edi_ubl",
+        "stock_picking_invoice_link",
+        "spreadsheet_account",
+        "sale",
+        "payment",
+        "resource_mail",
+        "spreadsheet_dashboard_sale",
+        "spreadsheet_dashboard_account",
+        "utm",
+        "iap_mail",
+        "iap",
+        "auth_totp",
+        "mail",
+        "spreadsheet",
+        "account_add_gln",
+        "sms",
+        "snailmail",
+        "base_import_module",
+        "bus",
+        "portal",
+        "barcodes",
+        "spreadsheet_dashboard",
+        "spreadsheet_dashboard_stock_account",
+        "barcodes_gs1_nomenclature",
+        "base_setup",
+        "account_edi_ubl_cii",
+        "sale_pdf_quote_builder",
+        "base_install_request",
+        "auth_signup",
+        "auth_totp_mail",
+        "privacy_lookup",
+        "mail_bot",
+        "google_gmail",
+        "html_editor",
+        "base",
+        "web_tour",
+        "web",
+        "auth_totp_portal",
+        "web_unsplash",
+        "web_editor"
+      ],
+      "modules": [
+        "sale_stock"
+      ],
+      "models": [
+        "stock.warn.insufficient.qty.scrap",
+        "account.cash.rounding",
+        "sale.order.cancel"
+      ],
+      "top_modules": [
+        {
+          "module": "sale_stock",
+          "score": 0.5221
+        },
+        {
+          "module": "stock_no_negative",
+          "score": 0.4999
+        },
+        {
+          "module": "sale_management",
+          "score": 0.4936
+        },
+        {
+          "module": "stock_account",
+          "score": 0.4857
+        },
+        {
+          "module": "stock_picking_back2draft",
+          "score": 0.4848
+        },
+        {
+          "module": "account",
+          "score": 0.4831
+        },
+        {
+          "module": "sale_stock_picking_invoice_link",
+          "score": 0.4787
+        },
+        {
+          "module": "stock_request",
+          "score": 0.4768
+        },
+        {
+          "module": "stock_move_location",
+          "score": 0.4741
+        },
+        {
+          "module": "account_payment",
+          "score": 0.473
+        }
+      ],
+      "top_models": [
+        {
+          "model": "stock.warn.insufficient.qty.scrap",
+          "score": 0.5128
+        },
+        {
+          "model": "account.cash.rounding",
+          "score": 0.4922
+        },
+        {
+          "model": "sale.order.cancel",
+          "score": 0.4912
+        },
+        {
+          "model": "stock.storage.category.capacity",
+          "score": 0.4895
+        },
+        {
+          "model": "stock.backorder.confirmation",
+          "score": 0.484
+        },
+        {
+          "model": "report.account.report_invoice",
+          "score": 0.4816
+        },
+        {
+          "model": "stock.warn.insufficient.qty",
+          "score": 0.4815
+        },
+        {
+          "model": "stock.storage.category",
+          "score": 0.4796
+        },
+        {
+          "model": "stock.warehouse.orderpoint",
+          "score": 0.4783
+        },
+        {
+          "model": "stock.request.count",
+          "score": 0.475
+        }
+      ]
+    },
+    {
+      "id": "Q09",
+      "query": "When opening an invoice, accounting needs to see which stock transfers it covers and which stock moves each invoice line corresponds to.",
+      "module_ranking": [
+        "sale_stock_picking_invoice_link",
+        "stock_picking_invoice_link",
+        "stock_account",
+        "account",
+        "account_payment",
+        "sale_management",
+        "stock_request",
+        "sale_stock",
+        "stock_move_location",
+        "stock",
+        "snailmail_account",
+        "analytic",
+        "account_add_gln",
+        "stock_picking_auto_create_lot",
+        "onboarding",
+        "base_setup",
+        "stock_sms",
+        "stock_picking_back2draft",
+        "spreadsheet_account",
+        "iap_mail",
+        "account_edi_ubl_cii",
+        "product",
+        "spreadsheet_dashboard_account",
+        "base_import",
+        "resource",
+        "spreadsheet_dashboard_stock_account",
+        "sale_edi_ubl",
+        "google_gmail",
+        "utm",
+        "iap",
+        "payment",
+        "sale",
+        "mail",
+        "sales_team",
+        "digest",
+        "phone_validation",
+        "sale_async_emails",
+        "spreadsheet",
+        "snailmail",
+        "barcodes",
+        "spreadsheet_dashboard_sale",
+        "auth_totp_mail",
+        "uom",
+        "base_import_module",
+        "auth_signup",
+        "portal",
+        "stock_no_negative",
+        "sale_pdf_quote_builder",
+        "sale_sms",
+        "auth_totp",
+        "bus",
+        "base_install_request",
+        "partner_autocomplete",
+        "sms",
+        "barcodes_gs1_nomenclature",
+        "base",
+        "resource_mail",
+        "spreadsheet_dashboard",
+        "web_tour",
+        "http_routing",
+        "mail_bot",
+        "html_editor",
+        "web",
+        "web_unsplash",
+        "privacy_lookup",
+        "auth_totp_portal",
+        "web_editor"
+      ],
+      "modules": [
+        "sale_stock_picking_invoice_link"
+      ],
+      "models": [
+        "report.account.report_invoice_with_payments",
+        "account.invoice.report",
+        "stock.picking"
+      ],
+      "top_modules": [
+        {
+          "module": "sale_stock_picking_invoice_link",
+          "score": 0.6667
+        },
+        {
+          "module": "stock_picking_invoice_link",
+          "score": 0.6658
+        },
+        {
+          "module": "stock_account",
+          "score": 0.6252
+        },
+        {
+          "module": "account",
+          "score": 0.6023
+        },
+        {
+          "module": "account_payment",
+          "score": 0.5879
+        },
+        {
+          "module": "sale_management",
+          "score": 0.5762
+        },
+        {
+          "module": "stock_request",
+          "score": 0.5735
+        },
+        {
+          "module": "sale_stock",
+          "score": 0.5721
+        },
+        {
+          "module": "stock_move_location",
+          "score": 0.5494
+        },
+        {
+          "module": "stock",
+          "score": 0.549
+        }
+      ],
+      "top_models": [
+        {
+          "model": "report.account.report_invoice_with_payments",
+          "score": 0.5952
+        },
+        {
+          "model": "account.invoice.report",
+          "score": 0.553
+        },
+        {
+          "model": "stock.picking",
+          "score": 0.5386
+        },
+        {
+          "model": "account.report.line",
+          "score": 0.5374
+        },
+        {
+          "model": "account.bank.statement.line",
+          "score": 0.5343
+        },
+        {
+          "model": "account.financial.year.op",
+          "score": 0.5332
+        },
+        {
+          "model": "stock.inventory.adjustment.name",
+          "score": 0.5312
+        },
+        {
+          "model": "sale.advance.payment.inv",
+          "score": 0.5239
+        },
+        {
+          "model": "stock.move.line",
+          "score": 0.523
+        },
+        {
+          "model": "account.tax.repartition.line",
+          "score": 0.5219
+        }
+      ]
+    },
+    {
+      "id": "Q10",
+      "query": "When emptying a shelf for maintenance, the storekeeper wants to create an internal transfer without typing each product: pick the source shelf and the system fills the transfer with everything currently stored there.",
+      "module_ranking": [
+        "stock_request",
+        "stock_move_location",
+        "sale_management",
+        "stock_picking_auto_create_lot",
+        "account",
+        "sale_stock",
+        "stock_account",
+        "account_payment",
+        "resource",
+        "stock_picking_invoice_link",
+        "sale_stock_picking_invoice_link",
+        "base_import",
+        "stock_picking_back2draft",
+        "base_install_request",
+        "stock",
+        "base_setup",
+        "onboarding",
+        "sale",
+        "base_import_module",
+        "resource_mail",
+        "digest",
+        "iap",
+        "portal",
+        "stock_no_negative",
+        "product",
+        "auth_signup",
+        "utm",
+        "payment",
+        "sms",
+        "sale_edi_ubl",
+        "sale_sms",
+        "snailmail_account",
+        "mail",
+        "bus",
+        "snailmail",
+        "analytic",
+        "sales_team",
+        "auth_totp",
+        "http_routing",
+        "stock_sms",
+        "iap_mail",
+        "sale_async_emails",
+        "google_gmail",
+        "auth_totp_mail",
+        "account_add_gln",
+        "base",
+        "uom",
+        "web_unsplash",
+        "partner_autocomplete",
+        "sale_pdf_quote_builder",
+        "html_editor",
+        "phone_validation",
+        "spreadsheet_dashboard_sale",
+        "web_tour",
+        "spreadsheet_dashboard_stock_account",
+        "account_edi_ubl_cii",
+        "spreadsheet",
+        "spreadsheet_dashboard_account",
+        "spreadsheet_dashboard",
+        "web_editor",
+        "web",
+        "barcodes",
+        "spreadsheet_account",
+        "privacy_lookup",
+        "mail_bot",
+        "auth_totp_portal",
+        "barcodes_gs1_nomenclature"
+      ],
+      "modules": [
+        "stock_request"
+      ],
+      "models": [
+        "stock.replenishment.option",
+        "stock.picking",
+        "stock.replenishment.info"
+      ],
+      "top_modules": [
+        {
+          "module": "stock_request",
+          "score": 0.5871
+        },
+        {
+          "module": "stock_move_location",
+          "score": 0.566
+        },
+        {
+          "module": "sale_management",
+          "score": 0.5532
+        },
+        {
+          "module": "stock_picking_auto_create_lot",
+          "score": 0.5515
+        },
+        {
+          "module": "account",
+          "score": 0.5457
+        },
+        {
+          "module": "sale_stock",
+          "score": 0.5396
+        },
+        {
+          "module": "stock_account",
+          "score": 0.5352
+        },
+        {
+          "module": "account_payment",
+          "score": 0.5311
+        },
+        {
+          "module": "resource",
+          "score": 0.5308
+        },
+        {
+          "module": "stock_picking_invoice_link",
+          "score": 0.5217
+        }
+      ],
+      "top_models": [
+        {
+          "model": "stock.replenishment.option",
+          "score": 0.5023
+        },
+        {
+          "model": "stock.picking",
+          "score": 0.4965
+        },
+        {
+          "model": "stock.replenishment.info",
+          "score": 0.4769
+        },
+        {
+          "model": "stock.warehouse",
+          "score": 0.4769
+        },
+        {
+          "model": "stock.warn.insufficient.qty.scrap",
+          "score": 0.4746
+        },
+        {
+          "model": "report.account.report_invoice",
+          "score": 0.4701
+        },
+        {
+          "model": "stock.warehouse.orderpoint",
+          "score": 0.4693
+        },
+        {
+          "model": "stock.inventory.adjustment.name",
+          "score": 0.4603
+        },
+        {
+          "model": "stock.request.count",
+          "score": 0.46
+        },
+        {
+          "model": "stock.storage.category.capacity",
+          "score": 0.4554
+        }
+      ]
+    },
+    {
+      "id": "Q11",
+      "query": "All products in the fresh-food category must get lot numbers generated automatically at receipt, without enabling it product by product, and only for the vendor receipt operation type.",
+      "module_ranking": [
+        "stock_picking_auto_create_lot",
+        "stock_no_negative",
+        "sale_management",
+        "sale_stock",
+        "stock_move_location",
+        "sale_stock_picking_invoice_link",
+        "stock_request",
+        "product",
+        "account_payment",
+        "account",
+        "sale_async_emails",
+        "base_import",
+        "sale_edi_ubl",
+        "stock",
+        "stock_picking_invoice_link",
+        "account_edi_ubl_cii",
+        "account_add_gln",
+        "stock_account",
+        "sale",
+        "auth_totp",
+        "resource",
+        "analytic",
+        "phone_validation",
+        "auth_signup",
+        "iap",
+        "snailmail_account",
+        "portal",
+        "sales_team",
+        "sale_sms",
+        "base_import_module",
+        "digest",
+        "base_install_request",
+        "mail",
+        "resource_mail",
+        "partner_autocomplete",
+        "bus",
+        "sale_pdf_quote_builder",
+        "utm",
+        "base_setup",
+        "snailmail",
+        "stock_picking_back2draft",
+        "payment",
+        "barcodes_gs1_nomenclature",
+        "onboarding",
+        "sms",
+        "base",
+        "iap_mail",
+        "stock_sms",
+        "spreadsheet_dashboard_sale",
+        "google_gmail",
+        "http_routing",
+        "auth_totp_mail",
+        "uom",
+        "privacy_lookup",
+        "barcodes",
+        "html_editor",
+        "spreadsheet",
+        "spreadsheet_account",
+        "auth_totp_portal",
+        "spreadsheet_dashboard_stock_account",
+        "web_editor",
+        "web",
+        "mail_bot",
+        "spreadsheet_dashboard_account",
+        "spreadsheet_dashboard",
+        "web_unsplash",
+        "web_tour"
+      ],
+      "modules": [
+        "stock_picking_auto_create_lot"
+      ],
+      "models": [
+        "picking.label.type",
+        "stock.lot",
+        "lot.label.layout"
+      ],
+      "top_modules": [
+        {
+          "module": "stock_picking_auto_create_lot",
+          "score": 0.5735
+        },
+        {
+          "module": "stock_no_negative",
+          "score": 0.5011
+        },
+        {
+          "module": "sale_management",
+          "score": 0.4921
+        },
+        {
+          "module": "sale_stock",
+          "score": 0.4816
+        },
+        {
+          "module": "stock_move_location",
+          "score": 0.4768
+        },
+        {
+          "module": "sale_stock_picking_invoice_link",
+          "score": 0.4764
+        },
+        {
+          "module": "stock_request",
+          "score": 0.4737
+        },
+        {
+          "module": "product",
+          "score": 0.464
+        },
+        {
+          "module": "account_payment",
+          "score": 0.4622
+        },
+        {
+          "module": "account",
+          "score": 0.4611
+        }
+      ],
+      "top_models": [
+        {
+          "model": "picking.label.type",
+          "score": 0.5351
+        },
+        {
+          "model": "stock.lot",
+          "score": 0.5126
+        },
+        {
+          "model": "lot.label.layout",
+          "score": 0.512
+        },
+        {
+          "model": "product.category",
+          "score": 0.507
+        },
+        {
+          "model": "product.label.layout",
+          "score": 0.4978
+        },
+        {
+          "model": "stock.storage.category",
+          "score": 0.4956
+        },
+        {
+          "model": "stock.storage.category.capacity",
+          "score": 0.4924
+        },
+        {
+          "model": "stock.lot.report",
+          "score": 0.4868
+        },
+        {
+          "model": "stock.request.order",
+          "score": 0.4867
+        },
+        {
+          "model": "sale.order",
+          "score": 0.4859
+        }
+      ]
+    },
+    {
+      "id": "Q12",
+      "query": "From the on-hand stock list, the storekeeper wants to select a few stock lines and move only those quantities to another location right away.",
+      "module_ranking": [
+        "stock_move_location",
+        "stock_request",
+        "stock",
+        "stock_picking_invoice_link",
+        "sale_management",
+        "sale_stock",
+        "stock_picking_auto_create_lot",
+        "sale_stock_picking_invoice_link",
+        "stock_account",
+        "product",
+        "stock_sms",
+        "onboarding",
+        "resource",
+        "stock_no_negative",
+        "account_add_gln",
+        "sales_team",
+        "stock_picking_back2draft",
+        "account_payment",
+        "auth_signup",
+        "digest",
+        "sale_sms",
+        "sale_async_emails",
+        "bus",
+        "base_setup",
+        "iap_mail",
+        "base_import",
+        "account",
+        "iap",
+        "base_install_request",
+        "barcodes",
+        "sale",
+        "sale_pdf_quote_builder",
+        "sale_edi_ubl",
+        "utm",
+        "http_routing",
+        "snailmail",
+        "portal",
+        "payment",
+        "resource_mail",
+        "spreadsheet_dashboard_sale",
+        "snailmail_account",
+        "spreadsheet_dashboard_stock_account",
+        "base_import_module",
+        "mail",
+        "sms",
+        "auth_totp_mail",
+        "web_tour",
+        "partner_autocomplete",
+        "analytic",
+        "phone_validation",
+        "web_editor",
+        "google_gmail",
+        "spreadsheet",
+        "barcodes_gs1_nomenclature",
+        "uom",
+        "auth_totp",
+        "html_editor",
+        "web_unsplash",
+        "spreadsheet_dashboard",
+        "base",
+        "mail_bot",
+        "privacy_lookup",
+        "spreadsheet_dashboard_account",
+        "auth_totp_portal",
+        "account_edi_ubl_cii",
+        "spreadsheet_account",
+        "web"
+      ],
+      "modules": [
+        "stock_move_location"
+      ],
+      "models": [
+        "stock.move.line",
+        "stock.picking",
+        "wiz.stock.move.location.line"
+      ],
+      "top_modules": [
+        {
+          "module": "stock_move_location",
+          "score": 0.641
+        },
+        {
+          "module": "stock_request",
+          "score": 0.5739
+        },
+        {
+          "module": "stock",
+          "score": 0.5498
+        },
+        {
+          "module": "stock_picking_invoice_link",
+          "score": 0.5271
+        },
+        {
+          "module": "sale_management",
+          "score": 0.5157
+        },
+        {
+          "module": "sale_stock",
+          "score": 0.5078
+        },
+        {
+          "module": "stock_picking_auto_create_lot",
+          "score": 0.5047
+        },
+        {
+          "module": "sale_stock_picking_invoice_link",
+          "score": 0.4998
+        },
+        {
+          "module": "stock_account",
+          "score": 0.475
+        },
+        {
+          "module": "product",
+          "score": 0.4721
+        }
+      ],
+      "top_models": [
+        {
+          "model": "stock.move.line",
+          "score": 0.584
+        },
+        {
+          "model": "stock.picking",
+          "score": 0.5681
+        },
+        {
+          "model": "wiz.stock.move.location.line",
+          "score": 0.564
+        },
+        {
+          "model": "stock.location",
+          "score": 0.5549
+        },
+        {
+          "model": "stock.return.picking.line",
+          "score": 0.5481
+        },
+        {
+          "model": "sale.order.line",
+          "score": 0.5447
+        },
+        {
+          "model": "stock.track.line",
+          "score": 0.5322
+        },
+        {
+          "model": "stock.request.count",
+          "score": 0.5302
+        },
+        {
+          "model": "stock.replenishment.option",
+          "score": 0.5296
+        },
+        {
+          "model": "stock.warehouse.orderpoint",
+          "score": 0.5279
+        }
+      ]
+    },
+    {
+      "id": "Q13",
+      "query": "On the inventory overview, each internal transfer type should have a button to move on-hand stock from one location to another, and the warehouse manager decides per operation type whether the button is shown.",
+      "module_ranking": [
+        "stock_move_location",
+        "stock_request",
+        "sale_stock",
+        "stock_account",
+        "sale_management",
+        "stock",
+        "stock_picking_invoice_link",
+        "sale_stock_picking_invoice_link",
+        "onboarding",
+        "stock_picking_auto_create_lot",
+        "account_payment",
+        "resource",
+        "sale",
+        "stock_picking_back2draft",
+        "stock_no_negative",
+        "account_add_gln",
+        "base_import",
+        "account",
+        "product",
+        "utm",
+        "base_setup",
+        "iap",
+        "stock_sms",
+        "base_install_request",
+        "sale_edi_ubl",
+        "sale_async_emails",
+        "sales_team",
+        "iap_mail",
+        "portal",
+        "mail",
+        "spreadsheet_dashboard_stock_account",
+        "analytic",
+        "auth_totp_mail",
+        "base_import_module",
+        "snailmail_account",
+        "sms",
+        "spreadsheet_dashboard_sale",
+        "payment",
+        "digest",
+        "base",
+        "uom",
+        "auth_totp",
+        "sale_sms",
+        "snailmail",
+        "auth_signup",
+        "resource_mail",
+        "account_edi_ubl_cii",
+        "bus",
+        "spreadsheet_dashboard",
+        "spreadsheet_dashboard_account",
+        "google_gmail",
+        "http_routing",
+        "phone_validation",
+        "html_editor",
+        "spreadsheet",
+        "mail_bot",
+        "web_editor",
+        "partner_autocomplete",
+        "barcodes",
+        "web_tour",
+        "auth_totp_portal",
+        "barcodes_gs1_nomenclature",
+        "sale_pdf_quote_builder",
+        "web",
+        "web_unsplash",
+        "spreadsheet_account",
+        "privacy_lookup"
+      ],
+      "modules": [
+        "stock_move_location"
+      ],
+      "models": [
+        "stock.inventory.adjustment.name",
+        "stock.picking",
+        "stock.location"
+      ],
+      "top_modules": [
+        {
+          "module": "stock_move_location",
+          "score": 0.6554
+        },
+        {
+          "module": "stock_request",
+          "score": 0.6244
+        },
+        {
+          "module": "sale_stock",
+          "score": 0.5827
+        },
+        {
+          "module": "stock_account",
+          "score": 0.5814
+        },
+        {
+          "module": "sale_management",
+          "score": 0.571
+        },
+        {
+          "module": "stock",
+          "score": 0.5581
+        },
+        {
+          "module": "stock_picking_invoice_link",
+          "score": 0.5522
+        },
+        {
+          "module": "sale_stock_picking_invoice_link",
+          "score": 0.5408
+        },
+        {
+          "module": "onboarding",
+          "score": 0.5334
+        },
+        {
+          "module": "stock_picking_auto_create_lot",
+          "score": 0.5228
+        }
+      ],
+      "top_models": [
+        {
+          "model": "stock.inventory.adjustment.name",
+          "score": 0.522
+        },
+        {
+          "model": "stock.picking",
+          "score": 0.5127
+        },
+        {
+          "model": "stock.location",
+          "score": 0.5122
+        },
+        {
+          "model": "stock.warehouse",
+          "score": 0.5117
+        },
+        {
+          "model": "stock.route",
+          "score": 0.5023
+        },
+        {
+          "model": "stock.inventory.warning",
+          "score": 0.501
+        },
+        {
+          "model": "stock.warehouse.orderpoint",
+          "score": 0.4994
+        },
+        {
+          "model": "stock.request.count",
+          "score": 0.4987
+        },
+        {
+          "model": "stock.replenishment.option",
+          "score": 0.494
+        },
+        {
+          "model": "stock.change.product.qty",
+          "score": 0.4714
+        }
+      ]
+    },
+    {
+      "id": "Q14",
+      "query": "A user cancelled a customer delivery by mistake; we need to bring that same delivery back and process it instead of creating a new one with a different reference.",
+      "module_ranking": [
+        "stock_request",
+        "sale_stock_picking_invoice_link",
+        "stock_picking_back2draft",
+        "base_import",
+        "sale_stock",
+        "resource_mail",
+        "account_payment",
+        "auth_signup",
+        "sale_management",
+        "sale_async_emails",
+        "stock_picking_invoice_link",
+        "account",
+        "snailmail",
+        "portal",
+        "resource",
+        "snailmail_account",
+        "auth_totp_mail",
+        "http_routing",
+        "google_gmail",
+        "stock_no_negative",
+        "stock",
+        "stock_move_location",
+        "digest",
+        "product",
+        "base_install_request",
+        "mail",
+        "sale_edi_ubl",
+        "iap_mail",
+        "base_import_module",
+        "account_add_gln",
+        "sale_pdf_quote_builder",
+        "stock_picking_auto_create_lot",
+        "payment",
+        "sale_sms",
+        "base_setup",
+        "phone_validation",
+        "sales_team",
+        "privacy_lookup",
+        "partner_autocomplete",
+        "stock_account",
+        "iap",
+        "onboarding",
+        "utm",
+        "web",
+        "bus",
+        "auth_totp",
+        "html_editor",
+        "analytic",
+        "base",
+        "spreadsheet",
+        "web_tour",
+        "sale",
+        "sms",
+        "stock_sms",
+        "barcodes",
+        "uom",
+        "web_editor",
+        "account_edi_ubl_cii",
+        "spreadsheet_dashboard_sale",
+        "auth_totp_portal",
+        "barcodes_gs1_nomenclature",
+        "spreadsheet_dashboard",
+        "spreadsheet_dashboard_account",
+        "mail_bot",
+        "spreadsheet_dashboard_stock_account",
+        "web_unsplash",
+        "spreadsheet_account"
+      ],
+      "modules": [
+        "stock_request"
+      ],
+      "models": [
+        "sale.order.cancel",
+        "sale.mass.cancel.orders",
+        "sms.resend.recipient"
+      ],
+      "top_modules": [
+        {
+          "module": "stock_request",
+          "score": 0.5447
+        },
+        {
+          "module": "sale_stock_picking_invoice_link",
+          "score": 0.5446
+        },
+        {
+          "module": "stock_picking_back2draft",
+          "score": 0.5427
+        },
+        {
+          "module": "base_import",
+          "score": 0.529
+        },
+        {
+          "module": "sale_stock",
+          "score": 0.5246
+        },
+        {
+          "module": "resource_mail",
+          "score": 0.5132
+        },
+        {
+          "module": "account_payment",
+          "score": 0.5131
+        },
+        {
+          "module": "auth_signup",
+          "score": 0.5032
+        },
+        {
+          "module": "sale_management",
+          "score": 0.4999
+        },
+        {
+          "module": "sale_async_emails",
+          "score": 0.4949
+        }
+      ],
+      "top_models": [
+        {
+          "model": "sale.order.cancel",
+          "score": 0.6137
+        },
+        {
+          "model": "sale.mass.cancel.orders",
+          "score": 0.5472
+        },
+        {
+          "model": "sms.resend.recipient",
+          "score": 0.5438
+        },
+        {
+          "model": "stock.backorder.confirmation",
+          "score": 0.5422
+        },
+        {
+          "model": "stock.inventory.adjustment.name",
+          "score": 0.5293
+        },
+        {
+          "model": "res.users.deletion",
+          "score": 0.5226
+        },
+        {
+          "model": "account.move.reversal",
+          "score": 0.5193
+        },
+        {
+          "model": "stock.backorder.confirmation.line",
+          "score": 0.5111
+        },
+        {
+          "model": "sale.order.line",
+          "score": 0.5096
+        },
+        {
+          "model": "mail.resend.partner",
+          "score": 0.5069
+        }
+      ]
+    },
+    {
+      "id": "Q15",
+      "query": "When an invoice is created from a partially delivered sales order, each invoice line should automatically record the deliveries it bills, without accounting picking them by hand.",
+      "module_ranking": [
+        "sale_stock_picking_invoice_link",
+        "account",
+        "sale_management",
+        "stock_picking_invoice_link",
+        "sale_stock",
+        "account_payment",
+        "stock_picking_auto_create_lot",
+        "stock_account",
+        "snailmail_account",
+        "sale_edi_ubl",
+        "stock",
+        "sale_async_emails",
+        "stock_request",
+        "digest",
+        "analytic",
+        "product",
+        "stock_move_location",
+        "sale_pdf_quote_builder",
+        "account_edi_ubl_cii",
+        "account_add_gln",
+        "base_import",
+        "sale",
+        "payment",
+        "resource",
+        "partner_autocomplete",
+        "sales_team",
+        "onboarding",
+        "base_import_module",
+        "base_setup",
+        "base_install_request",
+        "stock_picking_back2draft",
+        "portal",
+        "sale_sms",
+        "snailmail",
+        "resource_mail",
+        "stock_no_negative",
+        "iap",
+        "utm",
+        "spreadsheet_dashboard_sale",
+        "phone_validation",
+        "spreadsheet_account",
+        "bus",
+        "uom",
+        "spreadsheet",
+        "iap_mail",
+        "spreadsheet_dashboard_account",
+        "mail",
+        "http_routing",
+        "google_gmail",
+        "barcodes",
+        "base",
+        "stock_sms",
+        "spreadsheet_dashboard",
+        "auth_totp",
+        "web_tour",
+        "barcodes_gs1_nomenclature",
+        "mail_bot",
+        "spreadsheet_dashboard_stock_account",
+        "auth_totp_mail",
+        "html_editor",
+        "sms",
+        "auth_signup",
+        "web",
+        "privacy_lookup",
+        "web_editor",
+        "web_unsplash",
+        "auth_totp_portal"
+      ],
+      "modules": [
+        "sale_stock_picking_invoice_link"
+      ],
+      "models": [
+        "report.account.report_invoice_with_payments",
+        "report.account.report_invoice",
+        "account.invoice.report"
+      ],
+      "top_modules": [
+        {
+          "module": "sale_stock_picking_invoice_link",
+          "score": 0.6853
+        },
+        {
+          "module": "account",
+          "score": 0.6161
+        },
+        {
+          "module": "sale_management",
+          "score": 0.6151
+        },
+        {
+          "module": "stock_picking_invoice_link",
+          "score": 0.6118
+        },
+        {
+          "module": "sale_stock",
+          "score": 0.6049
+        },
+        {
+          "module": "account_payment",
+          "score": 0.5582
+        },
+        {
+          "module": "stock_picking_auto_create_lot",
+          "score": 0.5576
+        },
+        {
+          "module": "stock_account",
+          "score": 0.5361
+        },
+        {
+          "module": "snailmail_account",
+          "score": 0.5204
+        },
+        {
+          "module": "sale_edi_ubl",
+          "score": 0.4873
+        }
+      ],
+      "top_models": [
+        {
+          "model": "report.account.report_invoice_with_payments",
+          "score": 0.6184
+        },
+        {
+          "model": "report.account.report_invoice",
+          "score": 0.6157
+        },
+        {
+          "model": "account.invoice.report",
+          "score": 0.5558
+        },
+        {
+          "model": "sale.order.line",
+          "score": 0.5461
+        },
+        {
+          "model": "sale.advance.payment.inv",
+          "score": 0.537
+        },
+        {
+          "model": "sale.order",
+          "score": 0.5057
+        },
+        {
+          "model": "account.report.line",
+          "score": 0.5057
+        },
+        {
+          "model": "account.tax.repartition.line",
+          "score": 0.4898
+        },
+        {
+          "model": "account.reconcile.model",
+          "score": 0.489
+        },
+        {
+          "model": "account.payment.term.line",
+          "score": 0.4854
+        }
+      ]
+    },
+    {
+      "id": "Q16",
+      "query": "When a customer returns goods and accounting creates a credit note from the original invoice, the credit note lines must be linked to the corresponding return stock moves.",
+      "module_ranking": [
+        "sale_stock_picking_invoice_link",
+        "stock_picking_invoice_link",
+        "stock_account",
+        "sale_management",
+        "sale_stock",
+        "account_payment",
+        "account",
+        "stock_picking_auto_create_lot",
+        "stock_request",
+        "account_add_gln",
+        "stock",
+        "stock_picking_back2draft",
+        "stock_move_location",
+        "analytic",
+        "snailmail_account",
+        "base_setup",
+        "product",
+        "sale_edi_ubl",
+        "base_import",
+        "resource",
+        "auth_signup",
+        "portal",
+        "base_import_module",
+        "stock_no_negative",
+        "payment",
+        "stock_sms",
+        "iap",
+        "onboarding",
+        "sale_async_emails",
+        "spreadsheet_account",
+        "iap_mail",
+        "account_edi_ubl_cii",
+        "digest",
+        "sale_pdf_quote_builder",
+        "partner_autocomplete",
+        "sales_team",
+        "sale_sms",
+        "phone_validation",
+        "sale",
+        "mail",
+        "utm",
+        "auth_totp_mail",
+        "resource_mail",
+        "uom",
+        "base_install_request",
+        "barcodes",
+        "snailmail",
+        "auth_totp",
+        "google_gmail",
+        "spreadsheet",
+        "spreadsheet_dashboard_stock_account",
+        "http_routing",
+        "barcodes_gs1_nomenclature",
+        "spreadsheet_dashboard_account",
+        "spreadsheet_dashboard_sale",
+        "web_tour",
+        "sms",
+        "html_editor",
+        "web",
+        "bus",
+        "base",
+        "spreadsheet_dashboard",
+        "mail_bot",
+        "web_editor",
+        "privacy_lookup",
+        "web_unsplash",
+        "auth_totp_portal"
+      ],
+      "modules": [
+        "sale_stock_picking_invoice_link"
+      ],
+      "models": [
+        "report.account.report_invoice_with_payments",
+        "account.report.line",
+        "stock.return.picking.line"
+      ],
+      "top_modules": [
+        {
+          "module": "sale_stock_picking_invoice_link",
+          "score": 0.6665
+        },
+        {
+          "module": "stock_picking_invoice_link",
+          "score": 0.6487
+        },
+        {
+          "module": "stock_account",
+          "score": 0.5901
+        },
+        {
+          "module": "sale_management",
+          "score": 0.5667
+        },
+        {
+          "module": "sale_stock",
+          "score": 0.5638
+        },
+        {
+          "module": "account_payment",
+          "score": 0.5552
+        },
+        {
+          "module": "account",
+          "score": 0.5359
+        },
+        {
+          "module": "stock_picking_auto_create_lot",
+          "score": 0.5331
+        },
+        {
+          "module": "stock_request",
+          "score": 0.5318
+        },
+        {
+          "module": "account_add_gln",
+          "score": 0.5178
+        }
+      ],
+      "top_models": [
+        {
+          "model": "report.account.report_invoice_with_payments",
+          "score": 0.6036
+        },
+        {
+          "model": "account.report.line",
+          "score": 0.5669
+        },
+        {
+          "model": "stock.return.picking.line",
+          "score": 0.5643
+        },
+        {
+          "model": "stock.move.line",
+          "score": 0.5598
+        },
+        {
+          "model": "account.reconcile.model.line",
+          "score": 0.5564
+        },
+        {
+          "model": "account.payment.term.line",
+          "score": 0.5513
+        },
+        {
+          "model": "stock.backorder.confirmation.line",
+          "score": 0.5488
+        },
+        {
+          "model": "account.bank.statement.line",
+          "score": 0.5394
+        },
+        {
+          "model": "account.payment.method.line",
+          "score": 0.5267
+        },
+        {
+          "model": "stock.inventory.adjustment.name",
+          "score": 0.5243
+        }
+      ]
+    },
+    {
+      "id": "Q17",
+      "query": "The production department needs to send the warehouse a request for materials stating product, quantity and delivery location, and then follow the transfers created for that request.",
+      "module_ranking": [
+        "stock_request",
+        "sale_stock",
+        "sale_stock_picking_invoice_link",
+        "sale_management",
+        "account_payment",
+        "stock_move_location",
+        "stock_picking_invoice_link",
+        "stock_account",
+        "stock_picking_auto_create_lot",
+        "stock",
+        "resource",
+        "onboarding",
+        "account",
+        "sale_async_emails",
+        "snailmail_account",
+        "snailmail",
+        "base_install_request",
+        "product",
+        "base_setup",
+        "base_import",
+        "sale_edi_ubl",
+        "digest",
+        "account_add_gln",
+        "mail",
+        "portal",
+        "auth_totp_mail",
+        "iap_mail",
+        "sales_team",
+        "uom",
+        "sms",
+        "utm",
+        "stock_picking_back2draft",
+        "resource_mail",
+        "sale",
+        "stock_sms",
+        "iap",
+        "base",
+        "payment",
+        "base_import_module",
+        "sale_pdf_quote_builder",
+        "phone_validation",
+        "sale_sms",
+        "google_gmail",
+        "stock_no_negative",
+        "auth_signup",
+        "bus",
+        "web",
+        "analytic",
+        "auth_totp",
+        "spreadsheet_dashboard_sale",
+        "http_routing",
+        "spreadsheet",
+        "html_editor",
+        "spreadsheet_dashboard",
+        "barcodes_gs1_nomenclature",
+        "spreadsheet_dashboard_account",
+        "web_tour",
+        "barcodes",
+        "spreadsheet_account",
+        "spreadsheet_dashboard_stock_account",
+        "partner_autocomplete",
+        "account_edi_ubl_cii",
+        "web_editor",
+        "web_unsplash",
+        "privacy_lookup",
+        "auth_totp_portal",
+        "mail_bot"
+      ],
+      "modules": [
+        "stock_request"
+      ],
+      "models": [
+        "stock.request.count",
+        "stock.request.order",
+        "stock.warehouse"
+      ],
+      "top_modules": [
+        {
+          "module": "stock_request",
+          "score": 0.6464
+        },
+        {
+          "module": "sale_stock",
+          "score": 0.628
+        },
+        {
+          "module": "sale_stock_picking_invoice_link",
+          "score": 0.6005
+        },
+        {
+          "module": "sale_management",
+          "score": 0.5987
+        },
+        {
+          "module": "account_payment",
+          "score": 0.5904
+        },
+        {
+          "module": "stock_move_location",
+          "score": 0.5744
+        },
+        {
+          "module": "stock_picking_invoice_link",
+          "score": 0.5511
+        },
+        {
+          "module": "stock_account",
+          "score": 0.5495
+        },
+        {
+          "module": "stock_picking_auto_create_lot",
+          "score": 0.5474
+        },
+        {
+          "module": "stock",
+          "score": 0.5432
+        }
+      ],
+      "top_models": [
+        {
+          "model": "stock.request.count",
+          "score": 0.5397
+        },
+        {
+          "model": "stock.request.order",
+          "score": 0.5259
+        },
+        {
+          "model": "stock.warehouse",
+          "score": 0.4987
+        },
+        {
+          "model": "stock.backorder.confirmation",
+          "score": 0.4963
+        },
+        {
+          "model": "stock.change.product.qty",
+          "score": 0.4901
+        },
+        {
+          "model": "account.move.send",
+          "score": 0.4869
+        },
+        {
+          "model": "sale.order.line",
+          "score": 0.4851
+        },
+        {
+          "model": "stock.backorder.confirmation.line",
+          "score": 0.4835
+        },
+        {
+          "model": "stock.warehouse.orderpoint",
+          "score": 0.4835
+        },
+        {
+          "model": "stock.request",
+          "score": 0.4792
+        }
+      ]
+    },
+    {
+      "id": "Q18",
+      "query": "A shift leader wants to submit one request covering several products at once, sharing the same warehouse, destination location and needed date, and follow the overall status of the whole request.",
+      "module_ranking": [
+        "sale_management",
+        "sale_stock",
+        "stock_request",
+        "stock_move_location",
+        "resource",
+        "sale_async_emails",
+        "onboarding",
+        "stock",
+        "base_import",
+        "base_install_request",
+        "account_payment",
+        "sale_stock_picking_invoice_link",
+        "stock_picking_invoice_link",
+        "product",
+        "sale",
+        "sales_team",
+        "digest",
+        "account_add_gln",
+        "snailmail",
+        "stock_picking_auto_create_lot",
+        "utm",
+        "sale_edi_ubl",
+        "auth_signup",
+        "spreadsheet_dashboard_sale",
+        "portal",
+        "account",
+        "base_setup",
+        "http_routing",
+        "resource_mail",
+        "stock_account",
+        "google_gmail",
+        "partner_autocomplete",
+        "bus",
+        "snailmail_account",
+        "mail",
+        "iap",
+        "base_import_module",
+        "uom",
+        "stock_sms",
+        "html_editor",
+        "spreadsheet",
+        "payment",
+        "sale_sms",
+        "auth_totp_mail",
+        "web_tour",
+        "auth_totp",
+        "spreadsheet_dashboard",
+        "sms",
+        "stock_picking_back2draft",
+        "iap_mail",
+        "sale_pdf_quote_builder",
+        "spreadsheet_dashboard_stock_account",
+        "base",
+        "spreadsheet_dashboard_account",
+        "phone_validation",
+        "web",
+        "stock_no_negative",
+        "analytic",
+        "web_editor",
+        "privacy_lookup",
+        "mail_bot",
+        "account_edi_ubl_cii",
+        "barcodes_gs1_nomenclature",
+        "barcodes",
+        "spreadsheet_account",
+        "web_unsplash",
+        "auth_totp_portal"
+      ],
+      "modules": [
+        "sale_management"
+      ],
+      "models": [
+        "sale.order.line",
+        "spreadsheet.dashboard.share",
+        "stock.request.count"
+      ],
+      "top_modules": [
+        {
+          "module": "sale_management",
+          "score": 0.6039
+        },
+        {
+          "module": "sale_stock",
+          "score": 0.6036
+        },
+        {
+          "module": "stock_request",
+          "score": 0.6
+        },
+        {
+          "module": "stock_move_location",
+          "score": 0.5764
+        },
+        {
+          "module": "resource",
+          "score": 0.5644
+        },
+        {
+          "module": "sale_async_emails",
+          "score": 0.5447
+        },
+        {
+          "module": "onboarding",
+          "score": 0.542
+        },
+        {
+          "module": "stock",
+          "score": 0.5399
+        },
+        {
+          "module": "base_import",
+          "score": 0.5344
+        },
+        {
+          "module": "base_install_request",
+          "score": 0.5333
+        }
+      ],
+      "top_models": [
+        {
+          "model": "sale.order.line",
+          "score": 0.5102
+        },
+        {
+          "model": "spreadsheet.dashboard.share",
+          "score": 0.5075
+        },
+        {
+          "model": "stock.request.count",
+          "score": 0.4999
+        },
+        {
+          "model": "mail.tracking.duration.mixin",
+          "score": 0.4948
+        },
+        {
+          "model": "stock.request.order",
+          "score": 0.4942
+        },
+        {
+          "model": "stock.change.product.qty",
+          "score": 0.487
+        },
+        {
+          "model": "sale.order",
+          "score": 0.4824
+        },
+        {
+          "model": "mail.scheduled.message",
+          "score": 0.4753
+        },
+        {
+          "model": "sale.edi.xml.ubl_bis3",
+          "score": 0.4716
+        },
+        {
+          "model": "sale.edi.common",
+          "score": 0.4703
+        }
+      ]
+    },
+    {
+      "id": "Q19",
+      "query": "When a department requests goods and enough unreserved quantity is already available at the destination location, that stock should be used directly without triggering replenishment from the central warehouse; this rule applies company-wide.",
+      "module_ranking": [
+        "stock_request",
+        "stock_move_location",
+        "stock_picking_auto_create_lot",
+        "stock",
+        "sale_stock",
+        "sale_stock_picking_invoice_link",
+        "stock_picking_invoice_link",
+        "sale_management",
+        "stock_no_negative",
+        "resource",
+        "base_install_request",
+        "account_payment",
+        "account_add_gln",
+        "stock_account",
+        "base_import",
+        "sale_async_emails",
+        "sales_team",
+        "account",
+        "resource_mail",
+        "auth_signup",
+        "stock_picking_back2draft",
+        "sale_edi_ubl",
+        "stock_sms",
+        "onboarding",
+        "http_routing",
+        "digest",
+        "snailmail",
+        "portal",
+        "bus",
+        "snailmail_account",
+        "base_setup",
+        "auth_totp_mail",
+        "product",
+        "payment",
+        "iap",
+        "mail",
+        "sale_sms",
+        "sale",
+        "utm",
+        "partner_autocomplete",
+        "barcodes",
+        "base_import_module",
+        "auth_totp",
+        "iap_mail",
+        "spreadsheet",
+        "google_gmail",
+        "base",
+        "spreadsheet_dashboard_stock_account",
+        "spreadsheet_dashboard_sale",
+        "analytic",
+        "phone_validation",
+        "uom",
+        "sms",
+        "sale_pdf_quote_builder",
+        "html_editor",
+        "spreadsheet_dashboard",
+        "barcodes_gs1_nomenclature",
+        "spreadsheet_account",
+        "web_unsplash",
+        "spreadsheet_dashboard_account",
+        "privacy_lookup",
+        "account_edi_ubl_cii",
+        "web",
+        "auth_totp_portal",
+        "web_tour",
+        "mail_bot",
+        "web_editor"
+      ],
+      "modules": [
+        "stock_request"
+      ],
+      "models": [
+        "stock.request.order",
+        "stock.warehouse.orderpoint",
+        "stock.request.count"
+      ],
+      "top_modules": [
+        {
+          "module": "stock_request",
+          "score": 0.6388
+        },
+        {
+          "module": "stock_move_location",
+          "score": 0.5907
+        },
+        {
+          "module": "stock_picking_auto_create_lot",
+          "score": 0.5647
+        },
+        {
+          "module": "stock",
+          "score": 0.5354
+        },
+        {
+          "module": "sale_stock",
+          "score": 0.5262
+        },
+        {
+          "module": "sale_stock_picking_invoice_link",
+          "score": 0.5163
+        },
+        {
+          "module": "stock_picking_invoice_link",
+          "score": 0.5103
+        },
+        {
+          "module": "sale_management",
+          "score": 0.5078
+        },
+        {
+          "module": "stock_no_negative",
+          "score": 0.5073
+        },
+        {
+          "module": "resource",
+          "score": 0.4835
+        }
+      ],
+      "top_models": [
+        {
+          "model": "stock.request.order",
+          "score": 0.5663
+        },
+        {
+          "model": "stock.warehouse.orderpoint",
+          "score": 0.5608
+        },
+        {
+          "model": "stock.request.count",
+          "score": 0.5608
+        },
+        {
+          "model": "stock.replenishment.option",
+          "score": 0.554
+        },
+        {
+          "model": "stock.request",
+          "score": 0.5427
+        },
+        {
+          "model": "stock.request.allocation",
+          "score": 0.5306
+        },
+        {
+          "model": "stock.location",
+          "score": 0.5174
+        },
+        {
+          "model": "stock.replenishment.info",
+          "score": 0.5168
+        },
+        {
+          "model": "stock.inventory.adjustment.name",
+          "score": 0.5133
+        },
+        {
+          "model": "stock.warehouse",
+          "score": 0.5067
+        }
+      ]
+    },
+    {
+      "id": "Q20",
+      "query": "One transfer may carry goods for several material requests; the manager needs to know, for each request, how much has been delivered, how much is still in progress and how much was cancelled.",
+      "module_ranking": [
+        "sale_stock",
+        "sale_management",
+        "stock_request",
+        "onboarding",
+        "resource",
+        "account_payment",
+        "sale_stock_picking_invoice_link",
+        "stock",
+        "stock_move_location",
+        "sale_async_emails",
+        "utm",
+        "stock_account",
+        "account",
+        "stock_picking_back2draft",
+        "sale",
+        "base_import",
+        "snailmail_account",
+        "stock_picking_invoice_link",
+        "iap_mail",
+        "digest",
+        "product",
+        "stock_sms",
+        "sales_team",
+        "uom",
+        "sale_edi_ubl",
+        "snailmail",
+        "account_add_gln",
+        "base_install_request",
+        "google_gmail",
+        "base_import_module",
+        "bus",
+        "base_setup",
+        "resource_mail",
+        "stock_picking_auto_create_lot",
+        "iap",
+        "payment",
+        "portal",
+        "spreadsheet",
+        "sale_sms",
+        "phone_validation",
+        "sms",
+        "spreadsheet_dashboard_sale",
+        "analytic",
+        "mail",
+        "auth_totp_mail",
+        "web_tour",
+        "base",
+        "spreadsheet_dashboard_account",
+        "spreadsheet_dashboard_stock_account",
+        "partner_autocomplete",
+        "sale_pdf_quote_builder",
+        "html_editor",
+        "spreadsheet_dashboard",
+        "http_routing",
+        "auth_signup",
+        "web",
+        "auth_totp",
+        "barcodes",
+        "account_edi_ubl_cii",
+        "spreadsheet_account",
+        "stock_no_negative",
+        "barcodes_gs1_nomenclature",
+        "web_editor",
+        "privacy_lookup",
+        "auth_totp_portal",
+        "mail_bot",
+        "web_unsplash"
+      ],
+      "modules": [
+        "sale_stock"
+      ],
+      "models": [
+        "mail.tracking.duration.mixin",
+        "stock.request.count",
+        "account.move.send"
+      ],
+      "top_modules": [
+        {
+          "module": "sale_stock",
+          "score": 0.6279
+        },
+        {
+          "module": "sale_management",
+          "score": 0.6168
+        },
+        {
+          "module": "stock_request",
+          "score": 0.6101
+        },
+        {
+          "module": "onboarding",
+          "score": 0.5845
+        },
+        {
+          "module": "resource",
+          "score": 0.5766
+        },
+        {
+          "module": "account_payment",
+          "score": 0.5762
+        },
+        {
+          "module": "sale_stock_picking_invoice_link",
+          "score": 0.5632
+        },
+        {
+          "module": "stock",
+          "score": 0.5594
+        },
+        {
+          "module": "stock_move_location",
+          "score": 0.5585
+        },
+        {
+          "module": "sale_async_emails",
+          "score": 0.5439
+        }
+      ],
+      "top_models": [
+        {
+          "model": "mail.tracking.duration.mixin",
+          "score": 0.5364
+        },
+        {
+          "model": "stock.request.count",
+          "score": 0.5291
+        },
+        {
+          "model": "account.move.send",
+          "score": 0.5289
+        },
+        {
+          "model": "payment.transaction",
+          "score": 0.5134
+        },
+        {
+          "model": "sms.resend.recipient",
+          "score": 0.511
+        },
+        {
+          "model": "sale.order.cancel",
+          "score": 0.5068
+        },
+        {
+          "model": "mail.message.translation",
+          "score": 0.5058
+        },
+        {
+          "model": "stock.backorder.confirmation",
+          "score": 0.5058
+        },
+        {
+          "model": "onboarding.progress",
+          "score": 0.5006
+        },
+        {
+          "model": "account.accrued.orders.wizard",
+          "score": 0.4964
         }
       ]
     }
