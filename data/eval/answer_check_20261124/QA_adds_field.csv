@@ -1,4 +1,4 @@
-module,model,so_field,fields
+module,model,n_fields,fields
 stock_move_location,stock.move,1,[location_move]
 stock_move_location,stock.picking.type,1,[show_move_onhand]
 stock_move_location,wiz.stock.move.location,17,"[company_id, create_uid, create_date, destination_location_id, destination_location_disable, picking_type_id, exclude_reserved_qty, origin_location_id, display_name, edit_locations, write_uid, picking_id, write_date, origin_location_disable, stock_move_location_line_ids, apply_putaway_strategy, id]"

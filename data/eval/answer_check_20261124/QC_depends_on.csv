@@ -1,4 +1,4 @@
-module,phu_thuoc_truc_tiep
+module,direct_depends
 sale_stock_picking_invoice_link,"[sale_stock, stock_picking_invoice_link]"
 stock_move_location,[stock]
 stock_no_negative,[stock]

@@ -1,31 +1,31 @@
-"""Collector v1: văn bản module OCA (như v0) + GitHub issue, PR do LLM chọn lọc.
+"""Collector v1: OCA module documentation (as in v0) + GitHub issues and PRs selected by an LLM.
 
-So với v0 (collect_modules.py):
-  1. Vẫn đọc __manifest__.py và readme/ (dùng lại hàm của v0, kết quả giống hệt v0).
-  2. Tìm trên GitHub các issue, pull request của repo OCA có nhắc tên module
-     (GitHub Search API, 2 truy vấn/module: is:issue và is:pull-request).
-  3. Lọc bằng luật (không tốn LLM): bỏ migration, port, translation, CI.
-  4. LLM chọn nguồn liên quan (1 lời gọi/module): giữ tối đa 5 mục mang thông tin
-     nghiệp vụ (use case, quy tắc, cấu hình, giới hạn, lỗi chức năng). Đây là phần
-     "LLM chọn nguồn liên quan" của Collector Agent (HANDOFF Mục 6, D16).
-  5. Ghi data/collected_v1/<module>.json: giữ nguyên khoá của v0 (manifest, readme)
-     để Extractor đọc được, thêm khoá github, selection, text_v0.
+Compared with v0 (collect_modules.py):
+  1. Still reads __manifest__.py and readme/ (reuses the v0 functions, so the text is identical to v0).
+  2. Searches GitHub for issues and pull requests of the OCA repository that mention the module
+     (GitHub Search API, 2 queries per module: is:issue and is:pull-request).
+  3. Rule-based filter (no LLM): drops migrations, ports, translations, CI.
+  4. LLM source selection (1 call per module): keeps at most 5 items with business knowledge
+     (use case, business rule, configuration, limitation, functional bug). This is the
+     "LLM selects relevant sources" part of the Collector Agent.
+  5. Writes data/collected_v1/<module>.json: keeps the v0 keys (manifest, readme) so the
+     Extractor can read it, and adds the keys github, selection, text_v0.
 
-Tái lập, tiết kiệm quota (D15):
-  - Kết quả GitHub lưu ở data/collected_v1/_github/<module>.json; chạy lại dùng lại
-    (trừ khi --refresh-github), nên đầu vào LLM không đổi.
-  - Kết quả LLM lưu ở data/collected_v1/_llm/<module>.json theo hash prompt; chạy lại
-    0 lời gọi (trừ khi --refresh-llm).
-  - Không có ứng viên sau khi lọc thì không gọi LLM.
-  - Hết quota ngày thì dừng, giữ cache. Giới hạn cứng --max-llm-calls (mặc định 8).
+Reproducibility and quota saving (free tier):
+  - GitHub results are stored in data/collected_v1/_github/<module>.json and reused on rerun
+    (unless --refresh-github), so the LLM input does not change.
+  - LLM results are stored in data/collected_v1/_llm/<module>.json keyed by the prompt hash;
+    a rerun makes 0 calls (unless --refresh-llm).
+  - No LLM call when no candidate is left after filtering.
+  - Stops on daily quota errors and keeps the cache. Hard limit --max-llm-calls (default 8).
 
-Cách chạy (trong ~/agentic-graphrag, đã activate venv):
-  python src/collector/collect_modules_v1.py --no-llm     # thử: GitHub + lọc, 0 lời gọi LLM
-  python src/collector/collect_modules_v1.py              # chạy thật (khoảng 7 lời gọi)
+Usage (in ~/agentic-graphrag, venv activated):
+  python src/collector/collect_modules_v1.py --no-llm     # dry run: GitHub + filter, 0 LLM calls
+  python src/collector/collect_modules_v1.py              # real run (about 7 LLM calls)
   python src/collector/collect_modules_v1.py --modules stock_request
 
-Biến .env tuỳ chọn: GITHUB_TOKEN (token cá nhân, chỉ đọc; không có thì GitHub cho
-10 lượt tìm/phút, script tự nghỉ giữa các lượt), GEMINI_MODEL, LLM_TIMEOUT, LLM_PAUSE.
+Optional .env variables: GITHUB_TOKEN (personal read-only token; without it GitHub allows
+10 searches per minute and the script pauses between searches), GEMINI_MODEL, LLM_TIMEOUT, LLM_PAUSE.
 """
 import argparse
 import hashlib
@@ -47,23 +47,23 @@ from pydantic import BaseModel, Field
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from collect_modules import SEEN_MODULES, find_module, git_info, read_manifest, read_readme  # noqa: E402
 
-load_dotenv(override=True)   # .env thắng biến cũ trong terminal (sự cố 23/11)
+load_dotenv(override=True)   # .env wins over stale variables left in the terminal
 
 COLLECTOR_VERSION = "v1"
-LLM_MODEL = os.getenv("GEMINI_MODEL", "gemini-3.6-flash")      # D12
+LLM_MODEL = os.getenv("GEMINI_MODEL", "gemini-3.6-flash")
 LLM_TIMEOUT = int(os.getenv("LLM_TIMEOUT", "300"))
-LLM_PAUSE = int(os.getenv("LLM_PAUSE", "15"))                    # giới hạn 5 lời gọi/phút
+LLM_PAUSE = int(os.getenv("LLM_PAUSE", "15"))                    # limit of 5 calls per minute
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN", "").strip()
-GH_PAUSE = 2 if GITHUB_TOKEN else 7                              # không token: 10 lượt tìm/phút
+GH_PAUSE = 2 if GITHUB_TOKEN else 7                              # without token: 10 searches per minute
 
-DEFAULT_MODULES = SEEN_MODULES + ["stock_request"]               # 6 seen + 1 unseen (HANDOFF Mục 8)
-MAX_CANDIDATES = 20       # số ứng viên tối đa đưa cho LLM
-MAX_SELECTED = 5          # số mục LLM được chọn tối đa
-PROMPT_DOC_CHARS = 1500   # độ dài tài liệu module đưa vào prompt
-PROMPT_BODY_CHARS = 350   # độ dài mỗi nội dung issue trong prompt
-TEXT_BODY_CHARS = 1500    # độ dài mỗi issue khi ghi vào văn bản v1
+DEFAULT_MODULES = SEEN_MODULES + ["stock_request"]               # 6 seen + 1 unseen
+MAX_CANDIDATES = 20       # maximum number of candidates given to the LLM
+MAX_SELECTED = 5          # maximum number of items the LLM may select
+PROMPT_DOC_CHARS = 1500   # length of the module documentation in the prompt
+PROMPT_BODY_CHARS = 350   # length of each issue body in the prompt
+TEXT_BODY_CHARS = 1500    # length of each issue body written to the v1 text
 
-# Luật lọc trước (trên tiêu đề): loại các mục không mang thông tin nghiệp vụ
+# Rule-based pre-filter (on the title): drops items without business knowledge
 FILTER_RULES = [
     ("migration", r"^migration to version|\[mig\]|\bmigrat|\bport(ed|ing)? to\b"),
     ("forward_port", r"\[fwp?\]|forward[- ]?port|cherry[- ]?pick|\[bcp\]|backport"),
@@ -78,7 +78,7 @@ class GitHubError(RuntimeError):
 
 
 def gh_search(repo: str, module: str, kind: str):
-    """Tìm issue hoặc PR (kind: issue | pull-request) trong OCA/<repo> có nhắc tên module."""
+    """Search issues or PRs (kind: issue | pull-request) in OCA/<repo> that mention the module."""
     q = f'"{module}" repo:OCA/{repo} is:{kind}'
     url = "https://api.github.com/search/issues?" + urllib.parse.urlencode({"q": q, "per_page": 50})
     headers = {"Accept": "application/vnd.github+json", "User-Agent": "agentic-graphrag-collector"}
@@ -88,9 +88,9 @@ def gh_search(repo: str, module: str, kind: str):
         with urllib.request.urlopen(urllib.request.Request(url, headers=headers), timeout=30) as r:
             data = json.loads(r.read().decode("utf-8"))
     except urllib.error.HTTPError as e:
-        raise GitHubError(f"GitHub {e.code} khi tìm '{q}': {e.read()[:200]!r}")
+        raise GitHubError(f"GitHub {e.code} on '{q}': {e.read()[:200]!r}")
     except urllib.error.URLError as e:
-        raise GitHubError(f"Không kết nối được GitHub: {e}")
+        raise GitHubError(f"Cannot reach GitHub: {e}")
     items = []
     for it in data.get("items", []):
         items.append(dict(
@@ -102,7 +102,7 @@ def gh_search(repo: str, module: str, kind: str):
 
 
 def get_github_items(module: str, repo: str, cache_dir: Path, refresh: bool):
-    """Dùng lại kết quả GitHub đã lưu (để tái lập); --refresh-github thì tìm lại."""
+    """Reuse stored GitHub results (reproducibility); search again with --refresh-github."""
     cache = cache_dir / f"{module}.json"
     if cache.exists() and not refresh:
         return json.loads(cache.read_text(encoding="utf-8")), True
@@ -120,9 +120,9 @@ def get_github_items(module: str, repo: str, cache_dir: Path, refresh: bool):
 
 
 def clean_body(text: str) -> str:
-    text = re.sub(r"<!--.*?-->", "", text or "", flags=re.S)       # ghi chú HTML (template issue)
-    text = re.sub(r"```.*?```", "", text, flags=re.S)              # khối code, log lỗi
-    text = re.sub(r"!\[[^\]]*\]\([^)]*\)", "", text)               # ảnh markdown
+    text = re.sub(r"<!--.*?-->", "", text or "", flags=re.S)       # HTML comments (issue templates)
+    text = re.sub(r"```.*?```", "", text, flags=re.S)              # code blocks, error logs
+    text = re.sub(r"!\[[^\]]*\]\([^)]*\)", "", text)               # markdown images
     text = re.sub(r"<img[^>]*>", "", text)
     text = re.sub(r"[ \t]+", " ", text)
     text = re.sub(r"\n\s*\n+", "\n", text)
@@ -130,17 +130,17 @@ def clean_body(text: str) -> str:
 
 
 def prefilter(item: dict, module: str):
-    """Trả về None nếu giữ, hoặc lý do loại."""
+    """Return None to keep the item, or the reason for dropping it."""
     title = item["title"]
     if module not in title and module not in (item["body"] or ""):
-        return "module_not_mentioned"        # GitHub tách từ nên có thể khớp sai
+        return "module_not_mentioned"        # GitHub tokenizes the name, so matches can be wrong
     for reason, pattern in FILTER_RULES:
         if re.search(pattern, title, flags=re.I):
             return reason
     return None
 
 
-# ============ 2. LLM chọn nguồn ============
+# ============ 2. LLM source selection ============
 class SelectedItem(BaseModel):
     number: int = Field(description="Issue or pull request number, copied from the candidate list")
     category: str = Field(description="One of: use_case, business_rule, configuration, limitation, functional_bug")
@@ -202,20 +202,20 @@ def call_llm(prompt: str) -> Selection:
             raise DailyQuotaExceeded(msg[:300])
         raise
     if out is None:
-        raise RuntimeError("LLM trả về kết quả không đọc được (structured output rỗng)")
+        raise RuntimeError("LLM returned an unreadable result (empty structured output)")
     return out if isinstance(out, Selection) else Selection(**out)
 
 
 def get_selection(module, prompt, cache_dir: Path, refresh: bool, state: dict):
-    """Dùng cache nếu prompt và model không đổi; ngược lại gọi LLM (1 lần, không tự thử lại)."""
+    """Use the cache if the prompt and model are unchanged; otherwise call the LLM once (no retry)."""
     cache = cache_dir / f"{module}.json"
     if cache.exists() and not refresh:
         c = json.loads(cache.read_text(encoding="utf-8"))
         if c.get("prompt_sha256") == sha(prompt) and c.get("llm") == LLM_MODEL:
             return Selection(**c["output"]), c, "cache"
     if state["llm_calls"] >= state["max_llm_calls"]:
-        raise RuntimeError(f"đã chạm giới hạn {state['max_llm_calls']} lời gọi LLM trong lần chạy này")
-    print(f"  {module}: gọi LLM ({LLM_MODEL}) ...")
+        raise RuntimeError(f"reached the limit of {state['max_llm_calls']} LLM calls for this run")
+    print(f"  {module}: calling LLM ({LLM_MODEL}) ...")
     state["llm_calls"] += 1
     t = time.time()
     out = call_llm(prompt)
@@ -228,7 +228,7 @@ def get_selection(module, prompt, cache_dir: Path, refresh: bool, state: dict):
     return out, c, "new"
 
 
-# ============ 3. Thu thập 1 module (dùng được từ Mapping Agent trong vòng agentic) ============
+# ============ 3. Collect one module (callable by the Mapping Agent in the agentic loop) ============
 def collect_v1(module: str, oca_dir: Path, out_dir: Path, collected_at: str, state: dict,
                use_llm=True, refresh_github=False, refresh_llm=False):
     module_dir = find_module(oca_dir, module)
@@ -239,14 +239,14 @@ def collect_v1(module: str, oca_dir: Path, out_dir: Path, collected_at: str, sta
     manifest = read_manifest(module_dir)
     readme = read_readme(module_dir)
 
-    # Văn bản v0 (giống hệt collect_modules.py)
+    # v0 text (identical to collect_modules.py)
     parts = [manifest.get("name", ""), manifest.get("summary", "")]
     if manifest.get("description"):
         parts.append(manifest["description"])
     parts += [f"## {k}\n{v['text']}" for k, v in readme.items()]
     text_v0 = "\n\n".join(p for p in parts if p).strip()
 
-    # GitHub + lọc bằng luật
+    # GitHub + rule-based filter
     raw, gh_cached = get_github_items(module, repo, out_dir / "_github", refresh_github)
     seen, candidates, dropped = set(), [], {}
     for it in raw["items"]:
@@ -263,7 +263,7 @@ def collect_v1(module: str, oca_dir: Path, out_dir: Path, collected_at: str, sta
     n_kept = len(candidates)
     candidates = candidates[:MAX_CANDIDATES]
 
-    # LLM chọn nguồn
+    # LLM source selection
     selection, sel_meta, llm_status, invalid = Selection(), None, "skip_no_candidates", []
     if candidates and use_llm:
         prompt = build_prompt(module, manifest.get("name", module), repo, text_v0, candidates)
@@ -275,13 +275,13 @@ def collect_v1(module: str, oca_dir: Path, out_dir: Path, collected_at: str, sta
     for s in selection.selected[:MAX_SELECTED]:
         c = by_num.get(s.number)
         if c is None:
-            invalid.append(s.number)          # LLM trả số không có trong danh sách
+            invalid.append(s.number)          # LLM returned a number that is not in the list
             continue
         selected.append(dict(number=c["number"], type=c["type"], state=c["state"], title=c["title"],
                              url=c["url"], created_at=c["created_at"], category=s.category,
                              reason=s.reason, body_clean=clean_body(c["body"])[:TEXT_BODY_CHARS]))
 
-    # Văn bản v1 = v0 + các issue được chọn
+    # v1 text = v0 text + selected issues
     issue_parts = [f"### #{s['number']} {s['title']} ({s['type']}, {s['state']}, {s['created_at'][:4]})\n"
                    f"{s['body_clean']}" for s in selected]
     issues_text = ("## GITHUB ISSUES (selected)\n" + "\n\n".join(issue_parts)) if issue_parts else ""
@@ -312,7 +312,7 @@ def collect_v1(module: str, oca_dir: Path, out_dir: Path, collected_at: str, sta
             "n_chars_v0": len(text_v0),
             "n_chars_issues": len(issues_text),
             "n_chars": len(full_text),
-            "n_sources": 1 + len(selected),       # 1 = tài liệu module (manifest + readme)
+            "n_sources": 1 + len(selected),       # 1 = module documentation (manifest + readme)
             "has_description": bool(readme.get("DESCRIPTION") or manifest.get("description")),
         },
     }
@@ -328,9 +328,9 @@ def main():
     ap.add_argument("--oca-dir", default="oca")
     ap.add_argument("--out-dir", default="data/collected_v1")
     ap.add_argument("--modules", nargs="*", default=DEFAULT_MODULES)
-    ap.add_argument("--no-llm", action="store_true", help="chỉ GitHub + lọc bằng luật, 0 lời gọi LLM")
-    ap.add_argument("--refresh-github", action="store_true", help="tìm lại trên GitHub dù đã có kết quả lưu")
-    ap.add_argument("--refresh-llm", action="store_true", help="gọi lại LLM dù đã có cache")
+    ap.add_argument("--no-llm", action="store_true", help="GitHub + rule-based filter only, 0 LLM calls")
+    ap.add_argument("--refresh-github", action="store_true", help="search GitHub again even if results are stored")
+    ap.add_argument("--refresh-llm", action="store_true", help="call the LLM again even if a cache exists")
     ap.add_argument("--max-llm-calls", type=int, default=8)
     args = ap.parse_args()
 
@@ -339,8 +339,8 @@ def main():
         d.mkdir(parents=True, exist_ok=True)
     collected_at = datetime.now(timezone.utc).isoformat(timespec="seconds")
     state = {"llm_calls": 0, "max_llm_calls": args.max_llm_calls}
-    print(f"Collector {COLLECTOR_VERSION}, {collected_at}, {len(args.modules)} module, "
-          f"LLM {'TẮT (--no-llm)' if args.no_llm else LLM_MODEL}, GitHub token {'có' if GITHUB_TOKEN else 'không'}")
+    print(f"Collector {COLLECTOR_VERSION}, {collected_at}, {len(args.modules)} modules, "
+          f"LLM {'OFF (--no-llm)' if args.no_llm else LLM_MODEL}, GitHub token {'yes' if GITHUB_TOKEN else 'no'}")
 
     t0, results = time.time(), []
     for m in args.modules:
@@ -348,28 +348,28 @@ def main():
             r = collect_v1(m, oca_dir, out_dir, collected_at, state, use_llm=not args.no_llm,
                            refresh_github=args.refresh_github, refresh_llm=args.refresh_llm)
         except DailyQuotaExceeded as e:
-            print(f"\nDỪNG: hết quota Gemini trong ngày ({LLM_MODEL}). Module đã xong vẫn giữ cache;"
-                  f" chạy lại lệnh khi quota làm mới (khoảng 15:00 giờ VN).\n  Chi tiết: {e}")
+            print(f"\nSTOPPED: daily Gemini quota exhausted ({LLM_MODEL}). Finished modules keep their cache;"
+                  f" rerun the command after the quota resets (around 15:00 Vietnam time).\n  Details: {e}")
             break
         except GitHubError as e:
-            print(f"  {m}: LỖI GitHub: {e}")
+            print(f"  {m}: GitHub ERROR: {e}")
             r = {"module": m, "status": "github_error"}
-        except Exception as e:   # lỗi LLM khác (503, timeout...): ghi lại, sang module sau
-            print(f"  {m}: LỖI: {repr(e)[:300]}")
+        except Exception as e:   # other LLM errors (503, timeout...): record and move to the next module
+            print(f"  {m}: ERROR: {repr(e)[:300]}")
             r = {"module": m, "status": "error", "error": repr(e)[:300]}
         results.append(r)
 
-    print(f"\n{'module':33} {'status':12} {'v0':>6} {'raw':>4} {'giữ':>4} {'chọn':>4} {'v1':>6}  LLM")
+    print(f"\n{'module':33} {'status':12} {'v0':>6} {'raw':>4} {'kept':>4} {'sel':>4} {'v1':>6}  LLM")
     for r in results:
         print(f"{r['module']:33} {r['status']:12} {r.get('n_chars_v0', 0):>6} {r.get('n_raw', 0):>4} "
               f"{r.get('n_kept', 0):>4} {r.get('n_selected', 0):>4} {r.get('n_chars', 0):>6}  {r.get('llm', '')}")
     ok = [r for r in results if r["status"] == "ok"]
-    print(f"\nXong {len(ok)}/{len(args.modules)} module; lời gọi LLM mới: {state['llm_calls']}; "
-          f"có ít nhất 1 issue được chọn: {sum(r['n_selected'] > 0 for r in ok)}/{len(ok)}; "
-          f"thời gian {time.time() - t0:.1f} giây")
+    print(f"\nDone {len(ok)}/{len(args.modules)} modules; new LLM calls: {state['llm_calls']}; "
+          f"modules with at least 1 selected issue: {sum(r['n_selected'] > 0 for r in ok)}/{len(ok)}; "
+          f"time {time.time() - t0:.1f} s")
     bad = {r["module"]: r["invalid_numbers"] for r in ok if r.get("invalid_numbers")}
     if bad:
-        print(f"Cảnh báo: LLM trả số không có trong danh sách (đã bỏ): {bad}")
+        print(f"Warning: the LLM returned numbers that are not in the list (dropped): {bad}")
 
     summary = {"collected_at": collected_at, "collector_version": COLLECTOR_VERSION,
                "llm": None if args.no_llm else LLM_MODEL, "no_llm": args.no_llm,
@@ -378,7 +378,7 @@ def main():
     suffix = "_nollm" if args.no_llm else ""
     (out_dir / f"_summary_{stamp}{suffix}.json").write_text(
         json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"Lưu: {out_dir}/<module>.json, {out_dir}/_summary_{stamp}{suffix}.json")
+    print(f"Saved: {out_dir}/<module>.json, {out_dir}/_summary_{stamp}{suffix}.json")
 
 
 if __name__ == "__main__":

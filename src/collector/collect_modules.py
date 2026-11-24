@@ -1,12 +1,12 @@
-"""Collector v0: thu thập văn bản mô tả module OCA từ repo đã clone.
+"""Collector v0: collects the description text of OCA modules from the cloned repositories.
 
-Đọc __manifest__.py và thư mục readme/ của từng module, lưu mỗi module
-thành 1 file JSON (có ghi nguồn, commit, thời điểm thu thập).
+Reads __manifest__.py and the readme/ folder of each module, and saves each module
+as 1 JSON file (with source, commit and collection time).
 
-Bản v0 chưa dùng LLM: danh sách module được truyền vào bằng tay.
-Phần LLM chọn nguồn liên quan sẽ thêm ở bản sau.
+v0 uses no LLM: the module list is given by hand.
+LLM-based source selection is added in v1 (collect_modules_v1.py).
 
-Cách chạy (trong ~/agentic-graphrag, đã activate venv):
+Usage (in ~/agentic-graphrag, venv activated):
     python src/collector/collect_modules.py
     python src/collector/collect_modules.py --modules stock_request
 """
@@ -18,7 +18,7 @@ import subprocess
 from datetime import datetime, timezone
 from pathlib import Path
 
-# 6 module nhóm seen (HANDOFF Mục 8)
+# 6 modules of the seen group
 SEEN_MODULES = [
     "stock_no_negative",
     "stock_picking_invoice_link",
@@ -28,23 +28,23 @@ SEEN_MODULES = [
     "sale_stock_picking_invoice_link",
 ]
 
-# File trong readme/ có nội dung nghiệp vụ (bỏ CONTRIBUTORS, CREDITS, HISTORY)
+# readme/ files with business content (skip CONTRIBUTORS, CREDITS, HISTORY)
 README_KEEP = ["DESCRIPTION", "CONTEXT", "USAGE", "CONFIGURE", "INSTALL", "ROADMAP"]
 
-# Key trong manifest cần giữ
+# Manifest keys to keep
 MANIFEST_KEEP = ["name", "summary", "description", "version", "category",
                  "depends", "auto_install", "website", "license"]
 
 
 def find_module(oca_dir: Path, module: str):
-    """Tìm thư mục module trong các repo OCA đã clone: oca/<repo>/<module>/."""
+    """Find the module folder in the cloned OCA repositories: oca/<repo>/<module>/."""
     for manifest in oca_dir.glob(f"*/{module}/__manifest__.py"):
         return manifest.parent
     return None
 
 
 def git_info(repo_dir: Path):
-    """Lấy commit và nhánh hiện tại của repo (để tái lập)."""
+    """Get the current commit and branch of the repository (for reproducibility)."""
     def run(*args):
         try:
             return subprocess.check_output(["git", "-C", str(repo_dir), *args],
@@ -59,12 +59,12 @@ def git_info(repo_dir: Path):
 
 def read_manifest(module_dir: Path):
     text = (module_dir / "__manifest__.py").read_text(encoding="utf-8")
-    data = ast.literal_eval(text)  # an toàn, không chạy code
+    data = ast.literal_eval(text)  # safe, does not execute code
     return {k: data.get(k) for k in MANIFEST_KEEP if k in data}
 
 
 def read_readme(module_dir: Path):
-    """Đọc các file readme/<SECTION>.md (hoặc .rst). Trả về dict section -> text."""
+    """Read the readme/<SECTION>.md (or .rst) files. Returns a dict section -> text."""
     sections = {}
     readme_dir = module_dir / "readme"
     if not readme_dir.is_dir():
@@ -89,7 +89,7 @@ def collect(module: str, oca_dir: Path, out_dir: Path, collected_at: str):
     manifest = read_manifest(module_dir)
     readme = read_readme(module_dir)
 
-    # Văn bản gộp để đưa vào lớp ngữ nghĩa (iText2KG)
+    # Combined text for the semantic layer (iText2KG)
     parts = [manifest.get("name", ""), manifest.get("summary", "")]
     if manifest.get("description"):
         parts.append(manifest["description"])
@@ -133,7 +133,7 @@ def main():
 
     results = [collect(m, oca_dir, out_dir, collected_at) for m in args.modules]
 
-    # In bảng tóm tắt
+    # Print the summary table
     print(f"Collector v0, {collected_at}, {len(results)} module")
     print(f"{'module':35} {'status':10} {'repo':30} {'chars':>6}  sections")
     for r in results:
@@ -141,7 +141,7 @@ def main():
               f"{r.get('n_chars', 0):>6}  {','.join(r.get('readme_sections', []))}")
     ok = [r for r in results if r["status"] == "ok"]
     with_desc = [r for r in ok if r["has_description"]]
-    print(f"\nTìm thấy: {len(ok)}/{len(results)}; có mô tả: {len(with_desc)}/{len(results)}")
+    print(f"\nFound: {len(ok)}/{len(results)}; with description: {len(with_desc)}/{len(results)}")
 
     summary = {"collected_at": collected_at, "results": results}
     stamp = collected_at[:10].replace("-", "")

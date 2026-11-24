@@ -1,4 +1,4 @@
-module,quan_he,model,transient
+module,relation,model,transient
 sale_stock_picking_invoice_link,EXTENDS,sale.order.line,FALSE
 sale_stock_picking_invoice_link,EXTENDS,stock.move,FALSE
 stock_move_location,DEFINES,wiz.stock.move.location,TRUE

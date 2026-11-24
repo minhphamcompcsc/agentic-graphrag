@@ -1,133 +1,133 @@
 // =====================================================================
-// Phân tích Knowledge Graph ban đầu (Thực tập 1, chạy ngày 09/11/2026)
-// Chạy trong Neo4j Browser: http://localhost:7474 (từng câu một)
-// Yêu cầu: đã chạy extract_schema.py v0.1 (có sẵn cờ l.oca, l.technical)
-// Kết quả ghi trong comment là số liệu thực tế đã đo, dùng cho báo cáo.
+// Analysis of the initial Knowledge Graph (Internship 1, run on 2026-11-09)
+// Run in Neo4j Browser: http://localhost:7474 (one query at a time)
+// Requires: extract_schema.py v0.1 has been run (flags l.oca, l.technical exist)
+// Results in comments are the actual measured numbers, used in reports.
 // =====================================================================
 
 
 // ---------------------------------------------------------------------
-// A. KIỂM TRA TÍNH ĐÚNG CỦA GRAPH
+// A. GRAPH CORRECTNESS CHECKS
 // ---------------------------------------------------------------------
 
-// A1. Đếm node theo loại
-// Kết quả: Module 66, Model 439, Field 7.755
-MATCH (n) RETURN labels(n)[0] AS loai, count(*) AS so_luong;
+// A1. Count nodes by label
+// Result: Module 66, Model 439, Field 7,755
+MATCH (n) RETURN labels(n)[0] AS label, count(*) AS n;
 
-// A2. Module OCA đã load
-// Kết quả: 6 module (5 chọn tay + sale_stock_picking_invoice_link tự cài)
+// A2. Loaded OCA modules
+// Result: 6 modules (5 chosen by hand + sale_stock_picking_invoice_link auto-installed)
 MATCH (m:Module {source:'oca'}) RETURN m.name, m.label ORDER BY m.name;
 
-// A3. Ai tạo, ai mở rộng stock.picking (kiểm chứng heuristic "id nhỏ nhất")
-// Kết quả: stock DEFINES; stock_sms, stock_account, sale_stock + 4 module OCA EXTENDS
+// A3. Who defines and who extends stock.picking (checks the "smallest id" heuristic)
+// Result: stock DEFINES; stock_sms, stock_account, sale_stock + 4 OCA modules EXTEND
 MATCH (mo:Module)-[r:DEFINES|EXTENDS]->(md:Model {name:'stock.picking'})
 RETURN mo.name, type(r), mo.source ORDER BY type(r);
 
-// A4. Field do stock_no_negative thêm vào
-// Kết quả: allow_negative_stock trên product.category, product.product,
+// A4. Fields added by stock_no_negative
+// Result: allow_negative_stock on product.category, product.product,
 //          product.template, stock.location
 MATCH (mo:Module {name:'stock_no_negative'})-[:ADDS_FIELD]->(f:Field)
 RETURN f.model, f.name, f.label, f.ttype;
 
-// A5. Field không xác định được module sở hữu
-// Kết quả: 5 field điện thoại trên res.users (kế thừa uỷ quyền từ res.partner)
+// A5. Fields without an identifiable owner module
+// Result: 5 phone fields on res.users (delegation inheritance from res.partner)
 MATCH (f:Field)
 WHERE NOT EXISTS { (:Module)-[:ADDS_FIELD]->(f) }
 RETURN f.model, f.name, f.ttype;
 
-// A6. Chuỗi phụ thuộc của stock_picking_invoice_link (xem dạng Graph)
+// A6. Dependency chain of stock_picking_invoice_link (view as Graph)
 MATCH p = (m:Module {name:'stock_picking_invoice_link'})-[:DEPENDS_ON*1..3]->(:Module)
 RETURN p;
 
 
 // ---------------------------------------------------------------------
-// B. ẢNH HƯỞNG CỦA MODULE OCA LÊN CẤU TRÚC QUAN HỆ
+// B. IMPACT OF OCA MODULES ON THE RELATIONSHIP STRUCTURE
 // ---------------------------------------------------------------------
 
-// B1. Số cạnh do OCA thêm vào
-// Kết quả: 23 / 2.512 cạnh LINKS_TO (dưới 1%)
-MATCH ()-[l:LINKS_TO {oca:true}]->() RETURN count(l) AS so_canh_oca;
+// B1. Number of edges added by OCA
+// Result: 23 / 2,512 LINKS_TO edges (below 1%)
+MATCH ()-[l:LINKS_TO {oca:true}]->() RETURN count(l) AS n_oca_edges;
 
-// B2. Liên kết trực tiếp phiếu kho <-> hoá đơn
-// Kết quả: 2 cạnh (invoice_ids, picking_ids), cả 2 đều oca = true
+// B2. Direct link picking <-> invoice
+// Result: 2 edges (invoice_ids, picking_ids), both with oca = true
 MATCH (a:Model {name:'stock.picking'})-[l:LINKS_TO]-(b:Model {name:'account.move'})
-RETURN startNode(l).name AS tu, l.via AS qua_field, l.type, endNode(l).name AS den, l.oca;
+RETURN startNode(l).name AS from_model, l.via AS via_field, l.type, endNode(l).name AS to_model, l.oca;
 
-// B3. Đường ngắn nhất CÓ OCA (hình fig_path_with_oca.svg)
-// Kết quả: 1 bước
+// B3. Shortest path WITH OCA (figure fig_path_with_oca.svg)
+// Result: 1 hop
 MATCH p = shortestPath((a:Model {name:'stock.picking'})-[:LINKS_TO*..4]-(b:Model {name:'account.move'}))
-RETURN p, length(p) AS so_buoc;
+RETURN p, length(p) AS hops;
 
-// B4. Đường ngắn nhất KHÔNG OCA (hình fig_path_without_oca.svg)
-// Kết quả: 2 bước, stock.picking <- sale.order -> account.move
+// B4. Shortest path WITHOUT OCA (figure fig_path_without_oca.svg)
+// Result: 2 hops, stock.picking <- sale.order -> account.move
 MATCH p = shortestPath((a:Model {name:'stock.picking'})-[:LINKS_TO*..6]-(b:Model {name:'account.move'}))
 WHERE none(l IN relationships(p) WHERE l.oca)
-RETURN p, length(p) AS so_buoc;
+RETURN p, length(p) AS hops;
 
 
 // ---------------------------------------------------------------------
-// C. NHIỄU KỸ THUẬT TRONG GRAPH
+// C. TECHNICAL NOISE IN THE GRAPH
 // ---------------------------------------------------------------------
 
-// C1. Model có nhiều kết nối nhất
-// Kết quả: res.users 775, res.partner 184, res.company 181, mail.message 113,
-//          account.move 95, product.product 95, ... (lẫn model kỹ thuật và nghiệp vụ)
+// C1. Models with the most links
+// Result: res.users 775, res.partner 184, res.company 181, mail.message 113,
+//          account.move 95, product.product 95, ... (technical and business models mixed)
 MATCH (m:Model)-[l:LINKS_TO]-()
-RETURN m.name, count(l) AS so_ket_noi
-ORDER BY so_ket_noi DESC LIMIT 20;
+RETURN m.name, count(l) AS n_links
+ORDER BY n_links DESC LIMIT 20;
 
-// C2. Field quan hệ phổ biến nhất
-// Kết quả: create_uid 321, write_uid 321, company_id 107, currency_id 46,
+// C2. Most frequent relational fields
+// Result: create_uid 321, write_uid 321, company_id 107, currency_id 46,
 //          partner_id 40, product_id 36, user_id 35, message_ids 33, ...
 MATCH ()-[l:LINKS_TO]->()
-RETURN l.via AS ten_field, count(*) AS so_canh
-ORDER BY so_canh DESC LIMIT 25;
+RETURN l.via AS field_name, count(*) AS n_edges
+ORDER BY n_edges DESC LIMIT 25;
 
-// C3. Field quan hệ của mixin chatter (nguồn của tiêu chí lọc)
-// Kết quả: 7 field (4 của mail.thread, 3 của mail.activity.mixin)
+// C3. Relational fields of the chatter mixins (source of the filter criterion)
+// Result: 7 fields (4 from mail.thread, 3 from mail.activity.mixin)
 MATCH (m:Model)-[:HAS_FIELD]->(f:Field)
 WHERE m.name IN ['mail.thread', 'mail.activity.mixin'] AND f.relation IS NOT NULL
 RETURN m.name, f.name, f.relation;
 
-// C4. Số cạnh kỹ thuật
-// Kết quả: 824 / 2.512 cạnh (khoảng 33%), từ 9 field
-MATCH ()-[l:LINKS_TO {technical:true}]->() RETURN count(l) AS so_canh_ky_thuat;
+// C4. Number of technical edges
+// Result: 824 / 2,512 edges (about 33%), from 9 fields
+MATCH ()-[l:LINKS_TO {technical:true}]->() RETURN count(l) AS n_technical_edges;
 
 
 // ---------------------------------------------------------------------
-// D. HIỆU QUẢ BỘ LỌC: ĐƯỜNG 2 BƯỚC stock.picking -> account.move
+// D. FILTER EFFECT: 2-HOP PATHS stock.picking -> account.move
 // ---------------------------------------------------------------------
 
-// D1. Trước lọc (chỉ bỏ cạnh OCA)
-// Kết quả: 69 đường. res.users 24, res.partner 24, mail.message 8, stock.move 6,
+// D1. Before filtering (only OCA edges removed)
+// Result: 69 paths. res.users 24, res.partner 24, mail.message 8, stock.move 6,
 //          res.company 2, sale.order 2, mail.activity 1, mail.followers 1, mail.activity.type 1
 MATCH p = (a:Model {name:'stock.picking'})-[:LINKS_TO*2]-(b:Model {name:'account.move'})
 WHERE none(l IN relationships(p) WHERE l.oca)
-RETURN [n IN nodes(p) | n.name][1] AS model_trung_gian, count(*) AS so_duong
-ORDER BY so_duong DESC;
+RETURN [n IN nodes(p) | n.name][1] AS middle_model, count(*) AS n_paths
+ORDER BY n_paths DESC;
 
-// D2. Sau lọc (bỏ cạnh OCA và cạnh kỹ thuật)
-// Kết quả: 28 đường. res.partner 15, stock.move 6, res.users 3, res.company 2, sale.order 2
-// Giữ nguyên cả 8 đường qua chứng từ (stock.move, sale.order)
+// D2. After filtering (OCA and technical edges removed)
+// Result: 28 paths. res.partner 15, stock.move 6, res.users 3, res.company 2, sale.order 2
+// All 8 paths through business documents are kept (stock.move, sale.order)
 MATCH p = (a:Model {name:'stock.picking'})-[:LINKS_TO*2]-(b:Model {name:'account.move'})
 WHERE none(l IN relationships(p) WHERE l.oca OR l.technical)
-RETURN [n IN nodes(p) | n.name][1] AS model_trung_gian, count(*) AS so_duong
-ORDER BY so_duong DESC;
+RETURN [n IN nodes(p) | n.name][1] AS middle_model, count(*) AS n_paths
+ORDER BY n_paths DESC;
 
-// D3. Chi tiết field của từng đường sau lọc
+// D3. Field details of each path after filtering
 MATCH p = (a:Model {name:'stock.picking'})-[:LINKS_TO*2]-(b:Model {name:'account.move'})
 WHERE none(l IN relationships(p) WHERE l.oca OR l.technical)
-RETURN [n IN nodes(p) | n.name][1] AS model_trung_gian,
-       [l IN relationships(p) | l.via] AS qua_field
-ORDER BY model_trung_gian;
+RETURN [n IN nodes(p) | n.name][1] AS middle_model,
+       [l IN relationships(p) | l.via] AS via_field
+ORDER BY middle_model;
 
-// ===== Query D: chuỗi DEPENDS_ON của stock_picking_invoice_link (17/11/2026) =====
-// D1. Phụ thuộc trực tiếp. Kết quả: stock_account (khớp PostgreSQL 1/1)
+// ===== Query D: DEPENDS_ON chain of stock_picking_invoice_link (2026-11-17) =====
+// D1. Direct dependency. Result: stock_account (matches PostgreSQL 1/1)
 MATCH (m:Module {name:'stock_picking_invoice_link'})-[:DEPENDS_ON]->(d:Module)
 RETURN d.name AS module ORDER BY module;
 
-// D2. Chuỗi bắc cầu. Kết quả: 22 module, độ sâu 1 đến 5
-// (khớp PostgreSQL WITH RECURSIVE 22/22; 353 đường đi)
+// D2. Transitive chain. Result: 22 modules, depth 1 to 5
+// (matches PostgreSQL WITH RECURSIVE 22/22; 353 paths)
 MATCH p = (m:Module {name:'stock_picking_invoice_link'})-[:DEPENDS_ON*]->(d:Module)
 RETURN d.name AS module, min(length(p)) AS depth
 ORDER BY depth, module;

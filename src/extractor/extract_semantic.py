@@ -1,38 +1,38 @@
 """
-Extractor lớp ngữ nghĩa sem-v0: LLM đọc văn bản module (đầu ra Collector) và
-trích CHỨC NĂNG NGHIỆP VỤ, rồi gắn vào lớp cấu trúc đã có trong Neo4j.
+Semantic layer extractor sem-v0: an LLM reads the module text (Collector output),
+extracts BUSINESS FUNCTIONS, and links them to the structural layer already in Neo4j.
 
-Dựa trên iText2KG (Lairgi et al., 2024), dùng 2 thành phần của thư viện itext2kg 1.1.0:
-  1. DocumentsDistiller: LLM chắt lọc văn bản theo một schema cố định (blueprint).
-  2. Matcher: gộp thực thể theo độ tương đồng embedding với ngưỡng (mặc định 0,7 như iText2KG).
-Không dùng bước trích thực thể, quan hệ tự do của iText2KG: lớp cấu trúc đã có sẵn
-Model, Field nên dùng làm "mỏ neo" (HANDOFF Mục 7.3), tránh LLM tự đặt nhãn mới.
+Based on iText2KG (Lairgi et al., 2024), using 2 components of the itext2kg 1.1.0 library:
+  1. DocumentsDistiller: the LLM distills the text into a fixed schema (blueprint).
+  2. Matcher: entity linking by embedding similarity with a threshold (default 0.7, as in iText2KG).
+The free entity and relation extraction of iText2KG is not used: the structural layer already has
+Model and Field nodes, which serve as "anchors" and stop the LLM from inventing new labels.
 
-Gộp thực thể (mỗi đối tượng LLM nhắc tới), theo thứ tự:
-  1. exact_name : tên kỹ thuật LLM đoán (vd. stock.picking) có trong KG
-  2. exact_label: tên hiển thị khớp đúng nhãn Model (vd. "Product Category")
-  3. embedding  : Matcher của iText2KG, cosine(bge-m3) > ngưỡng
-  4. new        : không khớp, tạo nút Concept
+Entity linking (each object mentioned by the LLM), in order:
+  1. exact_name : technical name guessed by the LLM (e.g. stock.picking) exists in the KG
+  2. exact_label: display name equals a Model label (e.g. "Product Category")
+  3. embedding  : iText2KG Matcher, cosine(bge-m3) > threshold
+  4. new        : no match, create a Concept node
 
-Đồ thị thêm vào:
+Graph additions:
   (:Function {key, module, name, description, evidence, evidence_found, section, embedding, ...})
   (:Module)-[:PROVIDES]->(:Function)
   (:Function)-[:INVOLVES {mention, method, score}]->(:Model)
   (:Function)-[:INVOLVES_FIELD {mention, method}]->(:Field)
   (:Function)-[:MENTIONS {mention}]->(:Concept)
-  Module.embedding (văn bản module) cho sim(q,m) và baseline B1
+  Module.embedding (module text) for sim(q,m) and baseline B1
 
-Đầu ra:
-  data/semantic/<module>.llm.json        kết quả thô của LLM (cache, để tái lập)
-  data/semantic/links_YYYYMMDD.csv       từng đối tượng được gắn, cột gold_model để gán nhãn tay
+Outputs:
+  data/semantic/<module>.llm.json        raw LLM output (cache, for reproducibility)
+  data/semantic/links_YYYYMMDD.csv       each linked object, with a gold_model column for manual labels
   data/snapshots/semantic_stats_YYYYMMDD.json
 
-Cách chạy (trong ~/agentic-graphrag, đã activate venv):
-  python src/extractor/extract_semantic.py --dry-run     # thử, không ghi Neo4j
-  python src/extractor/extract_semantic.py               # ghi Neo4j (dùng cache LLM nếu có)
-  python src/extractor/extract_semantic.py --refresh     # bắt buộc gọi lại LLM
-Lưu ý: extract_schema.py --reset xoá toàn bộ graph. Sau đó chạy lại file này
-(dùng cache nên không tốn lời gọi LLM).
+Usage (in ~/agentic-graphrag, venv activated):
+  python src/extractor/extract_semantic.py --dry-run     # test, no write to Neo4j
+  python src/extractor/extract_semantic.py               # write to Neo4j (uses the LLM cache if present)
+  python src/extractor/extract_semantic.py --refresh     # force new LLM calls
+Note: extract_schema.py --reset deletes the whole graph. Run this file again afterwards
+(it uses the cache, so no LLM calls).
 """
 import argparse
 import asyncio
@@ -51,19 +51,19 @@ import numpy as np
 from dotenv import load_dotenv
 from pydantic import BaseModel, Field
 
-load_dotenv(override=True)   # .env thắng biến môi trường cũ trong terminal (sự cố 23/11)
+load_dotenv(override=True)   # .env wins over stale environment variables in the terminal
 
 EXTRACTOR_VERSION = "sem-v0.2"
-LLM_MODEL = os.getenv("GEMINI_MODEL", "gemini-3.6-flash")   # D12 (23/11): đổi từ gemini-3.8-flash
+LLM_MODEL = os.getenv("GEMINI_MODEL", "gemini-3.6-flash")   # changed from gemini-3.8-flash on 2026-11-23 (3.8 was overloaded)
 EMBED_MODEL = os.getenv("EMBED_MODEL", "bge-m3")
 NEO4J_URI = os.getenv("NEO4J_URI", "bolt://localhost:7687")
 NEO4J_AUTH = (os.getenv("NEO4J_USERNAME", "neo4j"), os.getenv("NEO4J_PASSWORD", "thesis12345"))
 
-# Mục readme đưa cho LLM. Bỏ ROADMAP (tính năng chưa có), INSTALL (kỹ thuật)
+# readme sections given to the LLM. Skip ROADMAP (planned features) and INSTALL (technical)
 SECTIONS_FOR_LLM = ["DESCRIPTION", "CONTEXT", "USAGE", "CONFIGURE"]
 
 
-# ============ 1. Schema đầu ra của LLM (blueprint cho DocumentsDistiller) ============
+# ============ 1. LLM output schema (blueprint for DocumentsDistiller) ============
 class ObjectMention(BaseModel):
     mention: str = Field(description="Business object exactly as written in the text, "
                                      "e.g. 'picking', 'invoice', 'product category', 'location'")
@@ -107,10 +107,10 @@ PROMPT = """
 """
 
 
-# ============ 2. Chuẩn bị văn bản ============
+# ============ 2. Text preparation ============
 def build_input_text(rec: dict) -> str:
-    """Văn bản đưa cho LLM: tên, tóm tắt, mô tả manifest, các mục readme nghiệp vụ.
-    Bỏ khối code và link ảnh (không mang nghĩa nghiệp vụ)."""
+    """Text given to the LLM: name, summary, manifest description, business readme sections.
+    Code blocks and image links are removed (no business meaning)."""
     man = rec.get("manifest", {})
     parts = [f"# {man.get('name', rec['module'])}"]
     if man.get("summary"):
@@ -121,14 +121,14 @@ def build_input_text(rec: dict) -> str:
         if sec in rec.get("readme", {}):
             parts.append(f"## {sec}\n{rec['readme'][sec]['text']}")
     text = "\n\n".join(parts)
-    text = re.sub(r"```.*?```", "", text, flags=re.S)        # khối code
-    text = re.sub(r"!\[[^\]]*\]\([^)]*\)", "", text)          # ảnh markdown
+    text = re.sub(r"```.*?```", "", text, flags=re.S)        # code blocks
+    text = re.sub(r"!\[[^\]]*\]\([^)]*\)", "", text)          # markdown images
     text = re.sub(r"\n{3,}", "\n\n", text)
     return text.strip()
 
 
 def norm(s: str) -> str:
-    """Chuẩn hoá để so trích dẫn: bỏ dấu markdown, gộp khoảng trắng, chữ thường."""
+    """Normalize for quote matching: drop markdown marks, collapse whitespace, lowercase."""
     s = re.sub(r"[*_`\\]", "", s or "")
     return re.sub(r"\s+", " ", s).strip().lower()
 
@@ -137,15 +137,15 @@ def sha(s: str) -> str:
     return hashlib.sha256(s.encode("utf-8")).hexdigest()[:16]
 
 
-# ============ 3. LLM (DocumentsDistiller của itext2kg) ============
-# Free tier Gemini: 20 lời gọi/ngày/model. Mỗi lần thử lại cũng bị tính.
-# sem-v0 bị 3 tầng thử lại chồng nhau: LangChain (6 lần) x itext2kg (3 lần, cố định trong
-# LangchainOutputParser) x script (3 lần), nên 1 module có thể tốn hàng chục lời gọi. sem-v0.1:
-#   - tắt thử lại của LangChain (max_retries=0)
-#   - script chỉ gọi 1 lần (LLM_TRIES=1); itext2kg tự thử tối đa 3 lần -> tối đa 3 lời gọi/module
-#   - gặp lỗi hết quota trong ngày thì dừng ngay, giữ cache các module đã xong
-#   - timeout dài để tránh lỗi 504 Deadline với structured output
-#   - nghỉ giữa các module để không vượt giới hạn mỗi phút
+# ============ 3. LLM (itext2kg DocumentsDistiller) ============
+# Gemini free tier: 20 calls/day/model. Every retry is counted too.
+# sem-v0 had 3 stacked retry layers: LangChain (6) x itext2kg (3, fixed in
+# LangchainOutputParser) x script (3), so 1 module could cost dozens of calls. sem-v0.1:
+#   - disable LangChain retries (max_retries=0)
+#   - the script calls once (LLM_TRIES=1); itext2kg retries up to 3 times -> at most 3 calls/module
+#   - stop at once on a daily quota error, keeping the cache of finished modules
+#   - long timeout to avoid 504 Deadline errors with structured output
+#   - pause between modules to stay under the per-minute limit
 LLM_TIMEOUT = int(os.getenv("LLM_TIMEOUT", "300"))
 LLM_TRIES = int(os.getenv("LLM_TRIES", "1"))
 LLM_PAUSE = int(os.getenv("LLM_PAUSE", "15"))
@@ -173,19 +173,19 @@ async def distill_module(llm, module: str, label: str, text: str, tries: int = L
                 out = ModuleFunctions(**out)
             if out and out.functions:
                 return out
-            last_err = "LLM trả về rỗng"
-        except Exception as e:  # lỗi định dạng hoặc giới hạn tốc độ: thử lại
+            last_err = "LLM returned an empty result"
+        except Exception as e:  # format error or rate limit: retry
             last_err = repr(e)
             if "PerDay" in last_err or "per day" in last_err:
                 raise DailyQuotaExceeded(last_err[:300])
         if i + 1 < tries:
-            print(f"    lần {i + 1}/{tries} lỗi: {last_err[:200]}; chờ 60 giây")
+            print(f"    attempt {i + 1}/{tries} failed: {last_err[:200]}; waiting 60 s")
             time.sleep(60)
-    raise RuntimeError(f"{module}: không trích được chức năng sau {tries} lần ({last_err[:300]})")
+    raise RuntimeError(f"{module}: no functions extracted after {tries} attempts ({last_err[:300]})")
 
 
 def get_functions(llm_factory, rec: dict, cache_dir: Path, refresh: bool):
-    """Dùng cache nếu văn bản đầu vào không đổi; ngược lại gọi LLM và lưu cache."""
+    """Use the cache if the input text is unchanged; otherwise call the LLM and save the cache."""
     module = rec["module"]
     label = rec.get("manifest", {}).get("name", module)
     text = build_input_text(rec)
@@ -194,9 +194,9 @@ def get_functions(llm_factory, rec: dict, cache_dir: Path, refresh: bool):
         c = json.loads(cache.read_text(encoding="utf-8"))
         if c.get("input_sha256") == sha(text) and c.get("llm") == LLM_MODEL:
             return ModuleFunctions(**c["output"]), c, True
-        why = "văn bản đã đổi" if c.get("input_sha256") != sha(text) else f"cache của model {c.get('llm')}"
-        print(f"  {module}: {why}, gọi lại LLM bằng {LLM_MODEL}")
-    print(f"  {module}: gọi LLM ...")
+        why = "input text changed" if c.get("input_sha256") != sha(text) else f"cache from model {c.get('llm')}"
+        print(f"  {module}: {why}, calling the LLM again with {LLM_MODEL}")
+    print(f"  {module}: calling the LLM ...")
     out = asyncio.run(distill_module(llm_factory(), module, label, text))
     time.sleep(LLM_PAUSE)
     c = {
@@ -225,10 +225,10 @@ def make_embedder():
     return embed
 
 
-# ============ 5. Danh mục lớp cấu trúc (Neo4j hoặc snapshot) ============
+# ============ 5. Structural layer catalog (Neo4j or snapshot) ============
 class Catalog:
     """models: name -> label; fields: (model, name) -> label;
-    own[m]: model module m tạo, mở rộng hoặc thêm field; dep[m]: model do module phụ thuộc (bắc cầu) tạo."""
+    own[m]: models that module m defines, extends or adds fields to; dep[m]: models defined by its (transitive) dependencies."""
 
     def __init__(self, models, fields, own, dep):
         self.models, self.fields, self.own, self.dep = models, fields, own, dep
@@ -258,12 +258,12 @@ def catalog_from_neo4j(driver, modules):
 
 
 def catalog_from_snapshot(path: Path, modules):
-    """Tái tạo đúng logic extract_schema.py v0.1 từ snapshot JSON (dùng khi --dry-run không có Neo4j)."""
+    """Reproduce the extract_schema.py v0.1 logic from the JSON snapshot (used by --dry-run without Neo4j)."""
     d = json.loads(path.read_text(encoding="utf-8"))
     models = {r["name"]: r["label"] for r in d["models"]}
     fields = {(r["model"], r["name"]): r["label"] for r in d["fields"]}
     definer, first_field = {}, {}
-    for r in d["model_owners"]:                       # đã sắp theo model, id
+    for r in d["model_owners"]:                       # already sorted by model, id
         definer.setdefault(r["model"], r["module"])
     for r in d["field_owners"]:
         first_field.setdefault((r["model"], r["name"]), r["module"])
@@ -284,7 +284,7 @@ def catalog_from_snapshot(path: Path, modules):
     return Catalog(models, fields, own, dep)
 
 
-# ============ 6. Gộp thực thể ============
+# ============ 6. Entity linking ============
 class Linker:
     def __init__(self, catalog: Catalog, embed, threshold: float):
         from itext2kg.itext2kg_star.graph_matching import Matcher
@@ -302,13 +302,13 @@ class Linker:
         return Entity(label="Model", name=name, properties=EntityProperties(embeddings=vec))
 
     def _match(self, mention: str, cand_entities, cand_vecs, cand_keys):
-        """Matcher.find_match của iText2KG quyết định; tự tính top-3 để ghi log."""
+        """iText2KG Matcher.find_match decides; top-3 is computed here for logging."""
         v = self.embed([mention])[0]
         sims = cand_vecs @ v
         top = np.argsort(-sims)[:3]
         top3 = [(cand_keys[i], round(float(sims[i]), 3)) for i in top]
         best = self.matcher.find_match(self._entity(mention, v), cand_entities, threshold=self.th)
-        if best.name == mention or best.label != "Model":     # không khớp
+        if best.name == mention or best.label != "Model":     # no match
             return None, top3
         i = [e.name for e in cand_entities].index(best.name)
         return (cand_keys[i], round(float(sims[i]), 3)), top3
@@ -325,8 +325,8 @@ class Linker:
         return None, "new", (top3[0][1] if top3 else 0.0), top3
 
     def link_field(self, fm: FieldMention, linked_models: List[str]):
-        """Trả về danh sách (model, field, method). Một option có thể nằm ở nhiều model
-        (vd. allow_negative_stock ở product, category, location): gắn với mọi model đã liên kết có field đó."""
+        """Return a list of (model, field, method). One option can exist on several models
+        (e.g. allow_negative_stock on product, category, location): link it to every linked model that has the field."""
         fbm = self.cat.fields_by_model
         scope = list(dict.fromkeys(linked_models + ([fm.odoo_model] if fm.odoo_model in fbm else [])))
         name, method = None, None
@@ -404,12 +404,12 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--collected-dir", default="data/collected")
     ap.add_argument("--cache-dir", default="data/semantic")
-    ap.add_argument("--modules", nargs="*", help="mặc định: mọi file trong collected-dir")
-    ap.add_argument("--threshold", type=float, default=0.7, help="ngưỡng cosine của Matcher (iText2KG mặc định 0,7)")
-    ap.add_argument("--refresh", action="store_true", help="gọi lại LLM dù đã có cache")
-    ap.add_argument("--dry-run", action="store_true", help="không ghi Neo4j")
+    ap.add_argument("--modules", nargs="*", help="default: every file in collected-dir")
+    ap.add_argument("--threshold", type=float, default=0.7, help="Matcher cosine threshold (iText2KG default 0.7)")
+    ap.add_argument("--refresh", action="store_true", help="call the LLM again even if a cache exists")
+    ap.add_argument("--dry-run", action="store_true", help="do not write to Neo4j")
     ap.add_argument("--catalog", choices=["neo4j", "snapshot"], default=None,
-                    help="nguồn lớp cấu trúc; mặc định neo4j, hoặc snapshot khi --dry-run")
+                    help="structural layer source; default neo4j, or snapshot with --dry-run")
     ap.add_argument("--snapshot", default="data/snapshots/schema_20261109.json")
     args = ap.parse_args()
 
@@ -424,7 +424,7 @@ def main():
     modules = [r["module"] for r in recs]
     catalog_src = args.catalog or ("snapshot" if args.dry_run else "neo4j")
     print(f"Extractor {EXTRACTOR_VERSION}: {len(recs)} module, LLM {LLM_MODEL}, embedding {EMBED_MODEL}, "
-          f"ngưỡng {args.threshold}, lớp cấu trúc từ {catalog_src}{', DRY RUN' if args.dry_run else ''}")
+          f"threshold {args.threshold}, structural layer from {catalog_src}{', DRY RUN' if args.dry_run else ''}")
 
     driver = None
     if catalog_src == "neo4j" or not args.dry_run:
@@ -433,14 +433,14 @@ def main():
         driver.verify_connectivity()
     cat = (catalog_from_neo4j(driver, modules) if catalog_src == "neo4j"
            else catalog_from_snapshot(Path(args.snapshot), modules))
-    print(f"  Lớp cấu trúc: {len(cat.models)} model, {len(cat.fields)} field")
+    print(f"  Structural layer: {len(cat.models)} models, {len(cat.fields)} fields")
 
     t0 = time.time()
     embed = make_embedder()
-    print("1) Embedding danh mục model ...")
+    print("1) Embedding the model catalog ...")
     linker = Linker(cat, embed, args.threshold)
 
-    print("2) Trích chức năng bằng LLM (DocumentsDistiller) ...")
+    print("2) Extracting functions with the LLM (DocumentsDistiller) ...")
     results, link_rows, n_llm_calls = [], [], 0
     for rec in recs:
         m = rec["module"]
@@ -448,10 +448,10 @@ def main():
             out, meta, cached = get_functions(make_llm, rec, cache_dir, args.refresh)
         except DailyQuotaExceeded as e:
             done = sorted(p.name.split(".")[0] for p in cache_dir.glob("*.llm.json"))
-            raise SystemExit(f"\nDỪNG: hết quota Gemini trong ngày ({LLM_MODEL}).\n"
-                             f"  Module đã có cache: {done or 'chưa có'}\n"
-                             f"  Chạy lại lệnh này khi quota được làm mới; module đã có cache không bị gọi lại.\n"
-                             f"  Chi tiết: {e}")
+            raise SystemExit(f"\nSTOPPED: daily Gemini quota exhausted ({LLM_MODEL}).\n"
+                             f"  Modules with a cache: {done or 'none'}\n"
+                             f"  Rerun this command after the quota resets; cached modules are not called again.\n"
+                             f"  Details: {e}")
         n_llm_calls += 0 if cached else 1
         text_n = norm(meta["input_text"])
         funcs = []
@@ -477,23 +477,23 @@ def main():
                          for fm in fn.fields for mo, f, mt in linker.link_field(fm, linked_models)]
             funcs.append(dict(key=key, fn=fn, evidence_found=ev_ok, objects=obj_links, fields=fld_links))
         results.append(dict(module=m, rec=rec, meta=meta, cached=cached, funcs=funcs))
-        print(f"  {m:35} {len(funcs)} chức năng{' (cache)' if cached else ''}")
+        print(f"  {m:35} {len(funcs)} functions{' (cache)' if cached else ''}")
         for f in funcs:
             objs = ", ".join(f"{o['mention']}->{o['target'] or 'NEW'}[{o['method']}]" for o in f["objects"])
             flds = ", ".join(sorted({f"{x['model']}.{x['field']}" for x in f["fields"]}))
-            print(f"    - {f['fn'].name} | bằng chứng {'có' if f['evidence_found'] else 'KHÔNG'} trong văn bản")
-            print(f"      đối tượng: {objs or '-'}")
+            print(f"    - {f['fn'].name} | evidence {'found' if f['evidence_found'] else 'NOT found'} in the text")
+            print(f"      objects: {objs or '-'}")
             if flds:
                 print(f"      field: {flds}")
 
-    # --- Embedding chức năng và module ---
+    # --- Embeddings of functions and modules ---
     all_funcs = [f for r in results for f in r["funcs"]]
     fvecs = embed([f"{f['fn'].name}. {f['fn'].description}" for f in all_funcs]) if all_funcs else []
     mvecs = embed([build_input_text(r["rec"]) for r in results]) if results else []
 
     # --- Ghi Neo4j ---
     if not args.dry_run:
-        print("3) Ghi vào Neo4j ...")
+        print("3) Writing to Neo4j ...")
         run = lambda q, **p: driver.execute_query(q, database_="neo4j", **p)  # noqa: E731
         for c in NEO4J_SETUP:
             run(c)
@@ -525,9 +525,9 @@ def main():
         dim = len(mvecs[0]) if len(mvecs) else 1024
         for name, label in [("function_embedding", "Function"), ("module_embedding", "Module")]:
             run(Q_VECTOR_INDEX.format(name=name, label=label, dim=dim))
-        print(f"  Đã ghi {len(all_funcs)} chức năng; tạo vector index (dim {dim})")
+        print(f"  Wrote {len(all_funcs)} functions; created vector indexes (dim {dim})")
 
-    # --- Thống kê ---
+    # --- Statistics ---
     def count(items, key):
         out = {}
         for it in items:
@@ -564,13 +564,13 @@ def main():
         if linked_all else None,
         llm_calls=n_llm_calls, seconds=round(time.time() - t0, 1),
     )
-    print("4) Thống kê:")
-    print(f"  {totals['functions']} chức năng / {totals['modules']} module; bằng chứng có trong văn bản "
+    print("4) Statistics:")
+    print(f"  {totals['functions']} functions / {totals['modules']} modules; evidence found in the text "
           f"{totals['evidence_found']}/{totals['functions']}")
-    print(f"  {totals['object_mentions']} đối tượng; cách gộp: {totals['methods']}")
-    print(f"  Gắn được vào Model: {totals['linked_rate']}; khớp lớp cấu trúc (own hoặc dependency): "
+    print(f"  {totals['object_mentions']} objects; linking methods: {totals['methods']}")
+    print(f"  Linked to a Model: {totals['linked_rate']}; consistent with the structural layer (own or dependency): "
           f"{totals['structural_consistency']} {totals['structural']}")
-    print(f"  Lời gọi LLM mới: {n_llm_calls}; thời gian {totals['seconds']} giây")
+    print(f"  New LLM calls: {n_llm_calls}; time {totals['seconds']} s")
 
     stats = dict(date=today, extractor_version=EXTRACTOR_VERSION, llm=LLM_MODEL, embedding=EMBED_MODEL,
                  threshold=args.threshold, catalog=catalog_src, dry_run=args.dry_run,
@@ -583,8 +583,8 @@ def main():
         w = csv.DictWriter(fh, fieldnames=list(link_rows[0].keys()) if link_rows else ["module"])
         w.writeheader()
         w.writerows(link_rows)
-    print(f"  Lưu: data/snapshots/semantic_stats_{today}{suffix}.json, {links_csv}")
-    print("  Bước tiếp: điền cột gold_model trong file CSV, rồi chạy eval_entity_links.py")
+    print(f"  Saved: data/snapshots/semantic_stats_{today}{suffix}.json, {links_csv}")
+    print("  Next step: fill the gold_model column in the CSV file, then run eval_entity_links.py")
     if driver:
         driver.close()
 

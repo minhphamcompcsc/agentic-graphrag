@@ -30,9 +30,9 @@ def check_python():
     in_venv = sys.prefix != sys.base_prefix
     ver = ".".join(map(str, sys.version_info[:3]))
     if sys.version_info[:2] != (3, 12):
-        return FAIL, f"Python {ver}, cần 3.12"
+        return FAIL, f"Python {ver}, 3.12 required"
     if not in_venv:
-        return WARN, f"Python {ver} nhưng CHƯA activate venv"
+        return WARN, f"Python {ver} but the venv is NOT activated"
     return OK, f"Python {ver}, venv: {sys.prefix}"
 
 
@@ -42,10 +42,10 @@ def check_packages():
         try:
             got = version(pkg)
             if got != want:
-                wrong.append(f"{pkg} {got} (cần {want})")
+                wrong.append(f"{pkg} {got} ({want} required)")
         except PackageNotFoundError:
-            wrong.append(f"{pkg} chưa cài")
-    return (FAIL, "; ".join(wrong)) if wrong else (OK, "6 thư viện đúng version đã pin")
+            wrong.append(f"{pkg} not installed")
+    return (FAIL, "; ".join(wrong)) if wrong else (OK, "6 libraries at the pinned versions")
 
 
 def check_postgres():
@@ -59,7 +59,7 @@ def check_postgres():
                        JOIN ir_module_module m ON m.id = d.module_id
                        WHERE m.name = 'stock_picking_invoice_link' AND d.name = 'stock_account'""")
         dep = cur.fetchone() is not None
-    msg = f"{models} model, {rel} field quan hệ, dependency stock_account: {'có' if dep else 'KHÔNG'}"
+    msg = f"{models} models, {rel} relational fields, dependency stock_account: {'yes' if dep else 'NO'}"
     if models != BASELINE["models"] or rel != BASELINE["rel_fields"] or not dep:
         return WARN, msg + f" (baseline {BASELINE['models']}/{BASELINE['rel_fields']})"
     return OK, msg
@@ -70,7 +70,7 @@ def check_odoo():
     ver = common.version()["server_version"]
     uid = common.authenticate(ODOO_DB, ODOO_USER, ODOO_PWD, {})
     if not uid:
-        return FAIL, f"Odoo {ver} chạy nhưng đăng nhập {ODOO_USER} vào {ODOO_DB} thất bại"
+        return FAIL, f"Odoo {ver} is running but login of {ODOO_USER} to {ODOO_DB} failed"
     obj = xmlrpc.client.ServerProxy(f"{ODOO_URL}/xmlrpc/2/object")
     rows = obj.execute_kw(ODOO_DB, uid, ODOO_PWD, "ir.module.module", "search_read",
                           [[["name", "in", SEEN + UNSEEN]]], {"fields": ["name", "state"]})
@@ -78,12 +78,12 @@ def check_odoo():
     missing = [m for m in SEEN if state.get(m) != "installed"]
     leaked = [m for m in UNSEEN if state.get(m) == "installed"]
     if not ver.startswith("18"):
-        return FAIL, f"Odoo {ver}, cần 18.0"
+        return FAIL, f"Odoo {ver}, 18.0 required"
     if missing:
-        return FAIL, f"Module 'đã thấy' chưa cài: {', '.join(missing)}"
+        return FAIL, f"Seen modules not installed: {', '.join(missing)}"
     if leaked:
-        return FAIL, f"Module 'unseen' đã bị cài: {', '.join(leaked)}"
-    return OK, f"Odoo {ver}, 5/5 module đã thấy installed, stock_request chưa cài"
+        return FAIL, f"Unseen module already installed: {', '.join(leaked)}"
+    return OK, f"Odoo {ver}, 5/5 seen modules installed, stock_request not installed"
 
 
 def check_neo4j():
@@ -92,27 +92,29 @@ def check_neo4j():
         drv.verify_connectivity()
         apoc = drv.execute_query("RETURN apoc.version() AS v").records[0]["v"]
         nodes = drv.execute_query("MATCH (n) RETURN count(n) AS c").records[0]["c"]
-    return OK, f"Kết nối được, APOC {apoc}, hiện có {nodes} node"
+    return OK, f"Connected, APOC {apoc}, {nodes} nodes"
 
 
 def check_ollama():
     from langchain_ollama import OllamaEmbeddings
+    # Vietnamese test sentence on purpose: checks that bge-m3 supports Vietnamese
+    # ("Automatically deduct stock when a delivery is confirmed")
     vec = OllamaEmbeddings(model=EMBED_MODEL).embed_query("Tự động trừ kho khi xác nhận giao hàng")
     if len(vec) != EMBED_DIM:
-        return FAIL, f"{EMBED_MODEL} trả về {len(vec)} chiều, cần {EMBED_DIM}"
-    return OK, f"{EMBED_MODEL} embed câu tiếng Việt: {len(vec)} chiều"
+        return FAIL, f"{EMBED_MODEL} returned {len(vec)} dimensions, {EMBED_DIM} required"
+    return OK, f"{EMBED_MODEL} embedded a Vietnamese sentence: {len(vec)} dimensions"
 
 
 def check_gemini():
     if not os.getenv("GOOGLE_API_KEY"):
-        return FAIL, "Không thấy GOOGLE_API_KEY trong .env"
+        return FAIL, "GOOGLE_API_KEY not found in .env"
     from langchain_google_genai import ChatGoogleGenerativeAI
     llm = ChatGoogleGenerativeAI(model=GEMINI_MODEL, temperature=0)
-    out = llm.invoke("Trả lời đúng một từ: OK").content
-    return OK, f"{GEMINI_MODEL} phản hồi: {str(out).strip()[:40]!r}"
+    out = llm.invoke("Answer with exactly one word: OK").content
+    return OK, f"{GEMINI_MODEL} replied: {str(out).strip()[:40]!r}"
 
 
-CHECKS = [("1. Python + venv", check_python), ("2. Thư viện pin", check_packages),
+CHECKS = [("1. Python + venv", check_python), ("2. Pinned libraries", check_packages),
           ("3. PostgreSQL", check_postgres), ("4. Odoo + module OCA", check_odoo),
           ("5. Neo4j + APOC", check_neo4j), ("6. Ollama bge-m3", check_ollama),
           ("7. Gemini API", check_gemini)]
@@ -126,5 +128,5 @@ if __name__ == "__main__":
             status, msg = FAIL, f"{type(e).__name__}: {e}"
         has_fail |= status == FAIL
         print(f"[{status}] {name:<22} {msg}")
-    print("\nKết luận:", "CÓ LỖI, xem các dòng FAIL" if has_fail else "Môi trường sẵn sàng")
+    print("\nResult:", "ERRORS, see the FAIL lines" if has_fail else "Environment ready")
     sys.exit(1 if has_fail else 0)

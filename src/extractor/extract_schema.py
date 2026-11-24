@@ -1,13 +1,13 @@
 """
-Extractor v0.1: đọc ORM schema của Odoo từ PostgreSQL và đẩy vào Neo4j.
-Không dùng LLM. Chạy lại nhiều lần được (dùng MERGE).
+Extractor v0.1: reads the Odoo ORM schema from PostgreSQL and loads it into Neo4j.
+No LLM. Safe to rerun (uses MERGE).
 
-Thay đổi so với v0:
-  - Gắn cờ LINKS_TO.oca      : cạnh do module OCA thêm vào
-  - Gắn cờ LINKS_TO.technical: cạnh kỹ thuật (field kiểm toán + field kế thừa từ mixin chatter)
-  - Lưu thống kê graph ra data/snapshots/kg_stats_YYYYMMDD.json (dùng cho báo cáo)
+Changes from v0:
+  - Flag LINKS_TO.oca      : edges added by OCA modules
+  - Flag LINKS_TO.technical: technical edges (audit fields + fields inherited from chatter mixins)
+  - Save graph statistics to data/snapshots/kg_stats_YYYYMMDD.json (used in reports)
 
-Cách chạy (từ thư mục ~/agentic-graphrag, đã activate venv):
+Usage (from ~/agentic-graphrag, venv activated):
     python src/extractor/extract_schema.py --reset
 """
 import argparse
@@ -34,13 +34,13 @@ NEO4J_URI = os.getenv("NEO4J_URI", "bolt://localhost:7687")
 NEO4J_AUTH = (os.getenv("NEO4J_USERNAME", "neo4j"), os.getenv("NEO4J_PASSWORD", "thesis12345"))
 BATCH = 1000
 
-# Tiêu chí cạnh kỹ thuật (lấy từ cấu trúc Odoo, không liệt kê tay từng field):
-#   1. Field kiểm toán Odoo tự thêm cho mọi model
-#   2. Mọi field quan hệ do các mixin chatter định nghĩa
+# Technical edge criteria (derived from the Odoo structure, not a hand-made field list):
+#   1. Audit fields that Odoo adds to every model
+#   2. All relational fields defined by the chatter mixins
 AUDIT_FIELDS = ["create_uid", "write_uid"]
 TECH_MIXINS = ["mail.thread", "mail.activity.mixin"]
 
-# ============ 1. SQL: lấy dữ liệu từ Odoo ============
+# ============ 1. SQL: read data from Odoo ============
 SQL_MODULES = """
 SELECT m.name,
        COALESCE(m.shortdesc->>'en_US', m.name) AS label,
@@ -67,7 +67,7 @@ SELECT im.model AS name,
 FROM ir_model im
 """
 
-# Module nào khai báo model (id nhỏ nhất = module tạo ra model, còn lại = module mở rộng)
+# Which module declares the model (smallest id = defining module, others = extending modules)
 SQL_MODEL_OWNERS = """
 SELECT im.model, imd.module
 FROM ir_model_data imd
@@ -82,7 +82,7 @@ SELECT f.model, f.name,
 FROM ir_model_fields f
 """
 
-# Module nào thêm field (id nhỏ nhất = module đầu tiên khai báo field)
+# Which module adds the field (smallest id = first module that declares the field)
 SQL_FIELD_OWNERS = """
 SELECT f.model, f.name, imd.module
 FROM ir_model_data imd
@@ -90,7 +90,7 @@ JOIN ir_model_fields f ON imd.model = 'ir.model.fields' AND imd.res_id = f.id
 ORDER BY f.model, f.name, imd.id
 """
 
-# ============ 2. Cypher: ghi vào Neo4j ============
+# ============ 2. Cypher: write to Neo4j ============
 CONSTRAINTS = [
     "CREATE CONSTRAINT module_name IF NOT EXISTS FOR (m:Module) REQUIRE m.name IS UNIQUE",
     "CREATE CONSTRAINT model_name IF NOT EXISTS FOR (m:Model) REQUIRE m.name IS UNIQUE",
@@ -140,7 +140,7 @@ SET f.name = r.name, f.model = r.model, f.label = r.label,
 MERGE (md)-[:HAS_FIELD]->(f)
 """
 
-# Field quan hệ -> model đích, kèm "đường tắt" Model-[:LINKS_TO]->Model để duyệt graph nhanh
+# Relational field -> target model, plus a "shortcut" Model-[:LINKS_TO]->Model for fast traversal
 Q_RELATIONS = """
 UNWIND $rows AS r
 MATCH (f:Field {key: r.key}), (s:Model {name: r.model}), (t:Model {name: r.relation})
@@ -155,7 +155,7 @@ MATCH (mo:Module {name: r.module}), (f:Field {key: r.key})
 MERGE (mo)-[:ADDS_FIELD]->(f)
 """
 
-# ---- Gắn cờ (v0.1) ----
+# ---- Flags (v0.1) ----
 Q_FLAGS_DEFAULT = """
 MATCH ()-[l:LINKS_TO]->()
 SET l.oca = false, l.technical = false
@@ -185,14 +185,14 @@ RETURN item, total ORDER BY item
 """
 
 
-# ============ 3. Hàm phụ ============
+# ============ 3. Helpers ============
 def fetch(cur, sql):
     cur.execute(sql)
     return [dict(r) for r in cur.fetchall()]
 
 
 def split_owners(rows, key_fn):
-    """Bản ghi đầu tiên của mỗi key = owner, các bản ghi sau = extender."""
+    """First record of each key = owner, later records = extenders."""
     owners, extenders, seen = [], [], set()
     for r in rows:
         k = key_fn(r)
@@ -204,7 +204,7 @@ def split_owners(rows, key_fn):
 def write(driver, query, rows, name):
     for i in range(0, len(rows), BATCH):
         driver.execute_query(query, rows=rows[i:i + BATCH], database_="neo4j")
-    print(f"  {name:<14} {len(rows):>6} dòng")
+    print(f"  {name:<14} {len(rows):>6} rows")
 
 
 def run(driver, query, **params):
@@ -215,14 +215,14 @@ def run(driver, query, **params):
 # ============ 4. Main ============
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--reset", action="store_true", help="Xoá toàn bộ graph trước khi load")
+    ap.add_argument("--reset", action="store_true", help="Delete the whole graph before loading")
     args = ap.parse_args()
     today = f"{date.today():%Y%m%d}"
     snap_dir = Path("data/snapshots")
     snap_dir.mkdir(parents=True, exist_ok=True)
 
-    # --- Đọc PostgreSQL ---
-    print("1) Đọc schema từ PostgreSQL ...")
+    # --- Read PostgreSQL ---
+    print("1) Reading the schema from PostgreSQL ...")
     with psycopg2.connect(**PG) as conn:
         cur = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
         data = {
@@ -234,13 +234,13 @@ def main():
             "field_owners": fetch(cur, SQL_FIELD_OWNERS),
         }
     for k, v in data.items():
-        print(f"  {k:<14} {len(v):>6} dòng")
+        print(f"  {k:<14} {len(v):>6} rows")
 
     snap = snap_dir / f"schema_{today}.json"
     snap.write_text(json.dumps(data, ensure_ascii=False, default=str, indent=1), encoding="utf-8")
     print(f"  Snapshot: {snap}")
 
-    # --- Chuẩn bị dữ liệu ---
+    # --- Prepare data ---
     for f in data["fields"]:
         f["key"] = f"{f['model']}:{f['name']}"
     for f in data["field_owners"]:
@@ -253,10 +253,10 @@ def main():
         driver.verify_connectivity()
 
         # --- Ghi Neo4j ---
-        print("2) Ghi vào Neo4j ...")
+        print("2) Writing to Neo4j ...")
         if args.reset:
             run(driver, "MATCH (n) DETACH DELETE n")
-            print("  Đã xoá graph cũ")
+            print("  Old graph deleted")
         for c in CONSTRAINTS:
             run(driver, c)
 
@@ -269,16 +269,16 @@ def main():
         write(driver, Q_RELATIONS, relations, "RELATES_TO")
         write(driver, Q_ADDS_FIELD, adds_field, "ADDS_FIELD")
 
-        # --- Gắn cờ ---
-        print("3) Gắn cờ cạnh LINKS_TO ...")
+        # --- Flags ---
+        print("3) Flagging LINKS_TO edges ...")
         run(driver, Q_FLAGS_DEFAULT)
         oca = run(driver, Q_TAG_OCA)[0]
         tech = run(driver, Q_TAG_TECHNICAL, mixins=TECH_MIXINS, audit=AUDIT_FIELDS)[0]
-        print(f"  oca            {oca['n_edges']:>6} cạnh")
-        print(f"  technical      {tech['n_edges']:>6} cạnh ({len(tech['fields'])} field: {', '.join(sorted(tech['fields']))})")
+        print(f"  oca            {oca['n_edges']:>6} edges")
+        print(f"  technical      {tech['n_edges']:>6} edges ({len(tech['fields'])} fields: {', '.join(sorted(tech['fields']))})")
 
-        # --- Thống kê ---
-        print("4) Thống kê graph:")
+        # --- Statistics ---
+        print("4) Graph statistics:")
         stats = {r["item"]: r["total"] for r in run(driver, Q_STATS)}
         for k, v in stats.items():
             print(f"  {k:<14} {v:>6}")
@@ -293,8 +293,8 @@ def main():
     }
     stats_file = snap_dir / f"kg_stats_{today}.json"
     stats_file.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"  Thống kê lưu tại: {stats_file}")
-    print("Xong.")
+    print(f"  Statistics saved to: {stats_file}")
+    print("Done.")
 
 
 if __name__ == "__main__":
