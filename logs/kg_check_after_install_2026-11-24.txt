@@ -1,0 +1,21 @@
+Graph statistics:
+  ADDS_FIELD       7750
+  Concept             1
+  DEFINES           439
+  DEPENDS_ON        128
+  EXTENDS           325
+  Field            7755
+  Function           11
+  HAS_FIELD        7755
+  INVOLVES           25
+  INVOLVES_FIELD      8
+  LINKS_TO         2512
+  MENTIONS            1
+  Model             439
+  Module             66
+  PROVIDES           11
+  RELATES_TO       2512
+Structural fingerprint: 97f47ee5fbf39e3534806cfb97b6554600a5a3ff33e604d746987dbb13e39570 (29681 items)
+Installed in Odoo: 67 modules; in the graph: 66 modules
+Installed but not in the graph: ['stock_request']
+In the graph but not installed: none

@@ -1,0 +1,29 @@
+Extractor sem-v0.2: 1 module, LLM gemini-3.6-flash, embedding bge-m3, threshold 0.7, structural layer from neo4j, DRY RUN
+  Structural layer: 443 models, 7917 fields
+1) Embedding the model catalog ...
+2) Extracting functions with the LLM (DocumentsDistiller) ...
+  stock_request: calling the LLM ...
+[2026-11-24 09:23:37] [ WARNING] [itext2kg.llm_output_parsing.langchain_output_parser] ⚠️  Could not auto-detect provider from model: chatgooglegenerativeai
+[2026-11-24 09:23:37] [ WARNING] [itext2kg.llm_output_parsing.langchain_output_parser]    Module: langchain_google_genai.chat_models
+[2026-11-24 09:23:37] [ WARNING] [itext2kg.llm_output_parsing.langchain_output_parser]    Using conservative defaults for unknown provider
+[2026-11-24 09:23:37] [    INFO] [itext2kg.llm_output_parsing.langchain_output_parser] 🔍 Detected LLM Provider: Unknown
+[2026-11-24 09:23:37] [    INFO] [itext2kg.llm_output_parsing.langchain_output_parser] 📊 Rate Limiting Config: 5 requests/batch, 4000 tokens/batch
+[2026-11-24 09:23:44] [    INFO] [itext2kg.llm_output_parsing.langchain_output_parser] 📦 Split 1 prompts into 1 batches for Unknown API
+[2026-11-24 09:23:44] [    INFO] [itext2kg.llm_output_parsing.langchain_output_parser] 🚀 Processing 1 contexts in 1 batches for Unknown API
+[2026-11-24 09:23:44] [    INFO] [itext2kg.llm_output_parsing.langchain_output_parser] 📋 Processing batch 1/1 with 1 requests (Unknown)
+[2026-11-24 09:24:28] [    INFO] [itext2kg.llm_output_parsing.langchain_output_parser] ✅ Successfully processed all 1 requests for Unknown
+  stock_request                       3 functions
+    - Request internal product transfers | evidence found in the text
+      objects: product->product.product[exact_name], location->stock.location[exact_name], Stock Request->stock.request[exact_name], Transfers->stock.picking[exact_name]
+      field: product.product.location_id, stock.location.location_id, stock.picking.location_id, stock.picking.product_id, stock.request.location_id, stock.request.product_id, stock.request.product_uom_qty
+    - Cancel stock requests and related moves | evidence found in the text
+      objects: Stock Request->stock.request[exact_name], stock moves->stock.move[exact_name]
+    - Control stock request access permissions | evidence found in the text
+      objects: Stock Request->stock.request[exact_name]
+4) Statistics:
+  3 functions / 1 modules; evidence found in the text 3/3
+  7 objects; linking methods: {'exact_name': 7}
+  Linked to a Model: 1.0; consistent with the structural layer (own or dependency): 1.0 {'dependency': 1, 'own': 6}
+  New LLM calls: 1; time 169.8 s
+  Saved: data/snapshots/semantic_stats_20261124_dryrun.json, data/semantic/links_20261124_dryrun.csv
+  Next step: fill the gold_model column in the CSV file, then run eval_entity_links.py

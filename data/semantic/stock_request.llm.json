@@ -1,0 +1,92 @@
+{
+  "module": "stock_request",
+  "extractor_version": "sem-v0.2",
+  "llm": "gemini-3.6-flash",
+  "temperature": 0,
+  "itext2kg_version": "1.1.0",
+  "extracted_at": "2026-11-24T09:24:43+00:00",
+  "source": {
+    "repo": "stock-logistics-request",
+    "commit": "e03457881a0aca9aba3bd61219024b10d2bb969f",
+    "branch": "18.0",
+    "remote": "https://github.com/OCA/stock-logistics-request.git",
+    "path": "oca/stock-logistics-request/stock_request"
+  },
+  "input_sha256": "75d4f556ac719722",
+  "input_text": "# Stock Request\n\n## SUMMARY\nInternal request for stock\n\n## DESCRIPTION\nThis module was written to allow users to request products that are\nfrequently stocked by the company, to be transferred to their chosen\nlocation.\n\n## USAGE\n\\## Creation\n\n- Go to 'Stock Requests / Stock Requests' and create a new Request.\n- Indicate a product, quantity and location.\n- Press 'Confirm'.\n\nUpon confirmation the request will be evaluated using the procurement\nrules for the selected location.\n\nIn case that transfers are created, the user will be able to access to\nthem from the button 'Transfers' available in the Stock Request.\n\n\\## Cancel\n\nWhen the user cancels a Stock Request, the related pending stock moves\nwill be also cancelled.\n\n## CONFIGURE\nTo configure this module:\n\n- Go to Stock Requests \\> Settings\n\nUsers should be assigned to the groups 'Stock Request / User' or 'Stock\nRequest / Manager'.\n\n\\## Group Stock Request / User\n\n- Can see her/his own Stock Requests, and others that she/he's been\n  granted permission to follow.\n- Can create/update only her/his Stock Requests.\n\n\\## Group Stock Request / Manager\n\n- Can fully manage all Stock Requests",
+  "output": {
+    "functions": [
+      {
+        "name": "Request internal product transfers",
+        "description": "Allows users to create and confirm requests for products frequently stocked by the company to be transferred to a specific location, triggering procurement rules and linking any generated stock transfers.",
+        "evidence": "This module was written to allow users to request products that are frequently stocked by the company, to be transferred to their chosen location.",
+        "section": "DESCRIPTION",
+        "objects": [
+          {
+            "mention": "product",
+            "odoo_model": "product.product"
+          },
+          {
+            "mention": "location",
+            "odoo_model": "stock.location"
+          },
+          {
+            "mention": "Stock Request",
+            "odoo_model": "stock.request"
+          },
+          {
+            "mention": "Transfers",
+            "odoo_model": "stock.picking"
+          }
+        ],
+        "fields": [
+          {
+            "mention": "product",
+            "odoo_model": "stock.request",
+            "odoo_field": "product_id"
+          },
+          {
+            "mention": "quantity",
+            "odoo_model": "stock.request",
+            "odoo_field": null
+          },
+          {
+            "mention": "location",
+            "odoo_model": "stock.request",
+            "odoo_field": "location_id"
+          }
+        ]
+      },
+      {
+        "name": "Cancel stock requests and related moves",
+        "description": "Cancels any related pending stock moves automatically when a stock request is cancelled by the user.",
+        "evidence": "When the user cancels a Stock Request, the related pending stock moves will be also cancelled.",
+        "section": "USAGE",
+        "objects": [
+          {
+            "mention": "Stock Request",
+            "odoo_model": "stock.request"
+          },
+          {
+            "mention": "stock moves",
+            "odoo_model": "stock.move"
+          }
+        ],
+        "fields": []
+      },
+      {
+        "name": "Control stock request access permissions",
+        "description": "Controls access levels to stock requests using user and manager security groups.",
+        "evidence": "Users should be assigned to the groups 'Stock Request / User' or 'Stock Request / Manager'.",
+        "section": "CONFIGURE",
+        "objects": [
+          {
+            "mention": "Stock Request",
+            "odoo_model": "stock.request"
+          }
+        ],
+        "fields": []
+      }
+    ]
+  }
+}

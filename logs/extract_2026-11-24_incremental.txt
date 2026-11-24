@@ -1,0 +1,46 @@
+Extractor v0.2, mode: incremental
+0) Graph before the run ...
+  29738 items, structural fingerprint 97f47ee5fbf3
+1) Reading the schema of the new modules from PostgreSQL: ['stock_request']
+  modules             1 rows
+  deps                1 rows
+  models             14 rows
+  model_owners       84 rows
+  field_owners      162 rows
+  fields            162 rows
+  Snapshot: data/snapshots/schema_20261124_incremental.json
+2) Writing to Neo4j ...
+  Module              1 rows  (+1 nodes, +0 relationships)
+  DEPENDS_ON          1 rows  (+0 nodes, +1 relationships)
+  Model              14 rows  (+4 nodes, +0 relationships)
+  DEFINES             4 rows  (+0 nodes, +4 relationships)
+  EXTENDS            10 rows  (+0 nodes, +10 relationships)
+  Field             162 rows  (+162 nodes, +162 relationships)
+  RELATES_TO         68 rows  (+0 nodes, +136 relationships)
+  ADDS_FIELD        162 rows  (+0 nodes, +162 relationships)
+3) Flagging LINKS_TO edges ...
+  new LINKS_TO       68 edges
+  oca                91 edges
+  technical         851 edges (9 fields: activity_ids, activity_type_id, activity_user_id, create_uid, message_follower_ids, message_ids, message_partner_ids, website_message_ids, write_uid)
+4) Graph statistics:
+  ADDS_FIELD       7912  (+162)
+  Concept             1
+  DEFINES           443  (+4)
+  DEPENDS_ON        129  (+1)
+  EXTENDS           335  (+10)
+  Field            7917  (+162)
+  Function           11
+  HAS_FIELD        7917  (+162)
+  INVOLVES           25
+  INVOLVES_FIELD      8
+  LINKS_TO         2580  (+68)
+  MENTIONS            1
+  Model             443  (+4)
+  Module             67  (+1)
+  PROVIDES           11
+  RELATES_TO       2580  (+68)
+  Created in this run: 167 nodes, 475 relationships
+  Time: read 0.07 s, write 3.48 s, total 3.55 s (without the fingerprint)
+  Structural fingerprint: before 97f47ee5fbf3, after 40dec9c306f6 (30323 items)
+  Run report saved to: data/snapshots/kg_update_20261124_incremental.json
+Done.

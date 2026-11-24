@@ -36,7 +36,7 @@ KG layers:
 |---|---|
 | `docker-compose.yml` | PostgreSQL 16, Odoo 18.0, Neo4j 5 + APOC |
 | `check_env.py`, `src/test_env.py` | Environment checks |
-| `src/extractor/extract_schema.py` | Structural layer: Odoo ORM schema -> Neo4j |
+| `src/extractor/extract_schema.py` | Structural layer: Odoo ORM schema -> Neo4j (full or incremental, v0.2) |
 | `src/extractor/extract_semantic.py` | Semantic layer: LLM function extraction + entity linking |
 | `src/extractor/eval_entity_links.py` | Entity linking accuracy from a labeled CSV |
 | `src/collector/collect_modules.py` | Collector v0: manifest + readme |
@@ -48,6 +48,7 @@ KG layers:
 | `data/snapshots/` | KG statistics and schema snapshot |
 | `data/eval/` | Evaluation set (requirements and answers checked against KG metadata) |
 | `data/experiments/` | Side experiment results |
+| `tests/` | Offline tests (incremental update against a mock Odoo catalog) |
 | `logs/` | Run logs (see `logs/README.md`) |
 
 ## Setup (summary)
@@ -71,6 +72,21 @@ python src/extractor/eval_entity_links.py data/semantic/links_YYYYMMDD.csv
 ```
 
 All LLM results are cached; reruns make no new LLM calls unless `--refresh` options are used.
+
+### Incremental update with an unseen module (RQ2)
+
+```bash
+python src/extractor/extract_schema.py --check          # graph statistics, structural fingerprint, new modules (no write)
+# install the module in Odoo, then:
+python src/extractor/extract_schema.py --incremental    # structural layer: only modules installed but not in the graph
+python src/extractor/extract_semantic.py --collected-dir data/collected_v1 --modules stock_request --dry-run --catalog neo4j
+python src/extractor/extract_semantic.py --collected-dir data/collected_v1 --modules stock_request
+python src/extractor/extract_schema.py                  # consistency check: a full run must create 0 nodes and 0 relationships
+```
+
+Each structural run writes `data/snapshots/kg_update_YYYYMMDD_<mode>.json` (rows read, nodes and relationships created,
+time, graph statistics before and after, SHA-256 fingerprint of the structural layer). The incremental update is
+consistent when the full run after it creates nothing and both runs end with the same fingerprint.
 
 ## Language
 

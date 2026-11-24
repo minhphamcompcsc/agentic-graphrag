@@ -1,0 +1,2714 @@
+{
+ "modules": [
+  {
+   "name": "stock_request",
+   "label": "Stock Request",
+   "summary": "Internal request for stock",
+   "author": "ForgeFlow, Odoo Community Association (OCA)",
+   "version": "18.0.1.1.8",
+   "is_oca": true
+  }
+ ],
+ "deps": [
+  {
+   "module": "stock_request",
+   "depends_on": "stock"
+  }
+ ],
+ "models": [
+  {
+   "name": "stock.rule",
+   "label": "Stock Rule",
+   "info": " A rule describe what a procurement should do; produce, buy, move, ... ",
+   "transient": false
+  },
+  {
+   "name": "stock.location",
+   "label": "Inventory Locations",
+   "info": " Main super-class for regular database-persisted Odoo models.\n\n    Odoo models are created by inheriting from this class::\n\n        class user(Model):\n            ...\n\n    The system will later instantiate the class once per database (on\n    which the class' module is installed).\n    ",
+   "transient": false
+  },
+  {
+   "name": "stock.picking",
+   "label": "Transfer",
+   "info": " Main super-class for regular database-persisted Odoo models.\n\n    Odoo models are created by inheriting from this class::\n\n        class user(Model):\n            ...\n\n    The system will later instantiate the class once per database (on\n    which the class' module is installed).\n    ",
+   "transient": false
+  },
+  {
+   "name": "stock.request.abstract",
+   "label": "Stock Request Template",
+   "info": " mail_thread model is meant to be inherited by any model that needs to\n        act as a discussion topic on which messages can be attached. Public\n        methods are prefixed with ``message_`` in order to avoid name\n        collisions with methods of the models that will inherit from this class.\n\n        ``mail.thread`` defines fields used to handle and display the\n        communication history. ``mail.thread`` also manages followers of\n        inheriting classes. All features and expected behavior are managed\n        by mail.thread. Widgets has been designed for the 7.0 and following\n        versions of Odoo.\n\n        Inheriting classes are not required to implement any method, as the\n        default implementation will work for any model. However it is common\n        to override at least the ``message_new`` and ``message_update``\n        methods (calling ``super``) to add model-specific behavior at\n        creation and update of a thread when processing incoming emails.\n\n        Options:\n            - _mail_flat_thread: if set to True, all messages without parent_id\n                are automatically attached to the first message posted on the\n                resource. If set to False, the display of Chatter is done using\n                threads, and no parent_id is automatically set.\n\n    MailThread features can be somewhat controlled through context keys :\n\n     - ``mail_create_nosubscribe``: at create or message_post, do not subscribe\n       uid to the record thread\n     - ``mail_create_nolog``: at create, do not log the automatic '<Document>\n       created' message\n     - ``mail_notrack``: at create and write, do not perform the value tracking\n       creating messages\n     - ``tracking_disable``: at create and write, perform no MailThread features\n       (auto subscription, tracking, post, ...)\n     - ``mail_notify_force_send``: if less than 50 email notifications to send,\n       send them directly instead of using the queue; True by default\n    ",
+   "transient": false
+  },
+  {
+   "name": "stock.request",
+   "label": "Stock Request",
+   "info": " Main super-class for regular database-persisted Odoo models.\n\n    Odoo models are created by inheriting from this class::\n\n        class user(Model):\n            ...\n\n    The system will later instantiate the class once per database (on\n    which the class' module is installed).\n    ",
+   "transient": false
+  },
+  {
+   "name": "stock.route",
+   "label": "Inventory Routes",
+   "info": " Main super-class for regular database-persisted Odoo models.\n\n    Odoo models are created by inheriting from this class::\n\n        class user(Model):\n            ...\n\n    The system will later instantiate the class once per database (on\n    which the class' module is installed).\n    ",
+   "transient": false
+  },
+  {
+   "name": "res.company",
+   "label": "Companies",
+   "info": " Main super-class for regular database-persisted Odoo models.\n\n    Odoo models are created by inheriting from this class::\n\n        class user(Model):\n            ...\n\n    The system will later instantiate the class once per database (on\n    which the class' module is installed).\n    ",
+   "transient": false
+  },
+  {
+   "name": "stock.request.allocation",
+   "label": "Stock Request Allocation",
+   "info": " Main super-class for regular database-persisted Odoo models.\n\n    Odoo models are created by inheriting from this class::\n\n        class user(Model):\n            ...\n\n    The system will later instantiate the class once per database (on\n    which the class' module is installed).\n    ",
+   "transient": false
+  },
+  {
+   "name": "stock.move",
+   "label": "Stock Move",
+   "info": " Main super-class for regular database-persisted Odoo models.\n\n    Odoo models are created by inheriting from this class::\n\n        class user(Model):\n            ...\n\n    The system will later instantiate the class once per database (on\n    which the class' module is installed).\n    ",
+   "transient": false
+  },
+  {
+   "name": "procurement.group",
+   "label": "Procurement Group",
+   "info": "\n    The procurement group class is used to group products together\n    when computing procurements. (tasks, physical products, ...)\n\n    The goal is that when you have one sales order of several products\n    and the products are pulled from the same or several location(s), to keep\n    having the moves grouped into pickings that represent the sales order.\n\n    Used in: sales order (to group delivery order lines like the so), pull/push\n    rules (to pack like the delivery order), on orderpoints (e.g. for wave picking\n    all the similar products together).\n\n    Grouping is made only if the source and the destination is the same.\n    Suppose you have 4 lines on a picking from Output where 2 lines will need\n    to come from Input (crossdock) and 2 lines coming from Stock -> Output As\n    the four will have the same group ids from the SO, the move from input will\n    have a stock.picking with 2 grouped lines and the move from stock will have\n    2 grouped lines also.\n\n    The name is usually the name of the original document (sales order) or a\n    sequence computed if created manually.\n    ",
+   "transient": false
+  },
+  {
+   "name": "stock.move.line",
+   "label": "Product Moves (Stock Move Line)",
+   "info": " Main super-class for regular database-persisted Odoo models.\n\n    Odoo models are created by inheriting from this class::\n\n        class user(Model):\n            ...\n\n    The system will later instantiate the class once per database (on\n    which the class' module is installed).\n    ",
+   "transient": false
+  },
+  {
+   "name": "stock.request.order",
+   "label": "Stock Request Order",
+   "info": " Main super-class for regular database-persisted Odoo models.\n\n    Odoo models are created by inheriting from this class::\n\n        class user(Model):\n            ...\n\n    The system will later instantiate the class once per database (on\n    which the class' module is installed).\n    ",
+   "transient": false
+  },
+  {
+   "name": "stock.warehouse",
+   "label": "Warehouse",
+   "info": " Main super-class for regular database-persisted Odoo models.\n\n    Odoo models are created by inheriting from this class::\n\n        class user(Model):\n            ...\n\n    The system will later instantiate the class once per database (on\n    which the class' module is installed).\n    ",
+   "transient": false
+  },
+  {
+   "name": "res.config.settings",
+   "label": "Config Settings",
+   "info": " Inherit the base settings to add a counter of failed email + configure\n    the alias domain. ",
+   "transient": true
+  }
+ ],
+ "model_owners": [
+  {
+   "model": "procurement.group",
+   "module": "stock"
+  },
+  {
+   "model": "procurement.group",
+   "module": "sale_stock"
+  },
+  {
+   "model": "procurement.group",
+   "module": "stock_request"
+  },
+  {
+   "model": "res.company",
+   "module": "base"
+  },
+  {
+   "model": "res.company",
+   "module": "web"
+  },
+  {
+   "model": "res.company",
+   "module": "barcodes"
+  },
+  {
+   "model": "res.company",
+   "module": "resource"
+  },
+  {
+   "model": "res.company",
+   "module": "mail"
+  },
+  {
+   "model": "res.company",
+   "module": "product"
+  },
+  {
+   "model": "res.company",
+   "module": "partner_autocomplete"
+  },
+  {
+   "model": "res.company",
+   "module": "sms"
+  },
+  {
+   "model": "res.company",
+   "module": "snailmail"
+  },
+  {
+   "model": "res.company",
+   "module": "payment"
+  },
+  {
+   "model": "res.company",
+   "module": "account"
+  },
+  {
+   "model": "res.company",
+   "module": "stock"
+  },
+  {
+   "model": "res.company",
+   "module": "spreadsheet_account"
+  },
+  {
+   "model": "res.company",
+   "module": "stock_account"
+  },
+  {
+   "model": "res.company",
+   "module": "stock_sms"
+  },
+  {
+   "model": "res.company",
+   "module": "sale"
+  },
+  {
+   "model": "res.company",
+   "module": "sale_management"
+  },
+  {
+   "model": "res.company",
+   "module": "sale_stock"
+  },
+  {
+   "model": "res.company",
+   "module": "stock_request"
+  },
+  {
+   "model": "res.config.settings",
+   "module": "base"
+  },
+  {
+   "model": "res.config.settings",
+   "module": "web"
+  },
+  {
+   "model": "res.config.settings",
+   "module": "base_setup"
+  },
+  {
+   "model": "res.config.settings",
+   "module": "web_unsplash"
+  },
+  {
+   "model": "res.config.settings",
+   "module": "mail"
+  },
+  {
+   "model": "res.config.settings",
+   "module": "analytic"
+  },
+  {
+   "model": "res.config.settings",
+   "module": "auth_signup"
+  },
+  {
+   "model": "res.config.settings",
+   "module": "google_gmail"
+  },
+  {
+   "model": "res.config.settings",
+   "module": "product"
+  },
+  {
+   "model": "res.config.settings",
+   "module": "partner_autocomplete"
+  },
+  {
+   "model": "res.config.settings",
+   "module": "portal"
+  },
+  {
+   "model": "res.config.settings",
+   "module": "snailmail"
+  },
+  {
+   "model": "res.config.settings",
+   "module": "digest"
+  },
+  {
+   "model": "res.config.settings",
+   "module": "account"
+  },
+  {
+   "model": "res.config.settings",
+   "module": "stock"
+  },
+  {
+   "model": "res.config.settings",
+   "module": "account_payment"
+  },
+  {
+   "model": "res.config.settings",
+   "module": "stock_account"
+  },
+  {
+   "model": "res.config.settings",
+   "module": "stock_sms"
+  },
+  {
+   "model": "res.config.settings",
+   "module": "sale"
+  },
+  {
+   "model": "res.config.settings",
+   "module": "sale_management"
+  },
+  {
+   "model": "res.config.settings",
+   "module": "sale_stock"
+  },
+  {
+   "model": "res.config.settings",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.location",
+   "module": "stock"
+  },
+  {
+   "model": "stock.location",
+   "module": "stock_account"
+  },
+  {
+   "model": "stock.location",
+   "module": "stock_no_negative"
+  },
+  {
+   "model": "stock.location",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.move",
+   "module": "stock"
+  },
+  {
+   "model": "stock.move",
+   "module": "stock_account"
+  },
+  {
+   "model": "stock.move",
+   "module": "sale_stock"
+  },
+  {
+   "model": "stock.move",
+   "module": "stock_picking_invoice_link"
+  },
+  {
+   "model": "stock.move",
+   "module": "sale_stock_picking_invoice_link"
+  },
+  {
+   "model": "stock.move",
+   "module": "stock_picking_auto_create_lot"
+  },
+  {
+   "model": "stock.move",
+   "module": "stock_move_location"
+  },
+  {
+   "model": "stock.move",
+   "module": "stock_picking_back2draft"
+  },
+  {
+   "model": "stock.move",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.move.line",
+   "module": "stock"
+  },
+  {
+   "model": "stock.move.line",
+   "module": "stock_account"
+  },
+  {
+   "model": "stock.move.line",
+   "module": "sale_stock"
+  },
+  {
+   "model": "stock.move.line",
+   "module": "stock_picking_auto_create_lot"
+  },
+  {
+   "model": "stock.move.line",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.picking",
+   "module": "stock"
+  },
+  {
+   "model": "stock.picking",
+   "module": "stock_account"
+  },
+  {
+   "model": "stock.picking",
+   "module": "stock_sms"
+  },
+  {
+   "model": "stock.picking",
+   "module": "sale_stock"
+  },
+  {
+   "model": "stock.picking",
+   "module": "stock_picking_invoice_link"
+  },
+  {
+   "model": "stock.picking",
+   "module": "stock_picking_auto_create_lot"
+  },
+  {
+   "model": "stock.picking",
+   "module": "stock_move_location"
+  },
+  {
+   "model": "stock.picking",
+   "module": "stock_picking_back2draft"
+  },
+  {
+   "model": "stock.picking",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.abstract",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.allocation",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.order",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.route",
+   "module": "stock"
+  },
+  {
+   "model": "stock.route",
+   "module": "sale_stock"
+  },
+  {
+   "model": "stock.route",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.rule",
+   "module": "stock"
+  },
+  {
+   "model": "stock.rule",
+   "module": "sale_stock"
+  },
+  {
+   "model": "stock.rule",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.warehouse",
+   "module": "stock"
+  },
+  {
+   "model": "stock.warehouse",
+   "module": "sale_stock"
+  },
+  {
+   "model": "stock.warehouse",
+   "module": "stock_request"
+  }
+ ],
+ "field_owners": [
+  {
+   "model": "res.company",
+   "name": "stock_request_allow_virtual_loc",
+   "module": "stock_request"
+  },
+  {
+   "model": "res.company",
+   "name": "stock_request_check_available_first",
+   "module": "stock_request"
+  },
+  {
+   "model": "res.config.settings",
+   "name": "group_stock_request_order",
+   "module": "stock_request"
+  },
+  {
+   "model": "res.config.settings",
+   "name": "module_stock_request_analytic",
+   "module": "stock_request"
+  },
+  {
+   "model": "res.config.settings",
+   "name": "module_stock_request_kanban",
+   "module": "stock_request"
+  },
+  {
+   "model": "res.config.settings",
+   "name": "module_stock_request_mrp",
+   "module": "stock_request"
+  },
+  {
+   "model": "res.config.settings",
+   "name": "module_stock_request_purchase",
+   "module": "stock_request"
+  },
+  {
+   "model": "res.config.settings",
+   "name": "module_stock_request_submit",
+   "module": "stock_request"
+  },
+  {
+   "model": "res.config.settings",
+   "name": "stock_request_allow_virtual_loc",
+   "module": "stock_request"
+  },
+  {
+   "model": "res.config.settings",
+   "name": "stock_request_check_available_first",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.move",
+   "name": "allocation_ids",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.move",
+   "name": "stock_request_ids",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.picking",
+   "name": "stock_request_count",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.picking",
+   "name": "stock_request_ids",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request",
+   "name": "activity_date_deadline",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request",
+   "name": "activity_exception_decoration",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request",
+   "name": "activity_exception_icon",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request",
+   "name": "activity_ids",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request",
+   "name": "activity_state",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request",
+   "name": "activity_summary",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request",
+   "name": "activity_type_icon",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request",
+   "name": "activity_type_id",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request",
+   "name": "activity_user_id",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request",
+   "name": "allocation_ids",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request",
+   "name": "allow_virtual_location",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request",
+   "name": "allowed_uom_categ_id",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request",
+   "name": "company_id",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request",
+   "name": "create_date",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request",
+   "name": "create_uid",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request",
+   "name": "display_name",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request",
+   "name": "expected_date",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request",
+   "name": "has_message",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request",
+   "name": "id",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request",
+   "name": "location_id",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request",
+   "name": "message_attachment_count",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request",
+   "name": "message_follower_ids",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request",
+   "name": "message_has_error",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request",
+   "name": "message_has_error_counter",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request",
+   "name": "message_has_sms_error",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request",
+   "name": "message_ids",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request",
+   "name": "message_is_follower",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request",
+   "name": "message_needaction",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request",
+   "name": "message_needaction_counter",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request",
+   "name": "message_partner_ids",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request",
+   "name": "move_ids",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request",
+   "name": "my_activity_date_deadline",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request",
+   "name": "name",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request",
+   "name": "order_id",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request",
+   "name": "picking_count",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request",
+   "name": "picking_ids",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request",
+   "name": "picking_policy",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request",
+   "name": "procurement_group_id",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request",
+   "name": "product_id",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request",
+   "name": "product_qty",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request",
+   "name": "product_uom_id",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request",
+   "name": "product_uom_qty",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request",
+   "name": "qty_cancelled",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request",
+   "name": "qty_done",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request",
+   "name": "qty_in_progress",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request",
+   "name": "requested_by",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request",
+   "name": "route_id",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request",
+   "name": "route_ids",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request",
+   "name": "state",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request",
+   "name": "warehouse_id",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request",
+   "name": "website_message_ids",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request",
+   "name": "write_date",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request",
+   "name": "write_uid",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "activity_date_deadline",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "activity_exception_decoration",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "activity_exception_icon",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "activity_ids",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "activity_state",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "activity_summary",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "activity_type_icon",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "activity_type_id",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "activity_user_id",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "allow_virtual_location",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "allowed_uom_categ_id",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "company_id",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "has_message",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "location_id",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "message_attachment_count",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "message_follower_ids",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "message_has_error",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "message_has_error_counter",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "message_has_sms_error",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "message_ids",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "message_is_follower",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "message_needaction",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "message_needaction_counter",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "message_partner_ids",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "my_activity_date_deadline",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "name",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "procurement_group_id",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "product_id",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "product_qty",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "product_uom_id",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "product_uom_qty",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "route_id",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "route_ids",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "warehouse_id",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "website_message_ids",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.allocation",
+   "name": "allocated_product_qty",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.allocation",
+   "name": "company_id",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.allocation",
+   "name": "create_date",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.allocation",
+   "name": "create_uid",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.allocation",
+   "name": "display_name",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.allocation",
+   "name": "id",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.allocation",
+   "name": "open_product_qty",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.allocation",
+   "name": "product_id",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.allocation",
+   "name": "product_uom_id",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.allocation",
+   "name": "requested_product_qty",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.allocation",
+   "name": "requested_product_uom_qty",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.allocation",
+   "name": "stock_move_id",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.allocation",
+   "name": "stock_request_id",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.allocation",
+   "name": "write_date",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.allocation",
+   "name": "write_uid",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.order",
+   "name": "activity_date_deadline",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.order",
+   "name": "activity_exception_decoration",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.order",
+   "name": "activity_exception_icon",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.order",
+   "name": "activity_ids",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.order",
+   "name": "activity_state",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.order",
+   "name": "activity_summary",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.order",
+   "name": "activity_type_icon",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.order",
+   "name": "activity_type_id",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.order",
+   "name": "activity_user_id",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.order",
+   "name": "allow_virtual_location",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.order",
+   "name": "company_id",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.order",
+   "name": "create_date",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.order",
+   "name": "create_uid",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.order",
+   "name": "display_name",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.order",
+   "name": "expected_date",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.order",
+   "name": "has_message",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.order",
+   "name": "id",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.order",
+   "name": "location_id",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.order",
+   "name": "message_attachment_count",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.order",
+   "name": "message_follower_ids",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.order",
+   "name": "message_has_error",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.order",
+   "name": "message_has_error_counter",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.order",
+   "name": "message_has_sms_error",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.order",
+   "name": "message_ids",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.order",
+   "name": "message_is_follower",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.order",
+   "name": "message_needaction",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.order",
+   "name": "message_needaction_counter",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.order",
+   "name": "message_partner_ids",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.order",
+   "name": "move_ids",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.order",
+   "name": "my_activity_date_deadline",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.order",
+   "name": "name",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.order",
+   "name": "picking_count",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.order",
+   "name": "picking_ids",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.order",
+   "name": "picking_policy",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.order",
+   "name": "procurement_group_id",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.order",
+   "name": "requested_by",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.order",
+   "name": "route_id",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.order",
+   "name": "route_ids",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.order",
+   "name": "state",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.order",
+   "name": "stock_request_count",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.order",
+   "name": "stock_request_ids",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.order",
+   "name": "warehouse_id",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.order",
+   "name": "website_message_ids",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.order",
+   "name": "write_date",
+   "module": "stock_request"
+  },
+  {
+   "model": "stock.request.order",
+   "name": "write_uid",
+   "module": "stock_request"
+  }
+ ],
+ "fields": [
+  {
+   "model": "stock.request.abstract",
+   "name": "activity_ids",
+   "label": "Activities",
+   "ttype": "one2many",
+   "relation": "mail.activity",
+   "store": true,
+   "required": false
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "activity_state",
+   "label": "Activity State",
+   "ttype": "selection",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "activity_user_id",
+   "label": "Responsible User",
+   "ttype": "many2one",
+   "relation": "res.users",
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "activity_type_id",
+   "label": "Next Activity Type",
+   "ttype": "many2one",
+   "relation": "mail.activity.type",
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "activity_type_icon",
+   "label": "Activity Type Icon",
+   "ttype": "char",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "activity_date_deadline",
+   "label": "Next Activity Deadline",
+   "ttype": "date",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "my_activity_date_deadline",
+   "label": "My Activity Deadline",
+   "ttype": "date",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "activity_summary",
+   "label": "Next Activity Summary",
+   "ttype": "char",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "activity_exception_decoration",
+   "label": "Activity Exception Decoration",
+   "ttype": "selection",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "activity_exception_icon",
+   "label": "Icon",
+   "ttype": "char",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "message_is_follower",
+   "label": "Is Follower",
+   "ttype": "boolean",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "message_follower_ids",
+   "label": "Followers",
+   "ttype": "one2many",
+   "relation": "mail.followers",
+   "store": true,
+   "required": false
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "message_partner_ids",
+   "label": "Followers (Partners)",
+   "ttype": "many2many",
+   "relation": "res.partner",
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "message_ids",
+   "label": "Messages",
+   "ttype": "one2many",
+   "relation": "mail.message",
+   "store": true,
+   "required": false
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "has_message",
+   "label": "Has Message",
+   "ttype": "boolean",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "message_needaction",
+   "label": "Action Needed",
+   "ttype": "boolean",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "message_needaction_counter",
+   "label": "Number of Actions",
+   "ttype": "integer",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "message_has_error",
+   "label": "Message Delivery error",
+   "ttype": "boolean",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "message_has_error_counter",
+   "label": "Number of errors",
+   "ttype": "integer",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "message_attachment_count",
+   "label": "Attachment Count",
+   "ttype": "integer",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "website_message_ids",
+   "label": "Website Messages",
+   "ttype": "one2many",
+   "relation": "mail.message",
+   "store": true,
+   "required": false
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "message_has_sms_error",
+   "label": "SMS Delivery error",
+   "ttype": "boolean",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "name",
+   "label": "Name",
+   "ttype": "char",
+   "relation": null,
+   "store": true,
+   "required": true
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "warehouse_id",
+   "label": "Warehouse",
+   "ttype": "many2one",
+   "relation": "stock.warehouse",
+   "store": true,
+   "required": true
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "location_id",
+   "label": "Location",
+   "ttype": "many2one",
+   "relation": "stock.location",
+   "store": true,
+   "required": true
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "product_id",
+   "label": "Product",
+   "ttype": "many2one",
+   "relation": "product.product",
+   "store": true,
+   "required": true
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "allow_virtual_location",
+   "label": "Allow Virtual locations on Stock Requests",
+   "ttype": "boolean",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "allowed_uom_categ_id",
+   "label": "Category",
+   "ttype": "many2one",
+   "relation": "uom.category",
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "product_uom_id",
+   "label": "Product Unit of Measure",
+   "ttype": "many2one",
+   "relation": "uom.uom",
+   "store": true,
+   "required": true
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "product_uom_qty",
+   "label": "Quantity",
+   "ttype": "float",
+   "relation": null,
+   "store": true,
+   "required": true
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "product_qty",
+   "label": "Real Quantity",
+   "ttype": "float",
+   "relation": null,
+   "store": true,
+   "required": false
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "procurement_group_id",
+   "label": "Procurement Group",
+   "ttype": "many2one",
+   "relation": "procurement.group",
+   "store": true,
+   "required": false
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "company_id",
+   "label": "Company",
+   "ttype": "many2one",
+   "relation": "res.company",
+   "store": true,
+   "required": true
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "route_id",
+   "label": "Route",
+   "ttype": "many2one",
+   "relation": "stock.route",
+   "store": true,
+   "required": false
+  },
+  {
+   "model": "stock.request.abstract",
+   "name": "route_ids",
+   "label": "Routes",
+   "ttype": "many2many",
+   "relation": "stock.route",
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request",
+   "name": "activity_ids",
+   "label": "Activities",
+   "ttype": "one2many",
+   "relation": "mail.activity",
+   "store": true,
+   "required": false
+  },
+  {
+   "model": "stock.request",
+   "name": "activity_state",
+   "label": "Activity State",
+   "ttype": "selection",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request",
+   "name": "activity_user_id",
+   "label": "Responsible User",
+   "ttype": "many2one",
+   "relation": "res.users",
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request",
+   "name": "activity_type_id",
+   "label": "Next Activity Type",
+   "ttype": "many2one",
+   "relation": "mail.activity.type",
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request",
+   "name": "activity_type_icon",
+   "label": "Activity Type Icon",
+   "ttype": "char",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request",
+   "name": "activity_date_deadline",
+   "label": "Next Activity Deadline",
+   "ttype": "date",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request",
+   "name": "my_activity_date_deadline",
+   "label": "My Activity Deadline",
+   "ttype": "date",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request",
+   "name": "activity_summary",
+   "label": "Next Activity Summary",
+   "ttype": "char",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request",
+   "name": "activity_exception_decoration",
+   "label": "Activity Exception Decoration",
+   "ttype": "selection",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request",
+   "name": "activity_exception_icon",
+   "label": "Icon",
+   "ttype": "char",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request",
+   "name": "message_is_follower",
+   "label": "Is Follower",
+   "ttype": "boolean",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request",
+   "name": "message_follower_ids",
+   "label": "Followers",
+   "ttype": "one2many",
+   "relation": "mail.followers",
+   "store": true,
+   "required": false
+  },
+  {
+   "model": "stock.request",
+   "name": "message_partner_ids",
+   "label": "Followers (Partners)",
+   "ttype": "many2many",
+   "relation": "res.partner",
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request",
+   "name": "message_ids",
+   "label": "Messages",
+   "ttype": "one2many",
+   "relation": "mail.message",
+   "store": true,
+   "required": false
+  },
+  {
+   "model": "stock.request",
+   "name": "has_message",
+   "label": "Has Message",
+   "ttype": "boolean",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request",
+   "name": "message_needaction",
+   "label": "Action Needed",
+   "ttype": "boolean",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request",
+   "name": "message_needaction_counter",
+   "label": "Number of Actions",
+   "ttype": "integer",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request",
+   "name": "message_has_error",
+   "label": "Message Delivery error",
+   "ttype": "boolean",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request",
+   "name": "message_has_error_counter",
+   "label": "Number of errors",
+   "ttype": "integer",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request",
+   "name": "message_attachment_count",
+   "label": "Attachment Count",
+   "ttype": "integer",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request",
+   "name": "website_message_ids",
+   "label": "Website Messages",
+   "ttype": "one2many",
+   "relation": "mail.message",
+   "store": true,
+   "required": false
+  },
+  {
+   "model": "stock.request",
+   "name": "message_has_sms_error",
+   "label": "SMS Delivery error",
+   "ttype": "boolean",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request",
+   "name": "name",
+   "label": "Name",
+   "ttype": "char",
+   "relation": null,
+   "store": true,
+   "required": true
+  },
+  {
+   "model": "stock.request",
+   "name": "warehouse_id",
+   "label": "Warehouse",
+   "ttype": "many2one",
+   "relation": "stock.warehouse",
+   "store": true,
+   "required": true
+  },
+  {
+   "model": "stock.request",
+   "name": "location_id",
+   "label": "Location",
+   "ttype": "many2one",
+   "relation": "stock.location",
+   "store": true,
+   "required": true
+  },
+  {
+   "model": "stock.request",
+   "name": "product_id",
+   "label": "Product",
+   "ttype": "many2one",
+   "relation": "product.product",
+   "store": true,
+   "required": true
+  },
+  {
+   "model": "stock.request",
+   "name": "allow_virtual_location",
+   "label": "Allow Virtual locations on Stock Requests",
+   "ttype": "boolean",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request",
+   "name": "allowed_uom_categ_id",
+   "label": "Category",
+   "ttype": "many2one",
+   "relation": "uom.category",
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request",
+   "name": "product_uom_id",
+   "label": "Product Unit of Measure",
+   "ttype": "many2one",
+   "relation": "uom.uom",
+   "store": true,
+   "required": true
+  },
+  {
+   "model": "stock.request",
+   "name": "product_uom_qty",
+   "label": "Quantity",
+   "ttype": "float",
+   "relation": null,
+   "store": true,
+   "required": true
+  },
+  {
+   "model": "stock.request",
+   "name": "product_qty",
+   "label": "Real Quantity",
+   "ttype": "float",
+   "relation": null,
+   "store": true,
+   "required": false
+  },
+  {
+   "model": "stock.request",
+   "name": "procurement_group_id",
+   "label": "Procurement Group",
+   "ttype": "many2one",
+   "relation": "procurement.group",
+   "store": true,
+   "required": false
+  },
+  {
+   "model": "stock.request",
+   "name": "company_id",
+   "label": "Company",
+   "ttype": "many2one",
+   "relation": "res.company",
+   "store": true,
+   "required": true
+  },
+  {
+   "model": "stock.request",
+   "name": "route_id",
+   "label": "Route",
+   "ttype": "many2one",
+   "relation": "stock.route",
+   "store": true,
+   "required": false
+  },
+  {
+   "model": "stock.request",
+   "name": "route_ids",
+   "label": "Routes",
+   "ttype": "many2many",
+   "relation": "stock.route",
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request",
+   "name": "state",
+   "label": "Status",
+   "ttype": "selection",
+   "relation": null,
+   "store": true,
+   "required": false
+  },
+  {
+   "model": "stock.request",
+   "name": "requested_by",
+   "label": "Requested By",
+   "ttype": "many2one",
+   "relation": "res.users",
+   "store": true,
+   "required": true
+  },
+  {
+   "model": "stock.request",
+   "name": "expected_date",
+   "label": "Expected Date",
+   "ttype": "datetime",
+   "relation": null,
+   "store": true,
+   "required": true
+  },
+  {
+   "model": "stock.request",
+   "name": "picking_policy",
+   "label": "Shipping Policy",
+   "ttype": "selection",
+   "relation": null,
+   "store": true,
+   "required": true
+  },
+  {
+   "model": "stock.request",
+   "name": "move_ids",
+   "label": "Stock Moves",
+   "ttype": "one2many",
+   "relation": "stock.move",
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request",
+   "name": "picking_ids",
+   "label": "Pickings",
+   "ttype": "one2many",
+   "relation": "stock.picking",
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request",
+   "name": "qty_in_progress",
+   "label": "Qty In Progress",
+   "ttype": "float",
+   "relation": null,
+   "store": true,
+   "required": false
+  },
+  {
+   "model": "stock.request",
+   "name": "qty_done",
+   "label": "Qty Done",
+   "ttype": "float",
+   "relation": null,
+   "store": true,
+   "required": false
+  },
+  {
+   "model": "stock.request",
+   "name": "qty_cancelled",
+   "label": "Qty Cancelled",
+   "ttype": "float",
+   "relation": null,
+   "store": true,
+   "required": false
+  },
+  {
+   "model": "stock.request",
+   "name": "picking_count",
+   "label": "Delivery Orders",
+   "ttype": "integer",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request",
+   "name": "allocation_ids",
+   "label": "Stock Request Allocation",
+   "ttype": "one2many",
+   "relation": "stock.request.allocation",
+   "store": true,
+   "required": false
+  },
+  {
+   "model": "stock.request",
+   "name": "order_id",
+   "label": "Order",
+   "ttype": "many2one",
+   "relation": "stock.request.order",
+   "store": true,
+   "required": false
+  },
+  {
+   "model": "stock.request",
+   "name": "id",
+   "label": "ID",
+   "ttype": "integer",
+   "relation": null,
+   "store": true,
+   "required": false
+  },
+  {
+   "model": "stock.request",
+   "name": "display_name",
+   "label": "Display Name",
+   "ttype": "char",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request",
+   "name": "create_uid",
+   "label": "Created by",
+   "ttype": "many2one",
+   "relation": "res.users",
+   "store": true,
+   "required": false
+  },
+  {
+   "model": "stock.request",
+   "name": "create_date",
+   "label": "Created on",
+   "ttype": "datetime",
+   "relation": null,
+   "store": true,
+   "required": false
+  },
+  {
+   "model": "stock.request",
+   "name": "write_uid",
+   "label": "Last Updated by",
+   "ttype": "many2one",
+   "relation": "res.users",
+   "store": true,
+   "required": false
+  },
+  {
+   "model": "stock.request",
+   "name": "write_date",
+   "label": "Last Updated on",
+   "ttype": "datetime",
+   "relation": null,
+   "store": true,
+   "required": false
+  },
+  {
+   "model": "stock.request.allocation",
+   "name": "stock_request_id",
+   "label": "Stock Request",
+   "ttype": "many2one",
+   "relation": "stock.request",
+   "store": true,
+   "required": true
+  },
+  {
+   "model": "stock.request.allocation",
+   "name": "company_id",
+   "label": "Company",
+   "ttype": "many2one",
+   "relation": "res.company",
+   "store": true,
+   "required": false
+  },
+  {
+   "model": "stock.request.allocation",
+   "name": "stock_move_id",
+   "label": "Stock Move",
+   "ttype": "many2one",
+   "relation": "stock.move",
+   "store": true,
+   "required": true
+  },
+  {
+   "model": "stock.request.allocation",
+   "name": "product_id",
+   "label": "Product",
+   "ttype": "many2one",
+   "relation": "product.product",
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request.allocation",
+   "name": "product_uom_id",
+   "label": "UoM",
+   "ttype": "many2one",
+   "relation": "uom.uom",
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request.allocation",
+   "name": "requested_product_uom_qty",
+   "label": "Requested Quantity (UoM)",
+   "ttype": "float",
+   "relation": null,
+   "store": true,
+   "required": false
+  },
+  {
+   "model": "stock.request.allocation",
+   "name": "requested_product_qty",
+   "label": "Requested Quantity",
+   "ttype": "float",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request.allocation",
+   "name": "allocated_product_qty",
+   "label": "Allocated Quantity",
+   "ttype": "float",
+   "relation": null,
+   "store": true,
+   "required": false
+  },
+  {
+   "model": "stock.request.allocation",
+   "name": "open_product_qty",
+   "label": "Open Quantity",
+   "ttype": "float",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request.allocation",
+   "name": "id",
+   "label": "ID",
+   "ttype": "integer",
+   "relation": null,
+   "store": true,
+   "required": false
+  },
+  {
+   "model": "stock.request.allocation",
+   "name": "display_name",
+   "label": "Display Name",
+   "ttype": "char",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request.allocation",
+   "name": "create_uid",
+   "label": "Created by",
+   "ttype": "many2one",
+   "relation": "res.users",
+   "store": true,
+   "required": false
+  },
+  {
+   "model": "stock.request.allocation",
+   "name": "create_date",
+   "label": "Created on",
+   "ttype": "datetime",
+   "relation": null,
+   "store": true,
+   "required": false
+  },
+  {
+   "model": "stock.request.allocation",
+   "name": "write_uid",
+   "label": "Last Updated by",
+   "ttype": "many2one",
+   "relation": "res.users",
+   "store": true,
+   "required": false
+  },
+  {
+   "model": "stock.request.allocation",
+   "name": "write_date",
+   "label": "Last Updated on",
+   "ttype": "datetime",
+   "relation": null,
+   "store": true,
+   "required": false
+  },
+  {
+   "model": "stock.request.order",
+   "name": "activity_ids",
+   "label": "Activities",
+   "ttype": "one2many",
+   "relation": "mail.activity",
+   "store": true,
+   "required": false
+  },
+  {
+   "model": "stock.request.order",
+   "name": "activity_state",
+   "label": "Activity State",
+   "ttype": "selection",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request.order",
+   "name": "activity_user_id",
+   "label": "Responsible User",
+   "ttype": "many2one",
+   "relation": "res.users",
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request.order",
+   "name": "activity_type_id",
+   "label": "Next Activity Type",
+   "ttype": "many2one",
+   "relation": "mail.activity.type",
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request.order",
+   "name": "activity_type_icon",
+   "label": "Activity Type Icon",
+   "ttype": "char",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request.order",
+   "name": "activity_date_deadline",
+   "label": "Next Activity Deadline",
+   "ttype": "date",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request.order",
+   "name": "my_activity_date_deadline",
+   "label": "My Activity Deadline",
+   "ttype": "date",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request.order",
+   "name": "activity_summary",
+   "label": "Next Activity Summary",
+   "ttype": "char",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request.order",
+   "name": "activity_exception_decoration",
+   "label": "Activity Exception Decoration",
+   "ttype": "selection",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request.order",
+   "name": "activity_exception_icon",
+   "label": "Icon",
+   "ttype": "char",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request.order",
+   "name": "message_is_follower",
+   "label": "Is Follower",
+   "ttype": "boolean",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request.order",
+   "name": "message_follower_ids",
+   "label": "Followers",
+   "ttype": "one2many",
+   "relation": "mail.followers",
+   "store": true,
+   "required": false
+  },
+  {
+   "model": "stock.request.order",
+   "name": "message_partner_ids",
+   "label": "Followers (Partners)",
+   "ttype": "many2many",
+   "relation": "res.partner",
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request.order",
+   "name": "message_ids",
+   "label": "Messages",
+   "ttype": "one2many",
+   "relation": "mail.message",
+   "store": true,
+   "required": false
+  },
+  {
+   "model": "stock.request.order",
+   "name": "has_message",
+   "label": "Has Message",
+   "ttype": "boolean",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request.order",
+   "name": "message_needaction",
+   "label": "Action Needed",
+   "ttype": "boolean",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request.order",
+   "name": "message_needaction_counter",
+   "label": "Number of Actions",
+   "ttype": "integer",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request.order",
+   "name": "message_has_error",
+   "label": "Message Delivery error",
+   "ttype": "boolean",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request.order",
+   "name": "message_has_error_counter",
+   "label": "Number of errors",
+   "ttype": "integer",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request.order",
+   "name": "message_attachment_count",
+   "label": "Attachment Count",
+   "ttype": "integer",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request.order",
+   "name": "website_message_ids",
+   "label": "Website Messages",
+   "ttype": "one2many",
+   "relation": "mail.message",
+   "store": true,
+   "required": false
+  },
+  {
+   "model": "stock.request.order",
+   "name": "message_has_sms_error",
+   "label": "SMS Delivery error",
+   "ttype": "boolean",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request.order",
+   "name": "name",
+   "label": "Name",
+   "ttype": "char",
+   "relation": null,
+   "store": true,
+   "required": true
+  },
+  {
+   "model": "stock.request.order",
+   "name": "state",
+   "label": "Status",
+   "ttype": "selection",
+   "relation": null,
+   "store": true,
+   "required": false
+  },
+  {
+   "model": "stock.request.order",
+   "name": "requested_by",
+   "label": "Requested By",
+   "ttype": "many2one",
+   "relation": "res.users",
+   "store": true,
+   "required": true
+  },
+  {
+   "model": "stock.request.order",
+   "name": "warehouse_id",
+   "label": "Warehouse",
+   "ttype": "many2one",
+   "relation": "stock.warehouse",
+   "store": true,
+   "required": true
+  },
+  {
+   "model": "stock.request.order",
+   "name": "location_id",
+   "label": "Location",
+   "ttype": "many2one",
+   "relation": "stock.location",
+   "store": true,
+   "required": true
+  },
+  {
+   "model": "stock.request.order",
+   "name": "allow_virtual_location",
+   "label": "Allow Virtual locations on Stock Requests",
+   "ttype": "boolean",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request.order",
+   "name": "procurement_group_id",
+   "label": "Procurement Group",
+   "ttype": "many2one",
+   "relation": "procurement.group",
+   "store": true,
+   "required": false
+  },
+  {
+   "model": "stock.request.order",
+   "name": "company_id",
+   "label": "Company",
+   "ttype": "many2one",
+   "relation": "res.company",
+   "store": true,
+   "required": true
+  },
+  {
+   "model": "stock.request.order",
+   "name": "expected_date",
+   "label": "Expected Date",
+   "ttype": "datetime",
+   "relation": null,
+   "store": true,
+   "required": true
+  },
+  {
+   "model": "stock.request.order",
+   "name": "picking_policy",
+   "label": "Shipping Policy",
+   "ttype": "selection",
+   "relation": null,
+   "store": true,
+   "required": true
+  },
+  {
+   "model": "stock.request.order",
+   "name": "move_ids",
+   "label": "Stock Moves",
+   "ttype": "one2many",
+   "relation": "stock.move",
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request.order",
+   "name": "picking_ids",
+   "label": "Pickings",
+   "ttype": "one2many",
+   "relation": "stock.picking",
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request.order",
+   "name": "picking_count",
+   "label": "Delivery Orders",
+   "ttype": "integer",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request.order",
+   "name": "stock_request_ids",
+   "label": "Stock Request",
+   "ttype": "one2many",
+   "relation": "stock.request",
+   "store": true,
+   "required": false
+  },
+  {
+   "model": "stock.request.order",
+   "name": "stock_request_count",
+   "label": "Stock requests",
+   "ttype": "integer",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request.order",
+   "name": "route_ids",
+   "label": "Routes",
+   "ttype": "many2many",
+   "relation": "stock.route",
+   "store": true,
+   "required": false
+  },
+  {
+   "model": "stock.request.order",
+   "name": "route_id",
+   "label": "Route",
+   "ttype": "many2one",
+   "relation": "stock.route",
+   "store": true,
+   "required": false
+  },
+  {
+   "model": "stock.request.order",
+   "name": "id",
+   "label": "ID",
+   "ttype": "integer",
+   "relation": null,
+   "store": true,
+   "required": false
+  },
+  {
+   "model": "stock.request.order",
+   "name": "display_name",
+   "label": "Display Name",
+   "ttype": "char",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.request.order",
+   "name": "create_uid",
+   "label": "Created by",
+   "ttype": "many2one",
+   "relation": "res.users",
+   "store": true,
+   "required": false
+  },
+  {
+   "model": "stock.request.order",
+   "name": "create_date",
+   "label": "Created on",
+   "ttype": "datetime",
+   "relation": null,
+   "store": true,
+   "required": false
+  },
+  {
+   "model": "stock.request.order",
+   "name": "write_uid",
+   "label": "Last Updated by",
+   "ttype": "many2one",
+   "relation": "res.users",
+   "store": true,
+   "required": false
+  },
+  {
+   "model": "stock.request.order",
+   "name": "write_date",
+   "label": "Last Updated on",
+   "ttype": "datetime",
+   "relation": null,
+   "store": true,
+   "required": false
+  },
+  {
+   "model": "stock.move",
+   "name": "allocation_ids",
+   "label": "Stock Request Allocation",
+   "ttype": "one2many",
+   "relation": "stock.request.allocation",
+   "store": true,
+   "required": false
+  },
+  {
+   "model": "stock.move",
+   "name": "stock_request_ids",
+   "label": "Stock Requests",
+   "ttype": "one2many",
+   "relation": "stock.request",
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.picking",
+   "name": "stock_request_ids",
+   "label": "Stock Requests",
+   "ttype": "one2many",
+   "relation": "stock.request",
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "stock.picking",
+   "name": "stock_request_count",
+   "label": "Stock Request #",
+   "ttype": "integer",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "res.config.settings",
+   "name": "group_stock_request_order",
+   "label": "Group Stock Request Order",
+   "ttype": "boolean",
+   "relation": null,
+   "store": true,
+   "required": false
+  },
+  {
+   "model": "res.config.settings",
+   "name": "module_stock_request_purchase",
+   "label": "Stock Requests for Purchases",
+   "ttype": "boolean",
+   "relation": null,
+   "store": true,
+   "required": false
+  },
+  {
+   "model": "res.config.settings",
+   "name": "module_stock_request_kanban",
+   "label": "Stock Requests Kanban integration",
+   "ttype": "boolean",
+   "relation": null,
+   "store": true,
+   "required": false
+  },
+  {
+   "model": "res.config.settings",
+   "name": "stock_request_check_available_first",
+   "label": "Check available stock first",
+   "ttype": "boolean",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "res.config.settings",
+   "name": "stock_request_allow_virtual_loc",
+   "label": "Allow Virtual locations on Stock Requests",
+   "ttype": "boolean",
+   "relation": null,
+   "store": false,
+   "required": false
+  },
+  {
+   "model": "res.config.settings",
+   "name": "module_stock_request_analytic",
+   "label": "Stock Requests Analytic integration",
+   "ttype": "boolean",
+   "relation": null,
+   "store": true,
+   "required": false
+  },
+  {
+   "model": "res.config.settings",
+   "name": "module_stock_request_submit",
+   "label": "Submitted state in Stock Requests",
+   "ttype": "boolean",
+   "relation": null,
+   "store": true,
+   "required": false
+  },
+  {
+   "model": "res.config.settings",
+   "name": "module_stock_request_mrp",
+   "label": "Stock Request for Manufacturing",
+   "ttype": "boolean",
+   "relation": null,
+   "store": true,
+   "required": false
+  },
+  {
+   "model": "res.company",
+   "name": "stock_request_allow_virtual_loc",
+   "label": "Allow Virtual locations on Stock Requests",
+   "ttype": "boolean",
+   "relation": null,
+   "store": true,
+   "required": false
+  },
+  {
+   "model": "res.company",
+   "name": "stock_request_check_available_first",
+   "label": "Check available stock first",
+   "ttype": "boolean",
+   "relation": null,
+   "store": true,
+   "required": false
+  }
+ ]
+}

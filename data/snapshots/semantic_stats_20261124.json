@@ -1,0 +1,65 @@
+{
+  "date": "20261124",
+  "extractor_version": "sem-v0.2",
+  "llm": "gemini-3.6-flash",
+  "embedding": "bge-m3",
+  "threshold": 0.7,
+  "catalog": "neo4j",
+  "dry_run": false,
+  "totals": {
+    "modules": 1,
+    "functions": 3,
+    "evidence_found": 3,
+    "object_mentions": 7,
+    "methods": {
+      "exact_name": 7
+    },
+    "linked_rate": 1.0,
+    "structural": {
+      "dependency": 1,
+      "own": 6
+    },
+    "structural_consistency": 1.0,
+    "llm_calls": 0,
+    "seconds": 81.2
+  },
+  "per_module": {
+    "stock_request": {
+      "text_chars": 1147,
+      "functions": 3,
+      "evidence_found": 3,
+      "object_mentions": 7,
+      "methods": {
+        "exact_name": 7
+      },
+      "structural": {
+        "dependency": 1,
+        "own": 6
+      },
+      "field_links": 7,
+      "own_models": [
+        "procurement.group",
+        "res.company",
+        "res.config.settings",
+        "stock.location",
+        "stock.move",
+        "stock.move.line",
+        "stock.picking",
+        "stock.request",
+        "stock.request.abstract",
+        "stock.request.allocation",
+        "stock.request.order",
+        "stock.route",
+        "stock.rule",
+        "stock.warehouse"
+      ],
+      "own_models_covered": [
+        "stock.location",
+        "stock.move",
+        "stock.picking",
+        "stock.request"
+      ],
+      "llm_cached": true
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "date": "20261124",
+  "graph": {
+    "ADDS_FIELD": 7912,
+    "Concept": 1,
+    "DEFINES": 443,
+    "DEPENDS_ON": 129,
+    "EXTENDS": 335,
+    "Field": 7917,
+    "Function": 14,
+    "HAS_FIELD": 7917,
+    "INVOLVES": 32,
+    "INVOLVES_FIELD": 15,
+    "LINKS_TO": 2580,
+    "MENTIONS": 1,
+    "Model": 443,
+    "Module": 67,
+    "PROVIDES": 14,
+    "RELATES_TO": 2580
+  },
+  "links_to_oca": 91,
+  "links_to_technical": 851,
+  "technical_fields": [
+    "activity_ids",
+    "activity_type_id",
+    "activity_user_id",
+    "create_uid",
+    "message_follower_ids",
+    "message_ids",
+    "message_partner_ids",
+    "website_message_ids",
+    "write_uid"
+  ],
+  "technical_criteria": {
+    "audit_fields": [
+      "create_uid",
+      "write_uid"
+    ],
+    "mixins": [
+      "mail.thread",
+      "mail.activity.mixin"
+    ]
+  }
+}

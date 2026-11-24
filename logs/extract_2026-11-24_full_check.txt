@@ -1,0 +1,46 @@
+Extractor v0.2, mode: full
+0) Graph before the run ...
+  30400 items, structural fingerprint 40dec9c306f6
+1) Reading the schema from PostgreSQL ...
+  modules            67 rows
+  deps              129 rows
+  models            443 rows
+  model_owners      778 rows
+  fields           7917 rows
+  field_owners     7992 rows
+  Snapshot: data/snapshots/schema_20261124.json
+2) Writing to Neo4j ...
+  Module             67 rows  (+0 nodes, +0 relationships)
+  DEPENDS_ON        129 rows  (+0 nodes, +0 relationships)
+  Model             443 rows  (+0 nodes, +0 relationships)
+  DEFINES           443 rows  (+0 nodes, +0 relationships)
+  EXTENDS           335 rows  (+0 nodes, +0 relationships)
+  Field            7917 rows  (+0 nodes, +0 relationships)
+  RELATES_TO       2580 rows  (+0 nodes, +0 relationships)
+  ADDS_FIELD       7912 rows  (+0 nodes, +0 relationships)
+3) Flagging LINKS_TO edges ...
+  oca                91 edges
+  technical         851 edges (9 fields: activity_ids, activity_type_id, activity_user_id, create_uid, message_follower_ids, message_ids, message_partner_ids, website_message_ids, write_uid)
+4) Graph statistics:
+  ADDS_FIELD       7912
+  Concept             1
+  DEFINES           443
+  DEPENDS_ON        129
+  EXTENDS           335
+  Field            7917
+  Function           14
+  HAS_FIELD        7917
+  INVOLVES           32
+  INVOLVES_FIELD     15
+  LINKS_TO         2580
+  MENTIONS            1
+  Model             443
+  Module             67
+  PROVIDES           14
+  RELATES_TO       2580
+  Created in this run: 0 nodes, 0 relationships
+  Time: read 0.18 s, write 3.13 s, total 3.41 s (without the fingerprint)
+  Structural fingerprint: before 40dec9c306f6, after 40dec9c306f6 (30323 items)
+  Run report saved to: data/snapshots/kg_update_20261124_full.json
+  Statistics saved to: data/snapshots/kg_stats_20261124.json
+Done.

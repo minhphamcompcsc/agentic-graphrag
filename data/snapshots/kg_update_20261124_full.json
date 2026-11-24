@@ -1,0 +1,112 @@
+{
+  "date": "20261124",
+  "extractor_version": "v0.2",
+  "mode": "full",
+  "modules": null,
+  "rows_read": {
+    "modules": 67,
+    "deps": 129,
+    "models": 443,
+    "model_owners": 778,
+    "fields": 7917,
+    "field_owners": 7992
+  },
+  "created": {
+    "Module": {
+      "rows": 67,
+      "nodes_created": 0,
+      "relationships_created": 0
+    },
+    "DEPENDS_ON": {
+      "rows": 129,
+      "nodes_created": 0,
+      "relationships_created": 0
+    },
+    "Model": {
+      "rows": 443,
+      "nodes_created": 0,
+      "relationships_created": 0
+    },
+    "DEFINES": {
+      "rows": 443,
+      "nodes_created": 0,
+      "relationships_created": 0
+    },
+    "EXTENDS": {
+      "rows": 335,
+      "nodes_created": 0,
+      "relationships_created": 0
+    },
+    "Field": {
+      "rows": 7917,
+      "nodes_created": 0,
+      "relationships_created": 0
+    },
+    "RELATES_TO": {
+      "rows": 2580,
+      "nodes_created": 0,
+      "relationships_created": 0
+    },
+    "ADDS_FIELD": {
+      "rows": 7912,
+      "nodes_created": 0,
+      "relationships_created": 0
+    }
+  },
+  "created_total": {
+    "nodes": 0,
+    "relationships": 0
+  },
+  "seconds": {
+    "read_postgres": 0.18,
+    "write_neo4j": 3.13,
+    "total": 3.41
+  },
+  "llm_calls": 0,
+  "graph_before": {
+    "ADDS_FIELD": 7912,
+    "Concept": 1,
+    "DEFINES": 443,
+    "DEPENDS_ON": 129,
+    "EXTENDS": 335,
+    "Field": 7917,
+    "Function": 14,
+    "HAS_FIELD": 7917,
+    "INVOLVES": 32,
+    "INVOLVES_FIELD": 15,
+    "LINKS_TO": 2580,
+    "MENTIONS": 1,
+    "Model": 443,
+    "Module": 67,
+    "PROVIDES": 14,
+    "RELATES_TO": 2580
+  },
+  "graph_after": {
+    "ADDS_FIELD": 7912,
+    "Concept": 1,
+    "DEFINES": 443,
+    "DEPENDS_ON": 129,
+    "EXTENDS": 335,
+    "Field": 7917,
+    "Function": 14,
+    "HAS_FIELD": 7917,
+    "INVOLVES": 32,
+    "INVOLVES_FIELD": 15,
+    "LINKS_TO": 2580,
+    "MENTIONS": 1,
+    "Model": 443,
+    "Module": 67,
+    "PROVIDES": 14,
+    "RELATES_TO": 2580
+  },
+  "fingerprint_before": {
+    "sha256": "40dec9c306f60cd7c792be2968b406119ccfa876b88aa9d715e60678ca8875a1",
+    "items": 30323
+  },
+  "fingerprint_after": {
+    "sha256": "40dec9c306f60cd7c792be2968b406119ccfa876b88aa9d715e60678ca8875a1",
+    "items": 30323
+  },
+  "links_to_oca": 91,
+  "links_to_technical": 851
+}

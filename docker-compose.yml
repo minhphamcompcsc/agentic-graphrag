@@ -20,7 +20,7 @@ services:
       - ./oca:/mnt/oca
       - odoodata:/var/lib/odoo
     command: >
-      odoo --addons-path=/usr/lib/python3/dist-packages/odoo/addons,/mnt/oca/stock-logistics-workflow,/mnt/oca/stock-logistics-warehouse
+      odoo --addons-path=/usr/lib/python3/dist-packages/odoo/addons,/mnt/oca/stock-logistics-workflow,/mnt/oca/stock-logistics-warehouse,/mnt/oca/stock-logistics-request
 
   neo4j:
     image: neo4j:5
