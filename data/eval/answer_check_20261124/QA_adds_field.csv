@@ -1,0 +1,18 @@
+module,model,so_field,fields
+stock_move_location,stock.move,1,[location_move]
+stock_move_location,stock.picking.type,1,[show_move_onhand]
+stock_move_location,wiz.stock.move.location,17,"[company_id, create_uid, create_date, destination_location_id, destination_location_disable, picking_type_id, exclude_reserved_qty, origin_location_id, display_name, edit_locations, write_uid, picking_id, write_date, origin_location_disable, stock_move_location_line_ids, apply_putaway_strategy, id]"
+stock_move_location,wiz.stock.move.location.line,19,"[move_quantity, write_uid, create_date, owner_id, origin_location_id, product_id, package_id, product_uom_id, id, custom, reserved_quantity, lot_id, destination_location_id, write_date, total_quantity, display_name, max_quantity, move_location_wizard_id, create_uid]"
+stock_no_negative,product.category,1,[allow_negative_stock]
+stock_no_negative,product.product,1,[allow_negative_stock]
+stock_no_negative,product.template,1,[allow_negative_stock]
+stock_no_negative,stock.location,1,[allow_negative_stock]
+stock_picking_auto_create_lot,product.category,1,[auto_create_lot]
+stock_picking_auto_create_lot,product.product,1,[auto_create_lot]
+stock_picking_auto_create_lot,product.template,1,[auto_create_lot]
+stock_picking_auto_create_lot,stock.picking.type,1,[auto_create_lot]
+stock_picking_invoice_link,account.bank.statement.line,2,"[picking_count, picking_ids]"
+stock_picking_invoice_link,account.move,2,"[picking_count, picking_ids]"
+stock_picking_invoice_link,account.move.line,1,[move_line_ids]
+stock_picking_invoice_link,stock.move,1,[invoice_line_ids]
+stock_picking_invoice_link,stock.picking,2,"[invoice_count, invoice_ids]"

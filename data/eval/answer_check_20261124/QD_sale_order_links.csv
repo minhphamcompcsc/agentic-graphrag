@@ -1,0 +1,3 @@
+field,kieu,model_dich,module_them_field,nguon
+picking_ids,one2many,stock.picking,sale_stock,odoo
+invoice_ids,many2many,account.move,sale,odoo
