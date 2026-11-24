@@ -1,0 +1,1142 @@
+{
+  "module": "stock_no_negative",
+  "repo": "OCA/stock-logistics-workflow",
+  "fetched_at": "2026-11-24T04:44:28+00:00",
+  "queries": [
+    {
+      "q": "\"stock_no_negative\" repo:OCA/stock-logistics-workflow is:issue",
+      "total_count": 28,
+      "returned": 28
+    },
+    {
+      "q": "\"stock_no_negative\" repo:OCA/stock-logistics-workflow is:pull-request",
+      "total_count": 54,
+      "returned": 50
+    }
+  ],
+  "items": [
+    {
+      "number": 2474,
+      "type": "issue",
+      "state": "open",
+      "title": "Migration to version 20.0",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/2474",
+      "created_at": "2026-10-05T09:31:11Z",
+      "updated_at": "2026-11-18T12:51:26Z",
+      "closed_at": null,
+      "labels": [
+        "help wanted",
+        "work in progress",
+        "no stale"
+      ],
+      "body": "# Todo\n\nhttps://github.com/OCA/maintainer-tools/wiki/Migration-to-version-20.0\n\n# Modules to migrate\n\n- [ ] product_customerinfo_picking\n- [ ] purchase_stock_picking_backorder_policy\n- [ ] purchase_stock_picking_invoice_link\n- [ ] sale_line_returned_qty\n- [ ] sale_order_global_stock_route\n- [ ] sale_stock_partner_delivery_window\n- [ ] sale_stock_picking_backorder_policy\n- [ ] sale_stock_picking_invoice_link\n- [ ] sale_stock_picking_reservation_policy\n- [ ] scrap_reason_code\n- [x] stock_account_product_run_fifo_hook - By @JasminSForgeFlow - #2575\n- [ ] stock_dangerous_goods\n- [ ] stock_landed_costs_purchase_auto\n- [ ] stock_lot_scrap\n- [ ] stock_move_line_expiration_date_required\n- [ ] stock_move_valuation_usage\n- [ ] stock_no_negative\n- [ ] stock_owner_restriction\n- [ ] stock_partner_delivery_window\n- [ ] stock_picking_auto_create_lot\n- [ ] stock_picking_auto_create_package\n- [ ] stock_picking_back2draft\n- [ ] stock_picking_backorder_move_qty\n- [ ] stock_picking_backorder_policy\n- [ ] stock_picking_batch_extended\n- [ ] stock_picking_batch_group_by_date\n- [ ] stock_picking_batch_partner_enable\n- [ ] stock_picking_batch_substate\n- [ ] stock_picking_customer_ref\n- [ ] stock_picking_filter_lot\n- [x] stock_picking_invoice_link - By @HviorForgeFlow - #2493\n- [ ] stock_picking_kind\n- [ ] stock_picking_line_sequence\n- [ ] stock_picking_move_line_no_print\n- [ ] stock_picking_origin_reference\n- [ ] stock_picking_purchase_order_link\n- [ ] stock_picking_reservation_policy\n- [ ] stock_picking_return_empty_package\n- [ ] stock_picking_return_lot\n- [ ] stock_picking_return_restricted_qty\n- [ ] stock_picking_sale_order_link\n- [ ] stock_picking_send_by_mail\n- [ ] stock_production_lot_active\n- [ ] stock_restrict_lot\n- [ ] stock_split_picking\n\nMissing module? Check https://github.com/OCA/maintainer-tools/wiki/%5BFAQ%5D-Missing-modules-in-migration-issue-list"
+    },
+    {
+      "number": 2118,
+      "type": "issue",
+      "state": "open",
+      "title": "Migration to version 19.0",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/2118",
+      "created_at": "2025-09-29T14:10:36Z",
+      "updated_at": "2026-11-12T09:43:45Z",
+      "closed_at": null,
+      "labels": [
+        "help wanted",
+        "work in progress",
+        "no stale"
+      ],
+      "body": "# Todo\n\nhttps://github.com/OCA/maintainer-tools/wiki/Migration-to-version-19.0\n\n# Modules to migrate\n\n- [ ] delivery_procurement_group_carrier\n- [ ] delivery_total_weight_from_packaging\n- [ ] procurement_auto_create_group_carrier\n- [ ] product_cost_price_avco_sync\n- [x] product_customerinfo_picking - By @Borruso - #2362\n- [x] purchase_stock_picking_invoice_link - By @Andrii9090-tecnativa - #2388\n- [x] sale_line_returned_qty - By @domenicostragapede - #2420\n- [ ] sale_line_returned_qty_mrp\n- [x] sale_order_global_stock_route - By @sergioM-S73 - #2220\n- [x] sale_stock_picking_invoice_link - By @Alexgars73 - #2130\n- [x] scrap_reason_code - By @sergijPf - #2334\n- [ ] stock_account_product_run_fifo_hook\n- [ ] stock_checkout_sync\n- [ ] stock_dangerous_goods\n- [ ] stock_dynamic_routing\n- [ ] stock_dynamic_routing_reserve_rule\n- [x] stock_interwarehouse_transfer - By @AndreuOForgeFlow - #2444\n- [ ] stock_landed_costs_priority\n- [x] stock_landed_costs_purchase_auto - By @AaronHForgeFlow - #2286\n- [ ] stock_lock_lot - By @PaulaMForgeFlow - #2350\n- [x] stock_lot_scrap - By @Andrii9090-tecnativa - #2313\n- [ ] stock_move_actual_date - By @AungKoKoLin1997 - #2346\n- [ ] stock_move_auto_assign_auto_release\n- [ ] stock_move_backdating - By @bosd - #2332\n- [ ] stock_move_line_change_lot\n- [x] stock_move_line_expiration_date_required - By @FyasserF - #2367\n- [ ] stock_move_line_qty_picked\n- [ ] stock_move_original_date\n- [x] stock_move_quantity_product_uom - moved to stock-logistics-wareouse - https://github.com/OCA/stock-logistics-warehouse/pull/2545\n- [ ] stock_move_source_relocate\n- [ ] stock_move_source_relocate_dynamic_routing\n- [ ] stock_no_negative - By @BhaveshHeliconia - #2135\n- [ ] stock_owner_restriction\n- [x] stock_partner_delivery_window - By @ivantodorovich - #2219\n- [x] stock_picking_auto_create_lot - By @lef-adhoc - #2162\n- [x] stock_picking_auto_create_package - By @JordiMForgeFlow - #2215\n- [x] stock_picking_back2draft - By @tupaq - #2207\n- [ ] stock_picking_backorder_strategy_cancel\n- [ ] stock_picking_batch_creation\n- [ ] stock_picking_batch_creation_split_kit\n- [x] stock_picking_batch_extended - By @Andrii9090-tecnativa - #2450\n- [ ] stock_picking_batch_invoice_frequency\n- [ ] stock_picking_batch_operation_quick_change\n- [ ] stock_picking_batch_planner\n- [ ] stock_picking_batch_print_invoices\n- [ ] stock_picking_batch_print_pickings\n- [ ] stock_picking_batch_validate_confirm\n- [ ] stock_picking_consolidation_priority\n- [x] stock_picking_customer_ref - By @JasminSForgeFlow - #2259\n- [x] stock_picking_filter_lot - By @JordiMForgeFlow - #2178\n- [ ] stock_picking_group_by_base\n- [ ] stock_picking_group_by_partner_by_carrier\n- [ ] stock_picking_group_by_partner_by_carrier_by_date\n- [ ] stock_picking_group_by_partner_by_carrier_force_move_type\n- [ ] stock_picking_invoice_link\n- [ ] stock_picking_kind\n- [x] stock_picking_line_sequence - By @cyrilmanuel - #2329\n- [ ] stock_picking_mass_action\n- [x] stock_picking_move_line_no_print - By @Shide - #2339\n- [ ] stock_picking_operation_quick_change\n- [x] stock_picking_origin_reference - By @JasminSForgeFlow - #2232\n- [ ] stock_picking_origin_reference_purchase\n- [ ] stock_picking_origin_reference_sale\n- [x] stock_picking_origin_state - By @AndreuOForgeFlow - #2389\n- [ ] stock_picking_partner_note\n- [ ] stock_picking_progress\n- [ ] stock_picking_propagate_scheduled_date\n- [x] stock_picking_purchase_order_link - By @cparadis-impressfoods - #2305\n- [ ] stock_picking_restrict_cancel_printed\n- [x] stock_picking_return_lot - By @victoralmau - #2462\n- [x] stock_picking_return_restricted_qty - By @JJRR5 - #2210\n- [ ] stock_picking_sale_order_link\n- [x] stock_picking_send_by_mail - By @NICO-SOLUTIONS - #2146\n- [ ] stock_picking_show_backorder\n- [ ] stock_picking_show_return - By @Andrii9090-tecnativa - #2308\n- [ ] stock_picking_tier_validation\n- [ ] stock_picking_type_force_move_type\n- [ ] stock_picking_warn_message\n- [ ] stock_picking_whole_scrap\n- [ ] stock_product_set\n- [x] stock_production_lot_active - By @gediminasvenc - #2257\n- [ ] stock_receipt_lot_info\n- [x] stock_restrict_lot - By @lef-adhoc - #2151\n- [ ] stock_scrap_cancel - By @PaulaMForgeFlow - #2352\n- [x] stock_split_picking - By @arantxa-s73 - #2125\n- [ ] stock_split_picking_dimension\n- [ ] stock_split_picking_kit\n- [x] stock_valuation_layer_usage -> stock_move_valuation_usage https://github.com/OCA/OpenUpgrade/pull/6091\n\nMissing module? Check https://github.com/OCA/maintainer-tools/wiki/%5BFAQ%5D-Missing-modules-in-migration-issue-list"
+    },
+    {
+      "number": 1101,
+      "type": "issue",
+      "state": "open",
+      "title": "Migration to version 16.0",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/1101",
+      "created_at": "2022-10-03T17:04:07Z",
+      "updated_at": "2026-11-02T10:06:07Z",
+      "closed_at": null,
+      "labels": [
+        "help wanted",
+        "work in progress",
+        "no stale"
+      ],
+      "body": "# Todo\r\n\r\nhttps://github.com/OCA/maintainer-tools/wiki/Migration-to-version-16.0\r\n\r\n# Modules to migrate\r\n\r\n- [ ] delivery_procurement_group_carrier - By @rousseldenis - #1158\r\n- [x] delivery_total_weight_from_packaging - By @QuocDuong1306 - #1365\n- [x] procurement_auto_create_group_carrier - By @sebalix - #1718\n- [x] product_cost_price_avco_sync - By @pedrobaeza - #1877\n- [x] product_expiry_simple - By @alexis-via - #1320\n- [ ] product_weighable_default_weight - By @legalsylvain - #1746\n- [x] purchase_stock_picking_invoice_link - By @JavierIniesta - #1198\r\n- [x] sale_line_returned_qty - By @pausanchezqubiq - #1309\n- [x] sale_order_global_stock_route - By @cvinh - #1337\n- [x] stock_account_product_run_fifo_hook - By @EvaSForgeFlow - #1323\n- [x] stock_auto_move - By @ThomasBinsfeld - #1466\n- [ ] stock_delivery_note - By @glitchov - #1148\r\n- [x] stock_landed_costs_currency - By @BT-jdziurzynski - #1327\n- [x] stock_landed_costs_delivery - By @carolinafernandez-tecnativa - #1559\n- [x] stock_landed_costs_purchase_auto - By @victoralmau - #1540\n- [x] stock_landed_costs_security - By @carolinafernandez-tecnativa - #1536\n- [x] stock_lock_lot - By @AdrianaSaiz - #1641\n- [x] stock_lot_on_hand_first - By @fvaqueriza - #1645\n- [ ] stock_lot_production_date - By @JuMiSanAr - #1218\r\n- [ ] stock_move_backdating - By @Saran440 - #1594\n- [ ] stock_move_line_reference_link - By @rrajasree - #2410\n- [x] stock_move_original_date - By @AungKoKoLin1997 - #2262\n- [x] stock_move_quick_lot - By @etobella - #1876\n- [x] stock_no_negative - By @vvanneri-ia - #1112\r\n- [x] stock_owner_restriction - By @AungKoKoLin1997 - #1231\r\n- [ ] stock_partner_delivery_window - By @heliaktiv - #1332\n- [x] stock_picking_auto_create_lot - By @ps-tubtim - #1106\r\n- [x] stock_picking_auto_create_lot_qty - By @dessanhemrayev - #1567\n- [ ] stock_picking_auto_create_lot_serial_only - By @ThomasBinsfeld - #1544\n- [x] stock_picking_back2draft - By @otmanelagy - #1124\r\n- [x] ~~stock_picking_backorder_strategy~~ Included in core\r\n- [x] stock_picking_batch_extended - By @RodrigoBM - #1353\n- [x] stock_picking_customer_ref - By @cvinh - #1348\n- [x] stock_picking_filter_lot - By @oihane - #1257\n- [x] stock_picking_group_by_partner_by_carrier - By @rousseldenis - #1165\r\n- [x] stock_picking_group_by_partner_by_carrier_by_date - By @tuantrantg - #1528\n- [x] stock_picking_import_serial_number - By @victoralmau - #1518\n- [x] stock_picking_info_lot - By @juanmagil - #1304\n- [x] stock_picking_invoice_link - By @JoelZilli - #1154\r\n- [x] stock_picking_late_activity - By @HeliconiaSolutions - #1778\n- [x] stock_picking_line_sequence - By @bosd - #1316\n- [ ] stock_picking_mass_action - By @pausanchezqubiq - #1308\n- [x] stock_picking_operation_quick_change - By @florian-dacosta - #1232\n- [x] stock_picking_origin_reference - By @LauraCForgeFlow - #2005\n- [x] stock_picking_origin_reference_purchase - By @LauraCForgeFlow - #2006\n- [x] stock_picking_origin_reference_sale - By @LauraCForgeFlow - #2007\n- [x] stock_picking_product_assortment - By @dsolanki-initos - #1311\n- [x] stock_picking_product_link - By @robinkeunen - #1432\n- [x] stock_picking_progress - By @sbejaoui - #1330\n- [ ] stock_picking_propagate_scheduled_date - By @HviorForgeFlow - #1659\n- [ ] stock_picking_purchase_order_link - By @HugoCordobaLeal - #1243\r\n- [ ] stock_picking_purchase_propagate - By @lehoangan - #1253\r\n- [x] stock_picking_putinpack_restriction - By @nicolas-delbovier-acsone - #2328\n- [x] stock_picking_quick - By @FranzPoize - #1400\n- [x] stock_picking_return_lot - By @sbejaoui - #1677\n- [x] stock_picking_return_restricted_qty - By @ced-adhoc - #1642\n- [ ] stock_picking_return_show_lot - By @syci - #1733\n- [x] stock_picking_sale_order_link - By @jjscarafia - #1108\r\n- [x] stock_picking_send_by_mail - By @carolinafernandez-tecnativa - #1474\n- [x] stock_picking_show_backorder - By @dsolanki-initos - #1310\n- [ ] stock_picking_show_return - By @slitheryduke11 - #1237\r\n- [x] stock_picking_supplier_ref - By @ferran-S73 - #1372\n- [x] stock_picking_warn_message - By @dhx - #1356\n- [ ] stock_picking_whole_scrap\r\n- [x] stock_product_set - By @pilarvargas-tecnativa - #1538\n- [x] stock_production_lot_active - By @dreispt - #1581\n- [ ] stock_production_lot_traceability - By @quannguyen1560 - #1403\n- [ ] stock_push_delay - By @Deriman-Alonso - #1562\n- [x] stock_putaway_hook - By @rousseldenis - #1102\r\n- [x] stock_quant_package_dimension - By @rousseldenis - #1104\r\n- [x] stock_quant_package_dimension_total_weight_from_packaging - By @QuocDuong1306 - #1366\n- [x] stock_quant_package_product_packaging - By @rousseldenis - #1103\r\n- [x] stock_receipt_lot_info - By @MarcBForgeFlow - #1113\r\n- [x] stock_reporting_access - By @AungKoKoLin1997 - #2379\n- [x] stock_restrict_lot - By @florian-dacosta - #1137\r\n- [ ] stock_scrap_tier_validation - By @em230418 - #1867\n- [ ] stock_split_picking - By @ps-tubtim - #1107\r\n- [ ] stock_valuation_fifo_lot - By @AungKoKoLin1997 - #1676\n- [x] stock_valuation_layer_usage - By @EvaSForgeFlow - #1326\n\r\nMissing module? Check https://github.com/OCA/maintainer-tools/wiki/%5BFAQ%5D-Missing-modules-in-migration-issue-list"
+    },
+    {
+      "number": 1737,
+      "type": "issue",
+      "state": "open",
+      "title": "Migration to version 18.0",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/1737",
+      "created_at": "2024-10-06T16:16:02Z",
+      "updated_at": "2026-10-19T14:17:27Z",
+      "closed_at": null,
+      "labels": [
+        "help wanted",
+        "work in progress",
+        "no stale"
+      ],
+      "body": "# Todo\n\nhttps://github.com/OCA/maintainer-tools/wiki/Migration-to-version-18.0\n\n# Modules to migrate\n\n- [x] delivery_procurement_group_carrier - By @HeliconiaSolutions - #1802\n- [x] delivery_total_weight_from_packaging - By @bizzappdev - #1958\n- [x] nobump - By @Ricardo-MC - #1875\n- [x] procurement_auto_create_group_carrier - By @bizzappdev - #1965\n- [x] product_cost_price_avco_sync - By @LauraCForgeFlow - #1918\n- [x] product_customerinfo_picking - By @Babbato - #1984\n- [x] purchase_stock_picking_invoice_link - By @JasminSForgeFlow - #1793\n- [x] sale_line_returned_qty - By @eugenios73 - #2028\n- [x] sale_order_global_stock_route - By @mmrondon - #1757\n- [ ] sale_stock_picking_variable_qty - By @chienandalu - #2301\n- [x] scrap_reason_code - By @Ricardo-MC - #2083\n- [x] stock_account_product_run_fifo_hook - By @JasminSForgeFlow - #1794\n- [ ] stock_account_show_automatic_valuation\n- [x] stock_customer_deposit - By @chienandalu - #2189\n- [x] stock_dangerous_goods - By @xaviedoanhduy - #1786\n- [ ] stock_delivery_note - By @fredericgrall - #1770\n- [x] stock_dynamic_routing_reserve_rule - By @grindtildeath - #2012\n- [ ] stock_exception - By @sergiocorato - #2358\n- [x] stock_landed_costs_currency - By @MarcusPDL - #2432\n- [x] stock_landed_costs_priority - By @HeliconiaSolutions - #1823\n- [x] stock_landed_costs_purchase_auto - By @Vicent-S73 - #1998\n- [x] stock_lock_lot - By @henrybackman - #1892\n- [ ] stock_lot_on_hand_first - By @twalter-c2c - #2249\n- [ ] stock_lot_production_date - By @fredericgrall - #1771\n- [x] stock_lot_scrap - By @Andrii9090 - #2170\n- [x] stock_move_actual_date - By @AungKoKoLin1997 - #1964\n- [x] stock_move_auto_assign_auto_release - By @bizzappdev - #2009\n- [x] ~stock_move_line_auto_fill~ - Included in core - https://github.com/OCA/OpenUpgrade/pull/5541\n- [x] stock_move_backdating - By @bosd - #1921\n- [ ] stock_move_free_reservation_reassign - By @sebalix - #2320\n- [x] stock_move_line_change_lot - By @simahawk - #1971\n- [x] stock_move_line_dates - By @Andrii9090 - #2179\n- [x] stock_move_line_expiration_date_required - By @Andrii9090 - #2164\n- [ ] stock_move_line_reference_link - By @BhaveshHeliconia - #1804\n- [x] stock_move_original_date - By @ArnauCForgeFlow - #2087\n- [x] stock_move_propagate_first_move - By @marielejeune - #2270\n- [x] stock_move_source_relocate - By @bizzappdev - #1966\n- [x] stock_move_source_relocate_dynamic_routing - By @sebalix - #1989\n- [x] stock_no_negative - By @woutswennen - #1830\n- [x] stock_owner_restriction - By @CarlosRoca13 - #1845\n- [x] stock_partner_delivery_window - By @thienvh332 and @ArnauCForgeFlow - #1910\n- [x] stock_picking_auto_create_lot - By @cem-adhoc - #1781\n- [x] stock_picking_auto_create_lot_sequence - By @AungKoKoLin1997 - #2177\n- [x] stock_picking_auto_create_package - By @JordiMForgeFlow - #2030\n- [x] stock_picking_back2draft - By @HeliconiaSolutions - #1805\n- [x] stock_picking_backorder_strategy - By @bizzappdev - #1844\n- [x] stock_picking_batch_creation - By @rousseldenis - #1969\n- [x] stock_picking_batch_extended - By @carlos-lopez-tecnativa - #2120\n- [x] stock_picking_batch_extended_account_sale_type - By @Andrii9090-tecnativa - #2288\n- [x] stock_picking_batch_operation_quick_change - By @eduezerouali-tecnativa - #2102\n- [x] stock_picking_batch_outgoing - By @CarlosRoca13 - #2337\n- [x] stock_picking_batch_print_invoices - By @Shide - #1978\n- [x] stock_picking_batch_print_pickings - By @Shide - #1977\n- [ ] stock_picking_batch_set_quantity - By @eduezerouali-tecnativa - #2107\n- [x] stock_picking_batch_validate_confirm - By @chienandalu - #2094\n- [x] stock_picking_consolidation_priority - By @bizzappdev - #1995\n- [x] stock_picking_customer_ref - By @cvinh - #2197\n- [x] stock_picking_date_deadline_syncs_scheduled_date - By @sabrinaRMartin - #2167\n- [x] stock_picking_filter_lot - By @BhaveshHeliconia - #1883\n- [x] stock_picking_group_by_base - By @natuan9 - #1836\n- [x] stock_picking_group_by_partner_by_carrier - By @theangryangel - #1947\n- [x] stock_picking_group_by_partner_by_carrier_by_date - By @bizzappdev - #1959\n- [x] stock_picking_group_by_partner_by_carrier_force_move_type - By @bizzappdev - #1996\n- [x] stock_picking_import_serial_number - By @eduezerouali-tecnativa - #2133\n- [x] stock_picking_invoice_link - By @carlosdynapps - #1779\n- [x] stock_picking_kind - By @HeliconiaSolutions - #1806\n- [x] stock_picking_line_sequence - By @StefanRijnhart - #1864\n- [x] stock_picking_mass_action - By @yankinmax - #1856\n- [x] stock_picking_move_package_to_package - By @MarcusPDL - #2428\n- [x] stock_picking_operation_quick_change - By @eduezerouali-tecnativa - #2101\n- [x] stock_picking_origin_reference - By @BhaveshHeliconia - #1807\n- [x] stock_picking_origin_reference_purchase - By @BhaveshHeliconia - #1808\n- [x] stock_picking_origin_reference_sale - By @BhaveshHeliconia - #1813\n- [x] stock_picking_partner_note - By @HeliconiaSolutions - #1839\n- [x] stock_picking_product_availability_inline - By @CarlosRoca13 - OCA/stock-logistics-availability#44\n- [x] stock_picking_progress - By @natuan9 - #1818\n- [x] stock_picking_propagate_scheduled_date - By @xaviedoanhduy - #1912\n- [x] stock_picking_purchase_order_link - By @HeliconiaSolutions - #1809\n- [x] stock_picking_restrict_cancel_printed - By @sebalix - #1890\n- [x] stock_picking_restrict_cancel_with_orig_move - By @IsabelAForgeFlow - #2029\n- [x] stock_picking_return_empty_package - By @rousseldenis - #2300\n- [x] stock_picking_return_lot - By @StefanRijnhart - #1885\n- [x] stock_picking_return_restricted_qty - By @ced-adhoc - #1790\n- [x] stock_picking_sale_order_link - By @joa-adhoc - #1748\n- [x] stock_picking_send_by_mail - By @fredericgrall - #1772\n- [x] stock_picking_show_backorder - By @HeliconiaSolutions - #1810\n- [x] stock_picking_show_lot - By @eduezerouali-tecnativa - #2099\n- [ ] stock_picking_show_return\n- [ ] stock_picking_start - By @CarlosRoca13 - #2396\n- [x] stock_picking_tier_validation - By @Ricardo-MC - #1875\n- [x] stock_picking_to_batch_group_fields - By @EmilioPascual - #2165\n- [x] stock_picking_type_bypass_reservation - By @chienandalu - #2198\n- [x] stock_picking_variable_qty - By @Andrii9090 - #2183\n- [x] stock_picking_warn_message - By @BhaveshHeliconia - #1812\n- [x] stock_picking_whole_scrap - By @juancarlosonate-tecnativa - #1841\n- [x] stock_product_set - By @victoralmau - #1902\n- [ ] stock_product_variant_mto - By @chaule97 - #1819\n- [x] stock_production_lot_active - By @AEstLo - #2033\n- [ ] stock_putaway_hook - By @sebalix - #1931\n- [x] stock_receipt_lot_info - By @ArnauCForgeFlow - #2070\n- [x] stock_reception_discrepancy_distribution - By @juancarlosonate-tecnativa - #2359\n- [x] stock_restrict_lot - By @StefanRijnhart - #1880\n- [x] stock_scrap_cancel - By @ThiagoMForgeFlow - #2307\n- [x] stock_scrap_tier_validation - By @hitrosol - #2414\n- [x] stock_split_picking - By @gbrito - #1857\n- [x] stock_valuation_layer_usage - By @JasminSForgeFlow - #1795\n- [x] stock_warn_option - By @sabrinaRMartin - #2218\n\nMissing module? Check https://github.com/OCA/maintainer-tools/wiki/%5BFAQ%5D-Missing-modules-in-migration-issue-list"
+    },
+    {
+      "number": 457,
+      "type": "issue",
+      "state": "open",
+      "title": "Migration to version 12.0",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/457",
+      "created_at": "2018-09-27T00:39:33Z",
+      "updated_at": "2023-06-05T14:40:33Z",
+      "closed_at": null,
+      "labels": [
+        "help wanted",
+        "work in progress",
+        "no stale"
+      ],
+      "body": "# Todo\r\n\r\nhttps://github.com/OCA/maintainer-tools/wiki/Migration-to-version-12.0\r\n\r\n# Modules to migrate\r\n\r\n- [ ] mrp_stock_picking_restrict_cancel - By @kittiu - #518 \r\n- [x] product_cost_price_avco_sync - By @carlosdauden - #610 \r\n- [ ] product_expiry_simple - By @alexis-via - #532 \r\n- [x] product_supplierinfo_for_customer_picking - By @mreficent - #581 \r\n- [x] purchase_stock_picking_restrict_cancel - By @kittiu - #516 \r\n- [x] stock_batch_picking - ~~By @carlosdauden - #555~~ By @i-vyshnevska - #570 \r\n- [x] stock_change_price_at_date - By @kittiu - #537 \r\n- [ ] stock_cost_method_last - By @manuelcalerosolis - #721 \r\n- [x] stock_lot_scrap - By @lbelorgey - #624 \r\n- [ ] stock_move_backdating - By @SirTakobi - #1190\n- [x] stock_move_quick_lot - By @kittiu - #519 \r\n- [x] stock_no_negative - By @meigallodixital - #508 \r\n- [x] stock_pack_operation_auto_fill - By @jarroyomorales - #538 - To be renamed to `stock_move_line_auto_fill`\r\n- [x] stock_picking_auto_create_lot - By @meigallodixital - #506 \r\n- [ ] stock_picking_back2draft - By @robyf70 - #560 \r\n- [x] stock_picking_backorder_strategy - By @lescobarvx - #568 \r\n- [x] stock_picking_customer_ref - By @bizzappdev - #476 \r\n- [ ] stock_picking_filter_lot - By @IsabelEsparza - #536 \r\n- [x] stock_picking_invoice_link - By @ageficent - #513 \r\n- [x] stock_picking_line_sequence - By @bjeficent - #474 \r\n- [ ] stock_picking_mass_action - By @carlosdauden - #534 \r\n- [ ] stock_picking_operation_quick_change - By @mreficent - #544 \r\n- [x] stock_picking_package_preparation - By @eLBati - #488 \r\n- [x] stock_picking_package_preparation_line - By @eLBati - #489 \r\n- [x] stock_picking_purchase_propagate - By @kittiu - #591 \r\n- [x] stock_picking_purchase_order_link - By @jaumeplanas - #562 \r\n- [x] stock_picking_restrict_cancel_with_orig_move - By @kittiu - #515 \r\n- [x] stock_picking_sale_order_link - By @hegenator - #470\r\n- [x] stock_picking_send_by_mail - By @jaumeplanas - #526 \r\n- [x] stock_picking_show_backorder - By @bjeficent - #473 \r\n- [x] stock_picking_show_return - By @bizzappdev - #477\r\n- [ ] stock_picking_tier_validation - By @kaynnan - #1255\n- [x] stock_picking_whole_scrap - By @sergio-teruel - #588  \r\n- [x] stock_split_picking - By @andrius-preimantas - #469 "
+    },
+    {
+      "number": 1421,
+      "type": "issue",
+      "state": "open",
+      "title": "Migration to version 17.0",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/1421",
+      "created_at": "2023-11-08T09:37:59Z",
+      "updated_at": "2026-04-16T06:56:24Z",
+      "closed_at": null,
+      "labels": [
+        "help wanted",
+        "work in progress",
+        "no stale"
+      ],
+      "body": "# Todo\n\nhttps://github.com/OCA/maintainer-tools/wiki/Migration-to-version-17.0\n\n# Modules to migrate\n\n- [x] delivery_procurement_group_carrier - By @peluko00 - #1570 \n- [x] product_cost_price_avco_sync - By @LauraCForgeFlow - #1917\n- [x] purchase_stock_picking_invoice_link - By @JasminSForgeFlow - #1711\n- [ ] sale_line_returned_qty - By @Jp-alitec - #1614\n- [x] sale_order_global_stock_route - By @DrHohol - #1556\n- [x] sale_planned_consumed_date - By @alexandregaldeano - #1860\n- [x] sale_stock_restocking_fee_invoicing - By @SodexisTeam - #1706\n- [x] stock_account_product_run_fifo_hook - By @JasminSForgeFlow - #1716\n- [x] stock_auto_move - By @ferran-S73 - #1797\n- [ ] stock_delivery_note - By @SodexisTeam - #1682\n- [ ] stock_grn\n- [ ] stock_landed_costs_currency\n- [x] stock_landed_costs_priority - By @HeliconiaSolutions - #1822\n- [x] stock_lock_lot - By @arantxa-s73 - #1686\n- [x] stock_lot_on_hand_first - By @astirpe - #1742\n- [x] stock_lot_production_date - By @SodexisTeam - #1683\n- [x] stock_move_backdating - By @map-240221 - #1935\n- [x] stock_move_forced_lot - By @ThiagoMForgeFlow - #1816\n- [ ] stock_move_free_reservation_reassign\n- [ ] stock_move_line_auto_fill - By @arantxa-s73 - #1709\n- [x] stock_move_line_reserved_quant - By @SodexisTeam - #1691\n- [ ] stock_move_line_serial_unique\n- [x] stock_move_planned_consumed_date - By @alexandregaldeano - #1850\n- [x] stock_move_propagate_first_move - By @SodexisTeam - #1693\n- [x] stock_move_quantity_product_uom - By @DavidJForgeFlow - #1939\n- [x] stock_no_negative - By @fd-oerp - #1437\n- [ ] stock_override_procurement\n- [ ] stock_owner_restriction\n- [ ] stock_partner_delivery_window\n- [x] stock_picking_auto_create_lot - By @bruno-zanotti - #1657\n- [x] stock_picking_auto_create_lot_sequence - By @Tisho99 - #1865\n- [ ] stock_picking_auto_revert - By @dreispt - #1898\n- [x] stock_picking_back2draft - By @MarwanBHL - #1593\n- [ ] stock_picking_batch_extended - By @david-banon-tecnativa - #1997\n- [ ] stock_picking_batch_extended_account\n- [ ] stock_picking_batch_extended_account_sale_type\n- [x] stock_picking_batch_print_pickings - By @DantePereyra - #1948\n- [ ] stock_picking_customer_ref - By @JordiToledo - #1933\n- [x] stock_picking_filter_lot - By @fd-oerp - #1623\n- [ ] stock_picking_grn_mandatory\n- [x] stock_picking_group_by_base - By @BetoRaja - #1956\n- [ ] stock_picking_group_by_max_weight\n- [x] stock_picking_import_serial_number - By @juancarlosonate-tecnativa - #1879\n- [ ] stock_picking_info_lot - By @SodexisTeam - #1689\n- [x] stock_picking_invoice_link - By @lethuthao2403 - #1446\n- [x] stock_picking_kind - By @SodexisTeam - #1692\n- [x] stock_picking_line_sequence - By @siemenv - #1552\n- [x] stock_picking_mass_action - By @rrebollo - #1916\n- [x] stock_picking_origin_reference - By @AnaisLForgeFlow - #1633\n- [x] stock_picking_origin_reference_purchase - By @GuillemCForgeFlow - #1648\n- [x] stock_picking_origin_reference_sale - By @GuillemCForgeFlow - #1647\n- [x] stock_picking_partner_note - By @astirpe - #1739\n- [x] stock_picking_purchase_order_link - By @Ramibha - #1551\n- [x] stock_picking_return_lot - By @peluko00 - #1745\n- [x] stock_picking_return_restricted_qty - By @ced-adhoc - #1782\n- [ ] stock_picking_sale_order_link\n- [x] stock_picking_send_by_mail - By @NICO-SOLUTIONS - #1468\n- [x] stock_picking_show_backorder - By @RogerSans - #1662\n- [x] stock_picking_show_return - By @xmglord - #1542\n- [ ] stock_picking_start - By @SodexisTeam - #1726\n- [x] stock_picking_supplier_ref - By @david-s73 - #1705\n- [x] stock_picking_tier_validation - By @rrebollo - #1962\n- [x] stock_picking_warn_message - By @RicardCForgeFlow - #1535\n- [ ] stock_procurement_customer\n- [x] stock_production_lot_active - By @juancarlosonate-tecnativa - #1889\n- [ ] stock_production_lot_traceability - By @rven - #1638\n- [x] stock_putaway_hook - By @alexandregaldeano - #1842\n- [x] stock_quant_package_dimension - By @ferran-S73 - #1622\n- [x] stock_quant_package_product_packaging - By @ferran-S73 - #1618\n- [x] stock_receipt_lot_info - By @ArnauCForgeFlow - #2069\n- [x] stock_restrict_by_planned_consumed_date - By @alexandregaldeano - #1851\n- [x] stock_restrict_lot - By @jcadhoc - #1652\n- [x] stock_scrap_tier_validation - By @StefanRijnhart - #1654\n- [x] stock_split_picking - By @rven - #1449\n- [x] stock_valuation_layer_usage - By @JasminSForgeFlow - #1717\n\nMissing module? Check https://github.com/OCA/maintainer-tools/wiki/%5BFAQ%5D-Missing-modules-in-migration-issue-list"
+    },
+    {
+      "number": 913,
+      "type": "issue",
+      "state": "open",
+      "title": "Migration to version 15.0",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/913",
+      "created_at": "2021-10-17T10:22:45Z",
+      "updated_at": "2025-01-17T15:36:22Z",
+      "closed_at": null,
+      "labels": [
+        "help wanted",
+        "work in progress",
+        "no stale"
+      ],
+      "body": "# Todo\r\n\r\nhttps://github.com/OCA/maintainer-tools/wiki/Migration-to-version-15.0\r\n\r\n# Modules to migrate\r\n\r\n- [ ] delivery_package_default_shipping_weight\r\n- [x] delivery_procurement_group_carrier - By @ellbristow - #1038\r\n- [ ] delivery_total_weight_from_packaging\r\n- [x] product_cost_price_avco_sync - By @CarlosRoca13 - #1138\r\n- [ ] product_supplierinfo_for_customer_picking - By @Olageibol - #1016\r\n- [x] purchase_stock_picking_invoice_link - By @stefan-tecnativa - #1180\r\n- [x] sale_line_returned_qty_mrp - By @JasminSForgeFlow - #1082\r\n- [x] sale_order_global_stock_route - By @stefan-tecnativa - #1219\r\n- [ ] sale_stock_mto_as_mts_orderpoint\r\n- [x] stock_auto_move - By @hbrunn - #1467\n- [ ] stock_delivery_note - By @janikvonrotz - #1270\r\n- [ ] stock_landed_costs_currency - By @DinhTien24 - #1143\r\n- [x] stock_landed_costs_delivery - By @victoralmau - #1230\r\n- [x] stock_landed_costs_purchase_auto - By @victoralmau - #1212\r\n- [x] stock_landed_costs_security - By @ernesto-garcia-tecnativa - #1220\r\n- [ ] stock_lock_lot\r\n- [x] ~stock_move_assign_picking_hook~ merged into stock\r\n- [ ] stock_lot_scrap - By @bizzappdev - #1193\r\n- [ ] stock_move_backdating - By @ps-tubtim - #1358\r\n- [ ] stock_move_change_source_location - By @MiquelRForgeFlow - #1168\r\n- [ ] stock_move_forced_lot - By @DavidJForgeFlow - #1835\n- [x] stock_move_line_auto_fill - By @sergio-teruel - #1141\r\n- [x] stock_move_quick_lot - By @sergio-teruel - #1125\r\n- [x] stock_no_negative - By @JoanMForgeFlow - #944\r\n- [x] stock_owner_restriction - By @cesar-tecnativa - #1033\r\n- [ ] stock_partner_delivery_window - By @nikolausweingartmair - #1146\r\n- [x] stock_picking_assign_serial_final - By @ernesto-garcia-tecnativa - #1221\r\n- [x] stock_picking_auto_create_lot - By @vib-adhoc - #1071\r\n- [x] stock_picking_back2draft - By @BT-dmontull - #977\r\n- [x] stock_picking_backorder_strategy - By @ernesto-garcia-tecnativa - #1224\r\n- [x] stock_picking_batch_extended - By @cesar-tecnativa - #1041\r\n- [x] stock_picking_batch_extended_account - By @sergio-teruel - #1156\r\n- [x] stock_picking_batch_extended_account_sale_type - By @sergio-teruel - #1157\r\n- [ ] stock_picking_cancel_reason\r\n- [x] stock_picking_customer_ref - By @hbrunn - #1384\r\n- [ ] stock_picking_filter_lot\r\n- [ ] stock_picking_group_by_partner_by_carrier\r\n- [x] stock_picking_import_serial_number - By @carolinafernandez-tecnativa - #1392\r\n- [x] stock_picking_invoice_link - By @CarlosRoca13 - #1147\r\n- [x] stock_picking_line_sequence - By @DavidJForgeFlow - #1211\r\n- [x] stock_picking_mass_action - By @theangryangel - #987\r\n- [x] stock_picking_operation_quick_change - By @duyanhk15 - #1115\r\n- [x] stock_picking_origin_reference - By @JasminSForgeFlow - #1342\r\n- [x] stock_picking_product_assortment - By @CarlosRoca13 - #1007\r\n- [x] stock_picking_product_assortment_availability_inline - By @sergio-teruel - #1225\r\n- [x] stock_picking_product_availability_inline - By @sergio-teruel - #1126\r\n- [ ] stock_picking_purchase_order_link\r\n- [ ] stock_picking_restrict_cancel_with_orig_move\r\n- [x] stock_picking_return_restricted_qty - By @CarlosRoca13 - #1051\r\n- [x] stock_picking_sale_order_link - By @nicomacr - #958\r\n- [x] stock_picking_send_by_mail - By @dani-xtendoo - #1000\r\n- [x] stock_picking_show_backorder - By @JuanyDForgeflow - #1020\r\n- [ ] stock_picking_show_return\r\n- [ ] stock_picking_tier_validation - By @ps-tubtim - #1362\r\n- [x] stock_picking_warn_message - By @dhx - #1001\r\n- [x] stock_picking_whole_scrap - By @CarlosRoca13 - #1008\r\n- [x] stock_production_lot_active - By @BT-dmontull - #976\r\n- [ ] stock_putaway_by_route\r\n- [x] stock_putaway_hook - By @flachica - #1095\r\n- [ ] stock_quant_package_dimension - By @flachica - #1093\r\n- [ ] stock_quant_package_dimension_total_weight_from_packaging\r\n- [ ] stock_quant_package_product_packaging - By @flachica - #1092\r\n- [x] stock_receipt_lot_info - By @SergiCForgeFlow - #1363\r\n- [ ] stock_restrict_lot\r\n- [x] stock_return_request - By @cesar-tecnativa - #1032\r\n- [ ] stock_split_picking\r\n- [ ] stock_valuation_layer_by_category - By @slominchar - #1110\r\n\r\nMissing module? Check https://github.com/OCA/maintainer-tools/wiki/%5BFAQ%5D-Missing-modules-in-migration-issue-list"
+    },
+    {
+      "number": 1951,
+      "type": "issue",
+      "state": "closed",
+      "title": "Cannot reduce quantity on incoming shipment after partial delivery — blocked by stock_no_negative",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/1951",
+      "created_at": "2025-05-22T09:23:41Z",
+      "updated_at": "2026-01-25T12:57:17Z",
+      "closed_at": "2026-01-25T12:57:17Z",
+      "labels": [
+        "bug",
+        "stale"
+      ],
+      "body": "<!-- Provide a general summary of the issue in the Title above.\nBefore opening the issue, please check that there isn't another issue addressing the same problem already created -->\n\n## Module\nstock_no_negative (from stock-logistics-workflow)\n\n\n## Describe the bug\nWhen attempting to reduce the quantity of a validated incoming shipment after a partial delivery has already been made, the system raises a stock availability error, even though the resulting stock level would remain positive. This prevents legitimate corrections to incoming quantities.\n\n## To Reproduce\n**v16**:\n\n1. Create a new incoming shipment (picking type: Receipts).\n2. Add a product with Done Qty = 10.\n3. Validate the picking (this is the first stock entry for the product).\n4. Create and validate an outgoing delivery for 2 units of the same product.\n5. Go back to the incoming shipment, unlock it.\n6. Change the Done Qty from 10 to 8.\n7. Try to validate the picking.\n\n**Expected behavior**\nThe system should allow reducing the quantity on an incoming shipment as long as the resulting stock on hand remains >= 0. In this case, reducing from 10 to 8 while only 2 have been delivered should leave 6 units in stock, which is valid. The error is too strict and blocks valid corrections.\n\n**Additional context**\nOdoo 16.0 Enterprise\nOCA module stock_no_negative\nProduct has tracking disabled\nProduct has no previous stock (first receipt)"
+    },
+    {
+      "number": 1901,
+      "type": "issue",
+      "state": "closed",
+      "title": "The product type is incorrect, the type 'product' does not exist in version 18.0",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/1901",
+      "created_at": "2025-03-17T04:41:12Z",
+      "updated_at": "2025-03-24T08:37:56Z",
+      "closed_at": "2025-03-24T08:36:17Z",
+      "labels": [],
+      "body": "https://github.com/OCA/stock-logistics-workflow/blob/be4314ff33e3e992d60156b5de51b374590e7293/stock_no_negative/views/product_product_views.xml#L14\n\nHello, \n\nWe can update this by : invisible = \"type != 'consu' or not is_storable\"\n\nBest regards, "
+    },
+    {
+      "number": 1607,
+      "type": "issue",
+      "state": "closed",
+      "title": "stock_no_negative 15.0.1.0.0  Bug on stock.production,lot",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/1607",
+      "created_at": "2024-05-30T21:14:50Z",
+      "updated_at": "2025-01-05T12:40:44Z",
+      "closed_at": "2025-01-05T12:40:44Z",
+      "labels": [
+        "bug",
+        "stale"
+      ],
+      "body": "When i open a lot/serial and try to edit a field that is not related to inventory change i still get the stop error when i click on save.\r\n\r\nThe name of the module that has a bug.\r\n\r\nstock_no_negative 15.0.1.0.0\r\n\r\n\r\nSteps to reproduce the behavior:\r\n1. Removed the app and no block error on that model"
+    },
+    {
+      "number": 708,
+      "type": "issue",
+      "state": "closed",
+      "title": "Migration to version 14.0",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/708",
+      "created_at": "2020-10-04T10:35:37Z",
+      "updated_at": "2025-01-26T12:38:12Z",
+      "closed_at": "2025-01-26T12:38:12Z",
+      "labels": [
+        "help wanted",
+        "work in progress",
+        "stale"
+      ],
+      "body": "# Todo\r\n\r\nhttps://github.com/OCA/maintainer-tools/wiki/Migration-to-version-14.0\r\n\r\n# Modules to migrate\r\n\r\n- [x] delivery_package_default_shipping_weight - By @dzungtran89 - #793 \r\n- [x] procurement_auto_create_group_carrier - By @hailangvn - #911\r\n- [x] product_cost_price_avco_sync - By @zamberjo - #1286\n- [x] product_expiry_simple - By @bealdav - #1271\n- [ ] product_supplierinfo_picking - By @HviorForgeFlow - #1034\n- [x] purchase_stock_picking_invoice_link - By @RabbitJon-S73 - #1019\n- [ ] sale_line_returned_qty - By @JasminSForgeFlow - #1079\n- [ ] sale_line_returned_qty_mrp - By @JasminSForgeFlow - #1081\n- [ ] sale_order_global_stock_route - By @Abranes - #1003\n- [x] sale_stock_mto_as_mts_orderpoint - By @dzungtran89  - #774 \r\n- [x] stock_auto_move - By @sbejaoui - #852 \r\n- [ ] stock_cost_method_last - By @alexis-via - #983\n- [ ] stock_dangerous_goods - By @mmequignon - #937\n- [x] stock_delivery_note - By @sbejaoui - #850 \r\n- [x] stock_landed_costs_delivery - By @victoralmau - #1418\n- [x] stock_landed_costs_purchase_auto - By @victoralmau - #1416\n- [x] stock_landed_costs_security - By @victoralmau - #1415\n- [x] stock_lock_lot - By @ferran-73 - #831 \r\n- [ ] stock_lot_scrap - By @RabbitJon-S73 - #1054\n- [x] stock_move_assign_picking_hook - By @phuctranerp - #796 \r\n- [ ] stock_move_backdating - By @toita86 - #1494\n- [x] stock_move_change_source_location - By @AlvaroTForgeFlow - #930\r\n- [x] stock_move_line_auto_fill - By @ivantodorovich - #763 \r\n- [ ] stock_move_line_reference_link\r\n- [x] stock_no_negative - By @Vanneri  - #747 \r\n- [x] stock_owner_restriction - By @ferran-73 - #819\n- [x] stock_picking_auto_create_lot - By @ValentinVinagre - #923\n- [ ] stock_picking_back2draft\r\n- [x] stock_picking_batch_extended - By @sonhd91 - #943\n- [x] stock_picking_filter_lot - By @jesus01x - #842 \r\n- [x] stock_picking_group_by_partner_by_carrier - By @phuctranerp - #874 \r\n- [x] stock_picking_group_by_partner_by_carrier_by_date - By @phuctranerp - #797 \r\n- [ ] stock_picking_import_serial_number - By @ryanc-me - #1063\n- [x] stock_picking_invoice_link - By @ajaniszewska-dev - #1010\n- [x] stock_picking_line_sequence - By @cjallais - #768\r\n- [x] stock_picking_mass_action - By @sonhd91 - #973\n- [ ] stock_picking_operation_quick_change - By @sergiocorato - #1386\n- [x] stock_picking_partner_note - By @JuMiSanAr - #1504\n- [x] stock_picking_purchase_order_link - By @mariadforgeflow - #882 \r\n- [ ] stock_picking_quick - By @Kev-Roche - #1088\n- [x] stock_picking_restrict_cancel_with_orig_move - By @phuctranerp - #791 \r\n- [x] stock_picking_return_lot - By @renda-dev - #1634\n- [ ] stock_picking_return_restricted_qty\r\n- [x] stock_picking_sale_order_link - By @dreispt - #860 \r\n- [x] stock_picking_send_by_mail - By @ferran-73 - #912 \r\n- [x] stock_picking_show_backorder - By @JuanyDForgeflow - #992\n- [x] stock_picking_show_return - By @hugho-ad - #880 \r\n- [ ] stock_picking_supplier_ref - By @Reyes4711-S73 - #1005\n- [x] stock_picking_warn_message - By @dhx - #907\r\n- [ ] stock_picking_whole_scrap\r\n- [x] stock_production_lot_active - By @janikvonrotz - #820 \r\n- [x] stock_putaway_by_route - By @dzungtran89  - #794 \r\n- [x] stock_putaway_hook - By @hparfr - #772 \r\n- [x] stock_quant_package_dimension - By @hparfr  - #770 \r\n- [x] stock_quant_package_product_packaging - By @hparfr - #771 \r\n- [x] stock_return_request - By @PrapassornS - #738\r\n- [x] stock_split_picking - By @RujiaL - #846\r\n\r\nMissing module? Check https://github.com/OCA/maintainer-tools/wiki/%5BFAQ%5D-Missing-modules-in-migration-issue-list"
+    },
+    {
+      "number": 1507,
+      "type": "issue",
+      "state": "closed",
+      "title": "Product and product category don´t show the option allow negative stock only location",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/1507",
+      "created_at": "2024-02-16T18:10:13Z",
+      "updated_at": "2024-09-22T12:39:26Z",
+      "closed_at": "2024-09-22T12:39:26Z",
+      "labels": [
+        "stale"
+      ],
+      "body": "module: stock_no_negative\r\nversion: 17.0\r\n\r\n**Steps to reproduce**\r\n- Install and activate de module on odoov17 enterprise\r\n\r\n**Current behavior**\r\n- There is not option on product and on product category to allow no negative stock\r\n\r\n**Expected behavior**\r\n- Have the option to allow negative stock on product and on product category"
+    },
+    {
+      "number": 1025,
+      "type": "issue",
+      "state": "closed",
+      "title": "stock_no_negative bug in Subcontracting process ",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/1025",
+      "created_at": "2022-06-24T05:49:20Z",
+      "updated_at": "2024-08-11T12:37:04Z",
+      "closed_at": "2024-08-11T12:37:04Z",
+      "labels": [
+        "bug",
+        "stale"
+      ],
+      "body": "stock_no_negative bug in Subcontracting process \r\n\r\n## Module\r\nstock_no_negative\r\n\r\n## Describe the bug\r\nThere is a bug in module stock_no_negative version \"14.0.1.0.1\" that prevents the default process of production by subcontracting.\r\nby default when we receive the final product from the Subcontractor, Odoo will trigger production process automatically by decrease the amount of raw material in subcontractor location and increase the amount of the final product in that location(Manufacturing process). But after installing this module, we will lose this Odoo default feature and when we want to receive the product from subcontractor by validate the receipt operation, this module will not allow us and it says negative stock in subcontracting location is not allowed, even the result of this transaction does not lead to make negative amount of product in subcontracting location.\r\n\r\n## To Reproduce\r\n**Affected versions**:\r\n\"14.0.1.0.1\"\r\n\r\nSteps to reproduce the behavior:\r\n1. Try to use Odoo 14 default routing for subcontracting a product when the raw material is available in subcontractor location.\r\n2. Try to receive the final product from subcontractor by validate the corresponding Receipts operation.\r\n\r\n\r\n**Expected behavior**\r\nIf Negative Stock is not allowed for subcontractor location then the module should prevent the user from receiving the final product from subcontractor only if there is not sufficient raw material in stock for that quantity of final product based on related BoM. \r\nBut if there are enough amount of raw material in subcontracting location the module should not prevent the default process.\r\n\r\n**Additional context**\r\nActually this process is exactly same as internal production, which this module does not have any problem with that, we expected the same behavior in Subcontracting production process as well.\r\n"
+    },
+    {
+      "number": 1407,
+      "type": "issue",
+      "state": "closed",
+      "title": "Issue during importing the module",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/1407",
+      "created_at": "2023-10-21T01:27:28Z",
+      "updated_at": "2024-05-26T12:33:15Z",
+      "closed_at": "2024-05-26T12:33:15Z",
+      "labels": [
+        "stale"
+      ],
+      "body": "Hello,\r\n\r\nI'm new to Odoo and trying to install this module but getting an error below while importing the zip file:\r\n\r\nError while importing module 'stock_no_negative'.\r\n\r\n while parsing /tmp/tmpkuxclhza/stock_no_negative/views/product_product_views.xml:8\r\nError while validating view near:\r\n\r\n<form string=\"Product\">\r\n                <header>\r\n                    <button string=\"Print Labels\" type=\"object\" name=\"action_open_label_layout\" attrs=\"{'invisible': [('detailed_type', '==', 'service')]}\"/>\r\n                </header>\r\n                <sheet name=\"product_form\">\r\n\r\nField \"allow_negative_stock\" does not exist in model \"product.template\"\r\n\r\nView error context:\r\n{'file': '/tmp/tmpkuxclhza/stock_no_negative/views/product_product_views.xml',\r\n 'line': 3,\r\n 'name': 'stock_no_negative.product.template.form',\r\n 'view': ir.ui.view(2104,),\r\n 'view.model': 'product.template',\r\n 'view.parent': ir.ui.view(1450,),\r\n 'xmlid': 'view_template_property_form'}\r\n \r\n Make sure those modules are installed and try again."
+    },
+    {
+      "number": 1580,
+      "type": "issue",
+      "state": "closed",
+      "title": "Bug in wizard Authorized stock Négatif ",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/1580",
+      "created_at": "2024-04-22T17:42:58Z",
+      "updated_at": "2024-04-23T12:38:45Z",
+      "closed_at": "2024-04-23T12:38:45Z",
+      "labels": [
+        "bug"
+      ],
+      "body": "<!-- Provide a general summary of the issue in the Title above.\r\nBefore opening the issue, please check that there isn't another issue addressing the same problem already created -->\r\n\r\n## Module\r\nThe name of the module that has a bug. : stock_no_negative\r\n\r\n## Describe the bug\r\nA clear and concise description of what the bug is.:\r\n\r\nbug in wizard of the validation of stock négative  in displaying the name of the product and the quantity négative of this product in the Location\r\n\r\n![image](https://github.com/OCA/stock-logistics-workflow/assets/162982961/777be31f-daa3-4df1-b4b1-927516126aa9)\r\n\r\n\r\n## To Reproduce\r\n**Affected versions**: 17.0\r\n\r\nSteps to reproduce the behavior:\r\n1.Open Module  sales and click on Order menu item\r\n2. Create new Sale Order record and Confirm it.\r\n3. Click on delivery button and validate and i will this popup.\r\n\r\n**Expected behavior**\r\nReplace the %s with the appropriate data  "
+    },
+    {
+      "number": 1275,
+      "type": "issue",
+      "state": "closed",
+      "title": "[stock_no_negative] Error raises on subcontracting",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/1275",
+      "created_at": "2023-04-13T12:44:04Z",
+      "updated_at": "2023-11-19T12:32:02Z",
+      "closed_at": "2023-11-19T12:32:02Z",
+      "labels": [
+        "stale"
+      ],
+      "body": "https://github.com/OCA/stock-logistics-workflow/blob/8b71576631315ab184a5fba545dbd705bcc69bd0/stock_no_negative/models/stock_quant.py#L22-L53\r\n\r\nThis check raises when: \r\n- you have a product and component configured for subcontracting\r\n- a BOM to define subcontracting\r\n- a subcontracting process with a PO for the finished product, a delivery of the components and a receipt for the finished product\r\n- send the components to the subcontractor\r\n- if you then try to validate the receipt the check raises, because you try to remove the finished products from the subcontracting location, but actually the components are consumed and finished products are added\r\n\r\nmost likely this is a problem of an incorrect order, where the check raises before the subcontracting was performed"
+    },
+    {
+      "number": 572,
+      "type": "issue",
+      "state": "closed",
+      "title": "Migration to version 13.0",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/572",
+      "created_at": "2019-09-29T21:49:21Z",
+      "updated_at": "2023-02-19T12:36:47Z",
+      "closed_at": "2023-02-19T12:36:46Z",
+      "labels": [
+        "help wanted",
+        "work in progress",
+        "stale"
+      ],
+      "body": "# Todo\r\n\r\nhttps://github.com/OCA/maintainer-tools/wiki/Migration-to-version-13.0\r\n\r\n# Modules to migrate\r\n\r\n- [x] product_supplierinfo_for_customer_picking - By @PabloPaezSheridan - #957\r\n- [ ] purchase_stock_picking_restrict_cancel\r\n- [x] sale_order_global_stock_route - By @sergio-teruel - #950\r\n- [x] stock_auto_move - By @rousseldenis - #735 \r\n- [ ] stock_change_price_at_date\r\n- [ ] stock_dropshipping_whole_supplier\r\n- [x] stock_landed_costs_currency - By @ps-tubtim - #614 \r\n- [x] stock_lot_scrap - By @CarlosRoca13 - #773 \r\n- [x] stock_move_line_auto_fill - By @sergio-teruel - #613 \r\n- [x] stock_move_quick_lot - By @ps-tubtim - #600 \r\n- [x] stock_no_negative - ~~By @qdelcourte - #597~~ By @HviorForgeFlow - #666 \r\n- [x] stock_picking_auto_create_lot - By @ps-tubtim - #601 \r\n- [x] stock_picking_back2draft - By @ps-tubtim - #602 \r\n- [x] stock_picking_backorder_strategy - By @sebalix - #766 \r\n- [x] stock_picking_batch_extended - By @sergio-teruel - #612 \r\n- [x] stock_picking_customer_ref - By @Olageibol - #1018\r\n- [x] stock_picking_filter_lot - By @newtratip - #648 \r\n- [x] stock_picking_invoice_link - By @sergio-teruel - #622 \r\n- [ ] stock_picking_line_sequence\r\n- [x] stock_picking_mass_action - By @sergio-teruel - #611 \r\n- [x] stock_picking_operation_quick_change - By @CarlosRoca13 - #845 \r\n- [ ] stock_picking_package_preparation\r\n- [ ] stock_picking_package_preparation_line\r\n- [ ] stock_picking_purchase_order_link\r\n- [ ] stock_picking_purchase_propagate - By @phuctranerp - #732 \r\n- [ ] stock_picking_quick\r\n- [x] stock_picking_restrict_cancel_with_orig_move - By @grindtildeath - #688 \r\n- [x] stock_picking_sale_order_link - By @sergio-teruel - #621 \r\n- [x] stock_picking_send_by_mail - ~~By @xavierpiernas - #658~~ By @CarlosRoca13 - #789 \r\n- [x] stock_picking_show_backorder - By @victoralmau - #785 \r\n- [x] stock_picking_show_return - By @sergio-teruel - #616 \r\n- [x] stock_picking_whole_scrap - By @sergio-teruel - #619 \r\n- [x] stock_split_picking - By @xavierpiernas - #659 \r\n- [x] stock_quant_package_dimension - By @grindtildeath - #608 \r\n- [x] stock_quant_package_product_packaging - By @grindtildeath - #607 \r\n- [x] stock_return_request - By @sergio-teruel - #788 \r\n\r\nMissing module? Check https://github.com/OCA/maintainer-tools/wiki/%5BFAQ%5D-Missing-modules-in-migration-issue-list"
+    },
+    {
+      "number": 1094,
+      "type": "issue",
+      "state": "closed",
+      "title": "Translation issue on stock_no_negative  fr",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/1094",
+      "created_at": "2022-09-29T00:16:18Z",
+      "updated_at": "2022-09-29T13:03:18Z",
+      "closed_at": "2022-09-29T06:30:15Z",
+      "labels": [
+        "bug"
+      ],
+      "body": "Hello,\r\n\r\n(minor issue - not directly linked to the code)\r\n\r\nSpecial chars are converted to `??` in `stock_no_negative/i18n/fr.po`\r\nhttps://github.com/OCA/stock-logistics-workflow/blob/17b3425f30abc82e48267777967c182d30a54bb9/stock_no_negative/i18n/fr.po\r\n\r\nNote : Below sed/vim  substistutions to clean the text.\r\n```vim\r\n%s/\\CCat??gorie/Catégorie/g\r\n%s/\\Ccat??gorie/catégorie/g\r\n%s/attach??/attaché/g\r\n%s/Mod??le/Modèle/g\r\n%s/n??gati/négati/g\r\n%s/op??ration/opération/g\r\n%s/activ??/activé/g\r\n%s/bloqu??/bloqué/g\r\n%s/ ?? / à /g\r\n```"
+    },
+    {
+      "number": 990,
+      "type": "issue",
+      "state": "closed",
+      "title": "[12.0-15.0] stock_no_negative : fr.po translation accents",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/990",
+      "created_at": "2022-04-25T10:40:43Z",
+      "updated_at": "2022-04-25T11:17:13Z",
+      "closed_at": "2022-04-25T11:17:13Z",
+      "labels": [
+        "bug"
+      ],
+      "body": "## stock_no_negative\r\nI noticed that since version 12.0 of the module, there is some problems in translations.\r\nIn `i18n/fr.po` file, you can see entries like\r\n```\r\nmsgid \"Allow Negative Stock\"\r\nmsgstr \"Autoriser le stock n??gatif\"\r\n```\r\nDo I have to modify it manually and make a PR for that ?"
+    },
+    {
+      "number": 720,
+      "type": "issue",
+      "state": "closed",
+      "title": "[13.0] stock_no_negative - Encoding issue in French translation",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/720",
+      "created_at": "2020-10-24T09:43:11Z",
+      "updated_at": "2022-04-10T12:36:06Z",
+      "closed_at": "2022-04-10T12:36:06Z",
+      "labels": [
+        "stale"
+      ],
+      "body": "Hello,\r\n\r\nThe french translation of the module seems to have an encoding issue.\r\nHere an example: https://github.com/OCA/stock-logistics-workflow/blob/af7c24cb5532dd429479c2a37d3f6d82fdd35596/stock_no_negative/i18n/fr.po#L34\r\n\r\nStarting since 12.0 ; in 11.0 everything seems to be fine."
+    },
+    {
+      "number": 377,
+      "type": "issue",
+      "state": "closed",
+      "title": "Migration to version 11.0",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/377",
+      "created_at": "2017-10-03T15:01:57Z",
+      "updated_at": "2022-01-09T12:35:50Z",
+      "closed_at": "2022-01-09T12:35:49Z",
+      "labels": [
+        "help wanted",
+        "work in progress",
+        "stale"
+      ],
+      "body": "# Todo\r\n\r\nhttps://github.com/OCA/maintainer-tools/wiki/Migration-to-version-11.0\r\n\r\n# Modules to migrate\r\n\r\n- [ ] picking_dispatch_wave\r\n- [ ] product_customer_code_picking\r\n- [x] product_expiry_simple - By @alan196 - #393 \r\n- [ ] product_serial\r\n- [ ] stock_auto_move\r\n- [x] stock_batch_picking - By @carlosdauden - #437 \r\n- [ ] stock_cancel\r\n- [ ] stock_change_price_at_date\r\n- [ ] stock_delivery_internal\r\n- [ ] stock_disable_force_availability_button\r\n- [x] ~~stock_dropshipping_dual_invoice~~ - Not needed since v9\r\n- [ ] stock_inventory_retry_assign\r\n- [ ] stock_location_flow_creator\r\n- [x] stock_lot_scrap - By @cubells - #459 \r\n- [ ] stock_move_backdating\r\n- [ ] stock_move_description\r\n- [ ] stock_move_on_hold\r\n- [x] stock_no_negative - By @etobella - #389 \r\n- [ ] stock_obsolete\r\n- [ ] stock_ownership_availability_rules\r\n- [ ] stock_ownership_by_move\r\n- [x] stock_pack_operation_auto_fill - By @luistriana28 - #399 \r\n- [x] stock_pack_operation_quick_lot > stock_move_quick_lot - By @sergio-teruel - #454 \r\n- [x] stock_picking_back2draft - By @aheficent - #550 \r\n- [x] stock_picking_backorder_strategy - By @mgosai - #482 \r\n- [ ] stock_picking_compute_delivery_date\r\n- [x] stock_picking_customer_ref - By @andreasdsp - #423 \r\n- [ ] stock_picking_deliver_uos\r\n- [x] stock_picking_filter_lot - By @lreficent - #467 \r\n- [x] stock_picking_invoice_link - ~~By @Softdil - #409~~ By @chienandalu - #416 \r\n- [x] ~~stock_picking_mass_assign - By @ougc27 - #390 replaced by stock_picking_mass_action~~\r\n- [x] stock_picking_mass_action - By @mpanarin - #460 \r\n- [x] stock_picking_operation_quick_change By @mreficent - #449 \r\n- [x] stock_picking_package_preparation By @SimoRubi - #448 \r\n- [x] stock_picking_package_preparation_line By @SimoRubi - #447 \r\n- [ ] stock_picking_priority\r\n- [ ] stock_picking_reorder_lines\r\n- [x] stock_picking_sale_order_link - By @sergio-teruel - #455\r\n- [x] stock_picking_send_by_mail - By @cubells - #452 \r\n- [x] stock_picking_show_backorder - By @flotho - #398\r\n- [x] stock_picking_show_return - By @flotho - #396 \r\n- [x] ~~stock_picking_transfer_lot_autoassign - By @chienandalu - #430~~ Merged in stock_pack_operation_autofill in #435 \r\n- [ ] stock_sale_filters\r\n- [x] stock_split_picking - By @jcoux - #422 \r\n- [ ] stock_transfer_split_multi\r\n  "
+    },
+    {
+      "number": 764,
+      "type": "issue",
+      "state": "closed",
+      "title": "Invalid field 'allow_negative_stock'",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/764",
+      "created_at": "2020-12-29T09:02:56Z",
+      "updated_at": "2020-12-29T11:46:47Z",
+      "closed_at": "2020-12-29T11:46:46Z",
+      "labels": [],
+      "body": "module: stock_no_negative\r\nversion: 13.0\r\n\r\n**Steps to reproduce**\r\n- when i click on any product i receive this\r\n- btw it's installed on online odoo database\r\n**Current behavior**\r\nError:\r\nOdoo Server Error\r\n\r\nTraceback (most recent call last):\r\n  File \"/home/odoo/src/odoo/14.0/odoo/addons/base/models/ir_http.py\", line 237, in _dispatch\r\n    result = request.dispatch()\r\n  File \"/home/odoo/src/odoo/14.0/odoo/http.py\", line 683, in dispatch\r\n    result = self._call_function(**self.params)\r\n  File \"/home/odoo/src/odoo/14.0/odoo/http.py\", line 359, in _call_function\r\n    return checked_call(self.db, *args, **kwargs)\r\n  File \"/home/odoo/src/odoo/14.0/odoo/service/model.py\", line 94, in wrapper\r\n    return f(dbname, *args, **kwargs)\r\n  File \"/home/odoo/src/odoo/14.0/odoo/http.py\", line 347, in checked_call\r\n    result = self.endpoint(*a, **kw)\r\n  File \"/home/odoo/src/odoo/14.0/odoo/http.py\", line 912, in __call__\r\n    return self.method(*args, **kw)\r\n  File \"/home/odoo/src/odoo/14.0/odoo/http.py\", line 531, in response_wrap\r\n    response = f(*args, **kw)\r\n  File \"/home/odoo/src/odoo/14.0/addons/web/controllers/main.py\", line 1377, in call_kw\r\n    return self._call_kw(model, method, args, kwargs)\r\n  File \"/home/odoo/src/odoo/14.0/addons/web/controllers/main.py\", line 1369, in _call_kw\r\n    return call_kw(request.env[model], method, args, kwargs)\r\n  File \"/home/odoo/src/odoo/14.0/odoo/api.py\", line 396, in call_kw\r\n    result = _call_kw_multi(method, model, args, kwargs)\r\n  File \"/home/odoo/src/odoo/14.0/odoo/api.py\", line 383, in _call_kw_multi\r\n    result = method(recs, *args, **kwargs)\r\n  File \"/home/odoo/src/odoo/14.0/odoo/models.py\", line 3006, in read\r\n    raise ValueError(\"Invalid field %r on model %r\" % (name, self._name))\r\nException\r\n\r\nThe above exception was the direct cause of the following exception:\r\n\r\nTraceback (most recent call last):\r\n  File \"/home/odoo/src/odoo/14.0/odoo/http.py\", line 639, in _handle_exception\r\n    return super(JsonRequest, self)._handle_exception(exception)\r\n  File \"/home/odoo/src/odoo/14.0/odoo/http.py\", line 315, in _handle_exception\r\n    raise exception.with_traceback(None) from new_cause\r\nValueError: Invalid field 'allow_negative_stock' on model 'product.template'\r\n**Expected behavior**"
+    },
+    {
+      "number": 504,
+      "type": "issue",
+      "state": "closed",
+      "title": "[11.0]Feature request: stock_no_negative, create product into stock.move.line if stock.qty <= 0 at the time of sale confirmation",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/504",
+      "created_at": "2019-02-21T14:27:25Z",
+      "updated_at": "2019-10-07T04:24:51Z",
+      "closed_at": "2019-02-28T10:06:13Z",
+      "labels": [],
+      "body": "Feature request: stock_no_negative, create product into stock.move.line if stock.qty <= 0 at the time of sale confirmation.\r\n-----\r\nWhen making a Sale Order with product stock <= 0, then upon confirmation of sale, the product is not in stock.move.line"
+    },
+    {
+      "number": 507,
+      "type": "issue",
+      "state": "closed",
+      "title": "[12.0] Migration stock_no_negative",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/507",
+      "created_at": "2019-02-26T13:02:51Z",
+      "updated_at": "2019-02-26T16:26:07Z",
+      "closed_at": "2019-02-26T16:26:07Z",
+      "labels": [],
+      "body": "I am migrating stock_no_negative to 12.0, and while it detects the negative stock and raise the validation error, lets follow and sell stock that we do not have.\r\n\r\nI do not know if this is the use case and I have misunderstood the module behaviour, or it is a bug. I understand that a ValidationError should block the operation, right?"
+    },
+    {
+      "number": 391,
+      "type": "issue",
+      "state": "closed",
+      "title": "[11.0][stock_no_negative] bug while Receipts product",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/391",
+      "created_at": "2017-12-27T12:36:38Z",
+      "updated_at": "2018-07-11T17:09:44Z",
+      "closed_at": "2018-07-11T17:09:44Z",
+      "labels": [],
+      "body": "reproduce:\r\n- in the inventory, create a Receipts\r\n- add a product to receive\r\n- because you couldn't edit \"Initial Demand\" value, so it will always zero.\r\n- edit the done value, 10 for example\r\n- save and validate, it will always show up the negative stock error"
+    },
+    {
+      "number": 419,
+      "type": "issue",
+      "state": "closed",
+      "title": "Forecasted stock take in stock",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/419",
+      "created_at": "2018-04-19T20:32:35Z",
+      "updated_at": "2018-04-20T05:56:07Z",
+      "closed_at": "2018-04-20T05:56:07Z",
+      "labels": [],
+      "body": "Hi, Great module but I have found a slight issue, With purchasing installed if you raise a PO for a product it is classing this as available stock but this could still be weeks away from delivery. Should it not look at the stock on hand figure rather than the forecasted quantity? \r\nTested on V11   "
+    },
+    {
+      "number": 406,
+      "type": "issue",
+      "state": "closed",
+      "title": "Stock Disallow Negative does not work out",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/406",
+      "created_at": "2018-03-01T18:54:41Z",
+      "updated_at": "2018-05-05T11:21:31Z",
+      "closed_at": "2018-05-05T11:21:31Z",
+      "labels": [
+        "bug",
+        "10.0"
+      ],
+      "body": "Dear All,\r\nI've implemented it and negative stock occurred.\r\nRegards\r\nclaudio Candito"
+    },
+    {
+      "number": 401,
+      "type": "issue",
+      "state": "closed",
+      "title": "[10.0][stock_no_negative]This is bug?or configure error?",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/401",
+      "created_at": "2018-01-22T06:15:39Z",
+      "updated_at": "2018-01-23T00:17:28Z",
+      "closed_at": "2018-01-22T08:04:18Z",
+      "labels": [],
+      "body": "produce this error:\r\n1. product A ...100 on hand ...on the  WH/Stock/1D52 \r\n2.stock.picking create ..origin location: WH/Stock, Dest location: Virtual/Customer, qty 60\r\n3.if reserve, stock.move ...origin location is change to WH/Stock/1D52.\r\n4.if user change this locaiton 1D52 to WH/Stock or other sub location...and validate this stock.picking\r\n5. product A on WH/Stock/1D52 is 100....Wh/Stock is -60 \r\n\r\nUnder normal circumstances, it should be to prevent any negative inventory caused by the operation\r\n.\r\nAnd I went to debug the code, all have direct access to this code to stop.\r\n\r\n  if not check_negative_qty:\r\n            return\r\n\r\nAlaways ..run to this return....."
+    },
+    {
+      "number": 2537,
+      "type": "pr",
+      "state": "open",
+      "title": "[FIX] stock_no_negative: fix French translation (broken accents shown as '??', wrong lot and error message)",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/2537",
+      "created_at": "2026-10-28T08:55:55Z",
+      "updated_at": "2026-10-28T08:56:08Z",
+      "closed_at": null,
+      "labels": [
+        "mod:stock_no_negative",
+        "series:13.0"
+      ],
+      "body": "The French translation file `stock_no_negative/i18n/fr.po` contains `??` instead of accented characters: for example, the \"Allow Negative Stock\" field is displayed as \"Autoriser le stock n??gatif\" on the product form.\n\nThis PR:\n- replaces every `??` with the right accented character;\n- fixes the translation of `\" lot '%s'\"`, which was `\"lot%s\"`;\n- rewrites the error message in correct French, with the same number of `%s` placeholders in the same order;\n- fixes the help text of the option on the stock location, which had been copied from the product category one (it was marked fuzzy).\n\nOnly `fr.po` is changed"
+    },
+    {
+      "number": 2487,
+      "type": "pr",
+      "state": "open",
+      "title": "[20.0][MIG] stock_no_negative: Migration to 20.0",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/2487",
+      "created_at": "2026-10-20T11:40:14Z",
+      "updated_at": "2026-11-23T09:32:41Z",
+      "closed_at": null,
+      "labels": [
+        "series:20.0",
+        "mod:stock_no_negative"
+      ],
+      "body": "Migrates stock_no_negative to 20.0, keeping the module history.\n\nThe decimal precision is called Product Unit in 20.0, and the product form field moves to product.product_template_form_view because stock.view_template_property_form no longer exists. In the tests, BaseCommon runs as an independent user, which now gets inventory and product manager rights. Records created in setUpClass are bound to the test environment in 20.0, so the test context given when the picking is created is lost and is set on the test environment instead. The outgoing operation type and the stock location come from the company warehouse instead of demo data.\n\nThe module's 7 tests pass.\n\nTested on Odoo 20.0 Community (odoo/odoo at e264fed).\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n"
+    },
+    {
+      "number": 2545,
+      "type": "pr",
+      "state": "open",
+      "title": "[19.0][IMP] stock_no_negative: skip lookups for non-negative quants",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/2545",
+      "created_at": "2026-10-30T08:18:02Z",
+      "updated_at": "2026-10-30T08:52:39Z",
+      "closed_at": null,
+      "labels": [
+        "series:19.0",
+        "mod:stock_no_negative"
+      ],
+      "body": "`check_negative_qty` read the product, its category and the location of every quant before testing the quantity. This filters the negative quants first, so those records are only loaded when needed. This helps on mass stock operations (large receipts, inventory adjustments, imports).\n\nBehaviour is unchanged. Added tests for the category option and for non-storable products."
+    },
+    {
+      "number": 2289,
+      "type": "pr",
+      "state": "open",
+      "title": "[18.0][FIX] stock_no_negative: preventing data inconsistencies with the all…",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/2289",
+      "created_at": "2026-03-26T12:37:17Z",
+      "updated_at": "2026-07-17T11:19:15Z",
+      "closed_at": null,
+      "labels": [],
+      "body": "…ow negative stock\r\n\r\nMigration of this PR #1591 "
+    },
+    {
+      "number": 2538,
+      "type": "pr",
+      "state": "closed",
+      "title": "[19.0][FIX] stock_no_negative: use Product Unit precision",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/2538",
+      "created_at": "2026-10-28T18:49:07Z",
+      "updated_at": "2026-11-05T08:37:33Z",
+      "closed_at": "2026-11-05T08:37:28Z",
+      "labels": [
+        "approved",
+        "ready to merge",
+        "merged 🎉",
+        "series:19.0",
+        "mod:stock_no_negative"
+      ],
+      "body": "`stock_no_negative` still uses the `Product Unit of Measure` decimal precision, which was renamed `Product Unit` in 19.0. `precision_get()` no longer finds the old name and falls back to 2 digits, ignoring the precision configured for product quantities.\n\nThis uses `Product Unit` instead."
+    },
+    {
+      "number": 2522,
+      "type": "pr",
+      "state": "closed",
+      "title": "[20.0][MIG] stock_no_negative: Migration to 20.0",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/2522",
+      "created_at": "2026-10-24T16:09:36Z",
+      "updated_at": "2026-10-26T12:00:20Z",
+      "closed_at": "2026-10-26T12:00:19Z",
+      "labels": [
+        "series:20.0",
+        "mod:stock_no_negative"
+      ],
+      "body": "Migration of `stock_no_negative` from 19.0 to 20.0, following the [migration guide](https://github.com/OCA/maintainer-tools/wiki/Migration-to-version-20.0).\n\nChanges required by the 20.0 framework:\n\n- The decimal precision `Product Unit of Measure` was renamed to `Product Unit`. `precision_get` silently falls back to its default for an unknown name, so the constraint was comparing with the wrong precision rather than failing loudly.\n- The product view anchored on `//field[@name='categ_id']` inside `stock.view_template_property_form`, where that field no longer is. The inherited view now points at `product.product_template_form_view`, which keeps the field exactly where it was in 19.0, right under Category on the product form.\n- `stock.move.product_uom` renamed to `uom_id` in the test fixtures.\n- `_test_user_groups = None` on the test case: `BaseCommon` now runs the tests as a restricted user. Checked that the tests do fail without it, rather than adding it by reflex.\n- Manifest version and XML headers.\n\nThe `stock.product_category_form_view_inherit` / `removal_strategy_id` and `stock.view_location_form` / `usage` anchors, `product.is_storable` and the `stock.quant` constraint hooks are unchanged on 20.0.\n\nChecked on a clean 20.0 Community database: install, the 5 tests, and in the UI the \"Allow Negative Stock\" field on the product under Category and on the location under Location Type, then a delivery of 10 units of a product holding 4 in stock, where validation is refused with the module's message: \"the stock level of the product 'RESPOL test' would become negative (-6.0) on the stock location 'WH/Stock'\".\n"
+    },
+    {
+      "number": 2113,
+      "type": "pr",
+      "state": "closed",
+      "title": "[FIX] stock_no_negative false positive",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/2113",
+      "created_at": "2025-09-25T15:25:39Z",
+      "updated_at": "2026-11-15T18:43:40Z",
+      "closed_at": "2026-11-15T18:43:40Z",
+      "labels": [
+        "stale"
+      ],
+      "body": "Because of concurrency, it is possible that a negative quant is created because the main quant is locked and Odoo will avoid waiting in that case, and create additional quants for the product in the location.\r\n\r\nThis fix updates the way the constraint is computed by gathering the quants and checking the overall quantity."
+    },
+    {
+      "number": 2395,
+      "type": "pr",
+      "state": "closed",
+      "title": "feat: Add stock_no_negative module to disallow negative stock levels",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/2395",
+      "created_at": "2026-07-14T09:24:18Z",
+      "updated_at": "2026-07-14T09:24:44Z",
+      "closed_at": "2026-07-14T09:24:43Z",
+      "labels": [],
+      "body": "- Introduced a new module `stock_no_negative` to manage stock levels in Odoo.\r\n- Implemented functionality to allow or disallow negative stock at product, category, and location levels.\r\n- Added fields `allow_negative_stock` to `product.template`, `product.category`, and `stock.location` models.\r\n- Created constraints in `stock.quant` to prevent negative stock levels unless explicitly allowed.\r\n- Developed tests to ensure proper functionality of negative stock constraints.\r\n- Updated views to include the new `allow_negative_stock` field in product and location forms.\r\n- Added configuration and usage documentation in the README files."
+    },
+    {
+      "number": 2135,
+      "type": "pr",
+      "state": "closed",
+      "title": "[19.0][MIG] stock_no_negative: Migration to 19.0",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/2135",
+      "created_at": "2025-10-14T03:36:31Z",
+      "updated_at": "2026-01-13T17:15:13Z",
+      "closed_at": "2026-01-13T17:15:12Z",
+      "labels": [],
+      "body": ""
+    },
+    {
+      "number": 1830,
+      "type": "pr",
+      "state": "closed",
+      "title": "[18.0][FIX] stock_no_negative: fix field not visible in view",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/1830",
+      "created_at": "2025-01-14T10:04:39Z",
+      "updated_at": "2025-03-19T14:35:19Z",
+      "closed_at": "2025-03-19T14:35:14Z",
+      "labels": [
+        "needs review",
+        "approved",
+        "migration",
+        "merged 🎉"
+      ],
+      "body": "Oca module didnt work as we where not able to sellect the allow_negative_stock field on product"
+    },
+    {
+      "number": 1591,
+      "type": "pr",
+      "state": "closed",
+      "title": "[14.0][FIX] stock_no_negative: preventing data inconsistencies with the allow negative stock",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/1591",
+      "created_at": "2024-05-13T12:31:09Z",
+      "updated_at": "2025-02-09T12:38:33Z",
+      "closed_at": "2025-02-09T12:38:33Z",
+      "labels": [
+        "enhancement",
+        "needs review",
+        "stale"
+      ],
+      "body": "This implementation prevents the deactivation of the allow_negative_stock field if any of the fields related to the record (product, category, location) have negative quantities in their current stock operations. Additionally, the product category cannot be modified if this causes inconsistencies with the allow_negative_stock option, that is, if the negative quantities in the quants are not associated with the product or location, but exclusively with the category. Lastly, the raise message has been modified to be more generic, along with its translations.\r\n\r\n@eantones Please review"
+    },
+    {
+      "number": 1862,
+      "type": "pr",
+      "state": "closed",
+      "title": "[FIX] stock_no_negative: use display_name instead of name_get because it is deprecated",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/1862",
+      "created_at": "2025-01-31T15:59:54Z",
+      "updated_at": "2025-02-11T16:37:53Z",
+      "closed_at": "2025-02-11T16:37:49Z",
+      "labels": [
+        "enhancement",
+        "approved",
+        "ready to merge",
+        "merged 🎉"
+      ],
+      "body": "name_get is deprecated the error \r\n`AttributeError: 'stock.lot' object has no attribute 'name_get' `\r\nappear"
+    },
+    {
+      "number": 1765,
+      "type": "pr",
+      "state": "closed",
+      "title": "[MIG] stock_no_negative: Migration to 18.0",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/1765",
+      "created_at": "2024-11-15T14:21:34Z",
+      "updated_at": "2024-11-15T14:31:50Z",
+      "closed_at": "2024-11-15T14:31:10Z",
+      "labels": [],
+      "body": "In Odoo v18, the handling of trackable (storable) products has been updated. This PR modifies the condition for displaying the allow_negative_stock field in the product.template form view.\r\n\r\nBefore Update:\r\nThe form view of product.template before applying the update:\r\n![Screenshot from 2024-11-15 14-56-40](https://github.com/user-attachments/assets/569a73f6-12fc-4d56-a5d9-44d2ac72ecdc)\r\n\r\nAfter Update:\r\nThe form view of product.template after applying the update:\r\n![Screenshot from 2024-11-15 14-55-27](https://github.com/user-attachments/assets/0e0166b7-824c-45fc-adda-ec4fd1738b33)\r\n\r\n\r\n"
+    },
+    {
+      "number": 1747,
+      "type": "pr",
+      "state": "closed",
+      "title": "[18.0]MIG] stock_no_negative: Migration to 18.0",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/1747",
+      "created_at": "2024-10-22T12:08:06Z",
+      "updated_at": "2024-11-15T14:38:21Z",
+      "closed_at": "2024-11-01T08:35:40Z",
+      "labels": [
+        "needs review",
+        "approved",
+        "migration",
+        "ready to merge",
+        "merged 🎉"
+      ],
+      "body": ""
+    },
+    {
+      "number": 1690,
+      "type": "pr",
+      "state": "closed",
+      "title": "[14.0][IMP] stock_no_negative: add option to skip negative qty check",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/1690",
+      "created_at": "2024-09-02T07:33:51Z",
+      "updated_at": "2024-09-02T10:47:08Z",
+      "closed_at": "2024-09-02T10:45:45Z",
+      "labels": [
+        "approved",
+        "merged 🎉"
+      ],
+      "body": "Backport from 16.0: https://github.com/OCA/stock-logistics-workflow/pull/1284\r\n\r\nAdd option to skip negative qty check\r\n\r\n@Tecnativa TT50668"
+    },
+    {
+      "number": 1374,
+      "type": "pr",
+      "state": "closed",
+      "title": "add zh_CN translation for stock_no_negative",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/1374",
+      "created_at": "2023-09-06T14:57:14Z",
+      "updated_at": "2024-04-14T14:47:59Z",
+      "closed_at": "2024-04-14T14:47:59Z",
+      "labels": [
+        "stale"
+      ],
+      "body": ""
+    },
+    {
+      "number": 1364,
+      "type": "pr",
+      "state": "closed",
+      "title": "[15.0][ADD] stock_no_negative_move_line",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/1364",
+      "created_at": "2023-08-24T16:48:18Z",
+      "updated_at": "2024-03-17T12:30:18Z",
+      "closed_at": "2024-03-17T12:30:18Z",
+      "labels": [
+        "stale"
+      ],
+      "body": ""
+    },
+    {
+      "number": 1437,
+      "type": "pr",
+      "state": "closed",
+      "title": "[17.0][MIG]stock_no_negative: Migrated to v17",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/1437",
+      "created_at": "2023-11-23T15:45:12Z",
+      "updated_at": "2024-03-13T06:35:42Z",
+      "closed_at": "2024-03-13T06:35:33Z",
+      "labels": [
+        "needs review",
+        "approved",
+        "migration",
+        "merged 🎉"
+      ],
+      "body": ""
+    },
+    {
+      "number": 1436,
+      "type": "pr",
+      "state": "closed",
+      "title": "[MIG]stock_no_negative: Migrated module to v17",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/1436",
+      "created_at": "2023-11-22T17:08:10Z",
+      "updated_at": "2023-11-23T15:08:28Z",
+      "closed_at": "2023-11-23T15:07:52Z",
+      "labels": [],
+      "body": ""
+    },
+    {
+      "number": 1284,
+      "type": "pr",
+      "state": "closed",
+      "title": "[16.0][IMP] stock_no_negative: add option to skip negative qty check",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/1284",
+      "created_at": "2023-05-01T05:53:56Z",
+      "updated_at": "2023-09-11T06:10:42Z",
+      "closed_at": "2023-09-11T06:10:37Z",
+      "labels": [
+        "enhancement",
+        "needs review",
+        "approved",
+        "merged 🎉"
+      ],
+      "body": "Depended by https://github.com/OCA/manufacture/pull/1025\r\n@qrtl"
+    },
+    {
+      "number": 1112,
+      "type": "pr",
+      "state": "closed",
+      "title": "[16.0][MIG] stock_no_negative",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/1112",
+      "created_at": "2022-10-22T06:08:25Z",
+      "updated_at": "2023-02-14T12:39:06Z",
+      "closed_at": "2023-02-14T09:08:48Z",
+      "labels": [
+        "needs review",
+        "approved",
+        "migration",
+        "ready to merge",
+        "merged 🎉"
+      ],
+      "body": "Please Review"
+    },
+    {
+      "number": 971,
+      "type": "pr",
+      "state": "closed",
+      "title": "[10.0] stock_no_negative: backport allow_negative_stock on stock.location",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/971",
+      "created_at": "2022-02-15T14:36:07Z",
+      "updated_at": "2022-02-23T16:27:40Z",
+      "closed_at": "2022-02-23T16:27:35Z",
+      "labels": [
+        "enhancement",
+        "needs review",
+        "merged 🎉"
+      ],
+      "body": "Rename variables in test: a recordset should not be designated by a variable that ends with \"_id\"!"
+    },
+    {
+      "number": 528,
+      "type": "pr",
+      "state": "closed",
+      "title": "[9.0][FIX] stock_no_negative: backport 2007dc",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/528",
+      "created_at": "2019-05-28T05:27:28Z",
+      "updated_at": "2022-01-23T12:32:39Z",
+      "closed_at": "2022-01-23T12:32:38Z",
+      "labels": [
+        "enhancement",
+        "stale"
+      ],
+      "body": ""
+    },
+    {
+      "number": 944,
+      "type": "pr",
+      "state": "closed",
+      "title": "[15.0][MIG] stock_no_negative",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/944",
+      "created_at": "2021-12-14T12:48:19Z",
+      "updated_at": "2021-12-23T07:47:20Z",
+      "closed_at": "2021-12-22T15:30:19Z",
+      "labels": [
+        "needs review",
+        "approved",
+        "migration",
+        "merged 🎉"
+      ],
+      "body": "Standard migration to version 15.0."
+    },
+    {
+      "number": 899,
+      "type": "pr",
+      "state": "closed",
+      "title": "[13.0] cherry-pick [FIX] stock_no_negative: Use product display_name instead of name",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/899",
+      "created_at": "2021-09-23T13:31:10Z",
+      "updated_at": "2021-09-24T06:13:55Z",
+      "closed_at": "2021-09-23T20:36:52Z",
+      "labels": [
+        "merged 🎉"
+      ],
+      "body": "Cherry-pick of https://github.com/OCA/stock-logistics-workflow/pull/660 https://github.com/OCA/stock-logistics-workflow/pull/660/commits/ae6837722a7e945d5be1c3842454923bd44d6d6d\r\n\r\nUse `product.display_name` instead of `product.name`\r\n"
+    },
+    {
+      "number": 898,
+      "type": "pr",
+      "state": "closed",
+      "title": "[14.0] cherry-pick [FIX] stock_no_negative: Use product display_name instead of name",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/898",
+      "created_at": "2021-09-23T10:37:56Z",
+      "updated_at": "2021-09-23T13:31:27Z",
+      "closed_at": "2021-09-23T12:13:10Z",
+      "labels": [
+        "merged 🎉"
+      ],
+      "body": "Cherry-pick of https://github.com/OCA/stock-logistics-workflow/pull/660 https://github.com/OCA/stock-logistics-workflow/pull/660/commits/ae6837722a7e945d5be1c3842454923bd44d6d6d\r\n\r\nUse `product.display_name` instead of `product.name`\r\n"
+    },
+    {
+      "number": 799,
+      "type": "pr",
+      "state": "closed",
+      "title": "[BCP][11.0] stock_no_negative: Merge quants before compare",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/799",
+      "created_at": "2021-03-02T14:02:53Z",
+      "updated_at": "2021-08-17T14:52:21Z",
+      "closed_at": "2021-08-17T14:52:17Z",
+      "labels": [],
+      "body": "Backport of https://github.com/OCA/stock-logistics-workflow/pull/675"
+    },
+    {
+      "number": 747,
+      "type": "pr",
+      "state": "closed",
+      "title": "14.0][MIG] stock_no_negative: Migration to 14.0",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/747",
+      "created_at": "2020-12-03T06:32:48Z",
+      "updated_at": "2021-01-08T12:20:36Z",
+      "closed_at": "2021-01-08T12:20:29Z",
+      "labels": [
+        "needs review",
+        "migration",
+        "merged 🎉"
+      ],
+      "body": "Please Review"
+    },
+    {
+      "number": 726,
+      "type": "pr",
+      "state": "closed",
+      "title": "[REF] stock_no_negative: Make inheritable no-negative check",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/726",
+      "created_at": "2020-11-05T01:51:02Z",
+      "updated_at": "2020-11-08T19:39:57Z",
+      "closed_at": "2020-11-08T09:59:02Z",
+      "labels": [
+        "enhancement",
+        "needs review",
+        "approved",
+        "merged 🎉"
+      ],
+      "body": "This puts the code to check if negative inventory is allowed for a\r\ngiven location into a separate method, so it may be reused or inherited."
+    },
+    {
+      "number": 666,
+      "type": "pr",
+      "state": "closed",
+      "title": "[13.0][MIG] stock_no_negative",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/666",
+      "created_at": "2020-06-10T14:26:32Z",
+      "updated_at": "2020-06-10T16:51:27Z",
+      "closed_at": "2020-06-10T16:51:16Z",
+      "labels": [
+        "approved",
+        "merged 🎉"
+      ],
+      "body": "Superseed https://github.com/OCA/stock-logistics-workflow/pull/597 for lack of activity\r\n"
+    },
+    {
+      "number": 597,
+      "type": "pr",
+      "state": "closed",
+      "title": "[13.0][MIG] stock_no_negative",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/597",
+      "created_at": "2019-12-19T09:37:25Z",
+      "updated_at": "2020-06-10T16:43:01Z",
+      "closed_at": "2020-06-10T16:43:01Z",
+      "labels": [
+        "needs fixing",
+        "approved",
+        "migration"
+      ],
+      "body": ""
+    },
+    {
+      "number": 675,
+      "type": "pr",
+      "state": "closed",
+      "title": "[12.0][FIX] stock_no_negative: When a transfer is packaged and unpacked, it creates a separate quant",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/675",
+      "created_at": "2020-06-26T04:19:50Z",
+      "updated_at": "2020-07-06T17:40:08Z",
+      "closed_at": "2020-07-06T17:40:01Z",
+      "labels": [
+        "approved",
+        "merged 🎉"
+      ],
+      "body": "This causes that when making a transfer, take only one quant and leave\r\nit negative instead of taking it from the other quants of the same\r\nproduct\r\n\r\nIssue related https://github.com/odoo/odoo/issues/53535"
+    },
+    {
+      "number": 660,
+      "type": "pr",
+      "state": "closed",
+      "title": "[12.0][FIX] stock_no_negative: Use product display_name instead of name",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/660",
+      "created_at": "2020-05-20T15:40:43Z",
+      "updated_at": "2020-05-21T09:15:15Z",
+      "closed_at": "2020-05-21T07:41:03Z",
+      "labels": [
+        "approved",
+        "merged 🎉"
+      ],
+      "body": "Use `product.display_name` instead of `product.name`"
+    },
+    {
+      "number": 531,
+      "type": "pr",
+      "state": "closed",
+      "title": "[IMP] stock_no_negative: implement use case of tranfers using lot",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/531",
+      "created_at": "2019-06-06T11:19:45Z",
+      "updated_at": "2019-06-11T14:09:04Z",
+      "closed_at": "2019-06-11T13:59:25Z",
+      "labels": [
+        "enhancement",
+        "needs review",
+        "approved"
+      ],
+      "body": "In the case if you want to transfer products by a lot and hasn't availability in a quant with this lot,\r\nfind a quantity by a quant with not lot and with quantity availability.\r\n\r\nThis is because odoo do the same in this case like see in this https://github.com/odoo/odoo/blob/11.0/addons/stock/models/stock_move_line.py#L437\r\n\r\nMore details in this [video](https://drive.google.com/file/d/1Vd8i5CxzJCiBXp-XIN1BVQu0scS1Qu4H/view)"
+    },
+    {
+      "number": 529,
+      "type": "pr",
+      "state": "closed",
+      "title": "[10.0][FIX] stock_no_negative: show product name_get instead of name",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/529",
+      "created_at": "2019-06-04T11:38:47Z",
+      "updated_at": "2019-06-06T17:11:29Z",
+      "closed_at": "2019-06-05T10:03:10Z",
+      "labels": [
+        "approved"
+      ],
+      "body": "Use `product.name_get` instead of `product.name`"
+    },
+    {
+      "number": 508,
+      "type": "pr",
+      "state": "closed",
+      "title": "[12.0][MIG] Migration of stock_no_negative",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/508",
+      "created_at": "2019-02-27T10:32:58Z",
+      "updated_at": "2019-02-27T15:47:31Z",
+      "closed_at": "2019-02-27T15:47:31Z",
+      "labels": [
+        "approved"
+      ],
+      "body": "Migration from 11.0 to 12.0"
+    },
+    {
+      "number": 493,
+      "type": "pr",
+      "state": "closed",
+      "title": "[11.0][stock_no_negative] fix in incorrect view",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/493",
+      "created_at": "2019-01-28T12:55:44Z",
+      "updated_at": "2019-01-28T12:57:53Z",
+      "closed_at": "2019-01-28T12:57:46Z",
+      "labels": [
+        "approved"
+      ],
+      "body": ""
+    },
+    {
+      "number": 480,
+      "type": "pr",
+      "state": "closed",
+      "title": "[FIX] stock_no_negative: Use should_bypass_reservation",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/480",
+      "created_at": "2018-11-30T12:23:03Z",
+      "updated_at": "2018-12-13T20:52:35Z",
+      "closed_at": "2018-12-13T20:52:35Z",
+      "labels": [
+        "enhancement"
+      ],
+      "body": "It was giving errors when using scrap locations."
+    },
+    {
+      "number": 484,
+      "type": "pr",
+      "state": "closed",
+      "title": "[11.0][stock_no_negative][IMP] Add the ability to allow negative stock for individual stock locations.",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/484",
+      "created_at": "2018-12-13T17:10:58Z",
+      "updated_at": "2019-01-24T18:26:40Z",
+      "closed_at": "2019-01-24T18:26:40Z",
+      "labels": [
+        "enhancement",
+        "approved",
+        "ready to merge"
+      ],
+      "body": "With this PR you can set the option \"Allow negative stock\" for individual locations.\r\n\r\n#. Go to *Inventory / Configuration / Settings* and activate\r\n   the option *Storage Locations*.\r\n#. Go to *Inventory / Configuration / Warehouse Management / Locations* and\r\n   activate the option the option *Allow Negative Stock* for the locations you\r\n   choose."
+    },
+    {
+      "number": 201,
+      "type": "pr",
+      "state": "closed",
+      "title": "[9.0][port] stock_split_picking",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/201",
+      "created_at": "2016-02-08T15:21:00Z",
+      "updated_at": "2018-10-01T16:22:08Z",
+      "closed_at": "2018-10-01T16:22:08Z",
+      "labels": [
+        "work in progress"
+      ],
+      "body": "TODO: fix tests\n"
+    },
+    {
+      "number": 424,
+      "type": "pr",
+      "state": "closed",
+      "title": "[10.0][FIX] bug #406 stock_no_negative back at work",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/424",
+      "created_at": "2018-05-04T21:43:30Z",
+      "updated_at": "2018-05-05T11:21:12Z",
+      "closed_at": "2018-05-05T11:21:12Z",
+      "labels": [],
+      "body": ""
+    },
+    {
+      "number": 404,
+      "type": "pr",
+      "state": "closed",
+      "title": "[FIX][stock_pack_operation_auto_fill] - Wrong qty done when use diffe…",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/404",
+      "created_at": "2018-02-14T16:54:36Z",
+      "updated_at": "2018-05-19T16:49:18Z",
+      "closed_at": "2018-05-19T16:49:18Z",
+      "labels": [],
+      "body": "**Impacted Versions:**\r\n-11.0\r\n\r\n**Description of the issue/feature this PR addresses:**\r\nWhen you click the autofill button in a stock picking with lines that have different UoM\r\n**Product**\r\n    - 2 Box of 10 units of Atún.\r\n\r\n**Current behavior before PR:**\r\nThe qty done has 20 units instead 2 boxes.\r\n![screenshot from 2018-02-14 10-50-34](https://user-images.githubusercontent.com/16236004/36216715-2d44e786-1175-11e8-9fd6-cee41e97e562.png)\r\n\r\n**Desired behavior after PR is merged:**\r\nThe qty done has the correct value (2 boxes)\r\n![screenshot from 2018-02-14 10-54-03](https://user-images.githubusercontent.com/16236004/36216797-67f0aee2-1175-11e8-94c0-c02db164c4c8.png)\r\n\r\nThanks & Regards!"
+    },
+    {
+      "number": 405,
+      "type": "pr",
+      "state": "closed",
+      "title": "[FIX] stock_no_negative: Incorrect tests",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/405",
+      "created_at": "2018-02-28T00:47:40Z",
+      "updated_at": "2018-02-28T08:47:35Z",
+      "closed_at": "2018-02-28T08:47:32Z",
+      "labels": [],
+      "body": "cc @Tecnativa"
+    },
+    {
+      "number": 389,
+      "type": "pr",
+      "state": "closed",
+      "title": "[11.0] [MIG] stock_no_negative",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/389",
+      "created_at": "2017-12-19T09:17:06Z",
+      "updated_at": "2017-12-22T11:09:20Z",
+      "closed_at": "2017-12-22T11:04:41Z",
+      "labels": [
+        "needs review"
+      ],
+      "body": "No major changes"
+    },
+    {
+      "number": 275,
+      "type": "pr",
+      "state": "closed",
+      "title": "[10.0] Module stock_no_negative",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/275",
+      "created_at": "2016-11-17T22:30:21Z",
+      "updated_at": "2017-12-14T08:39:57Z",
+      "closed_at": "2017-12-14T08:39:56Z",
+      "labels": [],
+      "body": "This is in fact a port to v10 of my PR #137 but changing the name to stock_no_negative, because there is already an OCA module with that name in older versions."
+    },
+    {
+      "number": 341,
+      "type": "pr",
+      "state": "closed",
+      "title": "[9.0][FIX] stock_account_deposit: Fix invalidate option \"only regularize\" is this module is installed",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/341",
+      "created_at": "2017-06-20T11:28:16Z",
+      "updated_at": "2017-09-04T12:33:55Z",
+      "closed_at": "2017-09-04T12:33:53Z",
+      "labels": [],
+      "body": "cc @Tecnativa"
+    },
+    {
+      "number": 357,
+      "type": "pr",
+      "state": "closed",
+      "title": "[9.0][FIX] greenifying stock-workflow repository",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/357",
+      "created_at": "2017-08-30T15:58:41Z",
+      "updated_at": "2017-08-31T08:20:29Z",
+      "closed_at": "2017-08-30T17:58:41Z",
+      "labels": [],
+      "body": "This PR includes:\r\n- Fixes the tests of stock_deposit and stock_account_deposit modules.\r\n- Improves test for stock_picking_invoice_link module.\r\n- Improves the stock_no_negative module with the approach that @pedrobaeza suggested. With this improvement, the negative stock is enabled when testing other modules.\r\n\r\ncc: @jbeficent "
+    },
+    {
+      "number": 339,
+      "type": "pr",
+      "state": "closed",
+      "title": "[IMP] stock_picking_invoice_link: add a button to open invoices",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/339",
+      "created_at": "2017-06-15T08:42:31Z",
+      "updated_at": "2017-09-01T09:26:04Z",
+      "closed_at": "2017-09-01T09:18:59Z",
+      "labels": [],
+      "body": "Forward port of #337 \r\n@tafaRU "
+    },
+    {
+      "number": 274,
+      "type": "pr",
+      "state": "closed",
+      "title": "9.0 mig stock no negative",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/274",
+      "created_at": "2016-11-09T17:12:08Z",
+      "updated_at": "2017-06-22T09:04:07Z",
+      "closed_at": "2017-06-22T09:04:07Z",
+      "labels": [],
+      "body": "Making stock_no_negative module work in v9.0"
+    },
+    {
+      "number": 256,
+      "type": "pr",
+      "state": "closed",
+      "title": "[FIX] Make check in quant level so that it works in manufacturing as well",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/256",
+      "created_at": "2016-09-10T10:33:28Z",
+      "updated_at": "2017-06-29T16:42:58Z",
+      "closed_at": "2017-06-29T16:42:58Z",
+      "labels": [],
+      "body": "This is simpler way to have the same functionality and works well with any kind of move (such as manufacturing moves).\n"
+    }
+  ]
+}

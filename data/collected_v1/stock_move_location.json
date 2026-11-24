@@ -1,0 +1,757 @@
+{
+  "module": "stock_move_location",
+  "source": {
+    "repo": "stock-logistics-warehouse",
+    "commit": "6e16bc1f6f96d71e0f008cd39f359232a0a9290e",
+    "branch": "18.0",
+    "remote": "https://github.com/OCA/stock-logistics-warehouse.git",
+    "path": "oca/stock-logistics-warehouse/stock_move_location"
+  },
+  "collected_at": "2026-11-24T04:47:41+00:00",
+  "collector_version": "v1",
+  "manifest": {
+    "name": "Move Stock Location",
+    "summary": "This module allows to move all stock in a stock location to an other one.",
+    "version": "18.0.1.0.1",
+    "category": "Stock",
+    "depends": [
+      "stock"
+    ],
+    "website": "https://github.com/OCA/stock-logistics-warehouse",
+    "license": "AGPL-3"
+  },
+  "readme": {
+    "DESCRIPTION": {
+      "file": "readme/DESCRIPTION.md",
+      "text": "This module allows to move entire location of products from one place to\nanother and move only selected quantities."
+    },
+    "USAGE": {
+      "file": "readme/USAGE.md",
+      "text": "- A new menu item Operations \\> Move from location... opens a wizard where 2 locations\n  can be specified.\n- Select origin and destination locations and press \"IMMEDIATE TRANSFER\" or \"PLANNED\n  TRANSFER\"\n- Those lines can be edited. Move quantity can't be more than a max available quantity\n- Move doesn't care about the reservations and will move stuff anyway\n- If during your operation with the wizard the real quantity will change it will move\n  only the available quantity at the button press\n- Products will be moved and a form view of picking that did that will show up\n- If \"PLANNED TRANSFER\" is used - the picking won't be validated automatically\n\nIf you want to transfer a full quant:\n\n- Go to Inventory \\> Products \\> Products and click \"On hand\" smart button or Inventory\n  \\> Reporting \\> Inventory, the quants view will be opened.\n- Select the quantities which you want move to another location\n\nIf you go to the Inventory Dashboard you can see the button \"Move from location\" in each\nof the picking types (only applicable to internal and outgoing transfers). Press it and\nyou will be directed to the wizard.\n\n![](https://user-images.githubusercontent.com/147538094/281480833-208ea309-0bad-43e7-bd6f-8384520afe00.png)\n\nTo enable this option, check \"Show Move On Hand Stock\" in the Picking Type\nconfiguration.\n\n![](https://user-images.githubusercontent.com/147538094/281479487-45fa4bde-36be-4ba1-8d54-8e707b89459e.png)\n\nIf you want transfer everything from stock.location\n\nOn a draft picking, add a button to fill with moves lines for all products in the source\ndestination. This allows to create a picking to move all the content of a location. The\nOrigin Location must have stock. The Destination Location has to be a final location. If\nsome quants are not available (i.e. reserved) the picking will be in partially available\nstate and reserved moves won't be listed in the operations. Use barcode interface to\nscan a location and create an empty picking. Then use the fill with stock button."
+    },
+    "ROADMAP": {
+      "file": "readme/ROADMAP.md",
+      "text": "Change the current implementation (suggested by Denis Roussel from\nACSONE):\n\n- A new parameter on stock picking types : 'Product Change Location'\n  (with a little help).\n- With this, go to the dashboard, create a picking with that type.\n- Add a button on the picking form which is visible with that type that\n  fill in the picking as now\n- Nice to have: add a magic button on locations that with context\n  creates a new picking of that type with the origin location already\n  filled in.\n\nNote from Jacques-Etienne Baudoux (BCIM)\n- The fill with stock action on stock.picking should not create manually the\n  move lines but instead call `action_assign()`. There are many modules hooking\n  `action_assign` that are not called due to this."
+    }
+  },
+  "text_v0": "Move Stock Location\n\nThis module allows to move all stock in a stock location to an other one.\n\n## DESCRIPTION\nThis module allows to move entire location of products from one place to\nanother and move only selected quantities.\n\n## USAGE\n- A new menu item Operations \\> Move from location... opens a wizard where 2 locations\n  can be specified.\n- Select origin and destination locations and press \"IMMEDIATE TRANSFER\" or \"PLANNED\n  TRANSFER\"\n- Those lines can be edited. Move quantity can't be more than a max available quantity\n- Move doesn't care about the reservations and will move stuff anyway\n- If during your operation with the wizard the real quantity will change it will move\n  only the available quantity at the button press\n- Products will be moved and a form view of picking that did that will show up\n- If \"PLANNED TRANSFER\" is used - the picking won't be validated automatically\n\nIf you want to transfer a full quant:\n\n- Go to Inventory \\> Products \\> Products and click \"On hand\" smart button or Inventory\n  \\> Reporting \\> Inventory, the quants view will be opened.\n- Select the quantities which you want move to another location\n\nIf you go to the Inventory Dashboard you can see the button \"Move from location\" in each\nof the picking types (only applicable to internal and outgoing transfers). Press it and\nyou will be directed to the wizard.\n\n![](https://user-images.githubusercontent.com/147538094/281480833-208ea309-0bad-43e7-bd6f-8384520afe00.png)\n\nTo enable this option, check \"Show Move On Hand Stock\" in the Picking Type\nconfiguration.\n\n![](https://user-images.githubusercontent.com/147538094/281479487-45fa4bde-36be-4ba1-8d54-8e707b89459e.png)\n\nIf you want transfer everything from stock.location\n\nOn a draft picking, add a button to fill with moves lines for all products in the source\ndestination. This allows to create a picking to move all the content of a location. The\nOrigin Location must have stock. The Destination Location has to be a final location. If\nsome quants are not available (i.e. reserved) the picking will be in partially available\nstate and reserved moves won't be listed in the operations. Use barcode interface to\nscan a location and create an empty picking. Then use the fill with stock button.\n\n## ROADMAP\nChange the current implementation (suggested by Denis Roussel from\nACSONE):\n\n- A new parameter on stock picking types : 'Product Change Location'\n  (with a little help).\n- With this, go to the dashboard, create a picking with that type.\n- Add a button on the picking form which is visible with that type that\n  fill in the picking as now\n- Nice to have: add a magic button on locations that with context\n  creates a new picking of that type with the origin location already\n  filled in.\n\nNote from Jacques-Etienne Baudoux (BCIM)\n- The fill with stock action on stock.picking should not create manually the\n  move lines but instead call `action_assign()`. There are many modules hooking\n  `action_assign` that are not called due to this.",
+  "text": "Move Stock Location\n\nThis module allows to move all stock in a stock location to an other one.\n\n## DESCRIPTION\nThis module allows to move entire location of products from one place to\nanother and move only selected quantities.\n\n## USAGE\n- A new menu item Operations \\> Move from location... opens a wizard where 2 locations\n  can be specified.\n- Select origin and destination locations and press \"IMMEDIATE TRANSFER\" or \"PLANNED\n  TRANSFER\"\n- Those lines can be edited. Move quantity can't be more than a max available quantity\n- Move doesn't care about the reservations and will move stuff anyway\n- If during your operation with the wizard the real quantity will change it will move\n  only the available quantity at the button press\n- Products will be moved and a form view of picking that did that will show up\n- If \"PLANNED TRANSFER\" is used - the picking won't be validated automatically\n\nIf you want to transfer a full quant:\n\n- Go to Inventory \\> Products \\> Products and click \"On hand\" smart button or Inventory\n  \\> Reporting \\> Inventory, the quants view will be opened.\n- Select the quantities which you want move to another location\n\nIf you go to the Inventory Dashboard you can see the button \"Move from location\" in each\nof the picking types (only applicable to internal and outgoing transfers). Press it and\nyou will be directed to the wizard.\n\n![](https://user-images.githubusercontent.com/147538094/281480833-208ea309-0bad-43e7-bd6f-8384520afe00.png)\n\nTo enable this option, check \"Show Move On Hand Stock\" in the Picking Type\nconfiguration.\n\n![](https://user-images.githubusercontent.com/147538094/281479487-45fa4bde-36be-4ba1-8d54-8e707b89459e.png)\n\nIf you want transfer everything from stock.location\n\nOn a draft picking, add a button to fill with moves lines for all products in the source\ndestination. This allows to create a picking to move all the content of a location. The\nOrigin Location must have stock. The Destination Location has to be a final location. If\nsome quants are not available (i.e. reserved) the picking will be in partially available\nstate and reserved moves won't be listed in the operations. Use barcode interface to\nscan a location and create an empty picking. Then use the fill with stock button.\n\n## ROADMAP\nChange the current implementation (suggested by Denis Roussel from\nACSONE):\n\n- A new parameter on stock picking types : 'Product Change Location'\n  (with a little help).\n- With this, go to the dashboard, create a picking with that type.\n- Add a button on the picking form which is visible with that type that\n  fill in the picking as now\n- Nice to have: add a magic button on locations that with context\n  creates a new picking of that type with the origin location already\n  filled in.\n\nNote from Jacques-Etienne Baudoux (BCIM)\n- The fill with stock action on stock.picking should not create manually the\n  move lines but instead call `action_assign()`. There are many modules hooking\n  `action_assign` that are not called due to this.\n\n## GITHUB ISSUES (selected)\n### #2653 [19.0][IMP] stock_move_location: restrict immediate transfer (pr, open, 2026)\nThe \"Immediate Transfer\" button of the Move from location wizard validates\nthe picking right away. Some companies want every relocation to go through\na planned transfer instead, so that the picking can be checked before it is\nvalidated.\n### Changes\n- Add a company setting, \"Restrict Immediate Transfer in Move Location\n Wizard\", in Inventory > Configuration > Settings (Operations section).\n It is disabled by default, so the current behavior is unchanged.\n- When it is enabled, the \"Immediate Transfer\" button is hidden in the\n wizard, and `action_move_location()` raises a `UserError` if it is called\n without the `planned` context, so the restriction also holds for calls\n that do not come from the button.\n### Tests\n- With the restriction enabled, an immediate transfer raises a `UserError`,\n while a planned transfer still works.\nAssisted-by: Claude Opus 5.5\n@qrtl QT7284\n\n### #1281 [14.0] stock_move_location - consignment stock (issue, closed, 2021)\nIf you use consignment to setup the owner of a product when you receive it you cannot transfer a quant directly to another location using \"immediate\" transfer\r\nThe owner_id is missing somewhere so when you try to move directly a quant that is assigned with a partner (owner_id) the quant is not found and it makes a negative stock\n\n### #1420 [13] stock_move_location: wrong evaluation company_id (issue, closed, 2022)\n## Module\r\nstock_move_location\r\nIn multicompany enviroment, if default user company is different as selected company, the location selection menu in wizard offers wrong values.\r\n**Affected versions**: 13\r\nIn my opinion problem is the evaluation of company_id in wizard/stock_move_location.py, line 15:\r\n`company_id = self.env.context.get(\"company_id\") or self.env.user.company_id.id`\r\nand line 122:\r\n`(\"company_id\", \"=\", self.env.user.company_id.id),`\r\nI think it should be:\r\n`self.env.company.id`\n\n### #2338 [15.0][FIX] stock_move_location: reserved_quantity unfilled in _prepare_wizard_move_lines (pr, closed, 2025)\nIn addition to the lack of information in the wizard, this results in detailed delivery note transactions disappearing and not being recreated.\r\nhttps://github.com/OCA/stock-logistics-warehouse/blob/dd0bfe2c2f13e39e6fc9c9c59b65dd1fe358eb7f/stock_move_location/wizard/stock_move_location.py#L238-L244\r\nTT56320\n\n### #1016 [11.0] stock_move_location : no picking_type_id given on stock.move (issue, closed, 2020)\nVersion : 11.0\r\nDetailed issue:\r\n− When move products from a location to another location, if the product tracking method is not none but there is no tracking checkboxes on picking_type selected, there is an error message saying that we need to define which lots are moved.",
+  "github": {
+    "repo": "OCA/stock-logistics-warehouse",
+    "fetched_at": "2026-11-24T04:45:17+00:00",
+    "queries": [
+      {
+        "q": "\"stock_move_location\" repo:OCA/stock-logistics-warehouse is:issue",
+        "total_count": 27,
+        "returned": 27
+      },
+      {
+        "q": "\"stock_move_location\" repo:OCA/stock-logistics-warehouse is:pull-request",
+        "total_count": 81,
+        "returned": 50
+      }
+    ],
+    "n_raw": 77,
+    "n_kept": 54,
+    "n_to_llm": 20,
+    "dropped": {
+      "migration": 20,
+      "module_not_mentioned": 1,
+      "forward_port": 2
+    },
+    "candidates": [
+      {
+        "number": 2661,
+        "type": "issue",
+        "state": "open",
+        "title": "Migration to version 20.0",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/issues/2661",
+        "filter": "migration"
+      },
+      {
+        "number": 2319,
+        "type": "issue",
+        "state": "open",
+        "title": "[16.0] stock_move_location : empty location_dest_id on products lines on click immediate transfert",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/issues/2319",
+        "filter": "kept"
+      },
+      {
+        "number": 2435,
+        "type": "issue",
+        "state": "open",
+        "title": "Migration to version 19.0",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/issues/2435",
+        "filter": "migration"
+      },
+      {
+        "number": 2170,
+        "type": "issue",
+        "state": "open",
+        "title": "Migration to version 18.0",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/issues/2170",
+        "filter": "migration"
+      },
+      {
+        "number": 1883,
+        "type": "issue",
+        "state": "open",
+        "title": "Migration to version 17.0",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/issues/1883",
+        "filter": "migration"
+      },
+      {
+        "number": 1494,
+        "type": "issue",
+        "state": "open",
+        "title": "Migration to version 16.0",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/issues/1494",
+        "filter": "migration"
+      },
+      {
+        "number": 981,
+        "type": "issue",
+        "state": "closed",
+        "title": "Migration to version 14.0",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/issues/981",
+        "filter": "migration"
+      },
+      {
+        "number": 1278,
+        "type": "issue",
+        "state": "closed",
+        "title": "Migration to version 15.0",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/issues/1278",
+        "filter": "migration"
+      },
+      {
+        "number": 727,
+        "type": "issue",
+        "state": "closed",
+        "title": "Migration to version 13.0",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/issues/727",
+        "filter": "migration"
+      },
+      {
+        "number": 1963,
+        "type": "issue",
+        "state": "closed",
+        "title": "[16.0] stock_move_location: wrong destination location",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/issues/1963",
+        "filter": "kept"
+      },
+      {
+        "number": 1882,
+        "type": "issue",
+        "state": "closed",
+        "title": "[16] stock_move_location - Changes on readme",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/issues/1882",
+        "filter": "kept"
+      },
+      {
+        "number": 1679,
+        "type": "issue",
+        "state": "closed",
+        "title": "stock_move_location Client Error",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/issues/1679",
+        "filter": "kept"
+      },
+      {
+        "number": 1785,
+        "type": "issue",
+        "state": "closed",
+        "title": "[15] Weird behaviour stock_move_location",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/issues/1785",
+        "filter": "kept"
+      },
+      {
+        "number": 1578,
+        "type": "issue",
+        "state": "closed",
+        "title": "16.0 - stock_move_location : not working in inventory adjustment",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/issues/1578",
+        "filter": "kept"
+      },
+      {
+        "number": 1739,
+        "type": "issue",
+        "state": "closed",
+        "title": "[16.0] stock_move_location: error on tests",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/issues/1739",
+        "filter": "kept"
+      },
+      {
+        "number": 1420,
+        "type": "issue",
+        "state": "closed",
+        "title": "[13] stock_move_location: wrong evaluation company_id",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/issues/1420",
+        "filter": "kept"
+      },
+      {
+        "number": 1281,
+        "type": "issue",
+        "state": "closed",
+        "title": "[14.0] stock_move_location - consignment stock",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/issues/1281",
+        "filter": "kept"
+      },
+      {
+        "number": 1088,
+        "type": "issue",
+        "state": "closed",
+        "title": "[12.0] stock_move_location. Fill with stock ",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/issues/1088",
+        "filter": "kept"
+      },
+      {
+        "number": 1016,
+        "type": "issue",
+        "state": "closed",
+        "title": "[11.0] stock_move_location : no picking_type_id given on stock.move",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/issues/1016",
+        "filter": "kept"
+      },
+      {
+        "number": 1233,
+        "type": "issue",
+        "state": "closed",
+        "title": "[14.0] stock_move_location needs system rights",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/issues/1233",
+        "filter": "kept"
+      },
+      {
+        "number": 850,
+        "type": "issue",
+        "state": "closed",
+        "title": "[13.0] in stock_move_location get_putaway_strategy fails",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/issues/850",
+        "filter": "kept"
+      },
+      {
+        "number": 487,
+        "type": "issue",
+        "state": "closed",
+        "title": "Migration to version 12.0",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/issues/487",
+        "filter": "migration"
+      },
+      {
+        "number": 201,
+        "type": "issue",
+        "state": "closed",
+        "title": "Migration to version 10.0",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/issues/201",
+        "filter": "migration"
+      },
+      {
+        "number": 90,
+        "type": "issue",
+        "state": "closed",
+        "title": "Migration to version 9.0",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/issues/90",
+        "filter": "migration"
+      },
+      {
+        "number": 343,
+        "type": "issue",
+        "state": "closed",
+        "title": "Migration to version 11.0",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/issues/343",
+        "filter": "migration"
+      },
+      {
+        "number": 594,
+        "type": "issue",
+        "state": "closed",
+        "title": "Stock_move_location: Disables edition of lots [11.0]",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/issues/594",
+        "filter": "module_not_mentioned"
+      },
+      {
+        "number": 539,
+        "type": "issue",
+        "state": "closed",
+        "title": "[11.0] stock_move_location: travis is red",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/issues/539",
+        "filter": "kept"
+      },
+      {
+        "number": 2670,
+        "type": "pr",
+        "state": "open",
+        "title": "[20.0][MIG] stock_move_location: Migration to 20.0",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/pull/2670",
+        "filter": "migration"
+      },
+      {
+        "number": 2669,
+        "type": "pr",
+        "state": "open",
+        "title": "[19.0][FIX] stock_move_location: use the Product Unit precision on wizard quantities",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/pull/2669",
+        "filter": "kept"
+      },
+      {
+        "number": 2653,
+        "type": "pr",
+        "state": "open",
+        "title": "[19.0][IMP] stock_move_location: restrict immediate transfer",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/pull/2653",
+        "filter": "kept"
+      },
+      {
+        "number": 2647,
+        "type": "pr",
+        "state": "closed",
+        "title": "[19.0][MIG] stock_move_location: Migration to version 19.0",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/pull/2647",
+        "filter": "migration"
+      },
+      {
+        "number": 2500,
+        "type": "pr",
+        "state": "closed",
+        "title": "[19.0][MIG] stock_move_location: Migration to 19.0",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/pull/2500",
+        "filter": "migration"
+      },
+      {
+        "number": 2553,
+        "type": "pr",
+        "state": "closed",
+        "title": "[16.0] [FIX] stock_move_location: prevent picking type reset on origin change",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/pull/2553",
+        "filter": "kept"
+      },
+      {
+        "number": 2552,
+        "type": "pr",
+        "state": "closed",
+        "title": "[16.0] [FIX] stock_move_location: consistent return type in _get_available_q…",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/pull/2552",
+        "filter": "kept"
+      },
+      {
+        "number": 2501,
+        "type": "pr",
+        "state": "closed",
+        "title": "19.0 mig stock move location REF",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/pull/2501",
+        "filter": "kept"
+      },
+      {
+        "number": 2339,
+        "type": "pr",
+        "state": "closed",
+        "title": "[17.0][MIG] stock_move_location: Migration to version 17.0",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/pull/2339",
+        "filter": "migration"
+      },
+      {
+        "number": 2338,
+        "type": "pr",
+        "state": "closed",
+        "title": "[15.0][FIX] stock_move_location: reserved_quantity unfilled in _prepare_wizard_move_lines",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/pull/2338",
+        "filter": "kept"
+      },
+      {
+        "number": 2359,
+        "type": "pr",
+        "state": "closed",
+        "title": "[18.0][FIX] stock_move_location: fill with stock",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/pull/2359",
+        "filter": "kept"
+      },
+      {
+        "number": 2053,
+        "type": "pr",
+        "state": "closed",
+        "title": "[17.0][MIG] stock_move_location",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/pull/2053",
+        "filter": "migration"
+      },
+      {
+        "number": 2316,
+        "type": "pr",
+        "state": "closed",
+        "title": "[18.0][MIG] stock_move_location: Migration to 18.0",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/pull/2316",
+        "filter": "migration"
+      },
+      {
+        "number": 2244,
+        "type": "pr",
+        "state": "closed",
+        "title": "[18.0][MIG] stock_move_location: Migration to 18.0",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/pull/2244",
+        "filter": "migration"
+      },
+      {
+        "number": 1964,
+        "type": "pr",
+        "state": "closed",
+        "title": "[16.0][FIX] stock_move_location: Move Line destination would stay the default",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1964",
+        "filter": "kept"
+      },
+      {
+        "number": 2235,
+        "type": "pr",
+        "state": "closed",
+        "title": "[16.0][FIX] stock_move_location: prevent putaway rules when we don't need them",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/pull/2235",
+        "filter": "kept"
+      },
+      {
+        "number": 2233,
+        "type": "pr",
+        "state": "closed",
+        "title": "[15.0][FIX] stock_move_location: prevent putaway rules when we don't need them",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/pull/2233",
+        "filter": "kept"
+      },
+      {
+        "number": 2106,
+        "type": "pr",
+        "state": "closed",
+        "title": "[14.0][FIX] stock_move_location: take values from the current transient model",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/pull/2106",
+        "filter": "kept"
+      },
+      {
+        "number": 2115,
+        "type": "pr",
+        "state": "closed",
+        "title": "[16.0] stock_move_location: Fix UI and add hook to filter quants",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/pull/2115",
+        "filter": "kept"
+      },
+      {
+        "number": 1987,
+        "type": "pr",
+        "state": "closed",
+        "title": "[16.0][FIX] stock_move_location: fix planned transfer incorrect reserved_uom_qty",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1987",
+        "filter": "kept"
+      },
+      {
+        "number": 1990,
+        "type": "pr",
+        "state": "closed",
+        "title": "[16.0][FW][IMP] stock_move_location",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1990",
+        "filter": "forward_port"
+      },
+      {
+        "number": 2006,
+        "type": "pr",
+        "state": "closed",
+        "title": "[16.0][IMP] stock_move_location: use current active company in multicompany environment",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/pull/2006",
+        "filter": "kept"
+      },
+      {
+        "number": 2005,
+        "type": "pr",
+        "state": "closed",
+        "title": "[15.0][IMP] stock_move_location: use current active company in multicompany environment",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/pull/2005",
+        "filter": "kept"
+      },
+      {
+        "number": 1899,
+        "type": "pr",
+        "state": "closed",
+        "title": "[16.0][IMP][FIX] stock_move_location: improve planned transfer",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1899",
+        "filter": "kept"
+      },
+      {
+        "number": 1969,
+        "type": "pr",
+        "state": "closed",
+        "title": "[16.0][FIX] stock_move_location: correct method _get_putaway_strategy name",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1969",
+        "filter": "kept"
+      },
+      {
+        "number": 1976,
+        "type": "pr",
+        "state": "closed",
+        "title": "[14.0][FIX] stock_move_location: missing destination location propagation on wizard lines",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1976",
+        "filter": "kept"
+      },
+      {
+        "number": 1977,
+        "type": "pr",
+        "state": "closed",
+        "title": "[15.0][IMP] stock_move_location: fill picking_type_id depends on origin_location_id",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1977",
+        "filter": "kept"
+      },
+      {
+        "number": 1968,
+        "type": "pr",
+        "state": "closed",
+        "title": "[15.0][FIX] stock_move_location: correct method _get_putaway_strategy name",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1968",
+        "filter": "kept"
+      },
+      {
+        "number": 1993,
+        "type": "pr",
+        "state": "closed",
+        "title": "[15.0][FIX] stock_move_location: The new picking is created with other picking type of selected",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1993",
+        "filter": "kept"
+      },
+      {
+        "number": 1928,
+        "type": "pr",
+        "state": "closed",
+        "title": "[WIP][FIX] stock_move_location: domain",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1928",
+        "filter": "kept"
+      },
+      {
+        "number": 1942,
+        "type": "pr",
+        "state": "closed",
+        "title": "[15.0][FIX] stock_move_location: domain in multicompany",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1942",
+        "filter": "kept"
+      },
+      {
+        "number": 1892,
+        "type": "pr",
+        "state": "closed",
+        "title": "[DOCS] stock_move_location: improve usage instructions",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1892",
+        "filter": "kept"
+      },
+      {
+        "number": 1901,
+        "type": "pr",
+        "state": "closed",
+        "title": "[15.0][IMP] stock_move_location: Avoid check date expired in immediate relocation transfer",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1901",
+        "filter": "kept"
+      },
+      {
+        "number": 1607,
+        "type": "pr",
+        "state": "closed",
+        "title": "[14.0][FIX] stock_move_location: wrong destination location",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1607",
+        "filter": "kept"
+      },
+      {
+        "number": 1842,
+        "type": "pr",
+        "state": "closed",
+        "title": "[14.0][FIX] stock_move_location: Fix onchange and make editable",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1842",
+        "filter": "kept"
+      },
+      {
+        "number": 1521,
+        "type": "pr",
+        "state": "closed",
+        "title": "[11.0][FIX] stock_move_location: _get_available_quantity has to return a tuple",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1521",
+        "filter": "kept"
+      },
+      {
+        "number": 1742,
+        "type": "pr",
+        "state": "closed",
+        "title": "[16.0][FIX] stock_move_location: missing commits",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1742",
+        "filter": "kept"
+      },
+      {
+        "number": 1704,
+        "type": "pr",
+        "state": "closed",
+        "title": "[15.0][FIX] stock_move_location: Take into account owner for move quants",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1704",
+        "filter": "kept"
+      },
+      {
+        "number": 1740,
+        "type": "pr",
+        "state": "closed",
+        "title": "[FIX] stock_move_location: Move From Location wizard missing destination on move lines",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1740",
+        "filter": "kept"
+      },
+      {
+        "number": 1702,
+        "type": "pr",
+        "state": "closed",
+        "title": "[15.0][FIX] stock_move_location: No read on actions",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1702",
+        "filter": "kept"
+      },
+      {
+        "number": 1577,
+        "type": "pr",
+        "state": "closed",
+        "title": "[14.0][FIX] Stock Move Location: apply putaway rules",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1577",
+        "filter": "kept"
+      },
+      {
+        "number": 1592,
+        "type": "pr",
+        "state": "closed",
+        "title": "[16.0][FIX] stock_move_location",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1592",
+        "filter": "kept"
+      },
+      {
+        "number": 1600,
+        "type": "pr",
+        "state": "closed",
+        "title": "[14.0][IMP] stock_move_location: change location domain",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1600",
+        "filter": "kept"
+      },
+      {
+        "number": 1596,
+        "type": "pr",
+        "state": "closed",
+        "title": "[15.0][FIX] stock_move_location: stock_move_location_line_ids ",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1596",
+        "filter": "kept"
+      },
+      {
+        "number": 1549,
+        "type": "pr",
+        "state": "closed",
+        "title": "[16.0][MIG] stock_move_location",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1549",
+        "filter": "migration"
+      },
+      {
+        "number": 1598,
+        "type": "pr",
+        "state": "closed",
+        "title": "[13.0][FIX] stock_move_location: stock_move_location_line_ids",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1598",
+        "filter": "kept"
+      },
+      {
+        "number": 1597,
+        "type": "pr",
+        "state": "closed",
+        "title": "[14.0][FIX] stock_move_location: stock_move_location_line_ids",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1597",
+        "filter": "kept"
+      },
+      {
+        "number": 1459,
+        "type": "pr",
+        "state": "closed",
+        "title": "[14.0][IMP] stock_move_location: packages support",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1459",
+        "filter": "kept"
+      },
+      {
+        "number": 1488,
+        "type": "pr",
+        "state": "closed",
+        "title": "[15.0][FIX] stock_move_location: Bug on onchange origin location",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1488",
+        "filter": "kept"
+      },
+      {
+        "number": 1475,
+        "type": "pr",
+        "state": "closed",
+        "title": "[15.0][FW] stock_move_location: Remove update of assigned moves location",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1475",
+        "filter": "forward_port"
+      }
+    ],
+    "selected": [
+      {
+        "number": 2653,
+        "type": "pr",
+        "state": "open",
+        "title": "[19.0][IMP] stock_move_location: restrict immediate transfer",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/pull/2653",
+        "created_at": "2026-09-25T07:48:34Z",
+        "category": "configuration",
+        "reason": "Adds a company configuration setting to restrict Immediate Transfer in the wizard, forcing relocations to be created as planned transfers.",
+        "body_clean": "The \"Immediate Transfer\" button of the Move from location wizard validates\nthe picking right away. Some companies want every relocation to go through\na planned transfer instead, so that the picking can be checked before it is\nvalidated.\n### Changes\n- Add a company setting, \"Restrict Immediate Transfer in Move Location\n Wizard\", in Inventory > Configuration > Settings (Operations section).\n It is disabled by default, so the current behavior is unchanged.\n- When it is enabled, the \"Immediate Transfer\" button is hidden in the\n wizard, and `action_move_location()` raises a `UserError` if it is called\n without the `planned` context, so the restriction also holds for calls\n that do not come from the button.\n### Tests\n- With the restriction enabled, an immediate transfer raises a `UserError`,\n while a planned transfer still works.\nAssisted-by: Claude Opus 5.5\n@qrtl QT7284"
+      },
+      {
+        "number": 1281,
+        "type": "issue",
+        "state": "closed",
+        "title": "[14.0] stock_move_location - consignment stock",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/issues/1281",
+        "created_at": "2021-10-21T14:27:19Z",
+        "category": "limitation",
+        "reason": "Highlights that transferring consignment stock with a specific owner via immediate transfer fails to maintain owner context, resulting in negative stock.",
+        "body_clean": "If you use consignment to setup the owner of a product when you receive it you cannot transfer a quant directly to another location using \"immediate\" transfer\r\nThe owner_id is missing somewhere so when you try to move directly a quant that is assigned with a partner (owner_id) the quant is not found and it makes a negative stock"
+      },
+      {
+        "number": 1420,
+        "type": "issue",
+        "state": "closed",
+        "title": "[13] stock_move_location: wrong evaluation company_id",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/issues/1420",
+        "created_at": "2022-05-17T19:54:17Z",
+        "category": "configuration",
+        "reason": "Shows that location selection in the wizard is affected by multi-company settings when the user's default company differs from the selected company.",
+        "body_clean": "## Module\r\nstock_move_location\r\nIn multicompany enviroment, if default user company is different as selected company, the location selection menu in wizard offers wrong values.\r\n**Affected versions**: 13\r\nIn my opinion problem is the evaluation of company_id in wizard/stock_move_location.py, line 15:\r\n`company_id = self.env.context.get(\"company_id\") or self.env.user.company_id.id`\r\nand line 122:\r\n`(\"company_id\", \"=\", self.env.user.company_id.id),`\r\nI think it should be:\r\n`self.env.company.id`"
+      },
+      {
+        "number": 2338,
+        "type": "pr",
+        "state": "closed",
+        "title": "[15.0][FIX] stock_move_location: reserved_quantity unfilled in _prepare_wizard_move_lines",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/pull/2338",
+        "created_at": "2025-05-13T14:49:39Z",
+        "category": "functional_bug",
+        "reason": "Identifies that unpopulated reserved quantities on wizard lines cause delivery note move lines to disappear without being recreated.",
+        "body_clean": "In addition to the lack of information in the wizard, this results in detailed delivery note transactions disappearing and not being recreated.\r\nhttps://github.com/OCA/stock-logistics-warehouse/blob/dd0bfe2c2f13e39e6fc9c9c59b65dd1fe358eb7f/stock_move_location/wizard/stock_move_location.py#L238-L244\r\nTT56320"
+      },
+      {
+        "number": 1016,
+        "type": "issue",
+        "state": "closed",
+        "title": "[11.0] stock_move_location : no picking_type_id given on stock.move",
+        "url": "https://github.com/OCA/stock-logistics-warehouse/issues/1016",
+        "created_at": "2020-11-19T08:43:39Z",
+        "category": "business_rule",
+        "reason": "Clarifies that moving lot/serial tracked products requires the selected operation type to have tracking options enabled.",
+        "body_clean": "Version : 11.0\r\nDetailed issue:\r\n− When move products from a location to another location, if the product tracking method is not none but there is no tracking checkboxes on picking_type selected, there is an error message saying that we need to define which lots are moved."
+      }
+    ]
+  },
+  "selection": {
+    "llm": "gemini-3.6-flash",
+    "status": "new",
+    "prompt_sha256": "4b4806d7d417ca3f",
+    "called_at": "2026-11-24T04:50:15+00:00",
+    "invalid_numbers": []
+  },
+  "stats": {
+    "readme_sections": [
+      "DESCRIPTION",
+      "USAGE",
+      "ROADMAP"
+    ],
+    "n_chars_v0": 2992,
+    "n_chars_issues": 2793,
+    "n_chars": 5787,
+    "n_sources": 6,
+    "has_description": true
+  }
+}

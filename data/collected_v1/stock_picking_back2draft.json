@@ -1,0 +1,331 @@
+{
+  "module": "stock_picking_back2draft",
+  "source": {
+    "repo": "stock-logistics-workflow",
+    "commit": "5294fea02fd83db850c4c6244bdbce156cadc92d",
+    "branch": "18.0",
+    "remote": "https://github.com/OCA/stock-logistics-workflow.git",
+    "path": "oca/stock-logistics-workflow/stock_picking_back2draft"
+  },
+  "collected_at": "2026-11-24T04:47:41+00:00",
+  "collector_version": "v1",
+  "manifest": {
+    "name": "Pickings back to draft",
+    "summary": "Reopen canceled transfers",
+    "version": "18.0.1.0.0",
+    "category": "Warehouse Management",
+    "depends": [
+      "stock"
+    ],
+    "website": "https://github.com/OCA/stock-logistics-workflow",
+    "license": "AGPL-3"
+  },
+  "readme": {
+    "DESCRIPTION": {
+      "file": "readme/DESCRIPTION.md",
+      "text": "This module allows to bring canceled transfers back to draft"
+    },
+    "USAGE": {
+      "file": "readme/USAGE.md",
+      "text": "Just open a canceled transfer and click on the 'back to draft' button"
+    }
+  },
+  "text_v0": "Pickings back to draft\n\nReopen canceled transfers\n\n## DESCRIPTION\nThis module allows to bring canceled transfers back to draft\n\n## USAGE\nJust open a canceled transfer and click on the 'back to draft' button",
+  "text": "Pickings back to draft\n\nReopen canceled transfers\n\n## DESCRIPTION\nThis module allows to bring canceled transfers back to draft\n\n## USAGE\nJust open a canceled transfer and click on the 'back to draft' button\n\n## GITHUB ISSUES (selected)\n### #229 [8.0] [stock_picking_back2draft] Sale order DONE instead of OPEN (issue, closed, 2016)\n**Module:** stock_picking_back2draft\n**Steps to reproduce:**\n1. Create a sale order for 100 units of any product.\n2. Transfer 50 units of product.\n3. Cancel the transfer of the 50 remaining units.\n4. Click on picking Back to draft.\n5. Mark as To Do.\n**Problem:**\n- The sale order is in state \"DONE\" even though the picking is not done.\n- Invoice control on the picking is Not Applicable.\n**Expected behaviour:**\n- The sale order moves back to state OPEN as the shipping is not completely done yet.\n- Invoice control should be To Be Invoiced.",
+  "github": {
+    "repo": "OCA/stock-logistics-workflow",
+    "fetched_at": "2026-11-24T04:45:33+00:00",
+    "queries": [
+      {
+        "q": "\"stock_picking_back2draft\" repo:OCA/stock-logistics-workflow is:issue",
+        "total_count": 14,
+        "returned": 14
+      },
+      {
+        "q": "\"stock_picking_back2draft\" repo:OCA/stock-logistics-workflow is:pull-request",
+        "total_count": 16,
+        "returned": 16
+      }
+    ],
+    "n_raw": 30,
+    "n_kept": 3,
+    "n_to_llm": 3,
+    "dropped": {
+      "migration": 25,
+      "module_not_mentioned": 2
+    },
+    "candidates": [
+      {
+        "number": 2474,
+        "type": "issue",
+        "state": "open",
+        "title": "Migration to version 20.0",
+        "url": "https://github.com/OCA/stock-logistics-workflow/issues/2474",
+        "filter": "migration"
+      },
+      {
+        "number": 1101,
+        "type": "issue",
+        "state": "open",
+        "title": "Migration to version 16.0",
+        "url": "https://github.com/OCA/stock-logistics-workflow/issues/1101",
+        "filter": "migration"
+      },
+      {
+        "number": 1737,
+        "type": "issue",
+        "state": "open",
+        "title": "Migration to version 18.0",
+        "url": "https://github.com/OCA/stock-logistics-workflow/issues/1737",
+        "filter": "migration"
+      },
+      {
+        "number": 2118,
+        "type": "issue",
+        "state": "open",
+        "title": "Migration to version 19.0",
+        "url": "https://github.com/OCA/stock-logistics-workflow/issues/2118",
+        "filter": "migration"
+      },
+      {
+        "number": 1421,
+        "type": "issue",
+        "state": "open",
+        "title": "Migration to version 17.0",
+        "url": "https://github.com/OCA/stock-logistics-workflow/issues/1421",
+        "filter": "migration"
+      },
+      {
+        "number": 913,
+        "type": "issue",
+        "state": "open",
+        "title": "Migration to version 15.0",
+        "url": "https://github.com/OCA/stock-logistics-workflow/issues/913",
+        "filter": "migration"
+      },
+      {
+        "number": 457,
+        "type": "issue",
+        "state": "open",
+        "title": "Migration to version 12.0",
+        "url": "https://github.com/OCA/stock-logistics-workflow/issues/457",
+        "filter": "migration"
+      },
+      {
+        "number": 708,
+        "type": "issue",
+        "state": "closed",
+        "title": "Migration to version 14.0",
+        "url": "https://github.com/OCA/stock-logistics-workflow/issues/708",
+        "filter": "migration"
+      },
+      {
+        "number": 572,
+        "type": "issue",
+        "state": "closed",
+        "title": "Migration to version 13.0",
+        "url": "https://github.com/OCA/stock-logistics-workflow/issues/572",
+        "filter": "migration"
+      },
+      {
+        "number": 377,
+        "type": "issue",
+        "state": "closed",
+        "title": "Migration to version 11.0",
+        "url": "https://github.com/OCA/stock-logistics-workflow/issues/377",
+        "filter": "migration"
+      },
+      {
+        "number": 265,
+        "type": "issue",
+        "state": "closed",
+        "title": "Migration to version 10.0",
+        "url": "https://github.com/OCA/stock-logistics-workflow/issues/265",
+        "filter": "migration"
+      },
+      {
+        "number": 167,
+        "type": "issue",
+        "state": "closed",
+        "title": "Migration to version 9.0",
+        "url": "https://github.com/OCA/stock-logistics-workflow/issues/167",
+        "filter": "migration"
+      },
+      {
+        "number": 229,
+        "type": "issue",
+        "state": "closed",
+        "title": "[8.0] [stock_picking_back2draft] Sale order DONE instead of OPEN",
+        "url": "https://github.com/OCA/stock-logistics-workflow/issues/229",
+        "filter": "kept"
+      },
+      {
+        "number": 151,
+        "type": "issue",
+        "state": "closed",
+        "title": "picking_dispatch: cancel does cancel all the moves in the dispatch",
+        "url": "https://github.com/OCA/stock-logistics-workflow/issues/151",
+        "filter": "module_not_mentioned"
+      },
+      {
+        "number": 2489,
+        "type": "pr",
+        "state": "open",
+        "title": "[20.0][MIG] stock_picking_back2draft: Migration to 20.0",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/2489",
+        "filter": "migration"
+      },
+      {
+        "number": 2523,
+        "type": "pr",
+        "state": "closed",
+        "title": "[20.0][MIG] stock_picking_back2draft: Migration to 20.0",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/2523",
+        "filter": "migration"
+      },
+      {
+        "number": 2214,
+        "type": "pr",
+        "state": "closed",
+        "title": "[19.0][MIG] stock_picking_back2draft: Migration to 19.0",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/2214",
+        "filter": "migration"
+      },
+      {
+        "number": 2207,
+        "type": "pr",
+        "state": "closed",
+        "title": "[19.0][MIG] stock_picking_back2draft",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/2207",
+        "filter": "migration"
+      },
+      {
+        "number": 1805,
+        "type": "pr",
+        "state": "closed",
+        "title": "[18.0][MIG] stock_picking_back2draft: Migration to 18.0",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/1805",
+        "filter": "migration"
+      },
+      {
+        "number": 1593,
+        "type": "pr",
+        "state": "closed",
+        "title": "[17.0][MIG] stock_picking_back2draft: Migration to 17.0",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/1593",
+        "filter": "migration"
+      },
+      {
+        "number": 1592,
+        "type": "pr",
+        "state": "closed",
+        "title": "[17.0][MIG] stock_picking_back2draft: Migration to 17.0",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/1592",
+        "filter": "migration"
+      },
+      {
+        "number": 1124,
+        "type": "pr",
+        "state": "closed",
+        "title": "[16.0][MIG] stock_picking_back2draft",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/1124",
+        "filter": "migration"
+      },
+      {
+        "number": 977,
+        "type": "pr",
+        "state": "closed",
+        "title": "[15.0][MIG] stock_picking_back2draft: Migration to 15.0",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/977",
+        "filter": "migration"
+      },
+      {
+        "number": 603,
+        "type": "pr",
+        "state": "closed",
+        "title": "[12.0][ADD]stock_picking_auto_revert",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/603",
+        "filter": "kept"
+      },
+      {
+        "number": 602,
+        "type": "pr",
+        "state": "closed",
+        "title": "[13.0][MIG] stock_picking_back2draft",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/602",
+        "filter": "migration"
+      },
+      {
+        "number": 593,
+        "type": "pr",
+        "state": "closed",
+        "title": "[10.0][ADD]stock_picking_auto_revert",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/593",
+        "filter": "module_not_mentioned"
+      },
+      {
+        "number": 550,
+        "type": "pr",
+        "state": "closed",
+        "title": "[11.0][MIG] stock_picking_back2draft",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/550",
+        "filter": "migration"
+      },
+      {
+        "number": 560,
+        "type": "pr",
+        "state": "closed",
+        "title": "[12.0][MIG] stock_picking_back2draft",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/560",
+        "filter": "migration"
+      },
+      {
+        "number": 456,
+        "type": "pr",
+        "state": "closed",
+        "title": "[10.0][MIG] stock_picking_back2draft",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/456",
+        "filter": "migration"
+      },
+      {
+        "number": 222,
+        "type": "pr",
+        "state": "closed",
+        "title": "ADD stock_picking_back2draft",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/222",
+        "filter": "kept"
+      }
+    ],
+    "selected": [
+      {
+        "number": 229,
+        "type": "issue",
+        "state": "closed",
+        "title": "[8.0] [stock_picking_back2draft] Sale order DONE instead of OPEN",
+        "url": "https://github.com/OCA/stock-logistics-workflow/issues/229",
+        "created_at": "2016-05-04T11:26:51Z",
+        "category": "functional_bug",
+        "reason": "Shows how resetting a canceled picking back to draft interacts with the linked sale order state.",
+        "body_clean": "**Module:** stock_picking_back2draft\n**Steps to reproduce:**\n1. Create a sale order for 100 units of any product.\n2. Transfer 50 units of product.\n3. Cancel the transfer of the 50 remaining units.\n4. Click on picking Back to draft.\n5. Mark as To Do.\n**Problem:**\n- The sale order is in state \"DONE\" even though the picking is not done.\n- Invoice control on the picking is Not Applicable.\n**Expected behaviour:**\n- The sale order moves back to state OPEN as the shipping is not completely done yet.\n- Invoice control should be To Be Invoiced."
+      }
+    ]
+  },
+  "selection": {
+    "llm": "gemini-3.6-flash",
+    "status": "new",
+    "prompt_sha256": "67ee2a431ae32a94",
+    "called_at": "2026-11-24T04:50:40+00:00",
+    "invalid_numbers": []
+  },
+  "stats": {
+    "readme_sections": [
+      "DESCRIPTION",
+      "USAGE"
+    ],
+    "n_chars_v0": 206,
+    "n_chars_issues": 665,
+    "n_chars": 873,
+    "n_sources": 2,
+    "has_description": true
+  }
+}

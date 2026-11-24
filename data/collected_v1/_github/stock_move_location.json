@@ -1,0 +1,1190 @@
+{
+  "module": "stock_move_location",
+  "repo": "OCA/stock-logistics-warehouse",
+  "fetched_at": "2026-11-24T04:45:17+00:00",
+  "queries": [
+    {
+      "q": "\"stock_move_location\" repo:OCA/stock-logistics-warehouse is:issue",
+      "total_count": 27,
+      "returned": 27
+    },
+    {
+      "q": "\"stock_move_location\" repo:OCA/stock-logistics-warehouse is:pull-request",
+      "total_count": 81,
+      "returned": 50
+    }
+  ],
+  "items": [
+    {
+      "number": 2661,
+      "type": "issue",
+      "state": "open",
+      "title": "Migration to version 20.0",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/issues/2661",
+      "created_at": "2026-10-05T09:30:57Z",
+      "updated_at": "2026-11-17T11:58:24Z",
+      "closed_at": null,
+      "labels": [
+        "help wanted",
+        "work in progress",
+        "no stale"
+      ],
+      "body": "# Todo\n\nhttps://github.com/OCA/maintainer-tools/wiki/Migration-to-version-20.0\n\n# Modules to migrate\n\n- [x] stock_demand_estimate - By @LoisRForgeFlow - #2685\n- [ ] stock_inventory\n- [ ] stock_inventory_discrepancy - By @collinskipkorir - https://github.com/OCA/stock-logistics-inventory/pull/2\n- [ ] stock_inventory_justification\n- [ ] stock_inventory_lockdown\n- [ ] stock_inventory_lockdown_product\n- [ ] stock_location_is_sublocation\n- [ ] stock_location_position\n- [ ] stock_move_location\n- [x] stock_move_quantity_product_uom - deprecated, see https://github.com/OCA/OpenUpgrade/pull/6078\n- [ ] stock_picking_show_linked\n- [ ] stock_picking_type_user_restriction\n- [ ] stock_picking_volume\n- [ ] stock_putaway_product_template\n- [ ] stock_secondary_unit\n- [ ] stock_vlm_mgmt\n- [ ] stock_vlm_mgmt_kardex\n- [x] stock_warehouse_calendar - By @MiquelRForgeFlow - #2680\n- [x] stock_warehouse_out_pull - By @sebalix - #2709\n- [ ] stock_warehouse_security\n\nMissing module? Check https://github.com/OCA/maintainer-tools/wiki/%5BFAQ%5D-Missing-modules-in-migration-issue-list"
+    },
+    {
+      "number": 2319,
+      "type": "issue",
+      "state": "open",
+      "title": "[16.0] stock_move_location : empty location_dest_id on products lines on click immediate transfert",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/issues/2319",
+      "created_at": "2025-04-25T12:51:42Z",
+      "updated_at": "2026-11-22T19:09:02Z",
+      "closed_at": null,
+      "labels": [
+        "bug"
+      ],
+      "body": "Hello,\n\nIs it normal that when you select the destination location and click on immediate transfer, the destination is emptied and you have to select it again?\n\nSee video.\n\nhttps://github.com/user-attachments/assets/298fd64a-da3a-49a5-81eb-b8db3f183367\n\nThx."
+    },
+    {
+      "number": 2435,
+      "type": "issue",
+      "state": "open",
+      "title": "Migration to version 19.0",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/issues/2435",
+      "created_at": "2025-09-29T14:10:13Z",
+      "updated_at": "2026-11-18T09:13:25Z",
+      "closed_at": null,
+      "labels": [
+        "help wanted",
+        "work in progress",
+        "no stale"
+      ],
+      "body": "# Todo\n\nhttps://github.com/OCA/maintainer-tools/wiki/Migration-to-version-19.0\n\n# Modules to migrate\n\n- [x] account_move_line_product - By @AaronHForgeFlow - #2675\n- [ ] account_move_line_stock_info - By @MiquelRForgeFlow - #2717\n- [ ] procurement_auto_create_group\n- [ ] stock_archive_constraint\n- [ ] stock_cycle_count\n- [x] stock_demand_estimate - By @PaulaMForgeFlow - #2540\n- [x] stock_demand_estimate_matrix - By @LoisRForgeFlow - #2688\n- [ ] stock_inventory\n- [ ] stock_inventory_count_to_zero\n- [x] stock_inventory_discrepancy - By @JasminSForgeFlow - #2481\n- [x] stock_inventory_justification - By @gdgellatly - #2531\n- [x] stock_inventory_lockdown - By @JasminSForgeFlow - #2483\n- [x] stock_inventory_lockdown_product - By @JasminSForgeFlow - #2485\n- [ ] stock_inventory_preparation_filter\n- [ ] stock_inventory_verification_request\n- [ ] stock_location_bin_name\n- [ ] stock_location_children\n- [ ] stock_location_empty\n- [x] stock_location_is_sublocation - By @PaulaMForgeFlow - #2541\n- [x] stock_location_lockdown - By @gdgellatly - #2532\n- [ ] stock_location_pending_move\n- [x] stock_location_position - By @eugenios73 - #2524\n- [ ] stock_location_tray\n- [ ] stock_location_zone\n- [ ] stock_move_common_dest\n- [x] stock_move_location - By @carlos-lopez-tecnativa - #2647\n- [ ] stock_move_location_purchase_uom\n- [ ] stock_move_packaging_qty\n- [ ] stock_move_purchase_uom\n- [ ] stock_move_reset_quantity\n- [ ] stock_mts_mto_rule - By @llabusch93 - #2639\n- [ ] stock_packaging_calculator\n- [ ] stock_picking_completion_info\n- [ ] stock_picking_product_assortment\n- [x] stock_picking_show_linked - By @AndreuOForgeFlow - #2610\n- [ ] stock_picking_stage\n- [x] stock_picking_supplier_ref - By @sergioM-S73 - #2472\n- [x] stock_picking_volume - By @Vicent-S73 - #2441\n- [ ] stock_picking_volume_packaging\n- [ ] stock_product_qty_by_packaging\n- [x] stock_putaway_product_template - By @gdgellatly - #2530\n- [ ] stock_quant_cost_info\n- [x] stock_quant_reservation_info - By @GuillermoNforgeflow - #2672\n- [ ] stock_quant_reservation_info_mrp - By @MiquelRForgeFlow - #2718\n- [ ] stock_reference_auto_create - By @AaronHForgeFlow - #2723\n- [ ] stock_route_location_source\n- [ ] stock_route_mto - By @kalpeshgajera-uncannycs - #2624\n- [x] stock_secondary_unit - By @carlos-lopez-tecnativa - #2622\n- [ ] stock_storage_category_capacity_name\n- [ ] stock_vertical_lift\n- [ ] stock_vertical_lift_packaging_level\n- [ ] stock_vertical_lift_qty_by_packaging\n- [ ] stock_vertical_lift_server_env\n- [x] stock_vlm_mgmt - By @adasatorres-tecnativa - #2643\n- [x] stock_vlm_mgmt_kardex - By @adasatorres-tecnativa - #2644\n- [x] stock_warehouse_calendar - By @JordiMForgeFlow - #2447\n- [ ] stock_warehouse_out_pull\n- [ ] stock_warehouse_resupply_route_push\n- [x] stock_warehouse_security - By @luisDIXMIT - #2617\n\nMissing module? Check https://github.com/OCA/maintainer-tools/wiki/%5BFAQ%5D-Missing-modules-in-migration-issue-list"
+    },
+    {
+      "number": 2170,
+      "type": "issue",
+      "state": "open",
+      "title": "Migration to version 18.0",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/issues/2170",
+      "created_at": "2024-10-06T16:15:54Z",
+      "updated_at": "2026-11-04T07:55:51Z",
+      "closed_at": null,
+      "labels": [
+        "help wanted",
+        "work in progress",
+        "no stale"
+      ],
+      "body": "# Todo\n\nhttps://github.com/OCA/maintainer-tools/wiki/Migration-to-version-18.0\n\n# Modules to migrate\n\n- [x] account_move_line_product - By @Killance - #2420\n- [x] account_move_line_stock_info - By @JasminSForgeFlow - #2221\n- [ ] base_product_merge - By @peluko00 - #2707\n- [x] procurement_auto_create_group - By @AlexPForgeFlow - #2355\n- [x] product_route_profile - By @StefanRijnhart - #2436\n- [ ] scrap_reason_code - By @Ricardo-MC - Moved to https://github.com/OCA/stock-logistics-workflow/pull/2083\n- [x] stock_archive_constraint - By @juancarlosonate-tecnativa - #2245\n- [ ] stock_change_qty_reason - By @liamdynapps - #2363\n- [x] stock_cycle_count - By @xaviedoanhduy - #2403\n- [x] stock_demand_estimate - By @JasminSForgeFlow - #2210\n- [x] stock_demand_estimate_matrix - By @ThiagoMForgeFlow - #2298\n- [ ] stock_exception - By @mav-adhoc - #2216\n- [x] stock_helper - By @JasminSForgeFlow - #2223\n- [x] stock_inventory - By @rjaraspearhead - #2251\n- [x] stock_inventory_count_to_zero - By @dannyadair - #2336\n- [x] stock_inventory_discrepancy - By @carlos-lopez-tecnativa - #2295\n- [ ] stock_inventory_justification - By @dannyadair - #2337\n- [x] stock_inventory_location_state - By @sebalix - #2575\n- [x] stock_inventory_lockdown - By @natuan9 - #2305\n- [x] stock_inventory_preparation_filter - By @chaule97 - #2304\n- [x] stock_inventory_verification_request - By @np-oerp - #2370\n- [x] stock_location_children - By @rousseldenis - #2328\n- [x] stock_location_empty - By @yankinmax - #2243\n- [x] stock_location_fill_state - By @jbaudoux - #2438\n- [x] stock_location_lockdown - By @ced-adhoc - #2209\n- [x] stock_location_pending_move - By @sebalix - #2321\n- [x] stock_location_position - By @rlimaeco - #2266\n- [x] stock_location_tray - By @xaviedoanhduy - #2257\n- [x] stock_location_zone - By @natuan9 - #2228\n- [x] stock_lot_multi_image - By @BhaveshHeliconia - #2272\n- [ ] stock_move_auto_assign - By @sebalix - Moved to https://github.com/OCA/stock-logistics-reservation/pull/3\n- [ ] stock_move_auto_assign_auto_release - By @bizzappdev - #2377\n- [x] stock_move_common_dest - By @grindtildeath - #2252\n- [x] stock_move_line_reference_link - By @BhaveshHeliconia - #2512\n- [x] stock_move_location - By @CarlosRoca13 - #2316\n- [x] stock_move_location_purchase_uom - By @ArnauCForgeFlow - #2417\n- [x] stock_move_packaging_qty - By @Shide - #2366\n- [x] stock_move_purchase_uom - By @ArnauCForgeFlow - #2416\n- [ ] stock_mts_mto_rule - By @apik-mgu - #2425\n- [ ] stock_orderpoint_no_horizon - By @henrybackman - #2352\n- [x] stock_packaging_calculator - By @thienvh332 - #2173\n- [ ] stock_packaging_calculator_packaging_level - By @Kimkhoi3010 - #2234\n- [x] stock_picking_batch_packaging_qty - By @Xino61122 - #2460\n- [x] stock_picking_commercial_partner - By @JordiMForgeFlow - #2528\n- [x] stock_picking_completion_info - By @rlimaeco - #2290\n- [x] stock_picking_procure_method - By @eduezerouali-tecnativa - #2555\n- [x] stock_picking_product_assortment - By @bosd - #2262\n- [x] stock_picking_show_linked - By @ThiagoMForgeFlow - #2307\n- [x] stock_picking_supplier_ref - By @BhaveshHeliconia - #2267\n- [x] stock_picking_volume - By @henrybackman - #2278\n- [x] stock_picking_volume_packaging - By @mmequignon - #2382\n- [x] stock_product_qty_by_packaging - By @sebalix - #2288\n- [x] stock_putaway_product_template - By @CarlosRoca13 - #2253\n- [x] stock_quant_cost_info - By @juancarlosonate-tecnativa - #2246\n- [ ] stock_quant_manual_assign - By @mav-adhoc - #2213\n- [x] stock_quant_reservation_info - By @ArnauCForgeFlow - #2332\n- [x] stock_quant_reservation_info_mrp - By @ArnauCForgeFlow - #2318\n- [x] stock_removal_location_by_priority - By @Andrii9090-tecnativa - #2576\n- [ ] stock_reserve - By @rjaraspearhead - #2270\n- [x] stock_route_mto - By @jbaudoux - #2330\n- [x] stock_secondary_unit - By @rjaraspearhead - #2280\n- [x] stock_storage_category_capacity_name - By @sebalix - #2327\n- [x] stock_valuation_layer_inventory_filter - By @Andrii9090 - #2459\n- [x] stock_vertical_lift - By @LucasTran380381 - #2255\n- [ ] stock_vertical_lift_kardex - By @simahawk - #2325\n- [x] stock_vertical_lift_qty_by_packaging - By @rlimaeco - #2374\n- [x] stock_vertical_lift_server_env - By @rlimaeco - #2371\n- [x] stock_vertical_lift_storage_type - By @sebalix - #2405\n- [x] stock_vlm_mgmt - By @christian-ramos-tecnativa - #2474\n- [x] stock_vlm_mgmt_kardex - By @christian-ramos-tecnativa - #2477\n- [x] stock_vlm_mgmt_modula - By @christian-ramos-tecnativa - #2476\n- [x] stock_warehouse_calendar - By @RicardCForgeFlow - #2194\n\nMissing module? Check https://github.com/OCA/maintainer-tools/wiki/%5BFAQ%5D-Missing-modules-in-migration-issue-list"
+    },
+    {
+      "number": 1883,
+      "type": "issue",
+      "state": "open",
+      "title": "Migration to version 17.0",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/issues/1883",
+      "created_at": "2023-11-08T09:37:41Z",
+      "updated_at": "2026-09-22T09:26:40Z",
+      "closed_at": null,
+      "labels": [
+        "help wanted",
+        "work in progress",
+        "no stale"
+      ],
+      "body": "# Todo\n\nhttps://github.com/OCA/maintainer-tools/wiki/Migration-to-version-17.0\n\n# Modules to migrate\n\n- [x] account_move_line_product - By @AnaisLForgeFlow - #1955\n- [x] account_move_line_stock_info - By @StefanRijnhart - #2160\n- [x] base_product_merge - By @FernandoRomera - #2132\n- [x] procurement_auto_create_group - By @bizzappdev - #2136\n- [ ] product_quantity_update_force_inventory - By @AnaisLForgeFlow - #2042\n- [x] product_route_profile - By @StefanRijnhart - #2097\n- [x] scrap_reason_code - By @john-herholz-dt - #1906\n- [x] stock_archive_constraint - By @carlos-lopez-tecnativa - #2123\n- [x] stock_change_qty_reason - By @JasminSForgeFlow - #2030\n- [x] stock_demand_estimate - By @CarlosVForgeFlow - #1960\n- [x] stock_demand_estimate_matrix - By @JasminSForgeFlow - #2041\n- [x] stock_exception - By @Urvisha-OSI - #2063\n- [ ] stock_helper\n- [x] stock_inventory - By @bizzappdev - #2085\n- [x] stock_inventory_count_to_zero - By @SaraMohamedlorim - #2605\n- [x] stock_inventory_discrepancy - By @JasminSForgeFlow - #2064\n- [ ] stock_inventory_justification - By @dannyadair - #2334\n- [x] stock_inventory_preparation_filter - By @Tisho99 - #2261\n- [ ] stock_location_children - By @kafai-lam - #2379\n- [x] stock_location_lockdown - By @celm1990 - #1946\n- [x] stock_location_position - By @Vandan-OSI - #2254\n- [ ] stock_location_product_restriction\n- [x] stock_location_zone - By @Murtaza-SerpentCS - #2165\n- [ ] stock_lot_multi_image - By @BhaveshHeliconia - #2271\n- [ ] stock_move_auto_assign\n- [ ] stock_move_auto_assign_auto_release\n- [ ] stock_move_common_dest\n- [x] stock_move_location - By @david-banon-tecnativa - #2339\n- [ ] stock_move_packaging_qty\n- [x] stock_mts_mto_mrp_rule - By @arantxa-s73 - #2241\n- [x] stock_mts_mto_rule - By @milinsoft - #1932\n- [ ] stock_orderpoint_generator - By @astirpe - #2049\n- [ ] stock_package_type_button_box\n- [x] stock_packaging_calculator - By @nguyenminhchien - #2067\n- [ ] stock_picking_accounting_date - By @alan196 - #2196\n- [ ] stock_picking_commercial_partner\n- [x] stock_picking_procure_method - By @carlossainznetkia - #2453\n- [ ] stock_picking_product_interchangeable\n- [ ] stock_picking_type_restriction - By @SMaciasOSI - #2386\n- [x] stock_picking_volume - By @RabbitJon-S73 - #2055\n- [x] stock_picking_volume_packaging - By @Murtaza-SerpentCS - #2166\n- [ ] stock_product_qty_by_packaging\n- [x] stock_putaway_product_template - By @carlos-lopez-tecnativa - #2279\n- [ ] stock_quant_cost_info - By @SaraMohamedlorim - #2608\n- [x] stock_quant_manual_assign - By @mav-adhoc - #2071\n- [x] stock_quant_reservation_info - By @MeritxellAForgeFlow - #2206\n- [x] stock_quant_reservation_info_mrp - By @MeritxellAForgeFlow - #2212\n- [x] stock_removal_location_by_priority - By @JasminSForgeFlow - #2065\n- [x] stock_reserve - By @chrisandrewmann - #1934\n- [x] stock_reserve_sale - By @AndreuOForgeFlow - #2442\n- [x] stock_route_mto - By @bizzappdev - #2062\n- [x] stock_search_supplierinfo_code - By @astirpe - #2090\n- [x] stock_secondary_unit - By @rov-adhoc - #2121\n- [ ] stock_storage_category_capacity_name\n- [x] stock_vlm_mgmt - By @adasatorres-tecnativa - #2625\n- [x] stock_vlm_mgmt_kardex - By @adasatorres-tecnativa - #2626\n- [x] stock_warehouse_calendar - By @fredericgrall - #1933\n\nMissing module? Check https://github.com/OCA/maintainer-tools/wiki/%5BFAQ%5D-Missing-modules-in-migration-issue-list"
+    },
+    {
+      "number": 1494,
+      "type": "issue",
+      "state": "open",
+      "title": "Migration to version 16.0",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/issues/1494",
+      "created_at": "2022-10-03T17:03:59Z",
+      "updated_at": "2026-11-16T17:47:46Z",
+      "closed_at": null,
+      "labels": [
+        "help wanted",
+        "work in progress",
+        "no stale"
+      ],
+      "body": "# Todo\r\n\r\nhttps://github.com/OCA/maintainer-tools/wiki/Migration-to-version-16.0\r\n\r\n# Modules to migrate\r\n\r\n- [x] account_move_line_product - By @dsolanki-initos - #1748\r\n- [x] account_move_line_stock_info - By @BT-nfrancisco - #1645\r\n- [x] procurement_auto_create_group - By @lmignon - #1819\n- [x] procurement_auto_create_group_by_product - By @lmignon - #2096\n- [x] product_route_profile - By @astirpe - #2199\n- [ ] scrap_location_filter - By @Urvisha-OSI - #1664\r\n- [x] scrap_reason_code - By @PierrickBrun - #1541\r\n- [ ] stock_archive_constraint - By @mathieudelva - #2341\n- [x] stock_available - Moved to OCA/stock-logistics-availability - https://github.com/OCA/stock-logistics-availability/pull/2\r\n- [x] stock_available_immediately - Moved to OCA/stock-logistics-availability - https://github.com/OCA/stock-logistics-availability/pull/1\r\n- [x] stock_available_mrp - Moved to OCA/stock-logistics-availability - https://github.com/OCA/stock-logistics-availability/pull/7\r\n- [x] stock_available_unreserved - Moved to OCA/stock-logistics-availability - https://github.com/OCA/stock-logistics-availability/pull/5\r\n- [ ] stock_change_qty_reason - By @paradoxxxzero - #1854\n- [x] stock_cycle_count - By @ArnauCForgeFlow - #2045\n- [x] stock_demand_estimate - By @DavidJForgeFlow - #1553\r\n- [x] stock_demand_estimate_matrix - By @kaynnan - #1796\n- [x] stock_exception - By @mav-adhoc - #1965\n- [x] stock_helper - By @lmignon - #1539\r\n- [ ] stock_inventory - By @Urvisha-OSI - #1666\r\n- [x] stock_inventory_count_to_zero - By @ernesto-garcia-tecnativa - #1865\n- [x] stock_inventory_discrepancy - By @carolinafernandez-tecnativa - #1841\n- [ ] stock_inventory_exclude_sublocation - By @virendra-aktivsoftware - #1962\n- [x] stock_inventory_justification - By @ThomasBinsfeld - #1910\n- [ ] stock_inventory_line_product_cost - By @Urvisha-OSI - #1676\r\n- [x] stock_inventory_lockdown - By @ArnauCForgeFlow - #2217\n- [x] stock_inventory_preparation_filter - By @AlexPForgeFlow - #1852\n- [ ] stock_inventory_preparation_filter_pos - By @syci - #2297\n- [ ] stock_inventory_revaluation_mrp - By @Murtaza-OSI - #1662\r\n- [ ] stock_inventory_revaluation_wip - By @Murtaza-OSI - #1663\r\n- [x] stock_location_children - By @rousseldenis - #2190\n- [ ] stock_location_last_inventory_date - By @Urvisha-OSI - #1672\r\n- [x] stock_location_lockdown - By @Urvisha-OSI - #1670\r\n- [x] stock_location_package_restriction - By @jbaudoux - #2068\n- [x] stock_location_position - By @TDu - #1500\r\n- [x] stock_location_product_restriction - By @rousseldenis - #1510\r\n- [ ] stock_location_route_description - By @dsolanki-initos - #1747\r\n- [x] stock_location_zone - By @rousseldenis - #1571\r\n- [x] stock_move_common_dest - By @glitchov - #1566\r\n- [x] stock_move_location - By @tupaq - #1549\r\n- [x] stock_move_packaging_qty - By @yajo - #1823\n- [x] stock_mts_mto_rule - By @msteinfeld-sirum - #1503\r\n- [x] stock_orderpoint_move_link - Moved to new repository. https://github.com/OCA/stock-logistics-orderpoint/pull/1\r\n- [x] stock_orderpoint_purchase_link - Moved to new repository. https://github.com/OCA/stock-logistics-orderpoint/pull/2\r\n- [ ] stock_orderpoint_uom - To be moved to Moved to new repository.\r\n- [ ] stock_packaging_calculator - By @TDu - #1502\r\n- [x] stock_packaging_calculator_packaging_type - By @marielejeune - #1860\n- [x] stock_picking_procure_method - By @micheledic - #1805\n- [x] stock_picking_show_linked - By @bosd - #1772\n- [x] stock_product_qty_by_packaging - By @tuantrantg - #1857\n- [x] stock_production_lot_quantity_tree - By @AdrianaSaiz - #2109\n- [x] stock_pull_list - By @LoisRForgeFlow - #2093\n- [x] stock_putaway_product_template - By @carolinafernandez-tecnativa - #1846\n- [x] stock_quant_cost_info - By @Yadier-Tecnativa - #1703\r\n- [x] stock_quant_expiration_date_tree - By @AdrianaSaiz - #2108\n- [x] stock_quant_manual_assign - By @yankinmax - #1707\r\n- [x] stock_quant_reservation_info - By @LoisRForgeFlow - #2137\n- [x] stock_quant_reservation_info_mrp - By @LoisRForgeFlow - #2138\n- [x] stock_removal_location_by_priority - By @aritzolea - #1891\n- [ ] stock_request - Moved to OCA/stock-logistics-request - By @JoelZilli - https://github.com/OCA/stock-logistics-request/pull/1\r\n- [ ] stock_request_direction - By @peluko00 - #1979\n- [ ] stock_request_purchase - To be moved to OCA/stock-logistics-request\r\n- [x] stock_request_purchase_request - By @CristianoMafraJunior - #2511\n- [x] stock_reserve - By @aliciagaarzo - #1693\r\n- [x] stock_reserve_rule - By @rousseldenis - #1794\n- [x] stock_reserve_sale - By @JordiMForgeFlow - #2684\n- [x] stock_search_supplierinfo_code - By @syera94 - #1570\r\n- [x] stock_secondary_unit - By @lk-eska - #1985\n- [x] stock_valuation_layer_total_value - By @PauBForgeFlow - #1806\n- [x] stock_vlm_mgmt - By @chienandalu - #2102\n- [x] stock_warehouse_calendar - By @TDu - #1501\r\n- [x] stock_warehouse_relationship - By @florian-dacosta - #1923\n- [ ] stock_warehouse_security - By @florian-dacosta - #1925\n\r\nMissing module? Check https://github.com/OCA/maintainer-tools/wiki/%5BFAQ%5D-Missing-modules-in-migration-issue-list"
+    },
+    {
+      "number": 981,
+      "type": "issue",
+      "state": "closed",
+      "title": "Migration to version 14.0",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/issues/981",
+      "created_at": "2020-10-04T10:35:29Z",
+      "updated_at": "2025-07-14T09:22:41Z",
+      "closed_at": "2025-04-27T12:35:22Z",
+      "labels": [
+        "help wanted",
+        "work in progress",
+        "stale"
+      ],
+      "body": "# Todo\r\n\r\nhttps://github.com/OCA/maintainer-tools/wiki/Migration-to-version-14.0\r\n\r\n# Modules to migrate\r\n\r\n- [ ] account_move_line_product - By @Mantux11 - #1296\r\n- [ ] account_move_line_stock_info - By @JoanMForgeFlow - #1277\r\n- [x] procurement_auto_create_group - By @DavidBForgeFlow - #1180 \r\n- [ ] product_quantity_update_force_inventory - By @mariadforgeflow - #1342\r\n- [x] scrap_reason_code - By @Chandresh-OSI - #1084\r\n- [ ] stock_account_change_qty_reason - By @Deriman-Alonso - #1994\n- [ ] stock_account_internal_move - By @Saran440 - #1749\n- [ ] stock_available\r\n- [x] stock_available_immediately_exclude_location - By @sebalix - #2150\n- [x] stock_available_mrp - By @florian-dacosta - #1038 \r\n- [x] stock_available_unreserved - By @sbejaoui - #1169 \r\n- [ ] stock_change_qty_reason - By @GuillemCForgeFlow - #1320\r\n- [ ] stock_cubiscan\r\n- [ ] stock_cycle_count - By @MateuGForgeFlow - #1241\r\n- [ ] stock_demand_estimate\r\n- [ ] stock_demand_estimate_matrix\r\n- [x] <s>stock_inventory_chatter (included as a standard feature in 14.0)</s>\r\n- [ ] stock_inventory_cost_info - By @victoralmau - #1306\r\n- [x] stock_inventory_discrepancy - By @MateuGForgeFlow - #1239 \r\n- [ ] stock_inventory_exclude_sublocation - By @JoanSForgeFlow - #1241\r\n- [x] ~~stock_inventory_include_exhausted - By @sebastienbeau - #1049~~ Included in core\r\n- [x] stock_inventory_lockdown - By @benstannard - #1515\r\n- [x] stock_inventory_preparation_filter - By @ivantodorovich - #1041 \r\n- [ ] stock_location_bin_name\r\n- [x] stock_location_children - By @hparfr - #1080 \r\n- [x] stock_location_empty - By @sonhd91 - #1349\r\n- [x] stock_location_last_inventory_date - By @hailangvn - #1261\r\n- [ ] stock_location_position\r\n- [ ] stock_location_route_description - By @JasminSForgeFlow - #1462\r\n- [ ] stock_location_tray\r\n- [ ] stock_location_zone\r\n- [x] stock_measuring_device - By @hailangvn - #1242 \r\n- [x] stock_measuring_device_zippcube - By @hailangvn - #1243 \r\n- [ ] stock_move_auto_assign\r\n- [x] stock_move_common_dest - By @sebastienbeau - #1048 \r\n- [x] stock_move_location - By @joao-p-marques - #1023 \r\n- [x] stock_mts_mto_rule - By @PierrickBrun - #1032 \r\n- [x] stock_orderpoint_generator - By @sergiocorato - #1869\n- [x] stock_orderpoint_manual_procurement - By @dzungtran89 - #1054 \r\n- [x] stock_orderpoint_manual_procurement_uom - By @DavidBForgeFlow - #1230 \r\n- [x] stock_orderpoint_move_link - By @DavidBForgeFlow - #1164 \r\n- [x] stock_orderpoint_purchase_link - By @dzungtran89 - #1254 \r\n- [x] stock_orderpoint_route - By @dzungtran89 - #1249 \r\n- [ ] stock_orderpoint_uom\r\n- [x] stock_packaging_calculator - By @sebastienbeau - #1050 \r\n- [x] stock_packaging_calculator_packaging_type - By @hiepnh97 - #1255 \r\n- [ ] stock_picking_completion_info :warning: to move to OCA/wms\r\n- [ ] stock_picking_consolidation_priority :warning: to move to OCA/wms\r\n- [x] stock_picking_procure_method - By @cesar-tecnativa - #1467\r\n- [x] stock_picking_type_user_restriction - By @rousseldenis - #1329\r\n- [x] stock_picking_volume_packaging - By @mt-software-de - #1779\n- [x] stock_product_qty_by_packaging - By @hiepnh97 - #1256 \r\n- [ ] stock_production_lot_quantity_tree - By @dani-xtendoo - #1829\n- [x] stock_putaway_product_template - By @victoralmau - #1307\r\n- [ ] stock_quant_manual_assign - By @fanha99 - #1025 \r\n- [ ] stock_quant_view_reservation - By @xavier-bouquiaux - #1435\r\n- [ ] stock_removal_location_by_priority\r\n- [x] stock_request - By @kittiu - #1134\n- [x] stock_request_analytic - By @rousseldenis - #1317\r\n- [x] stock_request_direction - By @Freni-OSI - #1223\r\n- [x] stock_request_kanban - By @BernatPForgeFlow - #1348\r\n- [x] stock_request_mrp - By @pedrobaeza - #1499\r\n- [ ] stock_request_picking_type - By @ReedHayashikawa - #1157 \r\n- [x] stock_request_purchase - By @alan196 - #986 \r\n- [x] stock_reserve - By @victoralmau - #1604\n- [ ] stock_reserve_ - By @rvalyi - #1696\n- [ ] stock_reserve_sale - By @mt-software-de - #1347\r\n- [ ] stock_request_submit - By @patrickrwilson - #1153 \r\n- [ ] stock_request_tier_validation\r\n- [ ] stock_reserve_rule :warning: to move to OCA/wms\r\n- [x] stock_route_mto - By @twalter-c2c - #2154\n- [x] stock_secondary_unit - By @alan196 - #1272\r\n- [ ] stock_vertical_lift\r\n- [ ] stock_vertical_lift_empty_tray_check - By @HoKhanhNguyen99  - #1263 \r\n- [ ] stock_vertical_lift_kardex\r\n- [ ] stock_vertical_lift_packaging_type\r\n- [x] stock_vertical_lift_qty_by_packaging - By @hiepnh97 - #1259 \r\n- [x] stock_vertical_lift_server_env - By @HoKhanhNguyen99 - #1251 \r\n- [x] stock_vertical_lift_storage_type - By @hailangvn - #1257 \r\n- [x] stock_warehouse_calendar - By @DavidBForgeFlow - #1043\r\n- [ ] stock_warehouse_orderpoint_stock_info - By @sergiocorato - #1850\n- [ ] stock_warehouse_orderpoint_stock_info_unreserved\r\n\r\nMissing module? Check https://github.com/OCA/maintainer-tools/wiki/%5BFAQ%5D-Missing-modules-in-migration-issue-list"
+    },
+    {
+      "number": 1278,
+      "type": "issue",
+      "state": "closed",
+      "title": "Migration to version 15.0",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/issues/1278",
+      "created_at": "2021-10-17T10:22:36Z",
+      "updated_at": "2025-05-26T07:34:36Z",
+      "closed_at": "2025-05-25T12:37:10Z",
+      "labels": [
+        "help wanted",
+        "work in progress",
+        "stale"
+      ],
+      "body": "# Todo\r\n\r\nhttps://github.com/OCA/maintainer-tools/wiki/Migration-to-version-15.0\r\n\r\n# Modules to migrate\r\n\r\n- [x] account_move_line_product - By @JuanyDForgeflow - #1428\r\n- [x] product_route_profile - By @bosd - #1775\n- [ ] product_supplierinfo_for_customer\r\n- [x] procurement_auto_create_group: https://github.com/OCA/stock-logistics-warehouse/pull/1300\r\n- [x] push_rule_auto_create_group: merged into procurement_auto_create_group - https://github.com/OCA/stock-logistics-warehouse/pull/1300\r\n- [x] sale_stock_available_info_popup - By @victoralmau - #1522\r\n- [x] scrap_reason_code - By @glitchov - #1504\r\n- [x] stock_archive_constraint - By @cesar-tecnativa - #1453\r\n- [x] stock_available - By @JasminSForgeFlow - #1356\r\n- [x] stock_available_immediately - By @victoralmau - #1588\r\n- [x] stock_available_mrp - By @JoanMForgeFlow - #1363\r\n- [x] stock_available_unreserved - By @JoanMForgeFlow - #1340\r\n- [x] stock_change_qty_reason - By @MiquelRForgeFlow - #1608\r\n- [x] stock_cycle_count - By @ArnauCForgeFlow - #1995\n- [ ] stock_demand_estimate\r\n- [x] stock_demand_estimate_matrix - By @LoisRForgeFlow - #1374\r\n- [ ] stock_exception - By @bizzappdev - #1650\r\n- [x] stock_free_quantity - By @glitchov - #1508\r\n- [ ] stock_generate_putaway_from_inventory\r\n- [x] stock_helper - By @ChrisOForgeFlow - #1324\r\n- [x] stock_inventory_cost_info > stock_quant_cost_info - By @CarlosRoca13 - #1611\r\n- [ ] stock_inventory_discrepancy - By @ernestotejeda - #1683\r\n- [ ] stock_inventory_exclude_sublocation - By @Chanakya-OSI - #1574\r\n- [x] stock_inventory_lockdown - By @JoanSForgeFlow - #2155\n- [ ] stock_inventory_preparation_filter\r\n- [x] stock_inventory_verification_request - By @JoanSForgeFlow - #2131\n- [ ] stock_location_bin_name\r\n- [ ] stock_location_children\r\n- [ ] stock_location_last_inventory_date\r\n- [x] stock_location_lockdown - By @BT-dmontull - #1384\r\n- [ ] stock_location_position\r\n- [ ] stock_location_tray - By @GabbasovDinar - #1568\r\n- [ ] stock_location_zone\r\n- [x] stock_lot_filter_available - By @CarlosRoca13 - #1523\r\n- [ ] stock_measuring_device\r\n- [ ] stock_measuring_device_zippcube\r\n- [ ] stock_move_auto_assign\r\n- [ ] stock_move_common_dest - By @flachica - #1490\r\n- [x] stock_move_location - By @BernatPForgeFlow - #1339\r\n- [x] stock_mts_mto_rule - By @alan196 - #1302\r\n- [x] stock_orderpoint_generator - By @chienandalu - #1627\r\n- [ ] stock_orderpoint_manual_procurement - By @ernesto-garcia-tecnativa - #1641\r\n- [x] stock_orderpoint_move_link - By @BernatPForgeFlow - #1336\r\n- [ ] stock_orderpoint_procure_location - By @AaronHForgeFlow - #1879\n- [ ] stock_orderpoint_purchase_link\r\n- [ ] stock_orderpoint_route\r\n- [x] stock_orderpoint_uom - By @JoanMForgeFlow - #1335\r\n- [x] stock_packaging_calculator - By @ChrisOForgeFlow - #1327\r\n- [ ] stock_packaging_calculator_packaging_type\r\n- [ ] stock_picking_auto_revert - By @AaronHForgeFlow - #1918\n- [ ] stock_picking_cancel_confirm\r\n- [x] stock_procurement_group_hook - By @PauBForgeFlow - #1818\n- [ ] stock_product_qty_by_packaging\r\n- [ ] stock_pull_list\r\n- [x] stock_putaway_method - By @Vandan-OSI - #1545.  Replaced by https://github.com/OCA/stock-logistics-workflow/tree/15.0/stock_putaway_hook\r\n- [x] stock_putaway_product_template - By @cesar-tecnativa - #1448\r\n- [ ] stock_quant_manual_assign\r\n- [x] stock_quant_reservation_info - By @bizzappdev - #2028\n- [x] stock_quant_reservation_info_mrp - By @bizzappdev - #2054\n- [x] stock_request - By @BernatPForgeFlow - #1343\r\n- [ ] stock_request_analytic - By @ps-tubtim - #1587\r\n- [ ] stock_request_cancel_confirm - By @bizzappdev - #2156\n- [x] stock_request_kanban - By @BernatPForgeFlow - #1357\r\n- [x] stock_request_mrp - By @augusto-weiss - #1469\r\n- [ ] stock_request_picking_type - By @Chanakya-OSI - #1397\r\n- [x] stock_request_purchase - By @BernatPForgeFlow - #1354\r\n- [x] stock_request_submit - By @ps-tubtim - #1594\r\n- [x] stock_request_tier_validation - By @ps-tubtim - #1595\r\n- [x] stock_reserve - By @flachica - #1485\r\n- [x] stock_reserve_rule - By @Ricardoalso - #1753\r\n- [ ] stock_search_supplierinfo_code\r\n- [x] stock_secondary_unit - By @CarlosRoca13 - #1432\r\n- [ ] stock_vertical_lift\r\n- [ ] stock_vertical_lift_empty_tray_check\r\n- [ ] stock_vertical_lift_kardex\r\n- [ ] stock_vertical_lift_packaging_type\r\n- [ ] stock_vertical_lift_qty_by_packaging\r\n- [ ] stock_vertical_lift_server_env\r\n- [ ] stock_vertical_lift_storage_type\r\n- [ ] stock_warehouse_calendar\r\n\r\nMissing module? Check https://github.com/OCA/maintainer-tools/wiki/%5BFAQ%5D-Missing-modules-in-migration-issue-list"
+    },
+    {
+      "number": 727,
+      "type": "issue",
+      "state": "closed",
+      "title": "Migration to version 13.0",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/issues/727",
+      "created_at": "2019-09-29T21:49:07Z",
+      "updated_at": "2025-04-09T04:56:27Z",
+      "closed_at": "2022-07-24T12:32:44Z",
+      "labels": [
+        "help wanted",
+        "work in progress",
+        "stale"
+      ],
+      "body": "# Todo\r\n\r\nhttps://github.com/OCA/maintainer-tools/wiki/Migration-to-version-13.0\r\n\r\n# Modules to migrate\r\n\r\n- [x] account_move_line_product - By @ps-tubtim - #789 \r\n- [x] account_move_line_stock_info - By @ps-tubtim - #793 \r\n- [ ] partner_location_auto_create - By @Ana-Iarajuli - #2056\n- [ ] procurement_auto_create_group\r\n- [x] scrap_reason_code - By @Khalid-SerpentCS - #837 \r\n- [x] stock_account_change_qty_reason - By @AdriaGForgeFlow - #814 \r\n- [ ] stock_account_internal_move - By @Rajkumar-pondy - #822 \r\n- [ ] stock_auto_move - By @rousseldenis \r\n- [x] stock_available - By @ps-tubtim - #802 \r\n- [x] stock_available_immediately - By @victoralmau - #1085 \r\n- [x] stock_available_mrp - By @victoralmau  - #1152 \r\n- [x] stock_available_unreserved - By @LoisRForgeFlow - #810 \r\n- [x] stock_change_qty_reason - By @AdriaGForgeFlow - #813 \r\n- [x] stock_cycle_count - By @jimhoefnagels - #844 \r\n- [x] stock_demand_estimate - By @LoisRForgeFlow - #818 \r\n- [x] stock_inventory_chatter - By @JoanSForgeFlow - #815 \r\n- [x] stock_inventory_cost_info - By @sergio-teruel - #845 \r\n- [x] stock_inventory_discrepancy - By @HviorForgeFlow - #824 \r\n- [x] stock_inventory_exclude_sublocation - By @HviorForgeFlow - #817 \r\n- [x] stock_inventory_lockdown - By @AdriaGForgeFlow - #811 \r\n- [x] stock_inventory_preparation_filter - By @sergio-teruel - #847 \r\n- [ ] stock_inventory_verification_request\r\n- [x] stock_location_lockdown - By @manuelregidor - #991 \r\n- [x] stock_location_zone - By @guewen - #804\r\n- [x] stock_move_location - By @JoanSForgeFlow - #829 \r\n- [x] stock_mts_mto_rule - By @deivislaya - #976 \r\n- [x] stock_orderpoint_generator - By @victoralmau - #998 \r\n- [x] stock_orderpoint_manual_procurement - By @JoanSForgeFlow - #833 \r\n- [x] stock_orderpoint_manual_procurement_uom - By @ps-tubtim - #860 \r\n- [x] stock_orderpoint_move_link - by @guewen - #823 \r\n- [ ] stock_orderpoint_mrp_link\r\n- [x] stock_orderpoint_purchase_link - by @JoanSForgeFlow - #857 \r\n- [x] stock_orderpoint_uom - By @JoanSForgeFlow - #832 \r\n- [ ] stock_packaging\r\n- [ ] stock_picking_procure_method\r\n- [ ] stock_picking_type_user_restriction - By @dani-xtendoo - #1184\n- [ ] stock_production_lot_quantity_tree - By @manuelcalerosolis - #1113 \r\n- [x] stock_pull_list - By @JordiBForgeFlow - #999 \r\n- [x] stock_putaway_product_form - By @victoralmau - #1001 \r\n- [x] stock_quant_manual_assign - By @digitalsatori - #877 \r\n- [x] stock_removal_location_by_priority - By @ps-tubtim - #798 \r\n- [x] stock_request - By @HviorForgeFlow - #839 \r\n- [x] stock_request_analytic - By @joao-p-marques - #1124 \r\n- [x] stock_request_direction - By @ps-tubtim - #865 \r\n- [x] stock_request_kanban - By @HviorForgeFlow - #854 \r\n- [x] stock_request_picking_type - By @ps-tubtim - #867 \r\n- [x] stock_request_purchase- By @JoanSForgeFlow - #858 \r\n- [x] stock_request_submit - By @ps-tubtim - #866 \r\n- [x] stock_request_tier_validation - By @ps-tubtim - #868 \r\n- [x] stock_reserve - By @CarlosRoca13 - #1202 \r\n- [x] stock_secondary_unit - By @ps-tubtim - #796 \r\n- [x] stock_warehouse_calendar - By @LoisRForgeFlow - #794 \r\n- [x] stock_warehouse_orderpoint_stock_info - By @ps-tubtim - #800 \r\n- [x] stock_warehouse_orderpoint_stock_info_unreserved - By @ps-tubtim - #801 \r\n\r\nMissing module? Check https://github.com/OCA/maintainer-tools/wiki/%5BFAQ%5D-Missing-modules-in-migration-issue-list"
+    },
+    {
+      "number": 1963,
+      "type": "issue",
+      "state": "closed",
+      "title": "[16.0] stock_move_location: wrong destination location",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/issues/1963",
+      "created_at": "2024-03-18T13:03:15Z",
+      "updated_at": "2024-10-20T12:33:37Z",
+      "closed_at": "2024-10-20T12:33:37Z",
+      "labels": [
+        "bug",
+        "stale"
+      ],
+      "body": "## Module\r\nstock_move_location\r\n\r\n## Describe the bug\r\nThe created Stock Move has a correct destination location set, but the stock move lines, are not updated with the same destination location.\r\n\r\n\r\n## To Reproduce\r\n**Affected versions**:\r\n16.0\r\n\r\nSteps to reproduce the behavior:\r\n1. On the Internal Transfers Operation type enable \"Show Move On hand stock?\"\r\n2. On the Inventory Overview, click on the \"Move On Hand\" button on the Internal Transfers\r\n3. Modify the Source Location and the Destination Location\r\n4. Create a Planned Transfer\r\n\r\n**Expected behavior**\r\nThe stock should move to the destination location.\r\nIs is being moved to the same origin location.\r\n\r\n**Additional context**\r\n![image](https://github.com/OCA/stock-logistics-warehouse/assets/1246629/1bf57dd9-aa58-4519-9fc3-05d85f91ac9c)\r\n\r\n![image](https://github.com/OCA/stock-logistics-warehouse/assets/1246629/c880ee85-b447-4d6f-a094-a17baf83117b)\r\n"
+    },
+    {
+      "number": 1882,
+      "type": "issue",
+      "state": "closed",
+      "title": "[16] stock_move_location - Changes on readme",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/issues/1882",
+      "created_at": "2023-11-07T18:23:15Z",
+      "updated_at": "2023-12-02T02:06:56Z",
+      "closed_at": "2023-12-02T02:06:56Z",
+      "labels": [
+        "enhancement"
+      ],
+      "body": "**Is your feature request related to a problem?**\r\nI add some changes to improve the readme on V16\r\n**Describe the solution you'd like**\r\nAdd information to the readme\r\n**Describe alternatives you've considered**\r\n\r\n- Delete this part. The button does not appear- Doesn't it?\r\n\r\n> If you go to the Inventory Dashboard you can see the button \"Move from location\" in each of the picking types (only applicable to internal transfers). Press it and you will be directed to the wizard.\r\n\r\nI could not find the \"Move from location\" button.\r\n\r\nhttps://www.loom.com/share/d07016f3921d4740afbbb2e0234dbc50?sid=dfc21526-c6c6-4820-99d9-ee90cc37a6d5\r\n\r\n- Add bold text\r\n\r\n> On a draft picking, add a button to fill with moves lines for all products in the source destination. This allows to create a picking to move all the content of a location.\r\n**The Origin Location must have stock**\r\n**The Destination Location has to be a final location**\r\nIf some quants are not available (i.e. reserved) the picking will be in partially available state and reserved moves won't be listed in the operations. Use barcode interface to scan a location and create an empty picking. Then use the fill with stock button.\r\n\r\n@yajo can you make a PR to change it?\r\n\r\n@moduon MT-3609"
+    },
+    {
+      "number": 1679,
+      "type": "issue",
+      "state": "closed",
+      "title": "stock_move_location Client Error",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/issues/1679",
+      "created_at": "2023-03-27T15:24:20Z",
+      "updated_at": "2023-11-19T12:25:33Z",
+      "closed_at": "2023-11-19T12:25:33Z",
+      "labels": [
+        "bug",
+        "stale"
+      ],
+      "body": "<!-- Provide a general summary of the issue in the Title above.\r\nBefore opening the issue, please check that there isn't another issue addressing the same problem already created -->\r\n\r\n## Module\r\nstock_move_location\r\n\r\n## Describe the bug\r\nUncaughtPromiseError > OwlError\r\nUncaught Promise > Invalid props for component 'ActionMenus': 'items' has not the correct shape (unknown key '0')\r\n\r\nOwlError: Invalid props for component 'ActionMenus': 'items' has not the correct shape (unknown key '0')\r\n    at Object.validateProps (https://greko.odoo.com/web/assets/33907-746b4a3/web.assets_common.min.js:1683:67)\r\n    at InventoryReportListController.slot2 (eval at compile (https://greko.odoo.com/web/assets/33907-746b4a3/web.assets_common.min.js:2040:370), <anonymous>:35:15)\r\n    at callSlot (https://greko.odoo.com/web/assets/33907-746b4a3/web.assets_common.min.js:1652:25)\r\n    at ControlPanel.template (eval at compile (https://greko.odoo.com/web/assets/33907-746b4a3/web.assets_common.min.js:2040:370), <anonymous>:72:15)\r\n    at ControlPanel.template (eval at compile (https://greko.odoo.com/web/assets/33907-746b4a3/web.assets_common.min.js:2040:370), <anonymous>:18:27)\r\n    at Fiber._render (https://greko.odoo.com/web/assets/33907-746b4a3/web.assets_common.min.js:1477:96)\r\n    at Fiber.render (https://greko.odoo.com/web/assets/33907-746b4a3/web.assets_common.min.js:1476:6)\r\n    at ComponentNode.updateAndRender (https://greko.odoo.com/web/assets/33907-746b4a3/web.assets_common.min.js:1572:49)\r\n\r\n\r\n## To Reproduce\r\ncurrent V16\r\n\r\nSteps to reproduce the behavior:\r\nInventory > reporting > location > select check box on any line item\r\n\r\n**Expected behavior**\r\nSelect the line item without a client error\r\n\r\n**Additional context**\r\nAdd any other context about the problem here. (e.g. OS, Python version, ...)"
+    },
+    {
+      "number": 1785,
+      "type": "issue",
+      "state": "closed",
+      "title": "[15] Weird behaviour stock_move_location",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/issues/1785",
+      "created_at": "2023-07-07T14:22:00Z",
+      "updated_at": "2023-09-28T11:02:04Z",
+      "closed_at": "2023-09-28T11:02:03Z",
+      "labels": [
+        "bug"
+      ],
+      "body": "Affected version: 15\r\nDescription: Move between locations ends with error: \r\nERROR: null value in column \"location_dest_id\" violates not-null constraint\r\nbut after choosing destination location again it works\r\nthe error ist the same as in #1739\r\n\r\nSteps to reproduce: \r\nClean installation v.15\r\nNew 2 internal stock locations: locA and locB\r\nSome stockable products in WH/Stock\r\nApproach 1: move from WH/Stock to WH/locA worked as usual\r\nApproach 2: move from WH/locA to WH/locB – after filling all necessary fields \r\nImmediate Transfer caused error:\r\nERROR: null value in column \"location_dest_id\" violates not-null constraint\r\nAnd Destination Location in wizard lines disappears\r\nAfter choosing destination location again it worked\r\n\r\nI’ve made small correction hack In stock_move_location.py\r\n\r\n    def _get_move_values(self, picking, lines):\r\n        # locations are same for the products\r\n        location_from_id = lines[0].origin_location_id.id\r\n        location_to_id = self.destination_location_id.id #lines[0].destination_location_id.id\r\n\r\nand in stock_move_location_line.py\r\n\r\n    def _get_move_line_values(self, picking, move):\r\n        self.ensure_one()\r\n        location_dest_id = (\r\n            self.move_location_wizard_id.apply_putaway_strategy\r\n            and self.destination_location_id.get_putaway_strategy(self.product_id).id\r\n            or move.location_dest_id.id #self.destination_location_id.id\r\n        )\r\n\r\nBut I’m not sure if its so correct\r\n\r\nthanks "
+    },
+    {
+      "number": 1578,
+      "type": "issue",
+      "state": "closed",
+      "title": "16.0 - stock_move_location : not working in inventory adjustment",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/issues/1578",
+      "created_at": "2022-12-12T13:15:56Z",
+      "updated_at": "2023-07-30T12:25:25Z",
+      "closed_at": "2023-07-30T12:25:25Z",
+      "labels": [
+        "bug",
+        "stale"
+      ],
+      "body": "The name of the module that has a bug.\r\n -  stock_move_location\r\n\r\n**Affected versions**: 16.0\r\n\r\nDescription:\r\n - There are two issues when move to location in inventory adjustment. The first one is when we change the \"Quantitiy to move\" and press enter.Then, it causes the virtual__xxx issue because of many2many field with one2many widget in wizard form and add line using (0,0, values) in default_get function. And the second one is when click \"IMMEDIATE TRANSFER\" or \"PLANNED TRANSFER\" button. This issue is caused when we don't enable unit of measure in setting and then face a trouble at float_compare because rounding is got from product_uom_id and there is no product_uom_id in this case.\r\n \r\nStep to reproduce for first issue:\r\n\r\n - Go to Inventory > Operations > Inventory adjustments\r\n - Select a product and select action \"move location\" (you can see wizard)\r\n - Change the \"Quantitiy to move\" and click enter.\r\n \r\nStep to reproduce for second issue:\r\n\r\n - Go to Inventory > Operations > Inventory adjustment\r\n - Select a product and select action \"move location\" (you can see wizard)\r\n - Click \"IMMEDIATE TRANSFER\" or \"PLANNED TRANSFER\" button.\r\n\r\nPlease see this reference for first issue:\r\nhttps://drive.google.com/file/d/1PV1QwupWy__9CZg8XrDq14SnsBEiRMO4/view?usp=share_link\r\n\r\n"
+    },
+    {
+      "number": 1739,
+      "type": "issue",
+      "state": "closed",
+      "title": "[16.0] stock_move_location: error on tests",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/issues/1739",
+      "created_at": "2023-06-05T08:49:45Z",
+      "updated_at": "2023-06-05T09:13:34Z",
+      "closed_at": "2023-06-05T09:13:34Z",
+      "labels": [
+        "bug"
+      ],
+      "body": "<!-- Provide a general summary of the issue in the Title above.\r\nBefore opening the issue, please check that there isn't another issue addressing the same problem already created -->\r\n\r\n## Module\r\nstock_move_location\r\n\r\n## Describe the bug\r\nTests pass, but running tests locally I see an error:\r\n```\r\n2023-06-05 07:28:55,513 23510 INFO 16-oca odoo.addons.base.models.ir_http: Generating routing map for key None                                                              [1/1551]2023-06-05 07:28:55,603 23510 INFO 16-oca werkzeug: 127.0.0.1 - - [05/Jun/2023 07:28:55] \"GET /websocket HTTP/1.1\" 101 - 12 0.009 0.083                                             2023-06-05 07:28:55,612 23510 INFO ? odoo.addons.bus.models.bus: Bus.loop listen imbus on db postgres\r\n2023-06-05 07:29:40,909 23510 ERROR 16-oca odoo.sql_db: bad query: INSERT INTO \"stock_move\" (\"additional\", \"company_id\", \"create_date\", \"create_uid\", \"date\", \"group_id\", \"location_dest_id\", \"location_id\", \"location_move\", \"name\", \"picking_id\", \"priority\", \"procure_method\", \"product_id\", \"product_uom\", \"product_uom_qty\", \"propagate_cancel\", \"sequence\", \"state\", \"write_date\", \"write_uid\") VALUES (false, 1, '2023-06-05 07:28:58.222290', 2, '2023-06-05 07:29:40', NULL, NULL, 8, true, '[E-COM07] Large Cabinet', 31, '0', 'make_to_stock', 17, 1, '350.00', true, 10, 'draft', '2023-06-05 07:28:58.222290', 2) RETURNING \"id\"\r\nERROR: null value in column \"location_dest_id\" of relation \"stock_move\" violates not-null constraint\r\nDETAIL:  Failing row contains (51, 10, 1, 17, 1, 8, null, null, 31, null, null, null, null, null, null, null, null, null, null, 2, 2, [E-COM07] Large Cabinet, 0, draft, null, make_to_stock, null, null, null, null, null, 350.00, null, null, t, null, f, 2023-06-05 07:29:40, null, null, 2023-06-05 07:28:58.22229, 2023-06-05 07:28:58.22229, null, t).\r\n\r\n2023-06-05 07:29:51,174 23510 WARNING 16-oca odoo.http: The operation cannot be completed:\r\n- Create/update: a mandatory field is not set.\r\n- Delete: another model requires the record being deleted. If possible, archive it instead.\r\n\r\nModel: Stock Move (stock.move)\r\nField: Destination Location (location_dest_id)\r\n\r\n2023-06-05 07:29:51,175 23510 INFO 16-oca werkzeug: 127.0.0.1 - - [05/Jun/2023 07:29:51] \"POST /web/dataset/call_button HTTP/1.1\" 200 - 76 0.039 53.052\r\n2023-06-05 07:33:13,498 4570 INFO 16-oca odoo.models.unlink: User #1 deleted stock.move.line records with IDs: [38]\r\n2023-06-05 07:33:13,726 4570 INFO 16-oca odoo.addons.stock_move_location.tests.test_move_location: Starting TestMoveLocation.test_move_location_wizard ...\r\n2023-06-05 07:33:14,961 4570 INFO 16-oca odoo.addons.stock_move_location.tests.test_move_location: Starting TestMoveLocation.test_move_location_wizard_amount ...\r\n2023-06-05 07:33:14,980 4570 INFO 16-oca odoo.addons.stock_move_location.tests.test_move_location: Starting TestMoveLocation.test_move_location_wizard_ignore_reserved ...\r\n2023-06-05 07:33:15,654 4570 INFO 16-oca odoo.addons.stock_move_location.tests.test_move_location: Starting TestMoveLocation.test_picking_type_action_dummy ...\r\n2023-06-05 07:33:15,669 4570 INFO 16-oca odoo.addons.stock_move_location.tests.test_move_location: Starting TestMoveLocation.test_planned_transfer ...\r\n2023-06-05 07:33:16,142 4570 INFO 16-oca odoo.addons.stock_move_location.tests.test_move_location: Starting TestMoveLocation.test_quant_transfer ...\r\n2023-06-05 07:33:16,159 4570 INFO 16-oca odoo.addons.stock_move_location.tests.test_move_location: Starting TestMoveLocation.test_readonly_location_computation ...\r\n2023-06-05 07:33:16,172 4570 INFO 16-oca odoo.addons.stock_move_location.tests.test_move_location: Starting TestMoveLocation.test_wizard_clear_lines ...\r\n2023-06-05 07:33:16,195 4570 INFO 16-oca odoo.addons.stock_move_location.tests.test_move_location: Starting TestMoveLocation.test_wizard_onchange_origin_location ...\r\n2023-06-05 07:33:16,227 4570 INFO 16-oca odoo.addons.stock_move_location.tests.test_move_location: Starting TestMoveLocation.test_wizard_with_putaway_strategy ...\r\n2023-06-05 07:33:16,287 4570 INFO 16-oca odoo.addons.base.models.ir_attachment: filestore gc 4 checked, 0 removed\r\n2023-06-05 07:33:16,288 4570 INFO 16-oca odoo.addons.stock_move_location.tests.test_stock_fillwithstock: Starting TestFillwithStock.test_fillwithstock ...\r\n2023-06-05 07:33:17,406 4570 INFO 16-oca odoo.addons.base.models.ir_attachment: filestore gc 0 checked, 0 removed\r\n2023-06-05 07:33:17,412 4570 INFO 16-oca odoo.modules.loading: Module stock_move_location loaded in 7.87s (incl. 7.58s test), 193 queries (+1718 test, +193 other)\r\n2023-06-05 07:33:17,414 4570 INFO 16-oca odoo.modules.loading: 51 modules loaded in 8.03s, 193 queries (+1911 extra)\r\n2023-06-05 07:33:17,545 4570 INFO 16-oca odoo.modules.registry: verifying fields for every extended model\r\nc2023-06-05 07:33:17,789 4570 INFO 16-oca odoo.modules.loading: Modules loaded.\r\n2023-06-05 07:33:17,797 4570 INFO 16-oca odoo.modules.registry: Registry loaded in 9.223s\r\n2023-06-05 07:33:17,798 4570 INFO 16-oca odoo.service.server: Starting post tests\r\n2023-06-05 07:33:17,798 4570 INFO 16-oca odoo.service.server: 0 post-tests in 0.00s, 0 queries\r\n2023-06-05 07:33:17,798 4570 INFO 16-oca odoo.tests.stats: stock_move_location: 16 tests 7.58s 1718 queries\r\n2023-06-05 07:33:17,798 4570 INFO 16-oca odoo.tests.result: 0 failed, 0 error(s) of 12 tests when loading database '16-oca'\r\n```\r\n\r\n## To Reproduce\r\n`odoo -i stock_move_location --test-enable --stop`\r\n"
+    },
+    {
+      "number": 1420,
+      "type": "issue",
+      "state": "closed",
+      "title": "[13] stock_move_location: wrong evaluation company_id",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/issues/1420",
+      "created_at": "2022-05-17T19:54:17Z",
+      "updated_at": "2023-01-22T12:27:30Z",
+      "closed_at": "2023-01-22T12:27:30Z",
+      "labels": [
+        "bug",
+        "stale"
+      ],
+      "body": "## Module\r\nstock_move_location\r\n\r\nIn multicompany enviroment, if default user company is different as selected company, the location selection menu in wizard offers wrong values.\r\n\r\n**Affected versions**: 13\r\n\r\nIn my opinion problem is the evaluation of company_id in wizard/stock_move_location.py, line 15:\r\n`company_id = self.env.context.get(\"company_id\") or self.env.user.company_id.id`\r\nand line 122:\r\n`(\"company_id\", \"=\", self.env.user.company_id.id),`\r\nI think it should be:\r\n`self.env.company.id` "
+    },
+    {
+      "number": 1281,
+      "type": "issue",
+      "state": "closed",
+      "title": "[14.0] stock_move_location - consignment stock",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/issues/1281",
+      "created_at": "2021-10-21T14:27:19Z",
+      "updated_at": "2022-11-06T12:33:46Z",
+      "closed_at": "2022-11-06T12:33:45Z",
+      "labels": [
+        "enhancement",
+        "stale"
+      ],
+      "body": "If you use consignment to setup the owner of a product when you receive it you cannot transfer a quant directly to another location using \"immediate\" transfer\r\n\r\nThe owner_id is missing somewhere so when you try to move directly a quant that is assigned with a partner (owner_id) the quant is not found and it makes a negative stock"
+    },
+    {
+      "number": 1088,
+      "type": "issue",
+      "state": "closed",
+      "title": "[12.0] stock_move_location. Fill with stock ",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/issues/1088",
+      "created_at": "2021-02-19T17:58:33Z",
+      "updated_at": "2022-10-02T12:38:55Z",
+      "closed_at": "2022-10-02T12:38:55Z",
+      "labels": [
+        "stale"
+      ],
+      "body": "Hi @i-vyshnevska Is really needed this commit??\r\nhttps://github.com/OCA/stock-logistics-warehouse/commit/35c08c22887162f1e8b14664d9960314f7562020#diff-ff98a047e18b4613ecd76fb88096eedc2f0ba55aafb968016820ba038f8a74b6\r\nIf we can move all stock from one location to another with the wizard."
+    },
+    {
+      "number": 1016,
+      "type": "issue",
+      "state": "closed",
+      "title": "[11.0] stock_move_location : no picking_type_id given on stock.move",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/issues/1016",
+      "created_at": "2020-11-19T08:43:39Z",
+      "updated_at": "2022-08-21T12:31:02Z",
+      "closed_at": "2022-08-21T12:31:02Z",
+      "labels": [
+        "stale"
+      ],
+      "body": "Version : 11.0\r\n\r\nDetailed issue:\r\n− When move products from a location to another location, if the product tracking method is not none but there is no tracking checkboxes on picking_type selected, there is an error message saying that we need to define which lots are moved.\r\n\r\n"
+    },
+    {
+      "number": 1233,
+      "type": "issue",
+      "state": "closed",
+      "title": "[14.0] stock_move_location needs system rights",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/issues/1233",
+      "created_at": "2021-09-02T14:37:47Z",
+      "updated_at": "2022-05-28T12:11:08Z",
+      "closed_at": "2022-05-28T12:11:08Z",
+      "labels": [],
+      "body": "Today, after installing stock_move_location on v14.0,\r\nI realized that when clicking on Immediate transfer or Planned transfer on the wizard, an authorization error was raised for a non admin user, stating that it needs access to action_window.\r\n\r\nThese accesses have been removed in v14 (these were allowed on previous versions) with https://github.com/odoo/odoo/commit/de4213b771f641cbc218ebb1f759b09e064100bf#diff-e275aaa5de11da2815c2f0cc18bc046f967df5e4eba94999ee55ffe8926c87bd\r\n\r\nTherefore the module should be reworked to create directly the action to be executed when clicking the buttons rather than trying to read an existing one for modifying it afterwards here : https://github.com/OCA/stock-logistics-warehouse/blob/183fb6443bdbfbe6a98415b4a356b1d376ec6117/stock_move_location/wizard/stock_move_location.py#L225\r\n\r\n\r\nAlso, I have noticed some other issues, which are not so critical. or possible improvements, I list them here since these might be tackled at the same time : \r\n\r\n- [x] IMP : origin and / or destination location could be filled from operation type if specified (#1237)\r\n- [ ] IMP : add product in move line tree is not needed and confusing since all products in source locations are already filled, therefore adding a product from another location makes no sense since it will cause the picking to fail, also the tree view shown when clicking on add product only list IDs without other columns, which is not useable --> add product may need to be removed\r\n"
+    },
+    {
+      "number": 850,
+      "type": "issue",
+      "state": "closed",
+      "title": "[13.0] in stock_move_location get_putaway_strategy fails",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/issues/850",
+      "created_at": "2020-02-20T22:21:03Z",
+      "updated_at": "2022-05-08T12:30:01Z",
+      "closed_at": "2022-05-08T12:30:01Z",
+      "labels": [
+        "stale"
+      ],
+      "body": "\r\n\r\nOdoo Server Error\r\n\r\nTraceback (most recent call last):\r\n  File \"/usr/lib/python3/dist-packages/odoo/http.py\", line 619, in _handle_exception\r\n    return super(JsonRequest, self)._handle_exception(exception)\r\n  File \"/usr/lib/python3/dist-packages/odoo/http.py\", line 309, in _handle_exception\r\n    raise pycompat.reraise(type(exception), exception, sys.exc_info()[2])\r\n  File \"/usr/lib/python3/dist-packages/odoo/tools/pycompat.py\", line 14, in reraise\r\n    raise value\r\n  File \"/usr/lib/python3/dist-packages/odoo/http.py\", line 664, in dispatch\r\n    result = self._call_function(**self.params)\r\n  File \"/usr/lib/python3/dist-packages/odoo/http.py\", line 345, in _call_function\r\n    return checked_call(self.db, *args, **kwargs)\r\n  File \"/usr/lib/python3/dist-packages/odoo/service/model.py\", line 93, in wrapper\r\n    return f(dbname, *args, **kwargs)\r\n  File \"/usr/lib/python3/dist-packages/odoo/http.py\", line 338, in checked_call\r\n    result = self.endpoint(*a, **kw)\r\n  File \"/usr/lib/python3/dist-packages/odoo/http.py\", line 909, in __call__\r\n    return self.method(*args, **kw)\r\n  File \"/usr/lib/python3/dist-packages/odoo/http.py\", line 510, in response_wrap\r\n    response = f(*args, **kw)\r\n  File \"/usr/lib/python3/dist-packages/odoo/addons/web/controllers/main.py\", line 1323, in call_button\r\n    action = self._call_kw(model, method, args, kwargs)\r\n  File \"/usr/lib/python3/dist-packages/odoo/addons/web/controllers/main.py\", line 1311, in _call_kw\r\n    return call_kw(request.env[model], method, args, kwargs)\r\n  File \"/usr/lib/python3/dist-packages/odoo/api.py\", line 395, in call_kw\r\n    result = _call_kw_multi(method, model, args, kwargs)\r\n  File \"/usr/lib/python3/dist-packages/odoo/api.py\", line 382, in _call_kw_multi\r\n    result = method(recs, *args, **kwargs)\r\n  File \"/mnt/extra-addons/stock_move_location/wizard/stock_move_location.py\", line 176, in action_move_location\r\n    self._create_moves(picking)\r\n  File \"/mnt/extra-addons/stock_move_location/wizard/stock_move_location.py\", line 143, in _create_moves\r\n    move = self._create_move(picking, lines)\r\n  File \"/mnt/extra-addons/stock_move_location/wizard/stock_move_location.py\", line 170, in _create_move\r\n    line.create_move_lines(picking, move)\r\n  File \"/mnt/extra-addons/stock_move_location/wizard/stock_move_location_line.py\", line 79, in create_move_lines\r\n    values = line._get_move_line_values(picking, move)\r\n  File \"/mnt/extra-addons/stock_move_location/wizard/stock_move_location_line.py\", line 89, in _get_move_line_values\r\n    and self.destination_location_id.get_putaway_strategy(self.product_id).id\r\nAttributeError: 'stock.location' object has no attribute 'get_putaway_strategy'\r\n\r\n"
+    },
+    {
+      "number": 487,
+      "type": "issue",
+      "state": "closed",
+      "title": "Migration to version 12.0",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/issues/487",
+      "created_at": "2018-09-27T00:39:25Z",
+      "updated_at": "2022-04-10T12:30:22Z",
+      "closed_at": "2022-04-10T12:30:21Z",
+      "labels": [
+        "help wanted",
+        "work in progress",
+        "stale"
+      ],
+      "body": "# Todo\r\n\r\nhttps://github.com/OCA/maintainer-tools/wiki/Migration-to-version-12.0\r\n\r\n# Modules to migrate\r\n\r\n- [x] account_move_line_product - By @bjeficent - #512 \r\n- [x] account_move_line_stock_info - By @bjeficent - #514\r\n- [x] ~~packaging_uom - By @rousseldenis~~ Moved to https://github.com/OCA/product-attribute/pull/486\r\n- [x] procurement_auto_create_group - By @mreficent - #638 \r\n- [ ] scrap_reason_code - By @HviorForgeFlow - #1389\n- [x] stock_account_change_qty_reason - By @hveficent - #607 \r\n- [x] stock_account_internal_move - By @kittiu - #570 \r\n- [x] stock_account_inventory_force_date - By @hveficent - #676 \r\n- [x] stock_available - ~~By @devang-dreambits - #540~~ - By @sergio-teruel - #632 \r\n- [ ] stock_available_global - By @kittiu-ecosoft - #610 \r\n- [x] stock_available_immediately - By @pedrobaeza - #872 \r\n- [x] stock_available_mrp - By @florian-dacosta - #644 \r\n- [x] stock_available_unreserved - By @ougc27 - #526\r\n- [x] stock_change_qty_reason - By @hveficent - #602 \r\n- [x] stock_cycle_count - By @bodedra - #625 \r\n- [x] stock_demand_estimate - By @mreficent  - #563 \r\n- [x] stock_inventory_chatter - By @lreficent - #553 \r\n- [x] stock_inventory_cost_info - By @pedrobaeza - #795 \r\n- [x] stock_inventory_discrepancy - By @bodedra - #622 \r\n- [x] stock_inventory_exclude_sublocation - By @bodedra - #623 \r\n- [x] stock_inventory_lockdown - By @osimallen - #629\r\n- [x] stock_inventory_preparation_filter - By @xavierpiernas - #601\r\n- [x] stock_inventory_revaluation - By @matt454357 - #894  \r\n- [ ] stock_inventory_virtual_location - By @mreficent - #739 \r\n- [x] stock_location_lockdown - By @clementmbr - #720 \r\n- [x] stock_move_location - By @joansis - #743 \r\n- [x] stock_mts_mto_rule - By @jaredkipe - #586 \r\n- [ ] stock_orderpoint_automatic_creation - By @MPoch-PlanetaTIC - #1104 \r\n- [x] stock_orderpoint_generator - By @chienandalu - #791 \r\n- [x] stock_orderpoint_manual_procurement - By @kittiu - #557 \r\n- [x] stock_orderpoint_manual_procurement_uom - By @kittiu - #558 \r\n- [x] stock_orderpoint_move_link - By @kittiu - #550 \r\n- [x] stock_orderpoint_purchase_link - By @kittiu - #554 \r\n- [ ] stock_orderpoint_route - By @guewen - #785 \r\n- [x] stock_orderpoint_uom - By @kittiu - #568 \r\n- [x] stock_picking_procure_method - By @kittiu - #569 \r\n- [ ] stock_production_lot_expiry_state\r\n- [x] stock_putaway_method - By @max3903 - #820 \r\n- [x] ~~stock_putaway_product~~ Feature included in core\r\n- [ ] stock_putaway_same_location\r\n- [x] stock_quant_manual_assign - By @lreficent - #651 \r\n- [x] stock_removal_location_by_priority - By @mreficent - #635 \r\n- [x] stock_request - By @murtuzasaleh - #556 \r\n- [x] stock_request_analytic - By @lreficent - #649 \r\n- [x] stock_request_kanban - By @kittiu - #634 \r\n- [x] stock_request_purchase - By @kittiu - #631 \r\n- [x] stock_request_tier_validation - By @lreficent - #608 \r\n- [ ] stock_reserve - By @hzh0292 - #637 \r\n- [ ] stock_reserve_sale - By @hzh0292 - #620 \r\n- [x] stock_secondary_unit - By @kittiu - #571 \r\n- [ ] stock_valuation_account_manual_adjustment\r\n- [x] stock_warehouse_calendar - By @mreficent - #564 \r\n- [x] stock_warehouse_orderpoint_stock_info - By @Saran440 - #561\r\n- [x] stock_warehouse_orderpoint_stock_info_unreserved - By @Saran440 - #562 "
+    },
+    {
+      "number": 201,
+      "type": "issue",
+      "state": "closed",
+      "title": "Migration to version 10.0",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/issues/201",
+      "created_at": "2016-10-06T14:09:45Z",
+      "updated_at": "2021-11-28T12:24:51Z",
+      "closed_at": "2021-11-28T12:24:51Z",
+      "labels": [
+        "help wanted",
+        "work in progress",
+        "stale"
+      ],
+      "body": "# Todo\r\n\r\nhttps://github.com/OCA/maintainer-tools/wiki/Migration-to-version-10.0\r\n# Modules to migrate\r\n- [ ] base_product_merge\r\n- [ ] business_product_location - By @rousseldenis - #446 \r\n- [ ] configurable_stock_level\r\n- [ ] partner_location_auto_create\r\n- [x] stock_available - By @SodexisTeam - #219\r\n- [x] stock_available_immediately - By @SodexisTeam - #219\r\n- [x] stock_available_mrp - @Cedric-Pigeon #280\r\n- [x] stock_available_sale - By @chienandalu - #334 \r\n- [x] stock_available_unreserved - By @StefanRijnhart - #283\r\n- [ ] stock_inventory_line_price - @dlasley #276\r\n- [ ] stock_inventory_preparation_filter\r\n- [ ] stock_location_area_data\r\n- [ ] stock_location_area_management\r\n- [ ] stock_location_lockdown - By @alexis-via  - #516 \r\n- [ ] stock_location_ownership\r\n- [ ] stock_lot_valuation\r\n- [ ] stock_move_location\r\n- [x] stock_mts_mto_rule - By @sylvain-garancher - #203 \r\n- [ ] stock_optional_valuation\r\n- [ ] stock_orderpoint_creator\r\n- [ ] stock_partner_lot\r\n- [x] stock_product_location_sorted_by_qty - By @chafique-delli - #444 \r\n- [x] stock_putaway_product - By @rousseldenis - #255\r\n- [x] stock_quant_manual_assign - By @fanha99 - #326\r\n- [x] stock_quant_merge - By @lreficent - #265 \r\n- [ ] stock_reord_rule\r\n- [ ] stock_reserve - By @andrius-preimantas - #239 \r\n- [ ] stock_reserve_sale\r\n"
+    },
+    {
+      "number": 90,
+      "type": "issue",
+      "state": "closed",
+      "title": "Migration to version 9.0",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/issues/90",
+      "created_at": "2015-10-14T00:54:57Z",
+      "updated_at": "2021-11-28T12:24:49Z",
+      "closed_at": "2021-11-28T12:24:48Z",
+      "labels": [
+        "help wanted",
+        "work in progress",
+        "stale"
+      ],
+      "body": "# Todo\r\n\r\nhttps://github.com/OCA/maintainer-tools/wiki/Migration-to-version-9.0\r\n# Modules to migrate\r\n- [x] stock_available - Being made by @stephankeller - #117\r\n- [x] stock_available_immediately - Being made by @stephankeller - #117\r\n- [ ] stock_available_sale\r\n- [x] stock_available_mrp - Assigned to @cyrilgdn - #148\r\n- [ ] stock_inventory_existing_lines\r\n- [ ] stock_inventory_extended\r\n- [ ] stock_inventory_line_price - @dlasley #275 \r\n- [ ] stock_inventory_lockdown - @mreficent #282\r\n- [ ] stock_location_ownership\r\n- [ ] stock_move_location\r\n- [ ] base_product_merge\r\n- [ ] stock_orderpoint_creator\r\n- [ ] configurable_stock_level\r\n- [x] stock_mts_mto_rule - ~~By @jbeficent - #157~~ By @sylvain-garancher - #204 \r\n- [x] stock_inventory_preparation_filter - By @chienandalu - #510 \r\n- [ ] stock_lot_valuation\r\n- [ ] stock_inventory_with_location\r\n- [ ] stock_reord_rule\r\n- [x] stock_reserve - By @katyukha - #189\r\n- [ ] stock_reserve_sale - By @katyukha - #190\r\n- [ ] stock_location_area_management\r\n- [x] stock_location_area_data - By @dvdhinesh - #123 \r\n- [ ] stock_optional_valuation\r\n- [x] stock_quant_manual_assign - ~~By lbelorgey - #173~~ - By @jbeficent - #196 \r\n- [x] stock_quant_merge - By lbelorgey - #174 \r\n- [ ] partner_location_auto_create\r\n- [x] stock_orderpoint_generator - By @cyrilgdn - #170\r\n"
+    },
+    {
+      "number": 343,
+      "type": "issue",
+      "state": "closed",
+      "title": "Migration to version 11.0",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/issues/343",
+      "created_at": "2017-10-03T15:01:24Z",
+      "updated_at": "2021-12-05T12:25:38Z",
+      "closed_at": "2021-12-05T12:25:37Z",
+      "labels": [
+        "help wanted",
+        "work in progress",
+        "stale"
+      ],
+      "body": "# Todo\r\n\r\nhttps://github.com/OCA/maintainer-tools/wiki/Migration-to-version-11.0\r\n\r\n# Modules to migrate\r\n\r\n- [x] account_move_line_product - ~~By @VRodrigo - #354~~ By @mreficent - #471 \r\n- [x] account_move_line_stock_info - By @mreficent - #472 \r\n- [x] packaging_uom - By @jhumfer - #469 \r\n- [ ] partner_location_auto_create - By @BT-kaberer - #443 \r\n- [x] procurement_auto_create_group - By @lreficent - #482 \r\n- [ ] sale_packaging - By @rousseldenis - #492 \r\n- [x] stock_available - ~~By @kikopeiro - #353~~ - By @asaunier - #405 \r\n- [x] stock_available_immediately - By @dmsergio - #778 \r\n- [x] stock_available_mrp - By @tschanzt - #428 \r\n- [ ] stock_available_sale\r\n- [x] stock_available_unreserved - By @mpanarin - #375 \r\n- [x] stock_change_qty_reason - By @andreasdsp - #417 \r\n- [x] stock_cycle_count - By @lreficent - #484 \r\n- [x] stock_demand_estimate - By @mpanarin - #381\r\n- [x] stock_inventory_chatter - ~~By @reynaldiyosfino - #424~~ - By @xavierjimenez - #451 \r\n- [x] stock_inventory_discrepancy - By @andreasdsp - #418 \r\n- [x] stock_inventory_exclude_sublocation - By @lreficent - #478\r\n- [x] stock_inventory_lockdown - By @lreficent - #479 \r\n- [x] stock_inventory_preparation_filter - By @xavierjimenez - #452 \r\n- [x] stock_inventory_verification_request - By @lreficent - #480\r\n- [ ] stock_location_area_data\r\n- [ ] stock_location_area_management\r\n- [ ] stock_location_ownership\r\n- [ ] stock_lot_valuation\r\n- [x] stock_move_location - ~~By @mpanarin - #522~~ By @sebalix - #535 \r\n- [x] stock_mts_mto_rule - By @florian-dacosta - #399 \r\n- [ ] stock_operation_package_mandatory\r\n- [ ] stock_optional_valuation\r\n- [ ] stock_orderpoint_automatic_creation - ~~By @andreasdsp - #429~~ By @ValentinVinagre - #502 \r\n- [ ] stock_orderpoint_creator\r\n- [x] stock_orderpoint_generator - By @cubells #488 \r\n- [x] stock_orderpoint_manual_procurement - By @bodedra - #385 \r\n- [x] stock_orderpoint_manual_procurement_uom - By @bodedra - #387\r\n- [x] stock_orderpoint_uom - By @bodedra - #386 \r\n- [ ] stock_partner_lot - By @agungrachmatulah - #419 \r\n- [x] stock_putaway_product - By @asaunier - #380 \r\n- [x] stock_quant_manual_assign - ~~By @fanha99 - #361~~ - By @cubells - #508 \r\n- [x] ~~stock_quant_merge~~ Not needed anymore as now there's no quant fragmentation\r\n- [ ] stock_quant_reserved_qty_uom\r\n- [x] stock_removal_location_by_priority - By @lreficent - #483 \r\n- [ ] stock_reord_rule\r\n- [ ] stock_reserve - By @RodrigoBM - #883 \r\n- [ ] stock_reserve_sale - By @RodrigoBM - #886 \r\n- [x] stock_valuation_account_manual_adjustment - By @lreficent - #371 \r\n- [x] stock_warehouse_orderpoint_stock_info - By @mpanarin - #376 \r\n- [x] stock_warehouse_orderpoint_stock_info_unreserved - By @mpanarin - #377"
+    },
+    {
+      "number": 594,
+      "type": "issue",
+      "state": "closed",
+      "title": "Stock_move_location: Disables edition of lots [11.0]",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/issues/594",
+      "created_at": "2019-05-20T10:01:33Z",
+      "updated_at": "2019-11-10T13:05:28Z",
+      "closed_at": "2019-11-10T13:05:28Z",
+      "labels": [],
+      "body": "When this module is installed, you cannot edit lots anymore on stock moves:\r\nThe problem is related to https://github.com/OCA/stock-logistics-warehouse/commit/79a131deb8991dacab372204c7ec114a6dd6041e#diff-859021951c42400319db38057cdb07bfR17\r\n\r\nNow, location_move is disabled for all other options and you cannot edit anymore. \r\n@mpanarin @sebalix Why did you add this?"
+    },
+    {
+      "number": 539,
+      "type": "issue",
+      "state": "closed",
+      "title": "[11.0] stock_move_location: travis is red",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/issues/539",
+      "created_at": "2019-02-01T15:40:21Z",
+      "updated_at": "2019-02-07T23:30:45Z",
+      "closed_at": "2019-02-07T23:30:45Z",
+      "labels": [],
+      "body": "@sebalix stock_move_location is going red in tests, so 11.0 branch is in bad state:\r\n\r\nhttps://travis-ci.org/OCA/stock-logistics-warehouse/jobs/487479800"
+    },
+    {
+      "number": 2670,
+      "type": "pr",
+      "state": "open",
+      "title": "[20.0][MIG] stock_move_location: Migration to 20.0",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/pull/2670",
+      "created_at": "2026-10-12T11:56:55Z",
+      "updated_at": "2026-10-13T11:46:38Z",
+      "closed_at": null,
+      "labels": [
+        "mod:stock_move_location",
+        "series:20.0"
+      ],
+      "body": "Migration of `stock_move_location` to 20.0.\n\n- Version `20.0.1.0.0`.\n- Access rights: `security/ir.model.access.csv` is replaced by `security/ir.access.csv`, since 20.0 defines access with `ir.access` (`operation`, `domain`). Both rows stay `stock.group_stock_user` with full access to the two wizard models.\n- UoM fields renamed to `uom_id` (odoo/odoo@3852885f37a): the wizard reads `stock.quant.uom_id`, and writes `uom_id` on `stock.move` (was `product_uom`) and on `stock.move.line` (was `product_uom_id`). The wizard line keeps its own `product_uom_id` field.\n- `uom.uom.rounding` was removed (odoo/odoo@9a4ad7cc18d): the wizard line compares quantities with `uom.uom.compare()` instead of `float_compare(..., precision_rounding=uom.rounding)`, and its `_compare` helper is gone. The invisible `product_uom_id` stays in the wizard form, so `compare()` has a unit for users without `uom.group_uom`.\n- Tests:\n  - `tracking=\"none\"` becomes `False`, because the `'none'` value was removed (odoo/odoo@0687a087477).\n  - `BaseCommon` now runs tests as a restricted user (odoo/odoo@d4152b0c0be7). The setup creates locations, putaway rules and products, so the suite runs as Inventory Administrator with product creation rights (`_test_user_groups`). A new test runs the wizard as a plain Inventory User without `uom.group_uom`, which covers the access rows.\n- Removed the `string=` attributes that repeat the field name (pylint-odoo `attribute-string-redundant`).\n- README regenerated.\n\n**Tests:** 0 failed, 0 error(s) of 16 tests\n\n**Depends on** the fixes on 19.0 (their upstream PRs); merge those first:\n- https://github.com/OCA/stock-logistics-warehouse/pull/2669: [FIX] stock_move_location: use the Product Unit precision on wizard quantities\n"
+    },
+    {
+      "number": 2669,
+      "type": "pr",
+      "state": "open",
+      "title": "[19.0][FIX] stock_move_location: use the Product Unit precision on wizard quantities",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/pull/2669",
+      "created_at": "2026-10-12T10:55:56Z",
+      "updated_at": "2026-10-13T10:40:32Z",
+      "closed_at": null,
+      "labels": [
+        "series:19.0",
+        "mod:stock_move_location"
+      ],
+      "body": "The quantity fields of the move location wizard lines (`move_quantity`, `max_quantity`, `total_quantity`, `reserved_quantity`) declare `digits=\"Product Unit of Measure\"`. Since 19.0 the decimal precision record from `uom` is named \"Product Unit\", so `precision_get()` doesn't find that name and falls back to its default of 2 digits. As a result, the fields ignore the precision configured for product quantities. With 4 digits configured, a quantity of 1.2345 is rounded to 1.23 in the wizard.\r\n\r\nThe fix makes the fields use `digits=\"Product Unit\"`.\r\n\r\nA new test sets the \"Product Unit\" precision to 4 digits and checks that a wizard line keeps a move quantity of 1.2345. Without the fix, the test fails with `1.23 != 1.2345`.\r\n\r\nFound while migrating `stock_move_location` to 20.0"
+    },
+    {
+      "number": 2653,
+      "type": "pr",
+      "state": "open",
+      "title": "[19.0][IMP] stock_move_location: restrict immediate transfer",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/pull/2653",
+      "created_at": "2026-09-25T07:48:34Z",
+      "updated_at": "2026-10-01T04:52:41Z",
+      "closed_at": null,
+      "labels": [
+        "approved",
+        "ready to merge",
+        "series:19.0",
+        "mod:stock_move_location"
+      ],
+      "body": "The \"Immediate Transfer\" button of the Move from location wizard validates\nthe picking right away. Some companies want every relocation to go through\na planned transfer instead, so that the picking can be checked before it is\nvalidated.\n\n### Changes\n\n- Add a company setting, \"Restrict Immediate Transfer in Move Location\n  Wizard\", in Inventory > Configuration > Settings (Operations section).\n  It is disabled by default, so the current behavior is unchanged.\n- When it is enabled, the \"Immediate Transfer\" button is hidden in the\n  wizard, and `action_move_location()` raises a `UserError` if it is called\n  without the `planned` context, so the restriction also holds for calls\n  that do not come from the button.\n\n### Tests\n\n- With the restriction enabled, an immediate transfer raises a `UserError`,\n  while a planned transfer still works.\n\nAssisted-by: Claude Opus 5.5\n\n@qrtl QT7284\n"
+    },
+    {
+      "number": 2647,
+      "type": "pr",
+      "state": "closed",
+      "title": "[19.0][MIG] stock_move_location: Migration to version 19.0",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/pull/2647",
+      "created_at": "2026-09-15T13:38:49Z",
+      "updated_at": "2026-09-15T16:34:36Z",
+      "closed_at": "2026-09-15T16:33:45Z",
+      "labels": [
+        "approved",
+        "merged 🎉",
+        "series:19.0",
+        "mod:stock_move_location"
+      ],
+      "body": "Supersedes https://github.com/OCA/stock-logistics-warehouse/pull/2500\r\n\r\nTT64142\r\n@Tecnativa @pedrobaeza @victoralmau @Reyes4711-S73 @eugenios73 @dreispt @BhaveshHeliconia @rousseldenis could you please review this?"
+    },
+    {
+      "number": 2500,
+      "type": "pr",
+      "state": "closed",
+      "title": "[19.0][MIG] stock_move_location: Migration to 19.0",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/pull/2500",
+      "created_at": "2026-01-11T15:53:06Z",
+      "updated_at": "2026-09-15T16:12:54Z",
+      "closed_at": "2026-09-15T16:12:54Z",
+      "labels": [
+        "series:19.0",
+        "mod:stock_move_location"
+      ],
+      "body": "Assisted-by: Devin:SWE-1.7"
+    },
+    {
+      "number": 2553,
+      "type": "pr",
+      "state": "closed",
+      "title": "[16.0] [FIX] stock_move_location: prevent picking type reset on origin change",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/pull/2553",
+      "created_at": "2026-04-10T11:56:19Z",
+      "updated_at": "2026-09-20T15:37:20Z",
+      "closed_at": "2026-09-20T15:37:20Z",
+      "labels": [
+        "stale"
+      ],
+      "body": "## Description\r\n\r\nThe move location wizard (`wiz.stock.move.location`) had two related issues that caused user-entered data to be silently overwritten or lost:\r\n\r\n1. **The operation type (`picking_type_id`) was reset** whenever the user changed the origin location or saved the wizard (e.g. clicking \"Immediate Transfer\" or \"Planned Transfer\"), discarding any manual selection the user had made.\r\n2. **The destination location could be missing on wizard lines** when they were built from the origin onchange before the user had set the destination, causing a NOT NULL constraint error on `stock.move.location_dest_id` when the transfer was executed.\r\n\r\n## Root cause\r\n\r\n### 1. Picking type reset\r\n\r\n```python\r\npicking_type_id = fields.Many2one(\r\n    compute=\"_compute_picking_type_id\",\r\n    comodel_name=\"stock.picking.type\",\r\n    readonly=False,\r\n    store=True,\r\n)\r\n\r\n@api.depends(\"origin_location_id\")\r\ndef _compute_picking_type_id(self):\r\n    ...\r\n    rec.picking_type_id = picking_type.id\r\n```\r\n\r\nThe combination of `compute` + `store=True` + `readonly=False` with a dependency on `origin_location_id` means the user could edit the field in the UI, but any write to the record (including button clicks that save the wizard) re-triggered the compute and silently overwrote the manual selection.\r\n\r\nBefore this behaviour was introduced, the module used a plain `default` that returned the first internal picking type of the company. The computed variant was added to auto-pick a type based on the origin location, but the side effect of losing the user's input was never intended.\r\n\r\n### 2. Destination missing on lines\r\n\r\nWhen the origin location changes, `onchange_origin_location` calls `_reset_stock_move_location_lines`, which builds lines using `self.destination_location_id`. If the user sets the origin before the destination, the lines end up with no destination. The line-level onchange for the destination propagates the value to the existing lines afterwards, but there is no safeguard when the flow gets the wizard into a state where at least one line reaches the picking creation step without a destination.\r\n\r\n## Fix\r\n\r\n- Revert `picking_type_id` to a regular `Many2one` field with a simple `default=_get_default_picking_type_id` returning the first internal or outgoing picking type of the company. This matches the original module behaviour before the compute-based change (stable user selection) while keeping the support for outgoing picking types added later in the compute variant.\r\n- Add a safeguard in `action_move_location` that copies `self.destination_location_id` to any line lacking one before the picking is created, so a transfer no longer fails on a NOT NULL constraint when lines were built before the destination was set.\r\n- Add regression tests that cover both scenarios.\r\n\r\nExisting tests that instantiate the wizard via `create(...)` keep working thanks to the default, and all flows that already set `destination_location_id` on the lines via onchange are unaffected by the safeguard.\r\n\r\n## Steps to reproduce\r\n\r\n### 1. Picking type reset\r\n\r\n1. Go to Inventory > Operations > Move from location...\r\n2. Select an origin location.\r\n3. Change the \"Operation Type\" field to a different picking type of your choice.\r\n4. Click \"Planned Transfer\" (or change the origin location).\r\n5. **Before the fix:** the operation type is reset to the one computed from the origin, discarding the user's selection.\r\n6. **After the fix:** the operation type keeps the user's selection.\r\n\r\n### 2. Destination missing\r\n\r\n1. Go to Inventory > Operations > Move from location...\r\n2. Select an origin location (lines are created without destination at this point).\r\n3. Select a destination location.\r\n4. Click \"Planned Transfer\".\r\n5. **Before the fix:** `IntegrityError: null value in column \"location_dest_id\" of relation \"stock_move\" violates not-null constraint`.\r\n6. **After the fix:** the picking is created with the expected destination.\r\n\r\n## Changes\r\n\r\n- `stock_move_location/wizard/stock_move_location.py`:\r\n  - Restore `picking_type_id` to a regular field with `default=_get_default_picking_type_id` (first internal or outgoing picking type).\r\n  - Remove the compute, helper and onchange introduced by the computed variant.\r\n  - Add a safeguard in `action_move_location` to fill `destination_location_id` on lines missing it.\r\n- `stock_move_location/tests/test_move_location.py`:\r\n  - Add `test_picking_type_preserved_on_origin_change` to assert the user's manual picking type is not overwritten when the origin location changes.\r\n  - Add `test_destination_propagated_to_lines_without_dest` to assert the safeguard fills the destination on lines lacking one before creating the picking.\r\n"
+    },
+    {
+      "number": 2552,
+      "type": "pr",
+      "state": "closed",
+      "title": "[16.0] [FIX] stock_move_location: consistent return type in _get_available_q…",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/pull/2552",
+      "created_at": "2026-04-10T11:39:02Z",
+      "updated_at": "2026-04-29T12:36:05Z",
+      "closed_at": "2026-04-29T12:36:01Z",
+      "labels": [
+        "approved",
+        "merged 🎉"
+      ],
+      "body": "## Description\r\n\r\nThe method `_get_available_quantity()` in `wiz.stock.move.location.line` has 5 return\r\npaths but only 2 return tuples. The caller in `_get_move_line_values()` (line 104)\r\nunpacks the result as:\r\n\r\n```python\r\nqty_todo, qty_done = self._get_available_quantity()\r\n```\r\n\r\nThis causes `TypeError: cannot unpack non-iterable int object` when the method\r\nhits any of the 3 paths that return a scalar instead of a tuple.\r\n\r\n## Root cause\r\n\r\n| Return path | Condition | Before (broken) | After (fixed) |\r\n|-------------|-----------|-----------------|---------------|\r\n| Line 126 | No product set | `return 0` | `return 0, 0` |\r\n| Line 151 | No available qty in location | `return 0` | `return 0, 0` |\r\n| Line 157 | Available qty < requested | `return available_qty` | `return 0, available_qty` |\r\n\r\nThe other 2 return paths (planned transfer and normal case) already returned tuples correctly.\r\n\r\n## Steps to reproduce\r\n\r\n1. Go to Inventory > Operations > Move from location...\r\n2. Select an origin location\r\n3. Add a product that has **no stock** in that location (or set move quantity higher than available)\r\n4. Click \"Immediate Transfer\"\r\n5. **Result:** `TypeError: cannot unpack non-iterable int object`\r\n6. **Expected:** Transfer completes with qty_done=0 (no stock) or qty_done=available_qty (partial)\r\n\r\n## Changes\r\n\r\n- `stock_move_location/wizard/stock_move_location_line.py`: Fix 3 return statements to always return `(qty_todo, qty_done)` tuples\r\n- `stock_move_location/tests/test_get_available_quantity.py`: Add 4 tests covering all return paths\r\n"
+    },
+    {
+      "number": 2501,
+      "type": "pr",
+      "state": "closed",
+      "title": "19.0 mig stock move location REF",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/pull/2501",
+      "created_at": "2026-01-12T10:35:00Z",
+      "updated_at": "2026-01-12T10:35:32Z",
+      "closed_at": "2026-01-12T10:35:32Z",
+      "labels": [],
+      "body": "- [ADD] stock_move_location\n- [MIG] 11.0 stock_move_location\n- [IMP] refactor to use pickings instead of inventories\n- prevent user from creating lots from the wizard\n- [11.0][MIG] stock_move_location: fixing/improving code + add a roadmap for further improvements\n- [FIX] stock_move_location: fix the 'group_lines()' method\n- Added translation using Weblate (Spanish)\n- [11.0][IMP] stock_move_location: Allow move products from one location to another directly from selected quants\n- Translated using Weblate (Spanish)\n- [11.0][FIX] stock_move_location: Not check availability when do immediate transfer.\n- Added translation using Weblate (German)\n- [MIG] stock_move_location to v12 [FIX] improvement move line generation\n- [12.0][IMP] stock_move_location: Applies put away strategy\n- [12.0][FIX][stock_move_location] Planned transfer: quantity done\n- This commit introduces changes to stock_move_location: - The ability to start the wizard from a picking type in the inventory dasbhoard - A toggle to edit the origin and destination locations.\n- in planned transfers do not set the qty_done in move lines\n- [11.0] stock_move_location: add small margin between buttons, done inline because the same margin is defined in  style files for account dashboard, however I don't want to apply the account_kanban class here as it would have more effects.\n- display picking type in move location wizard, and get a default value\n- [11.0][IMP] stock_move_location: * fix tests as per latest changes * extend test as per latest changes * add little help in technical fields\n- [11.0][FIX] stock_move_location: * fix test as per migration * fix inconsistency in reserved quantity for planned transfers\n- [IMP] stock_move_location: black, isort\n- [MIG] stock_move_location: Migration to 13.0\n- [FIX] stock_move_location: Keep product lines when user launch wizard from stock quant view\n- [IMP] stock_move_location: Allow to disable apply putaway strategy\n- [FIX] stock_move_location: Error on onchange origin location\n- [IMP] stock_move_location: Allow to select any location.\n- [IMP + FIX] stock_move_location: Display reserved quantity in wizard lines. Reassign reserved quantities for quants moved.\n- [MIG] stock_move_location: Migration to 14.0\n- Translated using Weblate (French)\n- [IMP] stock_move_location: black, isort, prettier\n- [MIG] stock_move_location: Migration to 15.0\n- [ADD] stock_picking_fillwithstock\n- [IMP] stock_move_location add posibility to set picking instead of creation\n- [IMP] add posibility to move only not reserved quantity\n- stock_move_location: Remove update of assigned moves location\n- [FIX] stock_move_location: Bug on onchange origin location\n- [MIG] stock_move_location: Migration to 16.0\n- [FIX] stock_move_location\n- Translated using Weblate (Japanese)\n- [14.0][IMP] stock_move_location: packages support\n- [14.0][IMP] stock_move_location: owner support\n- Translated using Weblate (Spanish)\n- Added translation using Weblate (Italian)\n- [BUILD] stock_move_location: convert readme fragments to markdown\n- [DOCS] stock_move_location: improve usage instructions\n- [IMP] stock_move_location: improve planned transfer\n- [FIX] stock_move_location: reserverd_quantity is always zero when move location from inventory adjustment\n- [FIX] stock_move_location: _get_locations_domain()\n- Added translation using Weblate (Portuguese)\n- [UPD] add new parameters\n- Translated using Weblate (French)\n- [FIX] stock_move_location: correct method _get_putaway_strategy name\n- [IMP] stock_move_location This improvement commit ensures the operation type is determined by the original location, aiming to prevent the misuse of incorrect operation types in scenarios where multiple internal transfer options exist.\n- [FIX] stock_move_location: The new picking is created with other picking type of selected\n- [IMP] stock_move_location: use current active company in multicompany environment\n- [IMP] stock_move_location: 'Move from location' button also on outgoring picking type\n- [IMP] stock_move_location: Improve UI and add hooks\n- [IMP] stock_move_location: speedup tests\n- [FIX] stock_move_location: fix planned transfer incorrect reserved_uom_qty This PR fixes stock quant matching in _get_gather_domain by setting strict=True, ensuring precise matching based on lot, package, and location. This change addresses issues arising from the previous approach, which could lead to the inclusion of unnecessary quants, such as those without an owner or lot.\n- Translated using Weblate (Italian)\n- [FIX] stock_move_location: prevent putaway rules when we don't need them\n- [MIG] stock_move_location: Migration to 17.0\n- [IMP] stock_move_location: Improved usage of wizard\n- [IMP] stock_move_location: pre-commit auto fixes\n- [MIG] stock_move_location: Migration to 18.0\n- [FIX] stock_move_location: Avoid error with non uom when the group is not set\n- [UPD] Update stock_move_location.pot\n- [BOT] post-merge updates\n- [FIX] stock_move_location: fill with stock\n- Added translation using Weblate (Slovak)\n- [BOT] post-merge updates\n- [MIG] stock_move_location: Migration to 19.0\n"
+    },
+    {
+      "number": 2339,
+      "type": "pr",
+      "state": "closed",
+      "title": "[17.0][MIG] stock_move_location: Migration to version 17.0",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/pull/2339",
+      "created_at": "2025-05-13T18:38:17Z",
+      "updated_at": "2025-11-11T16:55:29Z",
+      "closed_at": "2025-11-11T16:49:21Z",
+      "labels": [
+        "needs review",
+        "approved",
+        "migration",
+        "ready to merge",
+        "merged 🎉"
+      ],
+      "body": "Backport from 18.0\r\n\r\n@Tecnativa @pedrobaeza @CarlosRoca13 \r\n\r\nTT52369"
+    },
+    {
+      "number": 2338,
+      "type": "pr",
+      "state": "closed",
+      "title": "[15.0][FIX] stock_move_location: reserved_quantity unfilled in _prepare_wizard_move_lines",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/pull/2338",
+      "created_at": "2025-05-13T14:49:39Z",
+      "updated_at": "2025-10-19T12:36:47Z",
+      "closed_at": "2025-10-19T12:36:47Z",
+      "labels": [
+        "enhancement",
+        "needs review",
+        "stale"
+      ],
+      "body": "In addition to the lack of information in the wizard, this results in detailed delivery note transactions disappearing and not being recreated.\r\n\r\nhttps://github.com/OCA/stock-logistics-warehouse/blob/dd0bfe2c2f13e39e6fc9c9c59b65dd1fe358eb7f/stock_move_location/wizard/stock_move_location.py#L238-L244\r\n\r\nTT56320"
+    },
+    {
+      "number": 2359,
+      "type": "pr",
+      "state": "closed",
+      "title": "[18.0][FIX] stock_move_location: fill with stock",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/pull/2359",
+      "created_at": "2025-05-27T15:02:36Z",
+      "updated_at": "2025-10-12T13:19:59Z",
+      "closed_at": "2025-10-12T13:19:56Z",
+      "labels": [
+        "bug",
+        "merged 🎉",
+        "stale"
+      ],
+      "body": "Always compute put-aways when using the fill with stock action on a transfer\r\n\r\nThe initial implementation https://github.com/OCA/stock-logistics-warehouse/pull/882 was calling action_assign to create move lines and have the put-aways computed. In the merge of the feature in this module https://github.com/OCA/stock-logistics-warehouse/pull/885, that behavior has been changed to manually create move lines and mark them as \"assigned\". This is not a good approach. I added a FIXME and a note in the ROADMAP.\r\n\r\ncc @rousseldenis @leemannd @sebalix "
+    },
+    {
+      "number": 2053,
+      "type": "pr",
+      "state": "closed",
+      "title": "[17.0][MIG] stock_move_location",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/pull/2053",
+      "created_at": "2024-05-30T00:33:42Z",
+      "updated_at": "2025-05-13T18:40:46Z",
+      "closed_at": "2025-05-13T18:40:46Z",
+      "labels": [
+        "needs review",
+        "needs fixing",
+        "migration"
+      ],
+      "body": ""
+    },
+    {
+      "number": 2316,
+      "type": "pr",
+      "state": "closed",
+      "title": "[18.0][MIG] stock_move_location: Migration to 18.0",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/pull/2316",
+      "created_at": "2025-04-14T06:49:14Z",
+      "updated_at": "2025-04-14T16:08:01Z",
+      "closed_at": "2025-04-14T15:57:19Z",
+      "labels": [
+        "needs review",
+        "approved",
+        "migration",
+        "merged 🎉"
+      ],
+      "body": "This PR superseds: https://github.com/OCA/stock-logistics-warehouse/pull/2244 respecting the commit and adding the fix to avoid errors when the uom group is not set.\r\n\r\ncc @Tecnativa TT54327\r\n\r\nping @pedrobaeza @juancarlosonate-tecnativa "
+    },
+    {
+      "number": 2244,
+      "type": "pr",
+      "state": "closed",
+      "title": "[18.0][MIG] stock_move_location: Migration to 18.0",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/pull/2244",
+      "created_at": "2025-01-22T18:04:27Z",
+      "updated_at": "2025-04-14T07:13:06Z",
+      "closed_at": "2025-04-14T07:12:43Z",
+      "labels": [],
+      "body": "Depends on:\r\n- [ ] https://github.com/OCA/stock-logistics-warehouse/pull/2053\r\n\r\nIncludes:\r\n- [ ] https://github.com/OCA/stock-logistics-warehouse/pull/2235"
+    },
+    {
+      "number": 1964,
+      "type": "pr",
+      "state": "closed",
+      "title": "[16.0][FIX] stock_move_location: Move Line destination would stay the default",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1964",
+      "created_at": "2024-03-18T14:27:43Z",
+      "updated_at": "2025-01-26T12:30:36Z",
+      "closed_at": "2025-01-26T12:30:36Z",
+      "labels": [
+        "stale"
+      ],
+      "body": "Closes https://github.com/OCA/stock-logistics-warehouse/issues/1963\n"
+    },
+    {
+      "number": 2235,
+      "type": "pr",
+      "state": "closed",
+      "title": "[16.0][FIX] stock_move_location: prevent putaway rules when we don't need them",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/pull/2235",
+      "created_at": "2025-01-14T08:46:49Z",
+      "updated_at": "2025-01-14T09:17:31Z",
+      "closed_at": "2025-01-14T09:16:46Z",
+      "labels": [
+        "approved",
+        "merged 🎉"
+      ],
+      "body": "fw of\r\n\r\n- #2233 \r\n\r\nIf we disable in the wizard the \"Apply putaway rules\" toggle we wan't to prevent those to be applied by any automatic logic. Simply injecting the avoid_putaway_rules context the core does so ignoring them.\r\n\r\nTT52561\r\n\r\ncc @cesar-tecnativa \r\n\r\nplease review @carlosdauden @sergio-teruel "
+    },
+    {
+      "number": 2233,
+      "type": "pr",
+      "state": "closed",
+      "title": "[15.0][FIX] stock_move_location: prevent putaway rules when we don't need them",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/pull/2233",
+      "created_at": "2025-01-10T15:50:33Z",
+      "updated_at": "2025-01-13T11:13:40Z",
+      "closed_at": "2025-01-13T11:11:55Z",
+      "labels": [
+        "approved",
+        "merged 🎉"
+      ],
+      "body": "If we disable in the wizard the \"Apply putaway rules\" toggle we wan't to prevent those to be applied by any automatic logic. Simply injecting the avoid_putaway_rules context the core does so ignoring them.\r\n\r\ncc @Tecnativa TT52561\r\n\r\nplease review @sergio-teruel @carlosdauden "
+    },
+    {
+      "number": 2106,
+      "type": "pr",
+      "state": "closed",
+      "title": "[14.0][FIX] stock_move_location: take values from the current transient model",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/pull/2106",
+      "created_at": "2024-07-12T12:45:26Z",
+      "updated_at": "2024-12-22T12:32:01Z",
+      "closed_at": "2024-12-22T12:32:01Z",
+      "labels": [
+        "stale"
+      ],
+      "body": "**Issue Description**\r\nThe previous implementation of _get_move_values(self, picking, lines) relied on data from the transient model \"wiz.stock.move.location.line\". This approach led to potential inconsistencies between stock_move_location_line_ids.destination_location_id and self.destination_location_id.\r\n\r\n\r\n**Previous Implementation**\r\nlocation_from_id = lines[0].origin_location_id.id\r\nlocation_to_id = lines[0].destination_location_id.id\r\n\r\nThe issue arose when the _onchange_destination_location_id(self) method was not properly triggered:\r\n```\r\n@api.onchange(\"destination_location_id\")\r\ndef _onchange_destination_location_id(self):\r\n    for line in self.stock_move_location_line_ids:\r\n        line.destination_location_id = self.destination_location_id\r\n```\r\nIf this onchange method wasn't called correctly, _get_move_values(self, picking, lines) would use potentially outdated values from lines.destination_location_id.id, leading to errors\r\n\r\n\r\n**Proposed Solution**\r\nTo resolve this issue, we now use values directly from the current transient model \"wiz.stock.move.location\":\r\n```\r\nlocation_from_id = self.origin_location_id.id\r\nlocation_to_id = self.destination_location_id.id\r\n```\r\nThis change ensures consistency and eliminates the dependency on the proper execution of the onchange method"
+    },
+    {
+      "number": 2115,
+      "type": "pr",
+      "state": "closed",
+      "title": "[16.0] stock_move_location: Fix UI and add hook to filter quants",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/pull/2115",
+      "created_at": "2024-07-24T13:46:59Z",
+      "updated_at": "2024-07-29T07:21:19Z",
+      "closed_at": "2024-07-29T07:04:13Z",
+      "labels": [
+        "enhancement",
+        "approved",
+        "merged 🎉"
+      ],
+      "body": "The sql query is replaced by the read_group method from the orm. This allows the use of odoo domain and the definition of a new method that can be overriden to get the domain to retrieve the quants.\r\n\r\nImprove the wizard form:\r\n\r\n * Toggle fields are now properly displayed\r\n * Add a placeholder group to be used by specialized addon to add additional filters"
+    },
+    {
+      "number": 1987,
+      "type": "pr",
+      "state": "closed",
+      "title": "[16.0][FIX] stock_move_location: fix planned transfer incorrect reserved_uom_qty",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1987",
+      "created_at": "2024-04-09T09:41:43Z",
+      "updated_at": "2024-07-25T14:28:31Z",
+      "closed_at": "2024-07-25T14:28:26Z",
+      "labels": [
+        "approved",
+        "ready to merge",
+        "merged 🎉"
+      ],
+      "body": "This PR fixes stock quant matching in _get_gather_domain by setting strict=True, ensuring precise matching based on lot, package, and location. This change addresses issues arising from the previous approach, which could lead to the inclusion of unnecessary quants, such as those without an owner or lot.\r\n\r\nBefore this fix, available_quantity was not correctly identifying the quantity for a specific location, lot, and owner.\r\n\r\n\r\n@qrtl QT4414"
+    },
+    {
+      "number": 1990,
+      "type": "pr",
+      "state": "closed",
+      "title": "[16.0][FW][IMP] stock_move_location",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1990",
+      "created_at": "2024-04-11T10:13:41Z",
+      "updated_at": "2024-04-17T06:55:31Z",
+      "closed_at": "2024-04-17T06:55:24Z",
+      "labels": [
+        "enhancement",
+        "needs review",
+        "approved",
+        "ready to merge",
+        "merged 🎉"
+      ],
+      "body": "Forward port of https://github.com/OCA/stock-logistics-warehouse/pull/1977.\r\n\r\n@qrtl"
+    },
+    {
+      "number": 2006,
+      "type": "pr",
+      "state": "closed",
+      "title": "[16.0][IMP] stock_move_location: use current active company in multicompany environment",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/pull/2006",
+      "created_at": "2024-04-23T11:28:14Z",
+      "updated_at": "2024-04-23T13:02:21Z",
+      "closed_at": "2024-04-23T11:43:55Z",
+      "labels": [
+        "merged 🎉"
+      ],
+      "body": "Fwport of https://github.com/OCA/stock-logistics-warehouse/pull/2005"
+    },
+    {
+      "number": 2005,
+      "type": "pr",
+      "state": "closed",
+      "title": "[15.0][IMP] stock_move_location: use current active company in multicompany environment",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/pull/2005",
+      "created_at": "2024-04-23T09:24:27Z",
+      "updated_at": "2024-04-23T11:39:29Z",
+      "closed_at": "2024-04-23T10:20:58Z",
+      "labels": [
+        "approved",
+        "merged 🎉"
+      ],
+      "body": ""
+    },
+    {
+      "number": 1899,
+      "type": "pr",
+      "state": "closed",
+      "title": "[16.0][IMP][FIX] stock_move_location: improve planned transfer",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1899",
+      "created_at": "2023-12-01T02:02:13Z",
+      "updated_at": "2024-03-13T01:44:00Z",
+      "closed_at": "2024-03-11T15:14:04Z",
+      "labels": [
+        "enhancement",
+        "needs review",
+        "approved",
+        "ready to merge",
+        "merged 🎉"
+      ],
+      "body": "Before this commit, when a planned transfer for a product with a specific lot number was made, it did not adhere to this lot number and assigned a different lot as per Odoo's standard behavior.\r\n\r\nAfter this commit, planned transfers will respect the lot number and create move lines with the chosen lots.\r\n\r\n@qrtl"
+    },
+    {
+      "number": 1969,
+      "type": "pr",
+      "state": "closed",
+      "title": "[16.0][FIX] stock_move_location: correct method _get_putaway_strategy name",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1969",
+      "created_at": "2024-03-22T15:35:20Z",
+      "updated_at": "2024-03-25T07:53:47Z",
+      "closed_at": "2024-03-25T07:53:05Z",
+      "labels": [
+        "approved",
+        "merged 🎉"
+      ],
+      "body": "fw-port https://github.com/OCA/stock-logistics-warehouse/pull/1968\r\n\r\ncc @Tecnativa TT48457\r\n\r\n@pedrobaeza @sergio-teruel please review"
+    },
+    {
+      "number": 1976,
+      "type": "pr",
+      "state": "closed",
+      "title": "[14.0][FIX] stock_move_location: missing destination location propagation on wizard lines",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1976",
+      "created_at": "2024-04-02T12:18:15Z",
+      "updated_at": "2024-04-09T09:47:25Z",
+      "closed_at": "2024-04-09T09:47:25Z",
+      "labels": [],
+      "body": ""
+    },
+    {
+      "number": 1977,
+      "type": "pr",
+      "state": "closed",
+      "title": "[15.0][IMP] stock_move_location: fill picking_type_id depends on origin_location_id",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1977",
+      "created_at": "2024-04-03T03:24:51Z",
+      "updated_at": "2024-04-11T08:34:08Z",
+      "closed_at": "2024-04-11T08:33:57Z",
+      "labels": [
+        "enhancement",
+        "needs review",
+        "approved",
+        "merged 🎉"
+      ],
+      "body": "This improvement commit ensures the operation type is determined by the original location, aiming to prevent the misuse of incorrect operation types in scenarios where multiple internal transfer options exist.\r\n\r\n@qrtl QT4470"
+    },
+    {
+      "number": 1968,
+      "type": "pr",
+      "state": "closed",
+      "title": "[15.0][FIX] stock_move_location: correct method _get_putaway_strategy name",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1968",
+      "created_at": "2024-03-22T15:22:51Z",
+      "updated_at": "2024-03-25T08:06:03Z",
+      "closed_at": "2024-03-25T08:05:19Z",
+      "labels": [
+        "approved",
+        "merged 🎉"
+      ],
+      "body": "cc @Tecnativa TT48457\r\n\r\n@pedrobaeza @sergio-teruel please review"
+    },
+    {
+      "number": 1993,
+      "type": "pr",
+      "state": "closed",
+      "title": "[15.0][FIX] stock_move_location: The new picking is created with other picking type of selected",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1993",
+      "created_at": "2024-04-12T18:01:32Z",
+      "updated_at": "2024-04-15T06:51:51Z",
+      "closed_at": "2024-04-15T06:46:55Z",
+      "labels": [
+        "approved",
+        "merged 🎉"
+      ],
+      "body": "cc @Tecnativa TT48726\r\n\r\nping  @carlosdauden @CarlosRoca13 "
+    },
+    {
+      "number": 1928,
+      "type": "pr",
+      "state": "closed",
+      "title": "[WIP][FIX] stock_move_location: domain",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1928",
+      "created_at": "2024-02-01T11:06:14Z",
+      "updated_at": "2024-02-01T12:05:09Z",
+      "closed_at": "2024-02-01T12:05:09Z",
+      "labels": [],
+      "body": ""
+    },
+    {
+      "number": 1942,
+      "type": "pr",
+      "state": "closed",
+      "title": "[15.0][FIX] stock_move_location: domain in multicompany",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1942",
+      "created_at": "2024-02-13T16:04:18Z",
+      "updated_at": "2024-02-14T08:28:46Z",
+      "closed_at": "2024-02-14T08:26:10Z",
+      "labels": [
+        "approved",
+        "merged 🎉"
+      ],
+      "body": ""
+    },
+    {
+      "number": 1892,
+      "type": "pr",
+      "state": "closed",
+      "title": "[DOCS] stock_move_location: improve usage instructions",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1892",
+      "created_at": "2023-11-22T12:14:02Z",
+      "updated_at": "2023-12-11T12:14:03Z",
+      "closed_at": "2023-12-02T02:12:55Z",
+      "labels": [
+        "approved",
+        "ready to merge",
+        "merged 🎉"
+      ],
+      "body": "Also convert readme fragments to markdown.\r\n\r\n@moduon MT-3609\r\n\r\nFixes https://github.com/OCA/stock-logistics-warehouse/issues/1882."
+    },
+    {
+      "number": 1901,
+      "type": "pr",
+      "state": "closed",
+      "title": "[15.0][IMP] stock_move_location: Avoid check date expired in immediate relocation transfer",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1901",
+      "created_at": "2023-12-04T09:43:11Z",
+      "updated_at": "2023-12-04T18:35:29Z",
+      "closed_at": "2023-12-04T18:35:01Z",
+      "labels": [
+        "approved",
+        "merged 🎉"
+      ],
+      "body": "Avoid check date expired in immediate relocation transfer\r\n\r\nping @chienandalu @sergio-teruel \r\n@Tecnativa TT46361"
+    },
+    {
+      "number": 1607,
+      "type": "pr",
+      "state": "closed",
+      "title": "[14.0][FIX] stock_move_location: wrong destination location",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1607",
+      "created_at": "2023-01-12T17:22:27Z",
+      "updated_at": "2023-09-11T13:46:12Z",
+      "closed_at": "2023-09-11T13:44:25Z",
+      "labels": [
+        "enhancement",
+        "needs review",
+        "approved",
+        "merged 🎉"
+      ],
+      "body": "When you change `Destination Location`, lines are visually updated but actually behind the field remains the same, so the stock move lines are wrong created. If we force recreate lines it works\r\n\r\nFor reproducing it: \r\n\r\n1. Go to Inventory > Operations > Move from location... \r\n2.  Change the `Destination location` to any other. \r\n3. Press `Inmediate transfer`.\r\n4.  Check that the stock move lines generated in the picking are wrong because location destination isn't the one we chosed.\r\n\r\n\r\nFunction `get_putaway_strategy` is now called `_get_putaway_strategy`."
+    },
+    {
+      "number": 1842,
+      "type": "pr",
+      "state": "closed",
+      "title": "[14.0][FIX] stock_move_location: Fix onchange and make editable",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1842",
+      "created_at": "2023-09-12T10:51:27Z",
+      "updated_at": "2023-09-18T06:29:05Z",
+      "closed_at": "2023-09-18T06:28:58Z",
+      "labels": [
+        "merged 🎉"
+      ],
+      "body": "This bug https://github.com/OCA/stock-logistics-warehouse/pull/1607 also happens in v15. I also took the functionality to edit each line destination location.\r\n\r\nIn this case, since the onchange on `Operation type` doesn't exists an error happens because there is no `Destination location` on the picking moves. \r\n\r\n![Captura desde 2023-09-12 11-39-19](https://github.com/OCA/stock-logistics-warehouse/assets/100672471/f8e0d612-faf8-4975-b55d-a53ee41301c6)\r\n"
+    },
+    {
+      "number": 1521,
+      "type": "pr",
+      "state": "closed",
+      "title": "[11.0][FIX] stock_move_location: _get_available_quantity has to return a tuple",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1521",
+      "created_at": "2022-10-27T08:01:27Z",
+      "updated_at": "2023-08-20T12:22:42Z",
+      "closed_at": "2023-08-20T12:22:42Z",
+      "labels": [
+        "stale"
+      ],
+      "body": "**Problem**\r\n_get_available_quantity() returns non tuple in some cases\r\n\r\n**How to reproduce**\r\n1. Run Move To Location\r\n2. Add Product, wich is not on stock\r\n3. Click Confirm\r\n4. Error \"int is not iterable\" occurs\r\n\r\nWas already fixed in 13.0, but not in  11.0, 12.0, 14.0, 15.0"
+    },
+    {
+      "number": 1742,
+      "type": "pr",
+      "state": "closed",
+      "title": "[16.0][FIX] stock_move_location: missing commits",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1742",
+      "created_at": "2023-06-06T11:17:32Z",
+      "updated_at": "2023-06-27T20:35:20Z",
+      "closed_at": "2023-06-27T20:35:15Z",
+      "labels": [
+        "enhancement",
+        "needs review",
+        "approved",
+        "ready to merge",
+        "merged 🎉"
+      ],
+      "body": "cc @Tecnativa \r\n\r\nping @carlosdauden @CarlosRoca13 "
+    },
+    {
+      "number": 1704,
+      "type": "pr",
+      "state": "closed",
+      "title": "[15.0][FIX] stock_move_location: Take into account owner for move quants",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1704",
+      "created_at": "2023-05-10T15:17:56Z",
+      "updated_at": "2023-06-06T11:57:29Z",
+      "closed_at": "2023-06-06T11:57:23Z",
+      "labels": [
+        "approved",
+        "ready to merge",
+        "merged 🎉"
+      ],
+      "body": "cc @Tecnativa TT43025\r\n\r\nping @carlosdauden @ernestotejeda \r\n\r\nMissing commit from v13\r\n- https://github.com/OCA/stock-logistics-warehouse/pull/1095"
+    },
+    {
+      "number": 1740,
+      "type": "pr",
+      "state": "closed",
+      "title": "[FIX] stock_move_location: Move From Location wizard missing destination on move lines",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1740",
+      "created_at": "2023-06-05T08:57:49Z",
+      "updated_at": "2023-06-05T09:13:43Z",
+      "closed_at": "2023-06-05T09:13:43Z",
+      "labels": [],
+      "body": ""
+    },
+    {
+      "number": 1702,
+      "type": "pr",
+      "state": "closed",
+      "title": "[15.0][FIX] stock_move_location: No read on actions",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1702",
+      "created_at": "2023-05-05T04:48:33Z",
+      "updated_at": "2023-05-05T07:54:50Z",
+      "closed_at": "2023-05-05T07:54:34Z",
+      "labels": [
+        "merged 🎉"
+      ],
+      "body": "The permissions on actions has been restricted on this version. Use _for_xml_id helper that was built for not requiring such permissions.\r\n\r\n@Tecnativa TT42955"
+    },
+    {
+      "number": 1577,
+      "type": "pr",
+      "state": "closed",
+      "title": "[14.0][FIX] Stock Move Location: apply putaway rules",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1577",
+      "created_at": "2022-12-08T19:10:09Z",
+      "updated_at": "2023-01-21T19:52:54Z",
+      "closed_at": "2023-01-20T12:39:17Z",
+      "labels": [
+        "enhancement",
+        "approved",
+        "ready to merge",
+        "merged 🎉"
+      ],
+      "body": "The function called to get the putaway rule when creating the stock.move.lines does not exist in odoo 14.0.\r\nhttps://github.com/OCA/stock-logistics-warehouse/blob/5830833b99df972329e173633dbec27ca002e05f/stock_move_location/wizard/stock_move_location_line.py#L106\r\n\r\n- `get_putaway_strategy` should actuall be [_get_putaway_strategy](https://github.com/odoo/odoo//blob/076baeacbbdf92ae1b500e6716fd95d32acc4a53/addons/stock/models/stock_location.py#L135)\r\n- Extend test to actually commit the wizard and check the resulting move.lines\r\n\r\nP.s. This is my first PR to the OCA, so please let me know if I missed something. "
+    },
+    {
+      "number": 1592,
+      "type": "pr",
+      "state": "closed",
+      "title": "[16.0][FIX] stock_move_location",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1592",
+      "created_at": "2022-12-27T03:59:39Z",
+      "updated_at": "2022-12-30T01:04:43Z",
+      "closed_at": "2022-12-29T18:04:22Z",
+      "labels": [
+        "merged 🎉"
+      ],
+      "body": "Use One2many instead of Many2many for popup of move location.\r\n\r\nBefore this commit, we got issues when we move location from inventory adjust and press enter button. And, even we add create=\"0\" in tree tag of many2many field there is unnecessary popup when we move location from Inventory > Operations > Move from location... and press enter in the last record of many2many tree view.\r\n\r\nUsing many2many field with one2many_list widget can cause unnecessary things and I think there is no reason we must use many2many field.\r\nRelated issues - https://github.com/OCA/stock-logistics-warehouse/issues/1578 "
+    },
+    {
+      "number": 1600,
+      "type": "pr",
+      "state": "closed",
+      "title": "[14.0][IMP] stock_move_location: change location domain",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1600",
+      "created_at": "2023-01-02T10:07:18Z",
+      "updated_at": "2023-01-12T16:23:48Z",
+      "closed_at": "2023-01-02T11:21:35Z",
+      "labels": [
+        "enhancement",
+        "approved",
+        "merged 🎉"
+      ],
+      "body": "Use current user company instead of default to get the domain of locations"
+    },
+    {
+      "number": 1596,
+      "type": "pr",
+      "state": "closed",
+      "title": "[15.0][FIX] stock_move_location: stock_move_location_line_ids ",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1596",
+      "created_at": "2022-12-30T01:44:20Z",
+      "updated_at": "2023-01-19T16:40:53Z",
+      "closed_at": "2023-01-19T16:40:45Z",
+      "labels": [
+        "approved",
+        "ready to merge",
+        "merged 🎉"
+      ],
+      "body": "Backporting of this https://github.com/OCA/stock-logistics-warehouse/pull/1592"
+    },
+    {
+      "number": 1549,
+      "type": "pr",
+      "state": "closed",
+      "title": "[16.0][MIG] stock_move_location",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1549",
+      "created_at": "2022-11-14T02:00:20Z",
+      "updated_at": "2022-12-21T10:37:03Z",
+      "closed_at": "2022-12-10T10:41:28Z",
+      "labels": [
+        "needs review",
+        "needs fixing",
+        "migration",
+        "merged 🎉"
+      ],
+      "body": ""
+    },
+    {
+      "number": 1598,
+      "type": "pr",
+      "state": "closed",
+      "title": "[13.0][FIX] stock_move_location: stock_move_location_line_ids",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1598",
+      "created_at": "2022-12-30T02:12:14Z",
+      "updated_at": "2023-01-04T19:15:03Z",
+      "closed_at": "2023-01-04T19:14:57Z",
+      "labels": [
+        "approved",
+        "ready to merge",
+        "merged 🎉"
+      ],
+      "body": "Backporting of https://github.com/OCA/stock-logistics-warehouse/pull/1592"
+    },
+    {
+      "number": 1597,
+      "type": "pr",
+      "state": "closed",
+      "title": "[14.0][FIX] stock_move_location: stock_move_location_line_ids",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1597",
+      "created_at": "2022-12-30T01:56:33Z",
+      "updated_at": "2023-01-04T19:13:27Z",
+      "closed_at": "2023-01-04T19:13:22Z",
+      "labels": [
+        "approved",
+        "ready to merge",
+        "merged 🎉"
+      ],
+      "body": "Backporting of https://github.com/OCA/stock-logistics-warehouse/pull/1592"
+    },
+    {
+      "number": 1459,
+      "type": "pr",
+      "state": "closed",
+      "title": "[14.0][IMP] stock_move_location: packages support",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1459",
+      "created_at": "2022-07-28T10:36:31Z",
+      "updated_at": "2022-11-24T10:49:13Z",
+      "closed_at": "2022-11-24T10:23:32Z",
+      "labels": [
+        "enhancement",
+        "needs review",
+        "approved",
+        "ready to merge",
+        "merged 🎉"
+      ],
+      "body": "Implement support for move packages."
+    },
+    {
+      "number": 1488,
+      "type": "pr",
+      "state": "closed",
+      "title": "[15.0][FIX] stock_move_location: Bug on onchange origin location",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1488",
+      "created_at": "2022-09-21T13:03:57Z",
+      "updated_at": "2022-11-11T14:50:08Z",
+      "closed_at": "2022-10-20T13:27:02Z",
+      "labels": [
+        "enhancement",
+        "needs review",
+        "approved",
+        "merged 🎉"
+      ],
+      "body": "This PR fix a bug that may occurs when changing the origin location:\r\n\r\n`File \"/home/user/workspace/odoo_code/odoo/odoo/models.py\", line 6475, in onchange\r\n    record._onchange_eval(name, field_onchange[name], result)\r\n  File \"/home/user/workspace/odoo_code/odoo/odoo/models.py\", line 6208, in _onchange_eval\r\n    method_res = method(self)\r\n  File \"/home/user/workspace/oca/15.0/stock-logistics-warehouse/stock_move_location/wizard/stock_move_location.py\", line 322, in onchange_origin_location\r\n    if line_val.get(\"max_quantity\") <= 0:\r\nException\r\n\r\nThe above exception was the direct cause of the following exception:\r\n\r\nTraceback (most recent call last):\r\n  File \"/home/user/workspace/odoo_code/odoo/odoo/http.py\", line 643, in _handle_exception\r\n    return super(JsonRequest, self)._handle_exception(exception)\r\n  File \"/home/user/workspace/odoo_code/odoo/odoo/http.py\", line 301, in _handle_exception\r\n    raise exception.with_traceback(None) from new_cause\r\nTypeError: '<=' not supported between instances of 'NoneType' and 'int'`\r\n\r\nAs we can see in the error log, group.get(\"quantity\") may be None\r\n\r\nregards"
+    },
+    {
+      "number": 1475,
+      "type": "pr",
+      "state": "closed",
+      "title": "[15.0][FW] stock_move_location: Remove update of assigned moves location",
+      "url": "https://github.com/OCA/stock-logistics-warehouse/pull/1475",
+      "created_at": "2022-09-06T09:27:49Z",
+      "updated_at": "2022-10-24T10:32:16Z",
+      "closed_at": "2022-10-24T10:32:11Z",
+      "labels": [
+        "enhancement",
+        "needs review",
+        "merged 🎉"
+      ],
+      "body": "Forward port of #1474 \r\n\r\n\r\nThe update of the source location of a move is not a good idea, as\r\nshown in the test case that is modified by this commit and explained\r\nbelow.\r\n\r\nIn general, a stock.move will be linked to a stock.picking whose\r\nlocation_id and location_dest_id are defined by the picking type.\r\nAs such, the stock.move will inherit these locations and it is the\r\nassignation of the stock.move that will create a stock.move.line\r\nwhere the location (in case of outgoing picking) or the destination\r\nlocation (in case of incoming picking through putaway) will be a\r\nsub location of the respective location defined on the move.\r\n\r\nSo, if we want to empty a stock.location and move all its content\r\nto another stock.location, we do not want to update the location\r\nof the reserved moves, since it can break the reservation mechanism\r\nof Odoo, as the assignation of a move will always look into the\r\nchildren locations of the move, and it is not supposed to be updated\r\nby any internal transfer, to what could be a children location.\r\n\r\nThen, if internal transfers were planned from the location that is\r\nbeing emptied, but are supposed to be executed after the location\r\nhas been emptied, there is probably an issue with the planning and\r\nthe sequence in which both transfers are being executed.\r\nSince the internal transfer being updated in the test case was also\r\nmoving from a shelf location to its parent (where technically the goods\r\nare already, since they are in a child location), we should prefer not\r\nbreaking the standard workflow of Odoo instead of supporting a corner\r\ncase with an internal transfer.\r\n\r\nI guess we can revisit my assumption if we have a good reason to update\r\nthe stock location, but the one that was tested doesn't seem to be\r\ngood enough to justify breaking a standard mechanism."
+    }
+  ]
+}

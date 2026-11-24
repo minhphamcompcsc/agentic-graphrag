@@ -1,0 +1,1211 @@
+{
+  "module": "stock_picking_invoice_link",
+  "repo": "OCA/stock-logistics-workflow",
+  "fetched_at": "2026-11-24T04:44:45+00:00",
+  "queries": [
+    {
+      "q": "\"stock_picking_invoice_link\" repo:OCA/stock-logistics-workflow is:issue",
+      "total_count": 32,
+      "returned": 32
+    },
+    {
+      "q": "\"stock_picking_invoice_link\" repo:OCA/stock-logistics-workflow is:pull-request",
+      "total_count": 115,
+      "returned": 50
+    }
+  ],
+  "items": [
+    {
+      "number": 2474,
+      "type": "issue",
+      "state": "open",
+      "title": "Migration to version 20.0",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/2474",
+      "created_at": "2026-10-05T09:31:11Z",
+      "updated_at": "2026-11-18T12:51:26Z",
+      "closed_at": null,
+      "labels": [
+        "help wanted",
+        "work in progress",
+        "no stale"
+      ],
+      "body": "# Todo\n\nhttps://github.com/OCA/maintainer-tools/wiki/Migration-to-version-20.0\n\n# Modules to migrate\n\n- [ ] product_customerinfo_picking\n- [ ] purchase_stock_picking_backorder_policy\n- [ ] purchase_stock_picking_invoice_link\n- [ ] sale_line_returned_qty\n- [ ] sale_order_global_stock_route\n- [ ] sale_stock_partner_delivery_window\n- [ ] sale_stock_picking_backorder_policy\n- [ ] sale_stock_picking_invoice_link\n- [ ] sale_stock_picking_reservation_policy\n- [ ] scrap_reason_code\n- [x] stock_account_product_run_fifo_hook - By @JasminSForgeFlow - #2575\n- [ ] stock_dangerous_goods\n- [ ] stock_landed_costs_purchase_auto\n- [ ] stock_lot_scrap\n- [ ] stock_move_line_expiration_date_required\n- [ ] stock_move_valuation_usage\n- [ ] stock_no_negative\n- [ ] stock_owner_restriction\n- [ ] stock_partner_delivery_window\n- [ ] stock_picking_auto_create_lot\n- [ ] stock_picking_auto_create_package\n- [ ] stock_picking_back2draft\n- [ ] stock_picking_backorder_move_qty\n- [ ] stock_picking_backorder_policy\n- [ ] stock_picking_batch_extended\n- [ ] stock_picking_batch_group_by_date\n- [ ] stock_picking_batch_partner_enable\n- [ ] stock_picking_batch_substate\n- [ ] stock_picking_customer_ref\n- [ ] stock_picking_filter_lot\n- [x] stock_picking_invoice_link - By @HviorForgeFlow - #2493\n- [ ] stock_picking_kind\n- [ ] stock_picking_line_sequence\n- [ ] stock_picking_move_line_no_print\n- [ ] stock_picking_origin_reference\n- [ ] stock_picking_purchase_order_link\n- [ ] stock_picking_reservation_policy\n- [ ] stock_picking_return_empty_package\n- [ ] stock_picking_return_lot\n- [ ] stock_picking_return_restricted_qty\n- [ ] stock_picking_sale_order_link\n- [ ] stock_picking_send_by_mail\n- [ ] stock_production_lot_active\n- [ ] stock_restrict_lot\n- [ ] stock_split_picking\n\nMissing module? Check https://github.com/OCA/maintainer-tools/wiki/%5BFAQ%5D-Missing-modules-in-migration-issue-list"
+    },
+    {
+      "number": 2118,
+      "type": "issue",
+      "state": "open",
+      "title": "Migration to version 19.0",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/2118",
+      "created_at": "2025-09-29T14:10:36Z",
+      "updated_at": "2026-11-12T09:43:45Z",
+      "closed_at": null,
+      "labels": [
+        "help wanted",
+        "work in progress",
+        "no stale"
+      ],
+      "body": "# Todo\n\nhttps://github.com/OCA/maintainer-tools/wiki/Migration-to-version-19.0\n\n# Modules to migrate\n\n- [ ] delivery_procurement_group_carrier\n- [ ] delivery_total_weight_from_packaging\n- [ ] procurement_auto_create_group_carrier\n- [ ] product_cost_price_avco_sync\n- [x] product_customerinfo_picking - By @Borruso - #2362\n- [x] purchase_stock_picking_invoice_link - By @Andrii9090-tecnativa - #2388\n- [x] sale_line_returned_qty - By @domenicostragapede - #2420\n- [ ] sale_line_returned_qty_mrp\n- [x] sale_order_global_stock_route - By @sergioM-S73 - #2220\n- [x] sale_stock_picking_invoice_link - By @Alexgars73 - #2130\n- [x] scrap_reason_code - By @sergijPf - #2334\n- [ ] stock_account_product_run_fifo_hook\n- [ ] stock_checkout_sync\n- [ ] stock_dangerous_goods\n- [ ] stock_dynamic_routing\n- [ ] stock_dynamic_routing_reserve_rule\n- [x] stock_interwarehouse_transfer - By @AndreuOForgeFlow - #2444\n- [ ] stock_landed_costs_priority\n- [x] stock_landed_costs_purchase_auto - By @AaronHForgeFlow - #2286\n- [ ] stock_lock_lot - By @PaulaMForgeFlow - #2350\n- [x] stock_lot_scrap - By @Andrii9090-tecnativa - #2313\n- [ ] stock_move_actual_date - By @AungKoKoLin1997 - #2346\n- [ ] stock_move_auto_assign_auto_release\n- [ ] stock_move_backdating - By @bosd - #2332\n- [ ] stock_move_line_change_lot\n- [x] stock_move_line_expiration_date_required - By @FyasserF - #2367\n- [ ] stock_move_line_qty_picked\n- [ ] stock_move_original_date\n- [x] stock_move_quantity_product_uom - moved to stock-logistics-wareouse - https://github.com/OCA/stock-logistics-warehouse/pull/2545\n- [ ] stock_move_source_relocate\n- [ ] stock_move_source_relocate_dynamic_routing\n- [ ] stock_no_negative - By @BhaveshHeliconia - #2135\n- [ ] stock_owner_restriction\n- [x] stock_partner_delivery_window - By @ivantodorovich - #2219\n- [x] stock_picking_auto_create_lot - By @lef-adhoc - #2162\n- [x] stock_picking_auto_create_package - By @JordiMForgeFlow - #2215\n- [x] stock_picking_back2draft - By @tupaq - #2207\n- [ ] stock_picking_backorder_strategy_cancel\n- [ ] stock_picking_batch_creation\n- [ ] stock_picking_batch_creation_split_kit\n- [x] stock_picking_batch_extended - By @Andrii9090-tecnativa - #2450\n- [ ] stock_picking_batch_invoice_frequency\n- [ ] stock_picking_batch_operation_quick_change\n- [ ] stock_picking_batch_planner\n- [ ] stock_picking_batch_print_invoices\n- [ ] stock_picking_batch_print_pickings\n- [ ] stock_picking_batch_validate_confirm\n- [ ] stock_picking_consolidation_priority\n- [x] stock_picking_customer_ref - By @JasminSForgeFlow - #2259\n- [x] stock_picking_filter_lot - By @JordiMForgeFlow - #2178\n- [ ] stock_picking_group_by_base\n- [ ] stock_picking_group_by_partner_by_carrier\n- [ ] stock_picking_group_by_partner_by_carrier_by_date\n- [ ] stock_picking_group_by_partner_by_carrier_force_move_type\n- [ ] stock_picking_invoice_link\n- [ ] stock_picking_kind\n- [x] stock_picking_line_sequence - By @cyrilmanuel - #2329\n- [ ] stock_picking_mass_action\n- [x] stock_picking_move_line_no_print - By @Shide - #2339\n- [ ] stock_picking_operation_quick_change\n- [x] stock_picking_origin_reference - By @JasminSForgeFlow - #2232\n- [ ] stock_picking_origin_reference_purchase\n- [ ] stock_picking_origin_reference_sale\n- [x] stock_picking_origin_state - By @AndreuOForgeFlow - #2389\n- [ ] stock_picking_partner_note\n- [ ] stock_picking_progress\n- [ ] stock_picking_propagate_scheduled_date\n- [x] stock_picking_purchase_order_link - By @cparadis-impressfoods - #2305\n- [ ] stock_picking_restrict_cancel_printed\n- [x] stock_picking_return_lot - By @victoralmau - #2462\n- [x] stock_picking_return_restricted_qty - By @JJRR5 - #2210\n- [ ] stock_picking_sale_order_link\n- [x] stock_picking_send_by_mail - By @NICO-SOLUTIONS - #2146\n- [ ] stock_picking_show_backorder\n- [ ] stock_picking_show_return - By @Andrii9090-tecnativa - #2308\n- [ ] stock_picking_tier_validation\n- [ ] stock_picking_type_force_move_type\n- [ ] stock_picking_warn_message\n- [ ] stock_picking_whole_scrap\n- [ ] stock_product_set\n- [x] stock_production_lot_active - By @gediminasvenc - #2257\n- [ ] stock_receipt_lot_info\n- [x] stock_restrict_lot - By @lef-adhoc - #2151\n- [ ] stock_scrap_cancel - By @PaulaMForgeFlow - #2352\n- [x] stock_split_picking - By @arantxa-s73 - #2125\n- [ ] stock_split_picking_dimension\n- [ ] stock_split_picking_kit\n- [x] stock_valuation_layer_usage -> stock_move_valuation_usage https://github.com/OCA/OpenUpgrade/pull/6091\n\nMissing module? Check https://github.com/OCA/maintainer-tools/wiki/%5BFAQ%5D-Missing-modules-in-migration-issue-list"
+    },
+    {
+      "number": 1101,
+      "type": "issue",
+      "state": "open",
+      "title": "Migration to version 16.0",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/1101",
+      "created_at": "2022-10-03T17:04:07Z",
+      "updated_at": "2026-11-02T10:06:07Z",
+      "closed_at": null,
+      "labels": [
+        "help wanted",
+        "work in progress",
+        "no stale"
+      ],
+      "body": "# Todo\r\n\r\nhttps://github.com/OCA/maintainer-tools/wiki/Migration-to-version-16.0\r\n\r\n# Modules to migrate\r\n\r\n- [ ] delivery_procurement_group_carrier - By @rousseldenis - #1158\r\n- [x] delivery_total_weight_from_packaging - By @QuocDuong1306 - #1365\n- [x] procurement_auto_create_group_carrier - By @sebalix - #1718\n- [x] product_cost_price_avco_sync - By @pedrobaeza - #1877\n- [x] product_expiry_simple - By @alexis-via - #1320\n- [ ] product_weighable_default_weight - By @legalsylvain - #1746\n- [x] purchase_stock_picking_invoice_link - By @JavierIniesta - #1198\r\n- [x] sale_line_returned_qty - By @pausanchezqubiq - #1309\n- [x] sale_order_global_stock_route - By @cvinh - #1337\n- [x] stock_account_product_run_fifo_hook - By @EvaSForgeFlow - #1323\n- [x] stock_auto_move - By @ThomasBinsfeld - #1466\n- [ ] stock_delivery_note - By @glitchov - #1148\r\n- [x] stock_landed_costs_currency - By @BT-jdziurzynski - #1327\n- [x] stock_landed_costs_delivery - By @carolinafernandez-tecnativa - #1559\n- [x] stock_landed_costs_purchase_auto - By @victoralmau - #1540\n- [x] stock_landed_costs_security - By @carolinafernandez-tecnativa - #1536\n- [x] stock_lock_lot - By @AdrianaSaiz - #1641\n- [x] stock_lot_on_hand_first - By @fvaqueriza - #1645\n- [ ] stock_lot_production_date - By @JuMiSanAr - #1218\r\n- [ ] stock_move_backdating - By @Saran440 - #1594\n- [ ] stock_move_line_reference_link - By @rrajasree - #2410\n- [x] stock_move_original_date - By @AungKoKoLin1997 - #2262\n- [x] stock_move_quick_lot - By @etobella - #1876\n- [x] stock_no_negative - By @vvanneri-ia - #1112\r\n- [x] stock_owner_restriction - By @AungKoKoLin1997 - #1231\r\n- [ ] stock_partner_delivery_window - By @heliaktiv - #1332\n- [x] stock_picking_auto_create_lot - By @ps-tubtim - #1106\r\n- [x] stock_picking_auto_create_lot_qty - By @dessanhemrayev - #1567\n- [ ] stock_picking_auto_create_lot_serial_only - By @ThomasBinsfeld - #1544\n- [x] stock_picking_back2draft - By @otmanelagy - #1124\r\n- [x] ~~stock_picking_backorder_strategy~~ Included in core\r\n- [x] stock_picking_batch_extended - By @RodrigoBM - #1353\n- [x] stock_picking_customer_ref - By @cvinh - #1348\n- [x] stock_picking_filter_lot - By @oihane - #1257\n- [x] stock_picking_group_by_partner_by_carrier - By @rousseldenis - #1165\r\n- [x] stock_picking_group_by_partner_by_carrier_by_date - By @tuantrantg - #1528\n- [x] stock_picking_import_serial_number - By @victoralmau - #1518\n- [x] stock_picking_info_lot - By @juanmagil - #1304\n- [x] stock_picking_invoice_link - By @JoelZilli - #1154\r\n- [x] stock_picking_late_activity - By @HeliconiaSolutions - #1778\n- [x] stock_picking_line_sequence - By @bosd - #1316\n- [ ] stock_picking_mass_action - By @pausanchezqubiq - #1308\n- [x] stock_picking_operation_quick_change - By @florian-dacosta - #1232\n- [x] stock_picking_origin_reference - By @LauraCForgeFlow - #2005\n- [x] stock_picking_origin_reference_purchase - By @LauraCForgeFlow - #2006\n- [x] stock_picking_origin_reference_sale - By @LauraCForgeFlow - #2007\n- [x] stock_picking_product_assortment - By @dsolanki-initos - #1311\n- [x] stock_picking_product_link - By @robinkeunen - #1432\n- [x] stock_picking_progress - By @sbejaoui - #1330\n- [ ] stock_picking_propagate_scheduled_date - By @HviorForgeFlow - #1659\n- [ ] stock_picking_purchase_order_link - By @HugoCordobaLeal - #1243\r\n- [ ] stock_picking_purchase_propagate - By @lehoangan - #1253\r\n- [x] stock_picking_putinpack_restriction - By @nicolas-delbovier-acsone - #2328\n- [x] stock_picking_quick - By @FranzPoize - #1400\n- [x] stock_picking_return_lot - By @sbejaoui - #1677\n- [x] stock_picking_return_restricted_qty - By @ced-adhoc - #1642\n- [ ] stock_picking_return_show_lot - By @syci - #1733\n- [x] stock_picking_sale_order_link - By @jjscarafia - #1108\r\n- [x] stock_picking_send_by_mail - By @carolinafernandez-tecnativa - #1474\n- [x] stock_picking_show_backorder - By @dsolanki-initos - #1310\n- [ ] stock_picking_show_return - By @slitheryduke11 - #1237\r\n- [x] stock_picking_supplier_ref - By @ferran-S73 - #1372\n- [x] stock_picking_warn_message - By @dhx - #1356\n- [ ] stock_picking_whole_scrap\r\n- [x] stock_product_set - By @pilarvargas-tecnativa - #1538\n- [x] stock_production_lot_active - By @dreispt - #1581\n- [ ] stock_production_lot_traceability - By @quannguyen1560 - #1403\n- [ ] stock_push_delay - By @Deriman-Alonso - #1562\n- [x] stock_putaway_hook - By @rousseldenis - #1102\r\n- [x] stock_quant_package_dimension - By @rousseldenis - #1104\r\n- [x] stock_quant_package_dimension_total_weight_from_packaging - By @QuocDuong1306 - #1366\n- [x] stock_quant_package_product_packaging - By @rousseldenis - #1103\r\n- [x] stock_receipt_lot_info - By @MarcBForgeFlow - #1113\r\n- [x] stock_reporting_access - By @AungKoKoLin1997 - #2379\n- [x] stock_restrict_lot - By @florian-dacosta - #1137\r\n- [ ] stock_scrap_tier_validation - By @em230418 - #1867\n- [ ] stock_split_picking - By @ps-tubtim - #1107\r\n- [ ] stock_valuation_fifo_lot - By @AungKoKoLin1997 - #1676\n- [x] stock_valuation_layer_usage - By @EvaSForgeFlow - #1326\n\r\nMissing module? Check https://github.com/OCA/maintainer-tools/wiki/%5BFAQ%5D-Missing-modules-in-migration-issue-list"
+    },
+    {
+      "number": 1737,
+      "type": "issue",
+      "state": "open",
+      "title": "Migration to version 18.0",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/1737",
+      "created_at": "2024-10-06T16:16:02Z",
+      "updated_at": "2026-10-19T14:17:27Z",
+      "closed_at": null,
+      "labels": [
+        "help wanted",
+        "work in progress",
+        "no stale"
+      ],
+      "body": "# Todo\n\nhttps://github.com/OCA/maintainer-tools/wiki/Migration-to-version-18.0\n\n# Modules to migrate\n\n- [x] delivery_procurement_group_carrier - By @HeliconiaSolutions - #1802\n- [x] delivery_total_weight_from_packaging - By @bizzappdev - #1958\n- [x] nobump - By @Ricardo-MC - #1875\n- [x] procurement_auto_create_group_carrier - By @bizzappdev - #1965\n- [x] product_cost_price_avco_sync - By @LauraCForgeFlow - #1918\n- [x] product_customerinfo_picking - By @Babbato - #1984\n- [x] purchase_stock_picking_invoice_link - By @JasminSForgeFlow - #1793\n- [x] sale_line_returned_qty - By @eugenios73 - #2028\n- [x] sale_order_global_stock_route - By @mmrondon - #1757\n- [ ] sale_stock_picking_variable_qty - By @chienandalu - #2301\n- [x] scrap_reason_code - By @Ricardo-MC - #2083\n- [x] stock_account_product_run_fifo_hook - By @JasminSForgeFlow - #1794\n- [ ] stock_account_show_automatic_valuation\n- [x] stock_customer_deposit - By @chienandalu - #2189\n- [x] stock_dangerous_goods - By @xaviedoanhduy - #1786\n- [ ] stock_delivery_note - By @fredericgrall - #1770\n- [x] stock_dynamic_routing_reserve_rule - By @grindtildeath - #2012\n- [ ] stock_exception - By @sergiocorato - #2358\n- [x] stock_landed_costs_currency - By @MarcusPDL - #2432\n- [x] stock_landed_costs_priority - By @HeliconiaSolutions - #1823\n- [x] stock_landed_costs_purchase_auto - By @Vicent-S73 - #1998\n- [x] stock_lock_lot - By @henrybackman - #1892\n- [ ] stock_lot_on_hand_first - By @twalter-c2c - #2249\n- [ ] stock_lot_production_date - By @fredericgrall - #1771\n- [x] stock_lot_scrap - By @Andrii9090 - #2170\n- [x] stock_move_actual_date - By @AungKoKoLin1997 - #1964\n- [x] stock_move_auto_assign_auto_release - By @bizzappdev - #2009\n- [x] ~stock_move_line_auto_fill~ - Included in core - https://github.com/OCA/OpenUpgrade/pull/5541\n- [x] stock_move_backdating - By @bosd - #1921\n- [ ] stock_move_free_reservation_reassign - By @sebalix - #2320\n- [x] stock_move_line_change_lot - By @simahawk - #1971\n- [x] stock_move_line_dates - By @Andrii9090 - #2179\n- [x] stock_move_line_expiration_date_required - By @Andrii9090 - #2164\n- [ ] stock_move_line_reference_link - By @BhaveshHeliconia - #1804\n- [x] stock_move_original_date - By @ArnauCForgeFlow - #2087\n- [x] stock_move_propagate_first_move - By @marielejeune - #2270\n- [x] stock_move_source_relocate - By @bizzappdev - #1966\n- [x] stock_move_source_relocate_dynamic_routing - By @sebalix - #1989\n- [x] stock_no_negative - By @woutswennen - #1830\n- [x] stock_owner_restriction - By @CarlosRoca13 - #1845\n- [x] stock_partner_delivery_window - By @thienvh332 and @ArnauCForgeFlow - #1910\n- [x] stock_picking_auto_create_lot - By @cem-adhoc - #1781\n- [x] stock_picking_auto_create_lot_sequence - By @AungKoKoLin1997 - #2177\n- [x] stock_picking_auto_create_package - By @JordiMForgeFlow - #2030\n- [x] stock_picking_back2draft - By @HeliconiaSolutions - #1805\n- [x] stock_picking_backorder_strategy - By @bizzappdev - #1844\n- [x] stock_picking_batch_creation - By @rousseldenis - #1969\n- [x] stock_picking_batch_extended - By @carlos-lopez-tecnativa - #2120\n- [x] stock_picking_batch_extended_account_sale_type - By @Andrii9090-tecnativa - #2288\n- [x] stock_picking_batch_operation_quick_change - By @eduezerouali-tecnativa - #2102\n- [x] stock_picking_batch_outgoing - By @CarlosRoca13 - #2337\n- [x] stock_picking_batch_print_invoices - By @Shide - #1978\n- [x] stock_picking_batch_print_pickings - By @Shide - #1977\n- [ ] stock_picking_batch_set_quantity - By @eduezerouali-tecnativa - #2107\n- [x] stock_picking_batch_validate_confirm - By @chienandalu - #2094\n- [x] stock_picking_consolidation_priority - By @bizzappdev - #1995\n- [x] stock_picking_customer_ref - By @cvinh - #2197\n- [x] stock_picking_date_deadline_syncs_scheduled_date - By @sabrinaRMartin - #2167\n- [x] stock_picking_filter_lot - By @BhaveshHeliconia - #1883\n- [x] stock_picking_group_by_base - By @natuan9 - #1836\n- [x] stock_picking_group_by_partner_by_carrier - By @theangryangel - #1947\n- [x] stock_picking_group_by_partner_by_carrier_by_date - By @bizzappdev - #1959\n- [x] stock_picking_group_by_partner_by_carrier_force_move_type - By @bizzappdev - #1996\n- [x] stock_picking_import_serial_number - By @eduezerouali-tecnativa - #2133\n- [x] stock_picking_invoice_link - By @carlosdynapps - #1779\n- [x] stock_picking_kind - By @HeliconiaSolutions - #1806\n- [x] stock_picking_line_sequence - By @StefanRijnhart - #1864\n- [x] stock_picking_mass_action - By @yankinmax - #1856\n- [x] stock_picking_move_package_to_package - By @MarcusPDL - #2428\n- [x] stock_picking_operation_quick_change - By @eduezerouali-tecnativa - #2101\n- [x] stock_picking_origin_reference - By @BhaveshHeliconia - #1807\n- [x] stock_picking_origin_reference_purchase - By @BhaveshHeliconia - #1808\n- [x] stock_picking_origin_reference_sale - By @BhaveshHeliconia - #1813\n- [x] stock_picking_partner_note - By @HeliconiaSolutions - #1839\n- [x] stock_picking_product_availability_inline - By @CarlosRoca13 - OCA/stock-logistics-availability#44\n- [x] stock_picking_progress - By @natuan9 - #1818\n- [x] stock_picking_propagate_scheduled_date - By @xaviedoanhduy - #1912\n- [x] stock_picking_purchase_order_link - By @HeliconiaSolutions - #1809\n- [x] stock_picking_restrict_cancel_printed - By @sebalix - #1890\n- [x] stock_picking_restrict_cancel_with_orig_move - By @IsabelAForgeFlow - #2029\n- [x] stock_picking_return_empty_package - By @rousseldenis - #2300\n- [x] stock_picking_return_lot - By @StefanRijnhart - #1885\n- [x] stock_picking_return_restricted_qty - By @ced-adhoc - #1790\n- [x] stock_picking_sale_order_link - By @joa-adhoc - #1748\n- [x] stock_picking_send_by_mail - By @fredericgrall - #1772\n- [x] stock_picking_show_backorder - By @HeliconiaSolutions - #1810\n- [x] stock_picking_show_lot - By @eduezerouali-tecnativa - #2099\n- [ ] stock_picking_show_return\n- [ ] stock_picking_start - By @CarlosRoca13 - #2396\n- [x] stock_picking_tier_validation - By @Ricardo-MC - #1875\n- [x] stock_picking_to_batch_group_fields - By @EmilioPascual - #2165\n- [x] stock_picking_type_bypass_reservation - By @chienandalu - #2198\n- [x] stock_picking_variable_qty - By @Andrii9090 - #2183\n- [x] stock_picking_warn_message - By @BhaveshHeliconia - #1812\n- [x] stock_picking_whole_scrap - By @juancarlosonate-tecnativa - #1841\n- [x] stock_product_set - By @victoralmau - #1902\n- [ ] stock_product_variant_mto - By @chaule97 - #1819\n- [x] stock_production_lot_active - By @AEstLo - #2033\n- [ ] stock_putaway_hook - By @sebalix - #1931\n- [x] stock_receipt_lot_info - By @ArnauCForgeFlow - #2070\n- [x] stock_reception_discrepancy_distribution - By @juancarlosonate-tecnativa - #2359\n- [x] stock_restrict_lot - By @StefanRijnhart - #1880\n- [x] stock_scrap_cancel - By @ThiagoMForgeFlow - #2307\n- [x] stock_scrap_tier_validation - By @hitrosol - #2414\n- [x] stock_split_picking - By @gbrito - #1857\n- [x] stock_valuation_layer_usage - By @JasminSForgeFlow - #1795\n- [x] stock_warn_option - By @sabrinaRMartin - #2218\n\nMissing module? Check https://github.com/OCA/maintainer-tools/wiki/%5BFAQ%5D-Missing-modules-in-migration-issue-list"
+    },
+    {
+      "number": 913,
+      "type": "issue",
+      "state": "open",
+      "title": "Migration to version 15.0",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/913",
+      "created_at": "2021-10-17T10:22:45Z",
+      "updated_at": "2025-01-17T15:36:22Z",
+      "closed_at": null,
+      "labels": [
+        "help wanted",
+        "work in progress",
+        "no stale"
+      ],
+      "body": "# Todo\r\n\r\nhttps://github.com/OCA/maintainer-tools/wiki/Migration-to-version-15.0\r\n\r\n# Modules to migrate\r\n\r\n- [ ] delivery_package_default_shipping_weight\r\n- [x] delivery_procurement_group_carrier - By @ellbristow - #1038\r\n- [ ] delivery_total_weight_from_packaging\r\n- [x] product_cost_price_avco_sync - By @CarlosRoca13 - #1138\r\n- [ ] product_supplierinfo_for_customer_picking - By @Olageibol - #1016\r\n- [x] purchase_stock_picking_invoice_link - By @stefan-tecnativa - #1180\r\n- [x] sale_line_returned_qty_mrp - By @JasminSForgeFlow - #1082\r\n- [x] sale_order_global_stock_route - By @stefan-tecnativa - #1219\r\n- [ ] sale_stock_mto_as_mts_orderpoint\r\n- [x] stock_auto_move - By @hbrunn - #1467\n- [ ] stock_delivery_note - By @janikvonrotz - #1270\r\n- [ ] stock_landed_costs_currency - By @DinhTien24 - #1143\r\n- [x] stock_landed_costs_delivery - By @victoralmau - #1230\r\n- [x] stock_landed_costs_purchase_auto - By @victoralmau - #1212\r\n- [x] stock_landed_costs_security - By @ernesto-garcia-tecnativa - #1220\r\n- [ ] stock_lock_lot\r\n- [x] ~stock_move_assign_picking_hook~ merged into stock\r\n- [ ] stock_lot_scrap - By @bizzappdev - #1193\r\n- [ ] stock_move_backdating - By @ps-tubtim - #1358\r\n- [ ] stock_move_change_source_location - By @MiquelRForgeFlow - #1168\r\n- [ ] stock_move_forced_lot - By @DavidJForgeFlow - #1835\n- [x] stock_move_line_auto_fill - By @sergio-teruel - #1141\r\n- [x] stock_move_quick_lot - By @sergio-teruel - #1125\r\n- [x] stock_no_negative - By @JoanMForgeFlow - #944\r\n- [x] stock_owner_restriction - By @cesar-tecnativa - #1033\r\n- [ ] stock_partner_delivery_window - By @nikolausweingartmair - #1146\r\n- [x] stock_picking_assign_serial_final - By @ernesto-garcia-tecnativa - #1221\r\n- [x] stock_picking_auto_create_lot - By @vib-adhoc - #1071\r\n- [x] stock_picking_back2draft - By @BT-dmontull - #977\r\n- [x] stock_picking_backorder_strategy - By @ernesto-garcia-tecnativa - #1224\r\n- [x] stock_picking_batch_extended - By @cesar-tecnativa - #1041\r\n- [x] stock_picking_batch_extended_account - By @sergio-teruel - #1156\r\n- [x] stock_picking_batch_extended_account_sale_type - By @sergio-teruel - #1157\r\n- [ ] stock_picking_cancel_reason\r\n- [x] stock_picking_customer_ref - By @hbrunn - #1384\r\n- [ ] stock_picking_filter_lot\r\n- [ ] stock_picking_group_by_partner_by_carrier\r\n- [x] stock_picking_import_serial_number - By @carolinafernandez-tecnativa - #1392\r\n- [x] stock_picking_invoice_link - By @CarlosRoca13 - #1147\r\n- [x] stock_picking_line_sequence - By @DavidJForgeFlow - #1211\r\n- [x] stock_picking_mass_action - By @theangryangel - #987\r\n- [x] stock_picking_operation_quick_change - By @duyanhk15 - #1115\r\n- [x] stock_picking_origin_reference - By @JasminSForgeFlow - #1342\r\n- [x] stock_picking_product_assortment - By @CarlosRoca13 - #1007\r\n- [x] stock_picking_product_assortment_availability_inline - By @sergio-teruel - #1225\r\n- [x] stock_picking_product_availability_inline - By @sergio-teruel - #1126\r\n- [ ] stock_picking_purchase_order_link\r\n- [ ] stock_picking_restrict_cancel_with_orig_move\r\n- [x] stock_picking_return_restricted_qty - By @CarlosRoca13 - #1051\r\n- [x] stock_picking_sale_order_link - By @nicomacr - #958\r\n- [x] stock_picking_send_by_mail - By @dani-xtendoo - #1000\r\n- [x] stock_picking_show_backorder - By @JuanyDForgeflow - #1020\r\n- [ ] stock_picking_show_return\r\n- [ ] stock_picking_tier_validation - By @ps-tubtim - #1362\r\n- [x] stock_picking_warn_message - By @dhx - #1001\r\n- [x] stock_picking_whole_scrap - By @CarlosRoca13 - #1008\r\n- [x] stock_production_lot_active - By @BT-dmontull - #976\r\n- [ ] stock_putaway_by_route\r\n- [x] stock_putaway_hook - By @flachica - #1095\r\n- [ ] stock_quant_package_dimension - By @flachica - #1093\r\n- [ ] stock_quant_package_dimension_total_weight_from_packaging\r\n- [ ] stock_quant_package_product_packaging - By @flachica - #1092\r\n- [x] stock_receipt_lot_info - By @SergiCForgeFlow - #1363\r\n- [ ] stock_restrict_lot\r\n- [x] stock_return_request - By @cesar-tecnativa - #1032\r\n- [ ] stock_split_picking\r\n- [ ] stock_valuation_layer_by_category - By @slominchar - #1110\r\n\r\nMissing module? Check https://github.com/OCA/maintainer-tools/wiki/%5BFAQ%5D-Missing-modules-in-migration-issue-list"
+    },
+    {
+      "number": 1421,
+      "type": "issue",
+      "state": "open",
+      "title": "Migration to version 17.0",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/1421",
+      "created_at": "2023-11-08T09:37:59Z",
+      "updated_at": "2026-04-16T06:56:24Z",
+      "closed_at": null,
+      "labels": [
+        "help wanted",
+        "work in progress",
+        "no stale"
+      ],
+      "body": "# Todo\n\nhttps://github.com/OCA/maintainer-tools/wiki/Migration-to-version-17.0\n\n# Modules to migrate\n\n- [x] delivery_procurement_group_carrier - By @peluko00 - #1570 \n- [x] product_cost_price_avco_sync - By @LauraCForgeFlow - #1917\n- [x] purchase_stock_picking_invoice_link - By @JasminSForgeFlow - #1711\n- [ ] sale_line_returned_qty - By @Jp-alitec - #1614\n- [x] sale_order_global_stock_route - By @DrHohol - #1556\n- [x] sale_planned_consumed_date - By @alexandregaldeano - #1860\n- [x] sale_stock_restocking_fee_invoicing - By @SodexisTeam - #1706\n- [x] stock_account_product_run_fifo_hook - By @JasminSForgeFlow - #1716\n- [x] stock_auto_move - By @ferran-S73 - #1797\n- [ ] stock_delivery_note - By @SodexisTeam - #1682\n- [ ] stock_grn\n- [ ] stock_landed_costs_currency\n- [x] stock_landed_costs_priority - By @HeliconiaSolutions - #1822\n- [x] stock_lock_lot - By @arantxa-s73 - #1686\n- [x] stock_lot_on_hand_first - By @astirpe - #1742\n- [x] stock_lot_production_date - By @SodexisTeam - #1683\n- [x] stock_move_backdating - By @map-240221 - #1935\n- [x] stock_move_forced_lot - By @ThiagoMForgeFlow - #1816\n- [ ] stock_move_free_reservation_reassign\n- [ ] stock_move_line_auto_fill - By @arantxa-s73 - #1709\n- [x] stock_move_line_reserved_quant - By @SodexisTeam - #1691\n- [ ] stock_move_line_serial_unique\n- [x] stock_move_planned_consumed_date - By @alexandregaldeano - #1850\n- [x] stock_move_propagate_first_move - By @SodexisTeam - #1693\n- [x] stock_move_quantity_product_uom - By @DavidJForgeFlow - #1939\n- [x] stock_no_negative - By @fd-oerp - #1437\n- [ ] stock_override_procurement\n- [ ] stock_owner_restriction\n- [ ] stock_partner_delivery_window\n- [x] stock_picking_auto_create_lot - By @bruno-zanotti - #1657\n- [x] stock_picking_auto_create_lot_sequence - By @Tisho99 - #1865\n- [ ] stock_picking_auto_revert - By @dreispt - #1898\n- [x] stock_picking_back2draft - By @MarwanBHL - #1593\n- [ ] stock_picking_batch_extended - By @david-banon-tecnativa - #1997\n- [ ] stock_picking_batch_extended_account\n- [ ] stock_picking_batch_extended_account_sale_type\n- [x] stock_picking_batch_print_pickings - By @DantePereyra - #1948\n- [ ] stock_picking_customer_ref - By @JordiToledo - #1933\n- [x] stock_picking_filter_lot - By @fd-oerp - #1623\n- [ ] stock_picking_grn_mandatory\n- [x] stock_picking_group_by_base - By @BetoRaja - #1956\n- [ ] stock_picking_group_by_max_weight\n- [x] stock_picking_import_serial_number - By @juancarlosonate-tecnativa - #1879\n- [ ] stock_picking_info_lot - By @SodexisTeam - #1689\n- [x] stock_picking_invoice_link - By @lethuthao2403 - #1446\n- [x] stock_picking_kind - By @SodexisTeam - #1692\n- [x] stock_picking_line_sequence - By @siemenv - #1552\n- [x] stock_picking_mass_action - By @rrebollo - #1916\n- [x] stock_picking_origin_reference - By @AnaisLForgeFlow - #1633\n- [x] stock_picking_origin_reference_purchase - By @GuillemCForgeFlow - #1648\n- [x] stock_picking_origin_reference_sale - By @GuillemCForgeFlow - #1647\n- [x] stock_picking_partner_note - By @astirpe - #1739\n- [x] stock_picking_purchase_order_link - By @Ramibha - #1551\n- [x] stock_picking_return_lot - By @peluko00 - #1745\n- [x] stock_picking_return_restricted_qty - By @ced-adhoc - #1782\n- [ ] stock_picking_sale_order_link\n- [x] stock_picking_send_by_mail - By @NICO-SOLUTIONS - #1468\n- [x] stock_picking_show_backorder - By @RogerSans - #1662\n- [x] stock_picking_show_return - By @xmglord - #1542\n- [ ] stock_picking_start - By @SodexisTeam - #1726\n- [x] stock_picking_supplier_ref - By @david-s73 - #1705\n- [x] stock_picking_tier_validation - By @rrebollo - #1962\n- [x] stock_picking_warn_message - By @RicardCForgeFlow - #1535\n- [ ] stock_procurement_customer\n- [x] stock_production_lot_active - By @juancarlosonate-tecnativa - #1889\n- [ ] stock_production_lot_traceability - By @rven - #1638\n- [x] stock_putaway_hook - By @alexandregaldeano - #1842\n- [x] stock_quant_package_dimension - By @ferran-S73 - #1622\n- [x] stock_quant_package_product_packaging - By @ferran-S73 - #1618\n- [x] stock_receipt_lot_info - By @ArnauCForgeFlow - #2069\n- [x] stock_restrict_by_planned_consumed_date - By @alexandregaldeano - #1851\n- [x] stock_restrict_lot - By @jcadhoc - #1652\n- [x] stock_scrap_tier_validation - By @StefanRijnhart - #1654\n- [x] stock_split_picking - By @rven - #1449\n- [x] stock_valuation_layer_usage - By @JasminSForgeFlow - #1717\n\nMissing module? Check https://github.com/OCA/maintainer-tools/wiki/%5BFAQ%5D-Missing-modules-in-migration-issue-list"
+    },
+    {
+      "number": 457,
+      "type": "issue",
+      "state": "open",
+      "title": "Migration to version 12.0",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/457",
+      "created_at": "2018-09-27T00:39:33Z",
+      "updated_at": "2023-06-05T14:40:33Z",
+      "closed_at": null,
+      "labels": [
+        "help wanted",
+        "work in progress",
+        "no stale"
+      ],
+      "body": "# Todo\r\n\r\nhttps://github.com/OCA/maintainer-tools/wiki/Migration-to-version-12.0\r\n\r\n# Modules to migrate\r\n\r\n- [ ] mrp_stock_picking_restrict_cancel - By @kittiu - #518 \r\n- [x] product_cost_price_avco_sync - By @carlosdauden - #610 \r\n- [ ] product_expiry_simple - By @alexis-via - #532 \r\n- [x] product_supplierinfo_for_customer_picking - By @mreficent - #581 \r\n- [x] purchase_stock_picking_restrict_cancel - By @kittiu - #516 \r\n- [x] stock_batch_picking - ~~By @carlosdauden - #555~~ By @i-vyshnevska - #570 \r\n- [x] stock_change_price_at_date - By @kittiu - #537 \r\n- [ ] stock_cost_method_last - By @manuelcalerosolis - #721 \r\n- [x] stock_lot_scrap - By @lbelorgey - #624 \r\n- [ ] stock_move_backdating - By @SirTakobi - #1190\n- [x] stock_move_quick_lot - By @kittiu - #519 \r\n- [x] stock_no_negative - By @meigallodixital - #508 \r\n- [x] stock_pack_operation_auto_fill - By @jarroyomorales - #538 - To be renamed to `stock_move_line_auto_fill`\r\n- [x] stock_picking_auto_create_lot - By @meigallodixital - #506 \r\n- [ ] stock_picking_back2draft - By @robyf70 - #560 \r\n- [x] stock_picking_backorder_strategy - By @lescobarvx - #568 \r\n- [x] stock_picking_customer_ref - By @bizzappdev - #476 \r\n- [ ] stock_picking_filter_lot - By @IsabelEsparza - #536 \r\n- [x] stock_picking_invoice_link - By @ageficent - #513 \r\n- [x] stock_picking_line_sequence - By @bjeficent - #474 \r\n- [ ] stock_picking_mass_action - By @carlosdauden - #534 \r\n- [ ] stock_picking_operation_quick_change - By @mreficent - #544 \r\n- [x] stock_picking_package_preparation - By @eLBati - #488 \r\n- [x] stock_picking_package_preparation_line - By @eLBati - #489 \r\n- [x] stock_picking_purchase_propagate - By @kittiu - #591 \r\n- [x] stock_picking_purchase_order_link - By @jaumeplanas - #562 \r\n- [x] stock_picking_restrict_cancel_with_orig_move - By @kittiu - #515 \r\n- [x] stock_picking_sale_order_link - By @hegenator - #470\r\n- [x] stock_picking_send_by_mail - By @jaumeplanas - #526 \r\n- [x] stock_picking_show_backorder - By @bjeficent - #473 \r\n- [x] stock_picking_show_return - By @bizzappdev - #477\r\n- [ ] stock_picking_tier_validation - By @kaynnan - #1255\n- [x] stock_picking_whole_scrap - By @sergio-teruel - #588  \r\n- [x] stock_split_picking - By @andrius-preimantas - #469 "
+    },
+    {
+      "number": 2114,
+      "type": "issue",
+      "state": "closed",
+      "title": "stock_picking_invoice_link is not working",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/2114",
+      "created_at": "2025-09-26T14:53:45Z",
+      "updated_at": "2025-09-26T14:54:01Z",
+      "closed_at": "2025-09-26T14:54:01Z",
+      "labels": [
+        "bug"
+      ],
+      "body": "\nthe fields related every time not contains value, so no related between picking and invoice . just fields ,\nI looking for code where computed field but nothing.\n\n## Module\nstock_picking_invoice_link\n\n"
+    },
+    {
+      "number": 1785,
+      "type": "issue",
+      "state": "closed",
+      "title": "[BUG] [16.0] stock_picking_invoice_link: same elements added to stock move form view from different xml view extensions",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/1785",
+      "created_at": "2024-12-08T11:48:29Z",
+      "updated_at": "2025-07-02T16:05:37Z",
+      "closed_at": "2025-07-02T16:05:37Z",
+      "labels": [
+        "stale"
+      ],
+      "body": "The following code:  \r\nhttps://github.com/OCA/stock-logistics-workflow/blob/71a9f8cc8e871e51c4ec57f004148f6d9a60a87b/stock_picking_invoice_link/views/stock_view.xml#L24-L68\r\n\r\nIs producing this issue:  \r\n![image](https://github.com/user-attachments/assets/ccce356a-8e4f-42b2-9cc7-41bc4e98c619)\r\n\r\n**Steps to reproduce on Runboat:**\r\n1. Install stock_picking_invoice_link\r\n2. Navigate to **Inventory > Reporting > Stock Moves**.\r\n3. Select a record to open the **form view**.\r\n\r\n**Observations:**\r\n- The code has remained nearly identical since version 13.\r\n- It's likely that the second view was intended to extend a specific one, leading to this unintended behavior as collateral damage.\r\n"
+    },
+    {
+      "number": 708,
+      "type": "issue",
+      "state": "closed",
+      "title": "Migration to version 14.0",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/708",
+      "created_at": "2020-10-04T10:35:37Z",
+      "updated_at": "2025-01-26T12:38:12Z",
+      "closed_at": "2025-01-26T12:38:12Z",
+      "labels": [
+        "help wanted",
+        "work in progress",
+        "stale"
+      ],
+      "body": "# Todo\r\n\r\nhttps://github.com/OCA/maintainer-tools/wiki/Migration-to-version-14.0\r\n\r\n# Modules to migrate\r\n\r\n- [x] delivery_package_default_shipping_weight - By @dzungtran89 - #793 \r\n- [x] procurement_auto_create_group_carrier - By @hailangvn - #911\r\n- [x] product_cost_price_avco_sync - By @zamberjo - #1286\n- [x] product_expiry_simple - By @bealdav - #1271\n- [ ] product_supplierinfo_picking - By @HviorForgeFlow - #1034\n- [x] purchase_stock_picking_invoice_link - By @RabbitJon-S73 - #1019\n- [ ] sale_line_returned_qty - By @JasminSForgeFlow - #1079\n- [ ] sale_line_returned_qty_mrp - By @JasminSForgeFlow - #1081\n- [ ] sale_order_global_stock_route - By @Abranes - #1003\n- [x] sale_stock_mto_as_mts_orderpoint - By @dzungtran89  - #774 \r\n- [x] stock_auto_move - By @sbejaoui - #852 \r\n- [ ] stock_cost_method_last - By @alexis-via - #983\n- [ ] stock_dangerous_goods - By @mmequignon - #937\n- [x] stock_delivery_note - By @sbejaoui - #850 \r\n- [x] stock_landed_costs_delivery - By @victoralmau - #1418\n- [x] stock_landed_costs_purchase_auto - By @victoralmau - #1416\n- [x] stock_landed_costs_security - By @victoralmau - #1415\n- [x] stock_lock_lot - By @ferran-73 - #831 \r\n- [ ] stock_lot_scrap - By @RabbitJon-S73 - #1054\n- [x] stock_move_assign_picking_hook - By @phuctranerp - #796 \r\n- [ ] stock_move_backdating - By @toita86 - #1494\n- [x] stock_move_change_source_location - By @AlvaroTForgeFlow - #930\r\n- [x] stock_move_line_auto_fill - By @ivantodorovich - #763 \r\n- [ ] stock_move_line_reference_link\r\n- [x] stock_no_negative - By @Vanneri  - #747 \r\n- [x] stock_owner_restriction - By @ferran-73 - #819\n- [x] stock_picking_auto_create_lot - By @ValentinVinagre - #923\n- [ ] stock_picking_back2draft\r\n- [x] stock_picking_batch_extended - By @sonhd91 - #943\n- [x] stock_picking_filter_lot - By @jesus01x - #842 \r\n- [x] stock_picking_group_by_partner_by_carrier - By @phuctranerp - #874 \r\n- [x] stock_picking_group_by_partner_by_carrier_by_date - By @phuctranerp - #797 \r\n- [ ] stock_picking_import_serial_number - By @ryanc-me - #1063\n- [x] stock_picking_invoice_link - By @ajaniszewska-dev - #1010\n- [x] stock_picking_line_sequence - By @cjallais - #768\r\n- [x] stock_picking_mass_action - By @sonhd91 - #973\n- [ ] stock_picking_operation_quick_change - By @sergiocorato - #1386\n- [x] stock_picking_partner_note - By @JuMiSanAr - #1504\n- [x] stock_picking_purchase_order_link - By @mariadforgeflow - #882 \r\n- [ ] stock_picking_quick - By @Kev-Roche - #1088\n- [x] stock_picking_restrict_cancel_with_orig_move - By @phuctranerp - #791 \r\n- [x] stock_picking_return_lot - By @renda-dev - #1634\n- [ ] stock_picking_return_restricted_qty\r\n- [x] stock_picking_sale_order_link - By @dreispt - #860 \r\n- [x] stock_picking_send_by_mail - By @ferran-73 - #912 \r\n- [x] stock_picking_show_backorder - By @JuanyDForgeflow - #992\n- [x] stock_picking_show_return - By @hugho-ad - #880 \r\n- [ ] stock_picking_supplier_ref - By @Reyes4711-S73 - #1005\n- [x] stock_picking_warn_message - By @dhx - #907\r\n- [ ] stock_picking_whole_scrap\r\n- [x] stock_production_lot_active - By @janikvonrotz - #820 \r\n- [x] stock_putaway_by_route - By @dzungtran89  - #794 \r\n- [x] stock_putaway_hook - By @hparfr - #772 \r\n- [x] stock_quant_package_dimension - By @hparfr  - #770 \r\n- [x] stock_quant_package_product_packaging - By @hparfr - #771 \r\n- [x] stock_return_request - By @PrapassornS - #738\r\n- [x] stock_split_picking - By @RujiaL - #846\r\n\r\nMissing module? Check https://github.com/OCA/maintainer-tools/wiki/%5BFAQ%5D-Missing-modules-in-migration-issue-list"
+    },
+    {
+      "number": 1371,
+      "type": "issue",
+      "state": "closed",
+      "title": "[16] _link failed to activate",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/1371",
+      "created_at": "2023-09-03T04:51:38Z",
+      "updated_at": "2024-04-21T12:32:14Z",
+      "closed_at": "2024-04-21T12:32:14Z",
+      "labels": [
+        "bug",
+        "stale"
+      ],
+      "body": "<!-- Provide a general summary of the issue in the Title above.\r\nBefore opening the issue, please check that there isn't another issue addressing the same problem already created -->\r\n\r\n## Module\r\npurchase_stock_picking_invoice_link\r\nstock_picking_invoice_link\r\nstock_picking_purchase_order_link\r\nstock_picking_sale_order_link\r\n\r\n## Describe the bug\r\nA clear and concise description of what the bug is.\r\n\r\n## To Reproduce\r\n**Affected versions**:\r\npurchase_stock_picking_invoice_link : 16.0.1.0.0\r\nstock_picking_invoice_link : 16.0.1.0.1\r\nstock_picking_purchase_order_link : 16.0.1.0.1\r\nstock_picking_sale_order_link : 16.0.1.0.0\r\n\r\n\r\nSteps to reproduce the behavior:\r\n1.Install fresh odoo 16\r\n2.Activate Apps purchase_stock_picking_invoice_link / stock_picking_invoice_link / stock_picking_purchase_order_link / stock_picking_sale_order_link\r\n3.Failed to Activate\r\n\r\n**Expected behavior**\r\nActivate successful\r\n\r\n**Additional context**\r\nTested in Python ver 3.10.12 and 3.8.10\r\n\r\n**purchase_stock_picking_invoice_link**:\r\n\r\n```\r\nRPC_ERROR\r\nOdoo Server Error\r\nTraceback (most recent call last):\r\n  File \"/opt/odoo/odoo-server/odoo/api.py\", line 984, in get\r\n    cache_value = field_cache[record._ids[0]]\r\nKeyError: 374\r\n\r\nDuring handling of the above exception, another exception occurred:\r\n\r\nTraceback (most recent call last):\r\n  File \"/opt/odoo/odoo-server/odoo/fields.py\", line 1160, in __get__\r\n    value = env.cache.get(record, self)\r\n  File \"/opt/odoo/odoo-server/odoo/api.py\", line 991, in get\r\n    raise CacheMiss(record, field)\r\nodoo.exceptions.CacheMiss: 'ir.module.module(374,).description_html'\r\n\r\nDuring handling of the above exception, another exception occurred:\r\n\r\nTraceback (most recent call last):\r\n  File \"/opt/odoo/odoo-server/odoo/http.py\", line 1584, in _serve_db\r\n    return service_model.retrying(self._serve_ir_http, self.env)\r\n  File \"/opt/odoo/odoo-server/odoo/service/model.py\", line 133, in retrying\r\n    result = func()\r\n  File \"/opt/odoo/odoo-server/odoo/http.py\", line 1611, in _serve_ir_http\r\n    response = self.dispatcher.dispatch(rule.endpoint, args)\r\n  File \"/opt/odoo/odoo-server/odoo/http.py\", line 1815, in dispatch\r\n    result = self.request.registry['ir.http']._dispatch(endpoint)\r\n  File \"/opt/odoo/odoo-server/odoo/addons/base/models/ir_http.py\", line 154, in _dispatch\r\n    result = endpoint(**request.params)\r\n  File \"/opt/odoo/odoo-server/odoo/http.py\", line 697, in route_wrapper\r\n    result = endpoint(self, *args, **params_ok)\r\n  File \"/opt/odoo/odoo-server/addons/web/controllers/dataset.py\", line 46, in call_button\r\n    action = self._call_kw(model, method, args, kwargs)\r\n  File \"/opt/odoo/odoo-server/addons/web/controllers/dataset.py\", line 33, in _call_kw\r\n    return call_kw(request.env[model], method, args, kwargs)\r\n  File \"/opt/odoo/odoo-server/odoo/api.py\", line 461, in call_kw\r\n    result = _call_kw_multi(method, model, args, kwargs)\r\n  File \"/opt/odoo/odoo-server/odoo/api.py\", line 448, in _call_kw_multi\r\n    result = method(recs, *args, **kwargs)\r\n  File \"<decorator-gen-74>\", line 2, in button_immediate_install\r\n  File \"/opt/odoo/odoo-server/odoo/addons/base/models/ir_module.py\", line 74, in check_and_log\r\n    return method(self, *args, **kwargs)\r\n  File \"/opt/odoo/odoo-server/odoo/addons/base/models/ir_module.py\", line 460, in button_immediate_install\r\n    return self._button_immediate_function(type(self).button_install)\r\n  File \"/opt/odoo/odoo-server/odoo/addons/base/models/ir_module.py\", line 584, in _button_immediate_function\r\n    registry = modules.registry.Registry.new(self._cr.dbname, update_module=True)\r\n  File \"<decorator-gen-14>\", line 2, in new\r\n  File \"/opt/odoo/odoo-server/odoo/tools/func.py\", line 87, in locked\r\n    return func(inst, *args, **kwargs)\r\n  File \"/opt/odoo/odoo-server/odoo/modules/registry.py\", line 90, in new\r\n    odoo.modules.load_modules(registry, force_demo, status, update_module)\r\n  File \"/opt/odoo/odoo-server/odoo/modules/loading.py\", line 488, in load_modules\r\n    processed_modules += load_marked_modules(cr, graph,\r\n  File \"/opt/odoo/odoo-server/odoo/modules/loading.py\", line 372, in load_marked_modules\r\n    loaded, processed = load_module_graph(\r\n  File \"/opt/odoo/odoo-server/odoo/modules/loading.py\", line 226, in load_module_graph\r\n    module._check()\r\n  File \"/opt/odoo/odoo-server/odoo/addons/base/models/ir_module.py\", line 937, in _check\r\n    if not module.description_html:\r\n  File \"/opt/odoo/odoo-server/odoo/fields.py\", line 1209, in __get__\r\n    self.compute_value(recs)\r\n  File \"/opt/odoo/odoo-server/odoo/fields.py\", line 1387, in compute_value\r\n    records._compute_field_value(self)\r\n  File \"/opt/odoo/odoo-server/odoo/models.py\", line 4215, in _compute_field_value\r\n    fields.determine(field.compute, self)\r\n  File \"/opt/odoo/odoo-server/odoo/fields.py\", line 97, in determine\r\n    return needle(*args)\r\n  File \"/opt/odoo/odoo-server/odoo/addons/base/models/ir_module.py\", line 195, in _get_desc\r\n    html = lxml.html.document_fromstring(contents)\r\n  File \"/usr/local/lib/python3.10/dist-packages/lxml/html/__init__.py\", line 761, in document_fromstring\r\n    value = etree.fromstring(html, parser, **kw)\r\n  File \"src/lxml/etree.pyx\", line 3237, in lxml.etree.fromstring\r\n  File \"src/lxml/parser.pxi\", line 1891, in lxml.etree._parseMemoryDocument\r\nValueError: Unicode strings with encoding declaration are not supported. Please use bytes input or XML fragments without declaration.\r\n\r\nThe above server error caused the following client error:\r\nRPC_ERROR: Odoo Server Error\r\n    at makeErrorFromResponse (https://o16.sotomie.id/web/assets/469-92eb634/web.assets_backend.min.js:985:163)\r\n    at XMLHttpRequest.<anonymous> (https://o16.sotomie.id/web/assets/469-92eb634/web.assets_backend.min.js:993:13)\r\n```\r\n\r\n**stock_picking_invoice_link**:\r\n\r\n```\r\nRPC_ERROR\r\nOdoo Server Error\r\nTraceback (most recent call last):\r\n  File \"/opt/odoo/odoo-server/odoo/api.py\", line 984, in get\r\n    cache_value = field_cache[record._ids[0]]\r\nKeyError: 374\r\n\r\nDuring handling of the above exception, another exception occurred:\r\n\r\nTraceback (most recent call last):\r\n  File \"/opt/odoo/odoo-server/odoo/fields.py\", line 1160, in __get__\r\n    value = env.cache.get(record, self)\r\n  File \"/opt/odoo/odoo-server/odoo/api.py\", line 991, in get\r\n    raise CacheMiss(record, field)\r\nodoo.exceptions.CacheMiss: 'ir.module.module(374,).description_html'\r\n\r\nDuring handling of the above exception, another exception occurred:\r\n\r\nTraceback (most recent call last):\r\n  File \"/opt/odoo/odoo-server/odoo/http.py\", line 1584, in _serve_db\r\n    return service_model.retrying(self._serve_ir_http, self.env)\r\n  File \"/opt/odoo/odoo-server/odoo/service/model.py\", line 133, in retrying\r\n    result = func()\r\n  File \"/opt/odoo/odoo-server/odoo/http.py\", line 1611, in _serve_ir_http\r\n    response = self.dispatcher.dispatch(rule.endpoint, args)\r\n  File \"/opt/odoo/odoo-server/odoo/http.py\", line 1815, in dispatch\r\n    result = self.request.registry['ir.http']._dispatch(endpoint)\r\n  File \"/opt/odoo/odoo-server/odoo/addons/base/models/ir_http.py\", line 154, in _dispatch\r\n    result = endpoint(**request.params)\r\n  File \"/opt/odoo/odoo-server/odoo/http.py\", line 697, in route_wrapper\r\n    result = endpoint(self, *args, **params_ok)\r\n  File \"/opt/odoo/odoo-server/addons/web/controllers/dataset.py\", line 46, in call_button\r\n    action = self._call_kw(model, method, args, kwargs)\r\n  File \"/opt/odoo/odoo-server/addons/web/controllers/dataset.py\", line 33, in _call_kw\r\n    return call_kw(request.env[model], method, args, kwargs)\r\n  File \"/opt/odoo/odoo-server/odoo/api.py\", line 461, in call_kw\r\n    result = _call_kw_multi(method, model, args, kwargs)\r\n  File \"/opt/odoo/odoo-server/odoo/api.py\", line 448, in _call_kw_multi\r\n    result = method(recs, *args, **kwargs)\r\n  File \"<decorator-gen-74>\", line 2, in button_immediate_install\r\n  File \"/opt/odoo/odoo-server/odoo/addons/base/models/ir_module.py\", line 74, in check_and_log\r\n    return method(self, *args, **kwargs)\r\n  File \"/opt/odoo/odoo-server/odoo/addons/base/models/ir_module.py\", line 460, in button_immediate_install\r\n    return self._button_immediate_function(type(self).button_install)\r\n  File \"/opt/odoo/odoo-server/odoo/addons/base/models/ir_module.py\", line 584, in _button_immediate_function\r\n    registry = modules.registry.Registry.new(self._cr.dbname, update_module=True)\r\n  File \"<decorator-gen-14>\", line 2, in new\r\n  File \"/opt/odoo/odoo-server/odoo/tools/func.py\", line 87, in locked\r\n    return func(inst, *args, **kwargs)\r\n  File \"/opt/odoo/odoo-server/odoo/modules/registry.py\", line 90, in new\r\n    odoo.modules.load_modules(registry, force_demo, status, update_module)\r\n  File \"/opt/odoo/odoo-server/odoo/modules/loading.py\", line 488, in load_modules\r\n    processed_modules += load_marked_modules(cr, graph,\r\n  File \"/opt/odoo/odoo-server/odoo/modules/loading.py\", line 372, in load_marked_modules\r\n    loaded, processed = load_module_graph(\r\n  File \"/opt/odoo/odoo-server/odoo/modules/loading.py\", line 226, in load_module_graph\r\n    module._check()\r\n  File \"/opt/odoo/odoo-server/odoo/addons/base/models/ir_module.py\", line 937, in _check\r\n    if not module.description_html:\r\n  File \"/opt/odoo/odoo-server/odoo/fields.py\", line 1209, in __get__\r\n    self.compute_value(recs)\r\n  File \"/opt/odoo/odoo-server/odoo/fields.py\", line 1387, in compute_value\r\n    records._compute_field_value(self)\r\n  File \"/opt/odoo/odoo-server/odoo/models.py\", line 4215, in _compute_field_value\r\n    fields.determine(field.compute, self)\r\n  File \"/opt/odoo/odoo-server/odoo/fields.py\", line 97, in determine\r\n    return needle(*args)\r\n  File \"/opt/odoo/odoo-server/odoo/addons/base/models/ir_module.py\", line 195, in _get_desc\r\n    html = lxml.html.document_fromstring(contents)\r\n  File \"/usr/local/lib/python3.10/dist-packages/lxml/html/__init__.py\", line 761, in document_fromstring\r\n    value = etree.fromstring(html, parser, **kw)\r\n  File \"src/lxml/etree.pyx\", line 3237, in lxml.etree.fromstring\r\n  File \"src/lxml/parser.pxi\", line 1891, in lxml.etree._parseMemoryDocument\r\nValueError: Unicode strings with encoding declaration are not supported. Please use bytes input or XML fragments without declaration.\r\n\r\nThe above server error caused the following client error:\r\nRPC_ERROR: Odoo Server Error\r\n    at makeErrorFromResponse (https://o16.sotomie.id/web/assets/469-92eb634/web.assets_backend.min.js:985:163)\r\n    at XMLHttpRequest.<anonymous> (https://o16.sotomie.id/web/assets/469-92eb634/web.assets_backend.min.js:993:13)\r\n```\r\n\r\n**stock_picking_purchase_order_link**:\r\n\r\n```\r\nRPC_ERROR\r\nOdoo Server Error\r\nTraceback (most recent call last):\r\n  File \"/opt/odoo/odoo-server/odoo/api.py\", line 984, in get\r\n    cache_value = field_cache[record._ids[0]]\r\nKeyError: 285\r\n\r\nDuring handling of the above exception, another exception occurred:\r\n\r\nTraceback (most recent call last):\r\n  File \"/opt/odoo/odoo-server/odoo/fields.py\", line 1160, in __get__\r\n    value = env.cache.get(record, self)\r\n  File \"/opt/odoo/odoo-server/odoo/api.py\", line 991, in get\r\n    raise CacheMiss(record, field)\r\nodoo.exceptions.CacheMiss: 'ir.module.module(285,).description_html'\r\n\r\nDuring handling of the above exception, another exception occurred:\r\n\r\nTraceback (most recent call last):\r\n  File \"/opt/odoo/odoo-server/odoo/http.py\", line 1584, in _serve_db\r\n    return service_model.retrying(self._serve_ir_http, self.env)\r\n  File \"/opt/odoo/odoo-server/odoo/service/model.py\", line 133, in retrying\r\n    result = func()\r\n  File \"/opt/odoo/odoo-server/odoo/http.py\", line 1611, in _serve_ir_http\r\n    response = self.dispatcher.dispatch(rule.endpoint, args)\r\n  File \"/opt/odoo/odoo-server/odoo/http.py\", line 1815, in dispatch\r\n    result = self.request.registry['ir.http']._dispatch(endpoint)\r\n  File \"/opt/odoo/odoo-server/odoo/addons/base/models/ir_http.py\", line 154, in _dispatch\r\n    result = endpoint(**request.params)\r\n  File \"/opt/odoo/odoo-server/odoo/http.py\", line 697, in route_wrapper\r\n    result = endpoint(self, *args, **params_ok)\r\n  File \"/opt/odoo/odoo-server/addons/web/controllers/dataset.py\", line 46, in call_button\r\n    action = self._call_kw(model, method, args, kwargs)\r\n  File \"/opt/odoo/odoo-server/addons/web/controllers/dataset.py\", line 33, in _call_kw\r\n    return call_kw(request.env[model], method, args, kwargs)\r\n  File \"/opt/odoo/odoo-server/odoo/api.py\", line 461, in call_kw\r\n    result = _call_kw_multi(method, model, args, kwargs)\r\n  File \"/opt/odoo/odoo-server/odoo/api.py\", line 448, in _call_kw_multi\r\n    result = method(recs, *args, **kwargs)\r\n  File \"<decorator-gen-74>\", line 2, in button_immediate_install\r\n  File \"/opt/odoo/odoo-server/odoo/addons/base/models/ir_module.py\", line 74, in check_and_log\r\n    return method(self, *args, **kwargs)\r\n  File \"/opt/odoo/odoo-server/odoo/addons/base/models/ir_module.py\", line 460, in button_immediate_install\r\n    return self._button_immediate_function(type(self).button_install)\r\n  File \"/opt/odoo/odoo-server/odoo/addons/base/models/ir_module.py\", line 584, in _button_immediate_function\r\n    registry = modules.registry.Registry.new(self._cr.dbname, update_module=True)\r\n  File \"<decorator-gen-14>\", line 2, in new\r\n  File \"/opt/odoo/odoo-server/odoo/tools/func.py\", line 87, in locked\r\n    return func(inst, *args, **kwargs)\r\n  File \"/opt/odoo/odoo-server/odoo/modules/registry.py\", line 90, in new\r\n    odoo.modules.load_modules(registry, force_demo, status, update_module)\r\n  File \"/opt/odoo/odoo-server/odoo/modules/loading.py\", line 488, in load_modules\r\n    processed_modules += load_marked_modules(cr, graph,\r\n  File \"/opt/odoo/odoo-server/odoo/modules/loading.py\", line 372, in load_marked_modules\r\n    loaded, processed = load_module_graph(\r\n  File \"/opt/odoo/odoo-server/odoo/modules/loading.py\", line 226, in load_module_graph\r\n    module._check()\r\n  File \"/opt/odoo/odoo-server/odoo/addons/base/models/ir_module.py\", line 937, in _check\r\n    if not module.description_html:\r\n  File \"/opt/odoo/odoo-server/odoo/fields.py\", line 1209, in __get__\r\n    self.compute_value(recs)\r\n  File \"/opt/odoo/odoo-server/odoo/fields.py\", line 1387, in compute_value\r\n    records._compute_field_value(self)\r\n  File \"/opt/odoo/odoo-server/odoo/models.py\", line 4215, in _compute_field_value\r\n    fields.determine(field.compute, self)\r\n  File \"/opt/odoo/odoo-server/odoo/fields.py\", line 97, in determine\r\n    return needle(*args)\r\n  File \"/opt/odoo/odoo-server/odoo/addons/base/models/ir_module.py\", line 195, in _get_desc\r\n    html = lxml.html.document_fromstring(contents)\r\n  File \"/usr/local/lib/python3.10/dist-packages/lxml/html/__init__.py\", line 761, in document_fromstring\r\n    value = etree.fromstring(html, parser, **kw)\r\n  File \"src/lxml/etree.pyx\", line 3237, in lxml.etree.fromstring\r\n  File \"src/lxml/parser.pxi\", line 1891, in lxml.etree._parseMemoryDocument\r\nValueError: Unicode strings with encoding declaration are not supported. Please use bytes input or XML fragments without declaration.\r\n\r\nThe above server error caused the following client error:\r\nRPC_ERROR: Odoo Server Error\r\n    at makeErrorFromResponse (https://o16.sotomie.id/web/assets/469-92eb634/web.assets_backend.min.js:985:163)\r\n    at XMLHttpRequest.<anonymous> (https://o16.sotomie.id/web/assets/469-92eb634/web.assets_backend.min.js:993:13)\r\n```\r\n\r\n**stock_picking_sale_order_link**:\r\n\r\n```\r\nRPC_ERROR\r\nOdoo Server Error\r\nTraceback (most recent call last):\r\n  File \"/opt/odoo/odoo-server/odoo/api.py\", line 984, in get\r\n    cache_value = field_cache[record._ids[0]]\r\nKeyError: 338\r\n\r\nDuring handling of the above exception, another exception occurred:\r\n\r\nTraceback (most recent call last):\r\n  File \"/opt/odoo/odoo-server/odoo/fields.py\", line 1160, in __get__\r\n    value = env.cache.get(record, self)\r\n  File \"/opt/odoo/odoo-server/odoo/api.py\", line 991, in get\r\n    raise CacheMiss(record, field)\r\nodoo.exceptions.CacheMiss: 'ir.module.module(338,).description_html'\r\n\r\nDuring handling of the above exception, another exception occurred:\r\n\r\nTraceback (most recent call last):\r\n  File \"/opt/odoo/odoo-server/odoo/http.py\", line 1584, in _serve_db\r\n    return service_model.retrying(self._serve_ir_http, self.env)\r\n  File \"/opt/odoo/odoo-server/odoo/service/model.py\", line 133, in retrying\r\n    result = func()\r\n  File \"/opt/odoo/odoo-server/odoo/http.py\", line 1611, in _serve_ir_http\r\n    response = self.dispatcher.dispatch(rule.endpoint, args)\r\n  File \"/opt/odoo/odoo-server/odoo/http.py\", line 1815, in dispatch\r\n    result = self.request.registry['ir.http']._dispatch(endpoint)\r\n  File \"/opt/odoo/odoo-server/odoo/addons/base/models/ir_http.py\", line 154, in _dispatch\r\n    result = endpoint(**request.params)\r\n  File \"/opt/odoo/odoo-server/odoo/http.py\", line 697, in route_wrapper\r\n    result = endpoint(self, *args, **params_ok)\r\n  File \"/opt/odoo/odoo-server/addons/web/controllers/dataset.py\", line 46, in call_button\r\n    action = self._call_kw(model, method, args, kwargs)\r\n  File \"/opt/odoo/odoo-server/addons/web/controllers/dataset.py\", line 33, in _call_kw\r\n    return call_kw(request.env[model], method, args, kwargs)\r\n  File \"/opt/odoo/odoo-server/odoo/api.py\", line 461, in call_kw\r\n    result = _call_kw_multi(method, model, args, kwargs)\r\n  File \"/opt/odoo/odoo-server/odoo/api.py\", line 448, in _call_kw_multi\r\n    result = method(recs, *args, **kwargs)\r\n  File \"<decorator-gen-74>\", line 2, in button_immediate_install\r\n  File \"/opt/odoo/odoo-server/odoo/addons/base/models/ir_module.py\", line 74, in check_and_log\r\n    return method(self, *args, **kwargs)\r\n  File \"/opt/odoo/odoo-server/odoo/addons/base/models/ir_module.py\", line 460, in button_immediate_install\r\n    return self._button_immediate_function(type(self).button_install)\r\n  File \"/opt/odoo/odoo-server/odoo/addons/base/models/ir_module.py\", line 584, in _button_immediate_function\r\n    registry = modules.registry.Registry.new(self._cr.dbname, update_module=True)\r\n  File \"<decorator-gen-14>\", line 2, in new\r\n  File \"/opt/odoo/odoo-server/odoo/tools/func.py\", line 87, in locked\r\n    return func(inst, *args, **kwargs)\r\n  File \"/opt/odoo/odoo-server/odoo/modules/registry.py\", line 90, in new\r\n    odoo.modules.load_modules(registry, force_demo, status, update_module)\r\n  File \"/opt/odoo/odoo-server/odoo/modules/loading.py\", line 488, in load_modules\r\n    processed_modules += load_marked_modules(cr, graph,\r\n  File \"/opt/odoo/odoo-server/odoo/modules/loading.py\", line 372, in load_marked_modules\r\n    loaded, processed = load_module_graph(\r\n  File \"/opt/odoo/odoo-server/odoo/modules/loading.py\", line 226, in load_module_graph\r\n    module._check()\r\n  File \"/opt/odoo/odoo-server/odoo/addons/base/models/ir_module.py\", line 937, in _check\r\n    if not module.description_html:\r\n  File \"/opt/odoo/odoo-server/odoo/fields.py\", line 1209, in __get__\r\n    self.compute_value(recs)\r\n  File \"/opt/odoo/odoo-server/odoo/fields.py\", line 1387, in compute_value\r\n    records._compute_field_value(self)\r\n  File \"/opt/odoo/odoo-server/odoo/models.py\", line 4215, in _compute_field_value\r\n    fields.determine(field.compute, self)\r\n  File \"/opt/odoo/odoo-server/odoo/fields.py\", line 97, in determine\r\n    return needle(*args)\r\n  File \"/opt/odoo/odoo-server/odoo/addons/base/models/ir_module.py\", line 195, in _get_desc\r\n    html = lxml.html.document_fromstring(contents)\r\n  File \"/usr/local/lib/python3.10/dist-packages/lxml/html/__init__.py\", line 761, in document_fromstring\r\n    value = etree.fromstring(html, parser, **kw)\r\n  File \"src/lxml/etree.pyx\", line 3237, in lxml.etree.fromstring\r\n  File \"src/lxml/parser.pxi\", line 1891, in lxml.etree._parseMemoryDocument\r\nValueError: Unicode strings with encoding declaration are not supported. Please use bytes input or XML fragments without declaration.\r\n\r\nThe above server error caused the following client error:\r\nRPC_ERROR: Odoo Server Error\r\n    at makeErrorFromResponse (https://o16.sotomie.id/web/assets/469-92eb634/web.assets_backend.min.js:985:163)\r\n    at XMLHttpRequest.<anonymous> (https://o16.sotomie.id/web/assets/469-92eb634/web.assets_backend.min.js:993:13)\r\n```"
+    },
+    {
+      "number": 1381,
+      "type": "issue",
+      "state": "closed",
+      "title": "[16.0] stock_picking_invoice_link lang po not up to date regarding pot",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/1381",
+      "created_at": "2023-09-21T08:49:08Z",
+      "updated_at": "2023-09-21T16:41:20Z",
+      "closed_at": "2023-09-21T16:41:20Z",
+      "labels": [
+        "bug"
+      ],
+      "body": "Hi, \r\n\r\nI want to translate fr.po but some words are not in the file.\r\nThe synchronization with pot and their lang files is not done and some word can't be translate over Weblate.\r\n\r\nCould you help me ?"
+    },
+    {
+      "number": 572,
+      "type": "issue",
+      "state": "closed",
+      "title": "Migration to version 13.0",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/572",
+      "created_at": "2019-09-29T21:49:21Z",
+      "updated_at": "2023-02-19T12:36:47Z",
+      "closed_at": "2023-02-19T12:36:46Z",
+      "labels": [
+        "help wanted",
+        "work in progress",
+        "stale"
+      ],
+      "body": "# Todo\r\n\r\nhttps://github.com/OCA/maintainer-tools/wiki/Migration-to-version-13.0\r\n\r\n# Modules to migrate\r\n\r\n- [x] product_supplierinfo_for_customer_picking - By @PabloPaezSheridan - #957\r\n- [ ] purchase_stock_picking_restrict_cancel\r\n- [x] sale_order_global_stock_route - By @sergio-teruel - #950\r\n- [x] stock_auto_move - By @rousseldenis - #735 \r\n- [ ] stock_change_price_at_date\r\n- [ ] stock_dropshipping_whole_supplier\r\n- [x] stock_landed_costs_currency - By @ps-tubtim - #614 \r\n- [x] stock_lot_scrap - By @CarlosRoca13 - #773 \r\n- [x] stock_move_line_auto_fill - By @sergio-teruel - #613 \r\n- [x] stock_move_quick_lot - By @ps-tubtim - #600 \r\n- [x] stock_no_negative - ~~By @qdelcourte - #597~~ By @HviorForgeFlow - #666 \r\n- [x] stock_picking_auto_create_lot - By @ps-tubtim - #601 \r\n- [x] stock_picking_back2draft - By @ps-tubtim - #602 \r\n- [x] stock_picking_backorder_strategy - By @sebalix - #766 \r\n- [x] stock_picking_batch_extended - By @sergio-teruel - #612 \r\n- [x] stock_picking_customer_ref - By @Olageibol - #1018\r\n- [x] stock_picking_filter_lot - By @newtratip - #648 \r\n- [x] stock_picking_invoice_link - By @sergio-teruel - #622 \r\n- [ ] stock_picking_line_sequence\r\n- [x] stock_picking_mass_action - By @sergio-teruel - #611 \r\n- [x] stock_picking_operation_quick_change - By @CarlosRoca13 - #845 \r\n- [ ] stock_picking_package_preparation\r\n- [ ] stock_picking_package_preparation_line\r\n- [ ] stock_picking_purchase_order_link\r\n- [ ] stock_picking_purchase_propagate - By @phuctranerp - #732 \r\n- [ ] stock_picking_quick\r\n- [x] stock_picking_restrict_cancel_with_orig_move - By @grindtildeath - #688 \r\n- [x] stock_picking_sale_order_link - By @sergio-teruel - #621 \r\n- [x] stock_picking_send_by_mail - ~~By @xavierpiernas - #658~~ By @CarlosRoca13 - #789 \r\n- [x] stock_picking_show_backorder - By @victoralmau - #785 \r\n- [x] stock_picking_show_return - By @sergio-teruel - #616 \r\n- [x] stock_picking_whole_scrap - By @sergio-teruel - #619 \r\n- [x] stock_split_picking - By @xavierpiernas - #659 \r\n- [x] stock_quant_package_dimension - By @grindtildeath - #608 \r\n- [x] stock_quant_package_product_packaging - By @grindtildeath - #607 \r\n- [x] stock_return_request - By @sergio-teruel - #788 \r\n\r\nMissing module? Check https://github.com/OCA/maintainer-tools/wiki/%5BFAQ%5D-Missing-modules-in-migration-issue-list"
+    },
+    {
+      "number": 780,
+      "type": "issue",
+      "state": "closed",
+      "title": "[13.0] stock_picking_invoice_link not show all related invoices on picking",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/780",
+      "created_at": "2021-02-04T14:40:56Z",
+      "updated_at": "2022-05-22T12:39:55Z",
+      "closed_at": "2022-05-22T12:39:54Z",
+      "labels": [
+        "bug",
+        "question",
+        "stale"
+      ],
+      "body": "Steps to reproduce:\r\n1-Make a sale of stockable product 2 und\r\n2-Do the picking delivery for the 2 und\r\n3-Sale order is up to invoice, but on invoice decrease qty and do 1 und invoice\r\n4-Sale order is still up to invoice, then do the invoice for the remain 1 und\r\n5-At this point we have 2 invoices on the same picking, go to the picking and click on invoices smart button\r\n6-Only the first invoice form its shown\r\n\r\nSpected behaivor:\r\na tree view with the 2 related invoices\r\n\r\nTy"
+    },
+    {
+      "number": 578,
+      "type": "issue",
+      "state": "closed",
+      "title": "[11.0] stock_picking_invoice_link",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/578",
+      "created_at": "2019-10-21T09:07:30Z",
+      "updated_at": "2022-02-27T12:33:10Z",
+      "closed_at": "2022-02-27T12:33:10Z",
+      "labels": [
+        "stale"
+      ],
+      "body": "When there are returns of delivery notes they do not appear in the list of delivery notes. \r\nIf invoices with positive and negative quantities to avoid making credit invoices"
+    },
+    {
+      "number": 665,
+      "type": "issue",
+      "state": "closed",
+      "title": "[12.0] stock_picking_invoice_link : restore related links after update module",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/665",
+      "created_at": "2020-06-10T10:00:32Z",
+      "updated_at": "2022-03-20T12:34:18Z",
+      "closed_at": "2022-03-20T12:34:18Z",
+      "labels": [
+        "stale"
+      ],
+      "body": "Hi,\r\nAny workaround to restore the previous links related to  stock_picking_invoice_link after update the module? \r\n\r\nThanks,\r\nJosep M\r\n"
+    },
+    {
+      "number": 627,
+      "type": "issue",
+      "state": "closed",
+      "title": "[11.0] stock_picking_invoice_link: Only takes one invoice related to the moves",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/627",
+      "created_at": "2020-02-18T16:04:32Z",
+      "updated_at": "2022-03-13T12:34:18Z",
+      "closed_at": "2022-03-13T12:34:18Z",
+      "labels": [
+        "stale"
+      ],
+      "body": "When you reduce the quantity to invoice of some line and then you create another invoice with this quantity reduced this invoice(the last) didn't related to the picking.\r\n\r\nReproduce:\r\n- delivery all of the products in the sale order\r\n- create invoice from sale order \r\n- reduce the qty to one of the products in the invoice line, if you ordered 4 only invoice 2 units\r\n- Create another invoice to the 2 units of the product that remains of the sale order\r\n- This new invoice is not related to the picking.\r\n"
+    },
+    {
+      "number": 292,
+      "type": "issue",
+      "state": "closed",
+      "title": "[9.0] [stock_picking_invoice_link] Previous customer invoice linked to backorder DO",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/292",
+      "created_at": "2017-01-18T10:37:27Z",
+      "updated_at": "2022-01-09T12:35:47Z",
+      "closed_at": "2022-01-09T12:35:47Z",
+      "labels": [
+        "bug",
+        "stale"
+      ],
+      "body": "Module : stock_picking_invoice_link for version 9.0\r\n\r\nSuppose I have 1 SO with 1 kind of product with qty=3. \r\nI create Invoice from sales order partially (eq. 2), for eq. INV-0001\r\nThen I release the DO partially using 2 quantity, with back order (WH/OUT/0001 as delivered and WH/OUT/0002 as available), INV-0001 is still linked into WH/OUT/0002.\r\n\r\nThis is not the correct way I think. In WH/OUT/0002 there should be no INV-0001. CMIIW\r\n\r\nThank you."
+    },
+    {
+      "number": 377,
+      "type": "issue",
+      "state": "closed",
+      "title": "Migration to version 11.0",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/377",
+      "created_at": "2017-10-03T15:01:57Z",
+      "updated_at": "2022-01-09T12:35:50Z",
+      "closed_at": "2022-01-09T12:35:49Z",
+      "labels": [
+        "help wanted",
+        "work in progress",
+        "stale"
+      ],
+      "body": "# Todo\r\n\r\nhttps://github.com/OCA/maintainer-tools/wiki/Migration-to-version-11.0\r\n\r\n# Modules to migrate\r\n\r\n- [ ] picking_dispatch_wave\r\n- [ ] product_customer_code_picking\r\n- [x] product_expiry_simple - By @alan196 - #393 \r\n- [ ] product_serial\r\n- [ ] stock_auto_move\r\n- [x] stock_batch_picking - By @carlosdauden - #437 \r\n- [ ] stock_cancel\r\n- [ ] stock_change_price_at_date\r\n- [ ] stock_delivery_internal\r\n- [ ] stock_disable_force_availability_button\r\n- [x] ~~stock_dropshipping_dual_invoice~~ - Not needed since v9\r\n- [ ] stock_inventory_retry_assign\r\n- [ ] stock_location_flow_creator\r\n- [x] stock_lot_scrap - By @cubells - #459 \r\n- [ ] stock_move_backdating\r\n- [ ] stock_move_description\r\n- [ ] stock_move_on_hold\r\n- [x] stock_no_negative - By @etobella - #389 \r\n- [ ] stock_obsolete\r\n- [ ] stock_ownership_availability_rules\r\n- [ ] stock_ownership_by_move\r\n- [x] stock_pack_operation_auto_fill - By @luistriana28 - #399 \r\n- [x] stock_pack_operation_quick_lot > stock_move_quick_lot - By @sergio-teruel - #454 \r\n- [x] stock_picking_back2draft - By @aheficent - #550 \r\n- [x] stock_picking_backorder_strategy - By @mgosai - #482 \r\n- [ ] stock_picking_compute_delivery_date\r\n- [x] stock_picking_customer_ref - By @andreasdsp - #423 \r\n- [ ] stock_picking_deliver_uos\r\n- [x] stock_picking_filter_lot - By @lreficent - #467 \r\n- [x] stock_picking_invoice_link - ~~By @Softdil - #409~~ By @chienandalu - #416 \r\n- [x] ~~stock_picking_mass_assign - By @ougc27 - #390 replaced by stock_picking_mass_action~~\r\n- [x] stock_picking_mass_action - By @mpanarin - #460 \r\n- [x] stock_picking_operation_quick_change By @mreficent - #449 \r\n- [x] stock_picking_package_preparation By @SimoRubi - #448 \r\n- [x] stock_picking_package_preparation_line By @SimoRubi - #447 \r\n- [ ] stock_picking_priority\r\n- [ ] stock_picking_reorder_lines\r\n- [x] stock_picking_sale_order_link - By @sergio-teruel - #455\r\n- [x] stock_picking_send_by_mail - By @cubells - #452 \r\n- [x] stock_picking_show_backorder - By @flotho - #398\r\n- [x] stock_picking_show_return - By @flotho - #396 \r\n- [x] ~~stock_picking_transfer_lot_autoassign - By @chienandalu - #430~~ Merged in stock_pack_operation_autofill in #435 \r\n- [ ] stock_sale_filters\r\n- [x] stock_split_picking - By @jcoux - #422 \r\n- [ ] stock_transfer_split_multi\r\n  "
+    },
+    {
+      "number": 127,
+      "type": "issue",
+      "state": "closed",
+      "title": "Feature request: stock_picking_invoice_link, Print the liste of pickings on invoices",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/127",
+      "created_at": "2015-07-09T09:45:13Z",
+      "updated_at": "2021-11-28T12:33:00Z",
+      "closed_at": "2021-11-28T12:33:00Z",
+      "labels": [
+        "stale"
+      ],
+      "body": "In France (and probably elsewhere) it's now mandatory to print the delivery date of the goods on invoices.\nSince `stock_picking_invoice_link` adds the list of pickings on the invoice form, I suggest we extend stock_picking_invoice_link to print the picking references and delivery dates at the bottom of the invoices.\n"
+    },
+    {
+      "number": 265,
+      "type": "issue",
+      "state": "closed",
+      "title": "Migration to version 10.0",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/265",
+      "created_at": "2016-10-06T14:10:05Z",
+      "updated_at": "2021-12-19T12:35:10Z",
+      "closed_at": "2021-12-19T12:35:10Z",
+      "labels": [
+        "help wanted",
+        "work in progress",
+        "stale"
+      ],
+      "body": "# Todo\r\n\r\nhttps://github.com/OCA/maintainer-tools/wiki/Migration-to-version-10.0\r\n# Modules to migrate\r\n- [ ] picking_dispatch_wave\r\n- [ ] product_customer_code_picking\r\n- [ ] product_serial\r\n- [ ] stock_batch_picking\r\n- [ ] stock_cancel\r\n- [ ] stock_deposit\r\n- [x] stock_disable_force_availability_button - By @rousseldenis - #338 \r\n- [ ] stock_dropshipping_dual_invoice\r\n- [x] ~~stock_filter_none_zero_qty~~ - Not needed since quants\r\n- [ ] stock_inventory_retry_assign\r\n- [ ] stock_location_flow_creator\r\n- [ ] stock_move_backdating - By @tafaRU - #426 \r\n- [ ] stock_move_description\r\n- [ ] stock_move_on_hold\r\n- [ ] stock_obsolete\r\n- [ ] stock_ownership_availability_rules\r\n- [x] stock_ownership_by_move - By @Cedric-Pigeon - #333 \r\n- [x] stock_picking_back2draft - By @Saphery - #456 \r\n- [ ] stock_picking_backorder_strategy - By @rousseldenis - #432 \r\n- [ ] stock_picking_compute_delivery_date\r\n- [ ] stock_picking_deliver_uos\r\n- [x] stock_picking_invoice_link - By @eLBati - #347 \r\n- [x] stock_picking_mass_action - By @cubells - #407 \r\n- [ ] stock_picking_package_preparation - By @archetipo - #271 \r\n- [ ] stock_picking_priority\r\n- [ ] stock_picking_reorder_lines\r\n- [x] stock_picking_show_return - By @pedrobaeza - #314 \r\n- [x] stock_picking_show_backorder - By @aheficent - #362 \r\n- [x] stock_picking_transfer_lot_autoassign - By @rgarnau - #366 \r\n- [ ] stock_sale_filters\r\n- [x] stock_split_picking - By @cubells - #310 \r\n- [ ] stock_transfer_split_multi\r\n"
+    },
+    {
+      "number": 919,
+      "type": "issue",
+      "state": "closed",
+      "title": "[14.0] [BUG] permission error in `stock_picking_invoice_link`",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/919",
+      "created_at": "2021-10-24T20:27:12Z",
+      "updated_at": "2021-10-25T18:59:57Z",
+      "closed_at": "2021-10-25T18:59:57Z",
+      "labels": [],
+      "body": "I found a permission error in the module `stock_picking_invoice_link`.\r\n\r\n- Enter with a normal user with all permisions except settings permisions.\r\n- Create a sale order\r\n- Validate the picking,\r\n- Create and validate the invoice\r\n- Click in the `pickings` button and the next ERROR appear:\r\n\r\n```\r\nYou are not allowed to access 'Action Window' (ir.actions.act_window) records.\r\n\r\nThis operation is allowed for the following groups:\r\n\t- Administration/Settings\r\n\r\nContact your administrator to request access if necessary.\r\n```\r\n\r\nAn user should be able to view the pickings without Administration/setting permisions right?"
+    },
+    {
+      "number": 167,
+      "type": "issue",
+      "state": "closed",
+      "title": "Migration to version 9.0",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/167",
+      "created_at": "2015-10-14T00:55:13Z",
+      "updated_at": "2021-12-05T12:33:53Z",
+      "closed_at": "2021-12-05T12:33:52Z",
+      "labels": [
+        "help wanted",
+        "work in progress",
+        "stale"
+      ],
+      "body": "# Todo\r\n\r\nhttps://github.com/OCA/maintainer-tools/wiki/Migration-to-version-9.0\r\n# Modules to migrate\r\n- [ ] mrp_lock_lot\r\n- [ ] picking_dispatch > stock_batch_picking - Assigned to @cyrilgdn - #241 \r\n- [ ] picking_dispatch_wave\r\n- [ ] product_customer_code_picking\r\n- [ ] product_serial\r\n- [ ] stock_cancel\r\n- [x] stock_disable_force_availability_button - By @nicomacr - #278 \r\n- [ ] stock_dropshipping_dual_invoice\r\n- [x] ~~stock_filter_none_zero_qty~~ - Not needed since quants\r\n- [ ] stock_inventory_retry_assign\r\n- [ ] stock_location_flow_creator\r\n- [ ] stock_lock_lot\r\n- [x] stock_lot_scrap - By @pedrobaeza - #280 \r\n- [ ] stock_move_backdating\r\n- [ ] stock_move_description\r\n- [ ] stock_move_on_hold\r\n- [ ] stock_obsolete\r\n- [ ] stock_ownership_availability_rules\r\n- [ ] stock_ownership_by_move\r\n- [ ] stock_picking_backorder_strategy\r\n- [x] stock_picking_back2draft - By @nicomacr - #276 \r\n- [ ] stock_picking_compute_delivery_date\r\n- [ ] stock_picking_deliver_uos\r\n- [x] stock_picking_invoice_link - By @flotho merged in one module in OCA/account-invoicing/pull/140 - Alt. migration of only this module: #261\r\n- [x] stock_picking_mass_assign - By @mdietrichc2c - #244\r\n- [ ] stock_picking_package_preparation - #199\r\n- [ ] stock_picking_package_preparation_line - #199\r\n- [ ] stock_picking_priority\r\n- [x] stock_picking_reorder_lines > stock_picking_line_sequence - By @mreficent - #385 \r\n- [ ] stock_picking_show_return - By @pedrobaeza - #251 \r\n- [ ] stock_sale_filters\r\n- [x] stock_split_picking ~~@yvaucher #201~~ - By @lmignon #381 \r\n- [ ] stock_transfer_split_multi\r\n- [ ] stock_route_sales_team\r\n"
+    },
+    {
+      "number": 434,
+      "type": "issue",
+      "state": "closed",
+      "title": "[11.0] stock_picking_invoice_link, picking link not removed when removing invoice line",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/434",
+      "created_at": "2018-06-13T13:26:06Z",
+      "updated_at": "2020-12-01T21:43:44Z",
+      "closed_at": "2020-12-01T21:43:44Z",
+      "labels": [],
+      "body": "When the invoice line of a related picking in an invoice is removed. The relation is not removed.\r\n\r\nReproduce:\r\n\r\n1. create invoice from sale order with multiple deliveries\r\n2. check how many pickings are linked\r\n3. Remove one the invoice lines\r\n4. Same amount of pickings are linked\r\n\r\n\r\n"
+    },
+    {
+      "number": 680,
+      "type": "issue",
+      "state": "closed",
+      "title": "Odoo.sh install, error (post-migrated) version 12.0",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/680",
+      "created_at": "2020-07-12T18:59:51Z",
+      "updated_at": "2020-07-13T06:46:43Z",
+      "closed_at": "2020-07-13T06:46:43Z",
+      "labels": [],
+      "body": "\r\nERROR | server | \r\nmodule stock_picking_invoice_link: Each post-migration file must have a \"migrate(cr, installed_version) function"
+    },
+    {
+      "number": 676,
+      "type": "issue",
+      "state": "closed",
+      "title": "[12.0] stock_picking_invoice_link: Error: Unknown field location_dest_id in domain",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/676",
+      "created_at": "2020-07-01T02:47:42Z",
+      "updated_at": "2020-07-01T11:30:57Z",
+      "closed_at": "2020-07-01T06:59:11Z",
+      "labels": [],
+      "body": "`Stock Picking Invoice Link` v12.0.2.0.0 gives the following error `\"Unknown field location_dest_id in domain\"` \r\n\r\nExample when you click on invoices\r\n\r\n![image](https://user-images.githubusercontent.com/863731/86197223-3ab86a00-bb55-11ea-819c-72883dacb005.png)\r\n\r\n\r\n<img width=\"1440\" alt=\"Screenshot 2020-07-01 at 04 26 48\" src=\"https://user-images.githubusercontent.com/863731/86196816-540ce680-bb54-11ea-9c5e-3b7305399297.png\">\r\n\r\n![image](https://user-images.githubusercontent.com/863731/86197323-705d5300-bb55-11ea-8b26-fce40c002f87.png)\r\n\r\n[bug1.txt](https://github.com/OCA/stock-logistics-workflow/files/4855310/bug1.txt)\r\n\r\nNote this is probably because there is some incomplete record fields from either the test product or test customer. But this shouldn't let the client crash and provide message what record needs to be modified.\r\n"
+    },
+    {
+      "number": 522,
+      "type": "issue",
+      "state": "closed",
+      "title": "[12.0] [stock_picking_invoice_link] no related pickings",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/522",
+      "created_at": "2019-04-11T16:23:34Z",
+      "updated_at": "2019-04-22T19:33:38Z",
+      "closed_at": "2019-04-11T19:27:48Z",
+      "labels": [],
+      "body": "After the last updates in Odoo 12.0 branch this plugin doesn't seem to work anymore. I don't see any pickings with the new orders and invoices I create. I see that nothing gets inserted into the \"account_invoice_stock_picking_rel\" table in the database. Is there a way to find what causes this issue? "
+    },
+    {
+      "number": 481,
+      "type": "issue",
+      "state": "closed",
+      "title": "Does this module work with refunded invoices?",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/481",
+      "created_at": "2018-12-06T07:14:07Z",
+      "updated_at": "2019-01-05T11:35:32Z",
+      "closed_at": "2019-01-05T11:35:32Z",
+      "labels": [
+        "question"
+      ],
+      "body": "It work when I create invoice normally, but when I create refund invoices  it doesn't work. \r\n"
+    },
+    {
+      "number": 408,
+      "type": "issue",
+      "state": "closed",
+      "title": "Help on PR",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/408",
+      "created_at": "2018-03-06T12:01:26Z",
+      "updated_at": "2018-03-06T12:04:39Z",
+      "closed_at": "2018-03-06T12:04:39Z",
+      "labels": [],
+      "body": "Hello,\r\n\r\nI have my repository ready for a PR on stock_picking_invoice_link. How can I make the PR? I followed https://github.com/OCA/maintainer-tools/wiki/Migration-to-version-11.0 these steps for adapting de module."
+    },
+    {
+      "number": 126,
+      "type": "issue",
+      "state": "closed",
+      "title": "[7.0] Duplicate invoice when stock_picking_invoice_link is instaled",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/126",
+      "created_at": "2015-07-02T17:03:47Z",
+      "updated_at": "2015-07-10T17:44:49Z",
+      "closed_at": "2015-07-10T17:44:46Z",
+      "labels": [],
+      "body": "When trying to duplicate an invoice with related pickings you are blocked by this constraint.\n\nodoo/addons/stock.py:\nclass stock_picking\n...\n    _sql_constraints = [\n        ('name_uniq', 'unique(name, company_id)', 'Reference must be unique per Company!'),\n    ]\n"
+    },
+    {
+      "number": 79,
+      "type": "issue",
+      "state": "closed",
+      "title": "[8.0] stock_picking_invoice_link Error on Invoice creation",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/79",
+      "created_at": "2015-03-03T08:44:13Z",
+      "updated_at": "2015-06-01T14:08:47Z",
+      "closed_at": "2015-06-01T14:08:01Z",
+      "labels": [],
+      "body": "When i create 1 invoice from 2 or more pickings, on invoice's picking_lines appear only one picking.\nI will be providing a PR that fixes this issue.\n"
+    },
+    {
+      "number": 114,
+      "type": "issue",
+      "state": "closed",
+      "title": "Missing readme.rst and readme to update",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/114",
+      "created_at": "2015-06-01T08:58:16Z",
+      "updated_at": "2015-06-05T13:50:38Z",
+      "closed_at": "2015-06-05T13:50:38Z",
+      "labels": [],
+      "body": "- [x] stock_picking_invoice_link #107 (module was not ported) @tafaRU \n\nTo update (not following template, AGPL logo, OCA maintainers, etc):\n- [x] picking_dispatch #115\n- [x] stock_cancel #116\n- [x] stock_dropshipping_dual_invoice #117 \n"
+    },
+    {
+      "number": 2499,
+      "type": "pr",
+      "state": "open",
+      "title": "[MIG] stock_picking_invoice_link: Migration to version 20.0",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/2499",
+      "created_at": "2026-10-22T23:55:51Z",
+      "updated_at": "2026-10-26T23:53:47Z",
+      "closed_at": null,
+      "labels": [
+        "mod:stock_picking_invoice_link",
+        "series:20.0"
+      ],
+      "body": "## Summary\n\nMigration of `stock_picking_invoice_link` from Odoo 19.0 to 20.0.\n\n## Changes\n\n- **Version bump**: `19.0.1.0.1` → `20.0.1.0.0`\n- **Field rename** (`stock.move`): `invoice_line_ids` → `oca_invoice_line_ids` — Odoo 20.0 adds a native `stock.move.invoice_line_ids` One2many field in `stock_account`; keeping the same name with a Many2many relation caused an ORM type conflict and a `cursor already closed` crash on install\n- **Field label fix**: `oca_invoice_line_ids` now has `string=\"Invoice Lines (Picking Link)\"` to avoid the duplicate label warning with `stock_account`'s `invoice_line_ids`\n- **View update**: `stock_view.xml` updated to reference `oca_invoice_line_ids`\n- **Test fix — return wizard removed**: `stock.return.picking` wizard was removed in Odoo 20.0; `test_02` now uses `picking._create_return()` + `action_return_all()` instead\n- **Test fix — field rename**: `stock.move.product_uom` → `stock.move.uom_id`\n- **Test fix — journal code overflow**: Odoo 20.0 includes `es_419` in the `es_AR` language fallback chain, and `es_419.po` translates `'MISC'` → `'MISCELÁNEO'` (8 chars), exceeding the `varchar(7)` constraint on `account.journal.code`; `setUpClass` temporarily clears the `code_translations` cache for the `account` module in Spanish during chart-of-accounts setup\n\n## Test plan\n\n- [x] All 5 tests pass locally in an Odoo 20 Docker environment with `es_AR` locale\n- [x] Module installs and updates cleanly (`-u stock_picking_invoice_link`)\n- [x] No duplicate label warnings in the logs\n\nSupersedes #2460."
+    },
+    {
+      "number": 2542,
+      "type": "pr",
+      "state": "open",
+      "title": "[20.0][MIG] sale_stock_picking_invoice_link: Migration to 20.0",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/2542",
+      "created_at": "2026-10-29T14:50:30Z",
+      "updated_at": "2026-11-17T07:28:44Z",
+      "closed_at": null,
+      "labels": [
+        "approved",
+        "mod:sale_stock_picking_invoice_link",
+        "series:20.0"
+      ],
+      "body": "Migration of `sale_stock_picking_invoice_link` to 20.0.\n\n### What the jump needed\n\n- **`uom.uom.rounding` is gone** ([9a4ad7cc18d3](https://github.com/odoo/odoo/commit/9a4ad7cc18d3), `[REF] *: remove 'uom.uom.rounding' field`). The check on the quantity left to invoice now calls `uom.is_zero()`, which rounds with the same `Product Unit` decimal precision the removed field exposed.\n- **The return wizard `stock.return.picking` is gone** ([36b4a0f5fb2b](https://github.com/odoo/odoo/commit/36b4a0f5fb2b), `[REM] stock: remove return wizard`). Two tests used it to build the return; they now call `stock.picking._create_return()`. The return move inherits `to_refund` from the original move and its demand starts at 0, so the test sets `product_uom_qty`.\n- **ruff**: the 20.0 branch pins 0.16.8 and 19.0 pins 0.13.0, so `PERF102` now fails on `setUpClass`, in code this migration does not otherwise touch. `company_data` is a plain dict and the key was unused.\n\n### It also carries the fix of #2535\n\n#2535 (`[FIX] ... link deliveries to the invoice, not the refund`) is still open against 19.0. Without it the bug travels to 20.0: `stock_account` sets `to_refund` by `default=True` on every move, so an outgoing move of an order that has a credit note gets linked to the credit note and the invoice ends up with no pickings. If you want this PR to be the migration only, I can drop that commit and port the fix separately once #2535 is merged.\n\nOne note on it: **the `sudo()` it adds on the write is not needed in 20.0**. In 20.0 `stock_account` runs `_action_done` as superuser (`self = self.sudo()`, `stock_account/models/stock_move.py:249`), which 19.0 does not do (`:177`), so the write already runs with `sudo()` when a delivery is validated. It is kept to stay identical to the 19.0 fix. On 20.0 its test asserts the symptom instead: the invoice shows its delivery and the credit note does not.\n\n### Migration script\n\n`migrations/20.0.1.0.0/post-migration.py` re-links the deliveries that the old behaviour wrote against the credit note: the code fix only covers what is written from now on, so the rows already in `stock_move_invoice_line_rel` stay wrong without it. Then it recomputes `account.move.picking_ids` for every invoice and credit note it touched, because that field is stored and it is what the *Delivery* and *Invoices* buttons show. Plain parametrized SQL plus that recompute, no extra dependency, and it does nothing on a database that has no such rows.\n\nIt leaves alone the links that `stock_picking_invoice_link` copies on purpose when a delivered invoice is reversed without a return: there the move stays linked to the reversed invoice too, while the bug replaced the links.\n\nTested on a 20.0 database with two orders (`invoice_policy = order`): A, the bug state (posted invoice, credit note, validated delivery linked only to the credit note); B, a delivered invoice reversed without a return.\n\n| | before | after |\n|---|---|---|\n| A, invoice `picking_ids` | none | the delivery |\n| A, credit note `picking_ids` | the delivery | none |\n| B, invoice and credit note `picking_ids` | the delivery | the delivery (unchanged) |\n\nLog: `1 wrong links removed from credit notes, 1 links written to the invoice, 0 moves left with no invoice line of their own, 2 invoices and credit notes recomputed`. A second run finds nothing.\n\n### Depends on\n\n#2493 (`stock_picking_invoice_link`), already merged in 20.0.\n\n### Tests\n\n`0 failed, 0 error(s) of 10 tests` on a 20.0 database with #2493 installed.\n\n"
+    },
+    {
+      "number": 2310,
+      "type": "pr",
+      "state": "open",
+      "title": "[16.0][ADD] stock_picking_bill_matching",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/2310",
+      "created_at": "2026-04-14T03:50:28Z",
+      "updated_at": "2026-11-18T22:53:57Z",
+      "closed_at": null,
+      "labels": [
+        "mod:stock_picking_bill_matching",
+        "series:16.0"
+      ],
+      "body": "This module bridges Accounting and Warehouse by letting a vendor bill be\r\nmatched against the incoming receipts (and their `stock.move` lines) it\r\ncorresponds to — whether or not a purchase order exists.\r\n\r\nIt brings the *Bill Matching* paradigm of Odoo 18.0 back to Odoo 16, but\r\nelevates it: the matching happens on `stock.move` lines instead of\r\n`purchase.order.line`, so the bill is reconciled with what was actually\r\nreceived, not with what was ordered. This is what makes it usable with any\r\ndocument that reaches accounting before/independently of the purchase flow\r\n(an imported electronic invoice, a supplier portal document, an EDI…).\r\n\r\n## Use cases\r\n\r\n**1. The bill arrives after the goods** (the most common case, and the usual\r\none with an imported electronic invoice — in Brazil it is the *NFe*, the\r\nelectronic invoice validated by the tax authority, whose XML carries the\r\ninvoice lines in a standardized form; elsewhere a supplier portal, an EDI, a\r\nPDF extraction…). The receipt is validated: matching *links* the bill lines to\r\nthe receipt lines. Nothing is moved, nothing is restocked.\r\n\r\n**2. The bill arrives while the goods are on their way.** The receipt is\r\ndraft/confirmed/assigned: matching additionally *drives the reception* — the\r\nmatched quantity is set as done and the receipt is validated, a backorder being\r\ncreated for the excess quantity. This is the \"Smart Auto-Reception\" behaviour.\r\n\r\n**3. No purchase order and no receipt at all** (small shop, or an imported\r\ninvoice for goods never encoded): the matching screen's **Create / Add to\r\nPicking** turns the unmatched bill lines into a receipt, or the receipt is\r\ncreated automatically when the bill is posted (company setting).\r\n\r\n**4. The document carries a line reference.** Electronic invoices commonly\r\nidentify the buyer's order line they correspond to — in Brazil the NFe carries\r\n`xPed` (the purchase order number) and `nItemPed` (the line number within that\r\norder); an EDI or a supplier portal has its own variant. When both sides carry\r\nthe same reference, the pairing is arithmetic rather than a decision, and it can\r\nbe done automatically.\r\n\r\nA single bill may mix all four: some lines already received, some pending, some\r\nwithout counterpart. Each line is handled by whichever applies.\r\n\r\n## Main features\r\n\r\n* **Unified matching screen** (a SQL view): unmatched vendor bill lines and\r\n  receipt lines side by side, grouped by product, and ordered so that a bill\r\n  line is immediately followed by the receipt line(s) carrying the same\r\n  pairing reference (the ones that could not be paired come last).\r\n* **Ready-to-play demo data**: installing the module with demo data builds a\r\n  complete scenario (a received shipment and a pending one of the same order\r\n  line, the bill matching them, and a bill with nothing to match against), so\r\n  the features can be tried without preparing anything — see *Trying it out*\r\n  below.\r\n* **Many-to-many linking** on top of `stock_picking_invoice_link`: partial\r\n  billing, consolidated billing, one order line received over several\r\n  shipments, several invoice lines covering one receipt.\r\n* **Already received goods**: a validated receipt is only *linked* (nothing is\r\n  re-validated), which is the everyday case — and the case that a\r\n  link-only implementation typically misses.\r\n* **Smart Auto-Reception**: matching a pending receipt sets the matched\r\n  quantity as done, validates the receipt and creates a backorder for the\r\n  excess, using native Odoo logic.\r\n* **Automatic matching of referenced lines** (company setting): the bill lines\r\n  whose reference a receipt line shares are matched automatically — from the\r\n  **Match Pickings** button, and/or when the bill is posted. Only unambiguous\r\n  cases are consumed, and every automatic action is traced in the bill chatter.\r\n* **Smart button counters** on the bill: how many lines still have to be\r\n  matched (**Match Pickings**) and how many receipt lines are already linked\r\n  (**Matched Items**, hidden while empty).\r\n* **Small shop replenishment**: generate the incoming receipt straight from the\r\n  bill — one click on the matching screen, or automatically at posting. The\r\n  generated receipt is traceable (origin `<bill> (bill matching)`, chatter\r\n  message with a link back to the bill), and so is the fed receipt.\r\n* **Cosmetic/service lines are ignored**: sections, notes, tax, payment-term\r\n  and rounding lines, lines without a product and service lines neither appear\r\n  in the matching screen nor in the counters, and they never keep a bill\r\n  unmatched (a bill of only services and notes is simply matched).\r\n* **Force Matched / Reset Force** for the accepted discrepancies (a backorder\r\n  that will never arrive, a vendor over-billing…), and **Unmatch Selected** to\r\n  undo a wrong match.\r\n* **Warehouse users, not only accountants**, can read the matching screen.\r\n* **`stock_picking_invoicing` compatibility**: matching/unmatching keeps the\r\n  `invoiced` / `2binvoiced` state of the moves and pickings up to date.\r\n\r\n## How the matching decides\r\n\r\nOn top of the product, the pairing uses a `matching_reference` char field\r\npresent on both `stock.move` and `account.move.line` (shown as **Match Ref.**):\r\n\r\n* the same non-empty value on both sides means \"same commercial line\"\r\n  (typically a purchase order line, e.g. `P00129-2` for the 2nd line of\r\n  `P00129`; in Brazil the NFe `xPed`/`nItemPed` pair is exactly that);\r\n* it identifies the **order line, not the shipment**: an order line received in\r\n  several deliveries legitimately carries the same reference on each of them —\r\n  the matching consumes them in order, already received shipments first, before\r\n  validating a pending one. Making the reference unique per receipt would be\r\n  wrong: an invoice does not say which shipment it corresponds to, and\r\n  reconciling one invoice against several deliveries would become impossible;\r\n* an **empty** reference means *unspecified* and acts as a **wildcard** (any\r\n  line of the same product), so product-only matching keeps working when only\r\n  one side carries a reference; exact references are consumed first;\r\n* quantities are matched with a small epsilon (`MATCHING_PRECISION` in the ORM,\r\n  `MATCHING_EPSILON_SQL` in the view), never rounded: a one-unit shortage is a\r\n  shortage, not a match.\r\n\r\nThe bill-side *Unmatched Qty* never goes below zero (a line fully covered by a\r\nlarger receipt line reads 0, since the link records the pairing and not a\r\nquantity per link); on the receipt side the value keeps its sign, where a\r\nnegative figure means the vendor billed more than what was received.\r\n\r\n## Trying it out\r\n\r\nInstalling the module **with demo data** (a new demo database, the standard\r\nflow) builds a small scenario — supplier *DEMO Supplier (bill matching)*, two\r\nreceipts and two bills — so every feature can be played immediately:\r\n\r\n| Record | What it is |\r\n| --- | --- |\r\n| receipt *DEMO-PO-1 (1st shipment)* | **Done**: 4 Acoustic Bloc Screens, already received |\r\n| receipt *DEMO-PO-1 (2nd shipment)* | **Ready**: 8 Acoustic Bloc Screens of the same order line, still on its way |\r\n| draft bill *DEMO - order DEMO-PO-1 (received + on its way)* | 4 + 6 units both carrying the reference `DEMO-PO-1`, plus a section line and a service line |\r\n| draft bill *DEMO - nothing received yet (small shop flow)* | 12 Office Chairs, no receipt and no purchase order |\r\n\r\nBoth receipts and the two storable bill lines carry the matching reference\r\n`DEMO-PO-1` (the *Match Ref.* column): the demo sets the `matching_reference`\r\nfield explicitly, exactly what a localization computes for you (in Brazil, from\r\nthe NFe `xPed`/`nItemPed`), so the pairing works out of the box in a plain demo\r\ndatabase.\r\n\r\n1. **Bill after the goods, one order line received in two shipments**: open the\r\n   first bill → *Match Pickings* → *Match Selected* on the two storable lines.\r\n   The 4 units already received are only **linked** (nothing is re-validated,\r\n   nothing is restocked), the 6 units still on their way are **received** by the\r\n   matching and the 2 excess units of that receipt become a **backorder**, and\r\n   the section and service lines are ignored (they are never counted as\r\n   unmatched). The *Match Pickings* counter then reads 0 and *Matched Items* 2.\r\n2. **Automatic matching**: enable *Auto-Match Referenced Lines* in the settings,\r\n   reopen the bill and click *Match Pickings* once — the references pair\r\n   everything with no selection. Add *Auto-Match when Posting the Bill* to have\r\n   it happen by itself at posting.\r\n3. **Small shop flow**: open the second bill (nothing to match against, no\r\n   receipt, no purchase order) → *Create / Add to Picking* builds the receipt;\r\n   or enable *Auto-Create the Receipt when Posting the Bill* together with\r\n   *Auto-Validate Generated Pickings* and simply post the bill: the receipt is\r\n   created, linked, validated, and both documents are traced in each other's\r\n   chatter.\r\n\r\n## Company settings\r\n\r\nUnder **Inventory → Configuration → Settings → Bill Matching** (per company,\r\nall off by default):\r\n\r\n| Setting | What it does |\r\n| --- | --- |\r\n| **Auto-Create Picking on Match** | Clicking **Match Pickings** on a bill with no open receipt (and no open purchase order) creates the missing receipt instead of opening the screen. |\r\n| **Auto-Validate Generated Pickings** | The receipts the matching has to validate are validated straight away (small shop: the stock enters immediately). |\r\n| **Auto-Match Referenced Lines** | Match the bill lines whose reference a receipt line shares. |\r\n| **Auto-Match when Posting the Bill** | Also do it when the bill is posted (requires the setting above). |\r\n| **Auto-Create the Receipt when Posting the Bill** | Small shop flow: a posted bill whose lines have nothing to match against (no purchase order, no receipt candidate) generates its own receipt, linked to the bill. |\r\n\r\nRecommended presets:\r\n\r\n* *Warehouse-driven* (purchase orders and receipts exist, an operator\r\n  reconciles): everything off, optionally **Auto-Validate Generated\r\n  Pickings**;\r\n* *Imported documents with references* (the Brazilian NFe and its\r\n  `xPed`/`nItemPed`, or any importer synthesizing references):\r\n  **Auto-Match Referenced Lines** + **Auto-Match when Posting the Bill**;\r\n* *Small shop, imported documents, nothing encoded in Odoo*: the two above plus\r\n  **Auto-Create the Receipt when Posting the Bill** and **Auto-Validate\r\n  Generated Pickings**.\r\n\r\n## Posting is never blocked by the warehouse\r\n\r\nThe automation triggered at posting (automatic matching and automatic receipt\r\ncreation) runs inside a savepoint and under `try/except (UserError,\r\nValidationError)`. A warehouse problem posts the bill anyway and explains in\r\nthe bill chatter what failed and to match the receipts by hand; the half-done\r\nwarehouse writes are rolled back, so no orphan receipt is left behind.\r\n\r\n## Integration contract (for localizations and importers)\r\n\r\nThe module has **no hard dependency** on any localization or importer, and\r\nneither do they on it: everything below is duck-typed, and the feature simply\r\nstays inactive when the absent piece is not installed.\r\n\r\n* **`matching_reference`** (`Char`, on `stock.move` and `account.move.line`) —\r\n  the pairing key described above; can be written directly by an importer.\r\n* **`_get_bill_matching_reference_sql(alias)`** (on `stock.move` and/or\r\n  `account.move.line`) — returns the SQL expression computing the reference for\r\n  the given table alias, since the matching screen is a SQL view. The\r\n  derivation takes precedence; the stored `matching_reference` is the fallback,\r\n  so an importer writing the field directly gets pairing with or without a\r\n  localization. Both sides must be normalized identically (`P00015-1` and\r\n  `P00015-0001` must end up as the same string).\r\n* **`_get_matching_pairs(aml_lines, sm_lines)`** — the pairing core:\r\n  receives the selected bill lines and receipt lines and returns the\r\n  `(bill line, receipt lines to consume)` pairs. Override it to change the\r\n  policy itself; the caller then distributes quantities, links the lines,\r\n  validates the pending receipts and computes the backorders.\r\n\r\nA real-world consumer of this contract is the Brazilian localization: the NFe\r\nimport wizard of `l10n-brazil` (OCA/l10n-brazil#5346) lets the operator pick the\r\noriginating purchase order line / incoming receipt while importing the XML, and\r\nwrites the canonical reference (`<purchase order name>-<line number>`) on both\r\nsides — which this module then pairs and matches automatically, without either\r\nrepository depending on the other.\r\n\r\n## Compatibility\r\n\r\n* Depends on `purchase_stock`, `stock_picking_invoice_link`,\r\n  `purchase_stock_picking_invoice_link`; nothing else.\r\n* Ships its own demo scenario (see *Trying it out*) — the receipts, the bills\r\n  and the pairing references are built at installation, in a database created\r\n  with demo data.\r\n* Tested on 16.0 (`stock_picking_bill_matching/tests/test_stock_bill_matching.py`,\r\n  35 test methods: done and pending receipts, backorders, partial/consolidated\r\n  invoicing, reference pairing and non-cross matching, split deliveries,\r\n  automatic matching on button/posting, counters, cosmetic and service line\r\n  filtering, screen ordering, all-matched feedback, receipt traceability\r\n  (generated and fed), stock-user access, consumables policy, and the\r\n  automatic receipt creation at posting including its failure rollback).\r\n\r\n## For reviewers\r\n\r\nThe interesting parts to look at, in order of \"worth a debate\":\r\n\r\n1. the reference contract and the wildcard rule (the split-delivery semantics\r\n   above) — this is what localizations hook into;\r\n2. the two directions of matching (linking a done receipt vs driving a pending\r\n   one) and the `unmatched_qty` sign convention;\r\n3. the automatic matching policy: only non-empty references shared with a\r\n   receipt line of the same vendor and product are consumed by the automatic\r\n   path — a wrong automatic match is worse than a click;\r\n4. the posting automation: the conservative rule for the automatic receipt\r\n   creation (nothing is created when a purchase order or a receipt candidate\r\n   exists) and the savepoint ensuring accounting is never blocked;\r\n5. the smart button counters and the single line-filtering helper\r\n   (`_get_bill_product_lines`) they share with the engine, so they can never\r\n   disagree.\r\n\r\n## Recent changes in this draft\r\n\r\nSince the first version of this PR, the module went through a review and\r\nhardening pass:\r\n\r\n* **fixed a blocker**: a bill could not be matched against an *already\r\n  validated* receipt (the engine only considered draft/confirmed/assigned\r\n  moves, and the quantity to link was 0 once the receipt was done). The\r\n  quantity left to *receive* (pending receipts, which matching drives) is now\r\n  distinguished from the capacity left to *bill* (done receipts, only linked) —\r\n  that is the module's main use case, since the bill usually arrives after the\r\n  goods;\r\n* fixed the UoM rounding used by `is_picking_matched` (the precision *digits*\r\n  were used as the rounding), the negative bill-side `unmatched_qty`, the\r\n  vacuous \"matched\" state of a purchase order without receipt, and the overwrite\r\n  of the quantity to validate when several bill lines consumed one receipt line;\r\n* added the automatic matching of referenced lines (button and posting), the\r\n  smart button counters, the generated/fed receipt traceability (origin +\r\n  chatter with a link back to the bill) and the corresponding settings;\r\n* added the automatic receipt creation when posting, with the savepoint\r\n  guarantee that the posting is never blocked (and never left half-done);\r\n* the matching screen is now ordered by pairing reference inside each product\r\n  group, and readable by warehouse users;\r\n* the demo data was rewritten: it now builds a complete scenario (a received\r\n  shipment, a pending one of the same order line, the bills matching them, the\r\n  pairing references, a service/section bill, a bill with nothing to match)\r\n  where the previous version only created two draft transfers and no bill at\r\n  all, leaving nothing to match with out of the box;\r\n* documentation rewritten around the use cases (`readme/DESCRIPTION.md`,\r\n  `CONFIGURE.md`, `USAGE.md`), and the test suite grown from 9 to 35 methods.\r\n\r\n\r\n\r\n# Stock Picking Bill Matching\r\n\r\nThis module bridges the gap between Accounting and Warehouse operations in Odoo by allowing users to match Vendor Bills directly against Incoming Stock Pickings, bypassing the need for a Purchase Order.\r\n\r\nIt brings a paradigm native to Odoo 18.0 (Bill Matching) into Odoo 16 but elevates it by matching against `stock.move` lines instead of `purchase.order.line`.\r\n\r\n## Key Features\r\n* **Unified Matching Interface:** A single screen (SQL View) showing unmatched Vendor Bill lines and Incoming Receipt lines side-by-side.\r\n* **Many-to-Many Linking:** Leverages the `stock_picking_invoice_link` OCA module to allow complex many-to-many relationships (e.g., partial billing, consolidated billing).\r\n* **Smart Auto-Reception:** Matching bill lines with pending receipts automatically validates the receipt and handles backorders safely using native Odoo logic.\r\n* **Small Shop Replenishment:** Easily generate brand-new Incoming Receipts straight from a drafted Vendor Bill with a single click.\r\n* **Extensibility:** Built with an extensible matching hook (`_get_matching_pairs`) to allow localization modules (like the Brazilian NFe `xPed`/`nItemPed`) to override the default product-based matching behavior.\r\n* **Compatibility:** If the `stock_picking_invoicing` module is installed, matching or unmatching lines automatically updates the invoice state (`invoiced` / `2binvoiced`) on stock moves and pickings.\r\n\r\n\r\n\r\n\r\n# Usage\r\n\r\n## Testing with Demo Data\r\nThis module includes demo data to easily test the matching workflows.\r\n1. Ensure your database is loaded with demo data.\r\n2. Go to **Accounting -> Vendors -> Bills**.\r\n3. Look for the Draft bill assigned to **Deco Addict** (Reference: `Demo Bill`).\r\n4. Go to **Inventory -> Receipts**. You will see two incoming receipts for Deco Addict\r\n   generated by the demo data.\r\n\r\n## 1. Matching Existing Pickings and Bills\r\nIf you receive an electronic invoice and the warehouse has already processed the receipt:\r\n1. Open the Vendor Bill.\r\n2. Click the **Match Pickings** smart button at the top right.\r\n3. You will be taken to the matching view.\r\n4. Select the Vendor Bill line(s) and the corresponding Receipt line(s).\r\n   * *Note: They are grouped by product, with Vendor Bills appearing above Receipts.*\r\n5. Click **Match Selected**.\r\n   * The lines will vanish from the Unmatched view.\r\n   * If the Receipt had a higher quantity than the Bill, Odoo will automatically create a Backorder for the remaining quantity.\r\n   * If the Bill had a higher quantity, the remaining billed quantity will stay in the view awaiting a future receipt, or you can create a new picking for it using the **Create / Add to Picking** button.\r\n\r\n## 2. \"Small Shop\" Replenishment (Auto-Create Pickings)\r\nIf you do not use Purchase Orders and simply import electronic Vendor Bills, you can generate your warehouse receipts in one click:\r\n1. Open the Draft Vendor Bill.\r\n2. Click the **Match Pickings** smart button.\r\n3. In the matching view, select all vendor bill lines and click **Create / Add to Picking** in the header.\r\n4. A wizard will appear. Leave the \"Existing Picking\" field blank.\r\n5. Check the **Auto-Validate Receipt** checkbox if you want the stock to immediately enter your warehouse.\r\n6. Click **Confirm**. The system will generate a `WH/IN` picking, populate it with all unmatched lines from the bill, and link them permanently.\r\n\r\n*Tip: If the company setting **Auto-Create Picking on Match** is enabled, clicking **Match Pickings** on a bill with no open receipts will skip the matching view and generate the picking automatically.*\r\n\r\n## 3. Undo / Unmatching\r\nIf you made a mistake:\r\n1. Go to the Vendor Bill and click the **Matched Items** smart button.\r\n2. Select the mistakenly matched lines.\r\n3. Click **Unmatch Selected**. The Many-to-Many links will be severed, and the quantities will return to the **Match Pickings** view.\r\n\r\n**Assisted by: deepseek-4.1-flash**\r\n"
+    },
+    {
+      "number": 2493,
+      "type": "pr",
+      "state": "closed",
+      "title": "[20.0][MIG] stock_picking_invoice_link: Migration to 20.0",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/2493",
+      "created_at": "2026-10-21T10:49:32Z",
+      "updated_at": "2026-11-10T14:42:27Z",
+      "closed_at": "2026-11-10T14:42:21Z",
+      "labels": [
+        "approved",
+        "merged 🎉",
+        "mod:stock_picking_invoice_link",
+        "series:20.0"
+      ],
+      "body": "Standard migration + some improvements:\n- `stock.move.product_uom` is now `uom_id` (tests)\n- `stock.return.picking` wizard is gone, tests use `stock.picking._create_return()`\n- Drop redundant `string` on `invoice_line_ids`\n- Button icons moved to Material Symbols (`edit_square`, `local_shipping`)\n\nPD: `stock_account` 20.0 defines `stock.move.invoice_line_ids` as a One2many over `account.move.line.stock_move_id`, and repair uses it. This module keeps it as the Many2many it always was (`stock_move_invoice_line_rel`), so invoice lines created or written with `stock_move_id` are also added to `move_line_ids`. That way repair keeps working. Tests added.\n\nCC @ForgeFlow\n"
+    },
+    {
+      "number": 2460,
+      "type": "pr",
+      "state": "closed",
+      "title": "[MIG] stock_picking_invoice_link: Migration to version 20.0",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/2460",
+      "created_at": "2026-09-22T11:44:35Z",
+      "updated_at": "2026-10-22T23:50:10Z",
+      "closed_at": "2026-10-22T23:50:03Z",
+      "labels": [
+        "series:19.0",
+        "mod:stock_picking_invoice_link"
+      ],
+      "body": "## Summary\n\nMigration of \\`stock_picking_invoice_link\\` from Odoo 19.0 to 20.0.\n\n## Changes\n\n- **Version bump**: \\`19.0.1.0.1\\` → \\`20.0.1.0.0\\`\n- **Field rename** (\\`stock.move\\`): \\`invoice_line_ids\\` → \\`oca_invoice_line_ids\\` — Odoo 20.0 adds a native \\`stock.move.invoice_line_ids\\` One2many field in \\`stock_account\\`; keeping the same name with a Many2many relation caused an ORM type conflict and a \\`cursor already closed\\` crash on install\n- **View update**: \\`stock_view.xml\\` updated to reference \\`oca_invoice_line_ids\\`\n- **Test fix — return wizard removed**: \\`stock.return.picking\\` wizard was removed in Odoo 20.0; \\`test_02\\` now uses \\`picking._create_return()\\` + \\`action_return_all()\\` instead\n- **Test fix — field rename**: \\`stock.move.product_uom\\` → \\`stock.move.uom_id\\`\n- **Test fix — journal code overflow**: Odoo 20.0 includes \\`es_419\\` in the \\`es_AR\\` language fallback chain, and \\`es_419.po\\` translates \\`'MISC'\\` → \\`'MISCELÁNEO'\\` (8 chars), exceeding the \\`varchar(7)\\` constraint on \\`account.journal.code\\`; \\`setUpClass\\` temporarily clears the \\`code_translations\\` cache for the \\`account\\` module in Spanish during chart-of-accounts setup\n\n## Test plan\n\n- [x] All 3 tests pass locally in an Odoo 20 Docker environment with \\`es_AR\\` locale\n- [x] Module installs and updates cleanly (\\`-u stock_picking_invoice_link\\`)\n- [ ] CI green"
+    },
+    {
+      "number": 2519,
+      "type": "pr",
+      "state": "closed",
+      "title": "[20.0][MIG] stock_picking_invoice_link: Migration to 20.0",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/2519",
+      "created_at": "2026-10-24T15:43:42Z",
+      "updated_at": "2026-10-26T11:55:50Z",
+      "closed_at": "2026-10-26T11:55:50Z",
+      "labels": [
+        "mod:stock_picking_invoice_link",
+        "series:20.0"
+      ],
+      "body": "Migration of `stock_picking_invoice_link` from 19.0 to 20.0, following the [migration guide](https://github.com/OCA/maintainer-tools/wiki/Migration-to-version-20.0).\n\nChanges required by the 20.0 framework, all of them in the tests:\n\n- `stock.move.product_uom` renamed to `uom_id` when building the invoice line values.\n- The `stock.return.picking` wizard no longer exists: the return test now uses `picking._create_return()`, sets `to_refund` on the returned moves and confirms the picking, since a return created that way stays in draft and already carries the delivered quantities.\n- The same test sets the processed quantity on the moves (`quantity` and `picked`) rather than on the move lines, which the return has none of before reservation.\n\nHousekeeping: manifest version, redundant `string` on `invoice_line_ids` (pylint-odoo W8113), `!=` instead of `not ... ==` (ruff SIM201), XML headers.\n\nThe module code itself needed no change: `location_dest_usage`, `to_refund`, `account.move.reversal.reverse_moves(is_modify)` and the `button_box` anchors of `stock.view_picking_form` and `account.view_move_form` are all unchanged on 20.0.\n\nChecked on a clean 20.0 Community database: install, the 3 tests, and in the UI a delivery linked to a posted customer invoice: the \"Invoice\" smart button on the transfer opens the invoice, and the \"Delivery\" smart button on that invoice comes back to the transfer.\n"
+    },
+    {
+      "number": 2013,
+      "type": "pr",
+      "state": "closed",
+      "title": "[FIX] stock_picking_invoice_link: correct invoice_line_ids field in stock.move form view",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/2013",
+      "created_at": "2025-07-03T19:18:10Z",
+      "updated_at": "2026-11-13T14:41:54Z",
+      "closed_at": "2025-07-08T20:14:00Z",
+      "labels": [
+        "approved",
+        "ready to merge",
+        "merged 🎉"
+      ],
+      "body": "This pull request includes a small fix to correct a typo in the `stock_view.xml` file. The attribute `inivisible` was replaced with the correct spelling `invisible`. This is causing the `invoice_line_ids` field is rendered twice.\r\n\r\nThe second one needs also a colspan.\r\n\r\n![image](https://github.com/user-attachments/assets/7b84dd79-b15c-485f-b547-18994c10f5ca)\r\n\r\n@BinhexTeam"
+    },
+    {
+      "number": 2010,
+      "type": "pr",
+      "state": "closed",
+      "title": "[16.0] [FIX] stock_picking_invoice_link: remove duplicated element in stock.move form view",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/2010",
+      "created_at": "2025-07-02T15:18:29Z",
+      "updated_at": "2026-11-13T14:41:55Z",
+      "closed_at": "2025-07-02T16:04:48Z",
+      "labels": [
+        "approved",
+        "merged 🎉"
+      ],
+      "body": "This pull request removes a custom form view for stock moves (`view_move_picking_form`) that included invoice line details. The view was inherited from the `stock.view_move_form`.\r\n\r\nWhy? at: #1785 \r\n\r\n@BinhexTeam"
+    },
+    {
+      "number": 2442,
+      "type": "pr",
+      "state": "closed",
+      "title": "[19.0][FIX] stock_picking_invoice_link: restrict the invoice link to invoicing users",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/2442",
+      "created_at": "2026-09-01T17:31:51Z",
+      "updated_at": "2026-09-28T17:28:42Z",
+      "closed_at": "2026-09-28T17:28:37Z",
+      "labels": [
+        "approved",
+        "ready to merge",
+        "merged 🎉",
+        "series:19.0",
+        "mod:stock_picking_invoice_link"
+      ],
+      "body": "## Problem\n\nA user with **Inventory / User** access and no accounting access cannot open an\ninternal transfer once this module is installed. The form fails with:\n\n```\nAccessError: Failed to read field stock.picking.invoice_ids\nYou are not allowed to access 'Journal Entry' (account.move) records.\n```\n\nThe picking form injects `invoice_ids` (m2m to `account.move`) and the *Invoice*\nstat button with no `groups`. Reading a many2many triggers a search on the\ncomodel, and warehouse profiles have no read access on `account.move`, so an\naccessory piece of information ends up blocking the core operation of the role.\n\nThe same happens on the **stock.move** form with `invoice_line_ids`\n(`account.move.line`).\n\n## Why `groups` on the field was not enough\n\n`invoice_line_ids` already carried `groups=\"account.group_account_invoice\"`, but\nthe surrounding `<group>` has an `invisible=\"invoice_line_ids == []\"` modifier.\nView postprocessing adds the field back as an invisible node so the modifier can\nbe evaluated:\n\n```xml\n<field name=\"invoice_line_ids\" invisible=\"True\" readonly=\"True\"\n       data-used-by=\"invisible='invoice_line_ids == []' (group,invoice_line)\"/>\n```\n\nso the field is read anyway and the form still breaks. The fix puts `groups` on\nthe node that carries the modifier, which removes both the modifier and the\nfield.\n\n## Change\n\n`views/stock_view.xml` only:\n\n- picking form: `groups=\"account.group_account_invoice\"` on the `invoice_ids`\n  field and on the stat button (the button holds the\n  `invisible=\"invoice_count == 0\"` modifier, so it goes away with it);\n- move form: `groups` moved from the `invoice_line_ids` field to the enclosing\n  `<group name=\"invoice_line\">`.\n\nNothing changes for users who can already see invoices.\n\n## Test plan\n\nOn a 19.0 database with this module installed, a user whose only groups are\n`base.group_user` + `stock.group_stock_user`:\n\n- **before**: `picking.read(<fields exposed by stock.view_picking_form>)` raises\n  `AccessError` on `account.move`; the same on `stock.view_move_form` raises on\n  `account.move.line`;\n- **after**: `invoice_ids` / `invoice_count` / `invoice_line_ids` are no longer\n  present in the arch returned by `get_view()` for that user, and reading every\n  field the forms expose succeeds;\n- a user with `account.group_account_invoice` still gets the stat button, the\n  invoice lines group and `invoice_count`, and reaches the invoice from the\n  picking.\n\nThe list views (`stock.vpicktree`, `stock.view_move_tree`) never exposed these\nfields, and were verified not to raise for the restricted user.\n\nThe same asymmetry is present on 18.0; a backport can follow once this is\nreviewed.\n"
+    },
+    {
+      "number": 2011,
+      "type": "pr",
+      "state": "closed",
+      "title": "[17.0] [FW] [FIX] stock_picking_invoice_link: remove duplicated element in stock.move form view",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/2011",
+      "created_at": "2025-07-02T22:19:14Z",
+      "updated_at": "2026-11-13T14:41:56Z",
+      "closed_at": "2025-07-03T00:13:10Z",
+      "labels": [
+        "approved",
+        "merged 🎉"
+      ],
+      "body": "Forward port of #2010\r\n\r\n@BinhexTeam"
+    },
+    {
+      "number": 2018,
+      "type": "pr",
+      "state": "closed",
+      "title": "[18.0] [FW] [FIX] stock_picking_invoice_link: fix stock.move form view invoice_line_ids field rendering",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/2018",
+      "created_at": "2025-07-04T15:32:37Z",
+      "updated_at": "2026-11-13T14:41:57Z",
+      "closed_at": "2025-07-04T17:04:52Z",
+      "labels": [
+        "approved",
+        "merged 🎉"
+      ],
+      "body": "Issues:\r\n\r\n![image](https://github.com/user-attachments/assets/abe601a5-275b-46d3-8b56-25fd144ed200)\r\n\r\nFW\r\n\r\n1. #2011 \r\n2. #2017 \r\n\r\n\r\n@BinhexTeam"
+    },
+    {
+      "number": 2017,
+      "type": "pr",
+      "state": "closed",
+      "title": "[17.0] [FIX] stock_picking_invoice_link: add colspan attribute to invoice_line_ids field in stock.move form",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/2017",
+      "created_at": "2025-07-04T10:40:52Z",
+      "updated_at": "2026-11-13T14:41:56Z",
+      "closed_at": "2025-07-04T16:58:26Z",
+      "labels": [
+        "merged 🎉"
+      ],
+      "body": "This pull request includes a minor update to the `stock_view.xml` file. The change adds a `colspan` attribute with a value of `2` to the `invoice_line_ids` field, improving the layout of the field in the user interface. Previously:\r\n\r\n![image](https://github.com/user-attachments/assets/b40ea83d-42c6-4346-b504-dbcc9a3d9aac)\r\n"
+    },
+    {
+      "number": 2022,
+      "type": "pr",
+      "state": "closed",
+      "title": "[NEW][REF][16.0] stock_picking_invoice_link split to sale_stock_picking_invoice_link",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/2022",
+      "created_at": "2025-07-09T20:02:57Z",
+      "updated_at": "2026-01-18T12:54:11Z",
+      "closed_at": "2026-01-18T12:54:11Z",
+      "labels": [
+        "stale"
+      ],
+      "body": "## Current Scenario\r\n\r\nThe stock_picking_invoice_link module, which adds the relationship between the invoice and stock picking, depends on the sale_stock module, but the purchase_stock_picking_invoice_link module depends on stock_picking_invoice_link, making it mandatory to install both the purchase and sale modules, thus losing modularity.\r\n\r\n## Proposed Solution\r\n\r\nThe sale dependency on stock_picking_invoice_link was removed, and a new sale_stock_picking_invoice_link module was created. In this way, the stock_picking_invoice_link module is a base module for the sale_stock_picking_invoice_link and purchase_stock_picking_invoice_link modules, preserving modularity."
+    },
+    {
+      "number": 2180,
+      "type": "pr",
+      "state": "closed",
+      "title": "[19.0][FIX] stock_picking_invoice_link: view fix",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/2180",
+      "created_at": "2025-11-21T15:26:13Z",
+      "updated_at": "2025-11-24T16:39:25Z",
+      "closed_at": "2025-11-24T16:39:21Z",
+      "labels": [
+        "approved",
+        "merged 🎉"
+      ],
+      "body": "Due to https://github.com/odoo/odoo/pull/236785"
+    },
+    {
+      "number": 2127,
+      "type": "pr",
+      "state": "closed",
+      "title": "[19.0][MIG]: stock_picking_invoice_link",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/2127",
+      "created_at": "2025-10-08T13:07:07Z",
+      "updated_at": "2025-11-06T11:24:29Z",
+      "closed_at": "2025-11-03T13:04:49Z",
+      "labels": [
+        "approved",
+        "ready to merge",
+        "merged 🎉"
+      ],
+      "body": ""
+    },
+    {
+      "number": 1759,
+      "type": "pr",
+      "state": "closed",
+      "title": "[14.0][FIX] stock_picking_invoice_link: inv duplication: copy false",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/1759",
+      "created_at": "2024-11-07T20:48:08Z",
+      "updated_at": "2025-11-30T12:50:23Z",
+      "closed_at": "2025-11-30T12:50:23Z",
+      "labels": [
+        "stale"
+      ],
+      "body": "When copying an invoice, the related stock move relations are currently being kept. I believe this is not the intended behavior"
+    },
+    {
+      "number": 2147,
+      "type": "pr",
+      "state": "closed",
+      "title": "[19.0][MIG] stock_picking_invoice_link: Migration to 19.0",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/2147",
+      "created_at": "2025-10-28T17:16:22Z",
+      "updated_at": "2025-11-12T10:44:53Z",
+      "closed_at": "2025-11-11T15:37:57Z",
+      "labels": [],
+      "body": "standard migration to 19.0"
+    },
+    {
+      "number": 2023,
+      "type": "pr",
+      "state": "closed",
+      "title": "[NEW][REF][18.0] stock_picking_invoice_link split to sale_stock_picking_invoice_link",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/2023",
+      "created_at": "2025-07-10T00:28:21Z",
+      "updated_at": "2025-07-12T04:10:50Z",
+      "closed_at": "2025-07-12T04:10:46Z",
+      "labels": [
+        "approved",
+        "merged 🎉"
+      ],
+      "body": "Port PR #2022 \r\n\r\n## Current Scenario\r\n\r\nThe stock_picking_invoice_link module, which adds the relationship between the invoice and stock picking, depends on the sale_stock module, but the purchase_stock_picking_invoice_link module depends on stock_picking_invoice_link, making it mandatory to install both the purchase and sale modules, thus losing modularity.\r\n\r\n## Proposed Solution\r\n\r\nThe sale dependency on stock_picking_invoice_link was removed, and a new sale_stock_picking_invoice_link module was created. In this way, the stock_picking_invoice_link module is a base module for the sale_stock_picking_invoice_link and purchase_stock_picking_invoice_link modules, preserving modularity."
+    },
+    {
+      "number": 2026,
+      "type": "pr",
+      "state": "closed",
+      "title": "[18.0][FIX] stock_picking_invoice_link: Fix tests to avoid wrong company",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/2026",
+      "created_at": "2025-07-14T08:14:34Z",
+      "updated_at": "2025-07-15T06:51:17Z",
+      "closed_at": "2025-07-15T06:47:28Z",
+      "labels": [
+        "merged 🎉"
+      ],
+      "body": "Fix tests to avoid wrong company\r\n\r\nInstall `l10n_es` + `stock_picking_invoice_link`\r\n\r\n```\r\nodoo.exceptions.UserError: Incompatible companies on records:\r\n- “Product A” belongs to company “My Company (San Francisco)” and “Taxes” (tax_ids: '21% G', '15%') belongs to another company.\r\n```\r\n\r\n@Tecnativa"
+    },
+    {
+      "number": 1930,
+      "type": "pr",
+      "state": "closed",
+      "title": "[WIP] [14.0] [IMP] stock_picking_invoice_link: add security group to restrict canceling stock moves linked to invoices/bills",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/1930",
+      "created_at": "2025-04-30T03:38:43Z",
+      "updated_at": "2025-05-01T13:01:18Z",
+      "closed_at": "2025-05-01T13:01:18Z",
+      "labels": [],
+      "body": "This PR introduces a restriction to prevent the cancellation of stock moves that are already linked to invoices or vendor bills. Only users who are members of the \"Allow to cancel stock moves linked to invoices/bills\" group will be authorized to perform this action.\r\n\r\n## Why Restrict Cancelling Stock Moves Linked to Invoices/Bills\r\n\r\n- **Data Integrity**: Prevents inconsistencies between inventory and accounting.\r\n- **Controlled Access**: Cancellation is still allowed, but only for users in the designated security group.\r\n- **Legal and Financial Compliance**: Avoids issues with invoiced or billed records.\r\n- **Auditability**: Maintains a clear and traceable record of exceptional actions.\r\n- **Best Practice**: Encourages using proper workflows like credit notes or returns.\r\n\r\n## ROADMAP\r\n\r\n- [x] create security group\r\n- [x] restrict cancellation at the stock move model level\r\n- [x] update translations\r\n- [ ] create a test\r\n\r\n@BinhexTeam"
+    },
+    {
+      "number": 1891,
+      "type": "pr",
+      "state": "closed",
+      "title": "[15.0][FIX] stock_picking_invoice_link, ensure field product_uom_qty …",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/1891",
+      "created_at": "2025-03-04T08:52:20Z",
+      "updated_at": "2025-03-04T10:22:14Z",
+      "closed_at": "2025-03-04T10:22:11Z",
+      "labels": [
+        "approved",
+        "merged 🎉"
+      ],
+      "body": "…value was changed to raise exception\r\n\r\n\r\nThis is the backport of https://github.com/OCA/stock-logistics-workflow/pull/1688 to V15\r\n"
+    },
+    {
+      "number": 1688,
+      "type": "pr",
+      "state": "closed",
+      "title": "[16.0][FIX] stock_picking_invoice_link, ensure field product_uom_qty value was changed to raise exception",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/1688",
+      "created_at": "2024-08-30T14:11:45Z",
+      "updated_at": "2025-03-04T08:57:58Z",
+      "closed_at": "2025-02-09T16:03:07Z",
+      "labels": [
+        "approved",
+        "merged 🎉",
+        "stale"
+      ],
+      "body": "I found cases where product_uom_qty is raised as a change in field, but is for decimal errors, for example this one 50.0 != 50.00000000000001\r\n\r\n@ForgeFlow"
+    },
+    {
+      "number": 1752,
+      "type": "pr",
+      "state": "closed",
+      "title": "[MIG] stock_picking_invoice_link: Migration to 18.0",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/1752",
+      "created_at": "2024-10-31T15:29:11Z",
+      "updated_at": "2025-01-10T15:16:08Z",
+      "closed_at": "2025-01-10T15:16:08Z",
+      "labels": [],
+      "body": ""
+    },
+    {
+      "number": 1779,
+      "type": "pr",
+      "state": "closed",
+      "title": "[18.0][MIG] stock_picking_invoice_link: Migration to 18.0",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/1779",
+      "created_at": "2024-11-26T12:09:27Z",
+      "updated_at": "2025-01-10T15:16:11Z",
+      "closed_at": "2025-01-10T15:16:08Z",
+      "labels": [
+        "approved",
+        "merged 🎉"
+      ],
+      "body": ""
+    },
+    {
+      "number": 1651,
+      "type": "pr",
+      "state": "closed",
+      "title": "[14.0][FIX] stock_picking_invoice_link: BackPort reverse_moves on refunds",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/1651",
+      "created_at": "2024-07-10T11:09:13Z",
+      "updated_at": "2024-12-15T12:44:20Z",
+      "closed_at": "2024-12-15T12:44:20Z",
+      "labels": [
+        "stale"
+      ],
+      "body": "Backported the fix done in [ffa0e97](https://github.com/OCA/stock-logistics-workflow/pull/1006/commits/ffa0e9722a034b4a5070e5d3085219cc55cbbbb9#diff-dfac55439119a501e356975046033089d43cb7ffb6b439078961abdfe107f0ff)"
+    },
+    {
+      "number": 1135,
+      "type": "pr",
+      "state": "closed",
+      "title": "[14.0][IMP] stock_picking_invoice_link: Add support to order invoice policy",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/1135",
+      "created_at": "2022-11-22T08:15:30Z",
+      "updated_at": "2024-10-30T14:55:00Z",
+      "closed_at": "2023-01-06T11:03:09Z",
+      "labels": [
+        "approved",
+        "merged 🎉"
+      ],
+      "body": "cc @Tecnativa \r\n\r\nFW-PORT of https://github.com/OCA/stock-logistics-workflow/commit/d2f1f1c021ffa5f2a1b2ef613aafb7b32d6c8b68#diff-ed8478b26f76d553db4468e339b1a31d9ef063ac91f17aff78519fd03edfa6d6\r\n\r\nping @sergio-teruel @carlosdauden "
+    },
+    {
+      "number": 1703,
+      "type": "pr",
+      "state": "closed",
+      "title": "[17.0][FIX] stock_picking_invoice_link: pass parameter to super",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/1703",
+      "created_at": "2024-09-11T08:41:05Z",
+      "updated_at": "2024-09-22T16:33:40Z",
+      "closed_at": "2024-09-17T17:30:34Z",
+      "labels": [],
+      "body": ""
+    },
+    {
+      "number": 1712,
+      "type": "pr",
+      "state": "closed",
+      "title": "[17.0][IMP] stock_picking_invoice_link: Fix argument in reverse_moves",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/1712",
+      "created_at": "2024-09-17T09:12:21Z",
+      "updated_at": "2024-09-18T03:52:51Z",
+      "closed_at": "2024-09-17T09:43:19Z",
+      "labels": [
+        "approved",
+        "merged 🎉"
+      ],
+      "body": ""
+    },
+    {
+      "number": 1446,
+      "type": "pr",
+      "state": "closed",
+      "title": "[17.0][MIG] stock_picking_invoice_link: Migration to 17.0",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/1446",
+      "created_at": "2023-12-01T08:50:41Z",
+      "updated_at": "2024-09-11T08:42:34Z",
+      "closed_at": "2023-12-08T08:02:06Z",
+      "labels": [
+        "needs review",
+        "migration",
+        "merged 🎉"
+      ],
+      "body": "ref: [BSRD-699](https://jira.camptocamp.com/browse/BSRD-699)"
+    },
+    {
+      "number": 1704,
+      "type": "pr",
+      "state": "closed",
+      "title": "[17.0][FIX] stock_picking_invoice_link: Avoid doble compute picking_count",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/1704",
+      "created_at": "2024-09-11T11:10:47Z",
+      "updated_at": "2024-09-12T06:52:14Z",
+      "closed_at": "2024-09-11T14:50:32Z",
+      "labels": [
+        "enhancement",
+        "needs review",
+        "merged 🎉"
+      ],
+      "body": ""
+    },
+    {
+      "number": 1667,
+      "type": "pr",
+      "state": "closed",
+      "title": "[17.0][FIX] stock_picking_invoice_link: development status",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/1667",
+      "created_at": "2024-08-06T11:09:55Z",
+      "updated_at": "2024-08-06T11:32:53Z",
+      "closed_at": "2024-08-06T11:32:47Z",
+      "labels": [
+        "approved",
+        "merged 🎉"
+      ],
+      "body": ""
+    },
+    {
+      "number": 1636,
+      "type": "pr",
+      "state": "closed",
+      "title": "[16.0][FIX] stock_picking_invoice_link: Avoid doble compute picking_count",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/1636",
+      "created_at": "2024-06-20T10:21:21Z",
+      "updated_at": "2024-06-20T14:12:15Z",
+      "closed_at": "2024-06-20T11:50:54Z",
+      "labels": [
+        "approved",
+        "merged 🎉"
+      ],
+      "body": "After the change added in the commit [[FIX] stock_picking_invoice_link: Avoid inconsistent computes](https://github.com/OCA/stock-logistics-workflow/commit/38b1742d33eaa04318a0e8c28d93c7bcd9fd4def) the picking_count field is being calculated twice.\r\nThis generates a strange interaction with the \"payment.return\" when confirming in which it checks if the generated account.move is balanced ahead of time and prevents it from being created."
+    },
+    {
+      "number": 1630,
+      "type": "pr",
+      "state": "closed",
+      "title": "[15.0][FIX] stock_picking_invoice_link: Avoid inconsistent computes",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/1630",
+      "created_at": "2024-06-14T10:27:07Z",
+      "updated_at": "2024-06-14T10:44:36Z",
+      "closed_at": "2024-06-14T10:43:11Z",
+      "labels": [
+        "approved",
+        "merged 🎉"
+      ],
+      "body": "fw from #1625 \r\n\r\nplease check @rousseldenis @pedrobaeza \r\n\r\ncc @Tecnativa"
+    },
+    {
+      "number": 1631,
+      "type": "pr",
+      "state": "closed",
+      "title": "[17.0][FIX] stock_picking_invoice_link: Avoid inconsistent computes",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/1631",
+      "created_at": "2024-06-14T10:29:26Z",
+      "updated_at": "2024-06-14T10:43:05Z",
+      "closed_at": "2024-06-14T10:40:36Z",
+      "labels": [
+        "merged 🎉"
+      ],
+      "body": "fw of #1625 \r\n\r\ncheck @pedrobaeza @rousseldenis \r\n\r\ncc @Tecnativa "
+    },
+    {
+      "number": 1625,
+      "type": "pr",
+      "state": "closed",
+      "title": "[16.0][FIX] stock_picking_invoice_link: Avoid inconsistent computes",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/1625",
+      "created_at": "2024-06-13T09:57:06Z",
+      "updated_at": "2024-06-14T09:52:29Z",
+      "closed_at": "2024-06-14T09:40:31Z",
+      "labels": [
+        "approved",
+        "merged 🎉"
+      ],
+      "body": ""
+    },
+    {
+      "number": 1583,
+      "type": "pr",
+      "state": "closed",
+      "title": "[15.0][IMP] stock_picking_invoice_link: speed up initialization",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/1583",
+      "created_at": "2024-04-29T16:27:33Z",
+      "updated_at": "2024-06-10T14:28:18Z",
+      "closed_at": "2024-06-10T14:28:15Z",
+      "labels": [],
+      "body": "Follow up to https://github.com/OCA/stock-logistics-workflow/pull/1388\r\n\r\nNew compute stored fields on large tables like this can lead to high\r\ninitialation times when we rely on the ORM.\r\n\r\nAlso, a new stored computed field was introduced in v15 along the former\r\ncomputed method. We need to pre-compute it to avoid large migration\r\ntimes.\r\n\r\n\r\ncc @Tecnativa TT46020\r\n\r\nplease review @pedrobaeza \r\n\r\nfyi @JordiBForgeFlow "
+    },
+    {
+      "number": 1624,
+      "type": "pr",
+      "state": "closed",
+      "title": "[17.0][FIX] stock_picking_invoice_link: don't store auxiliar fields",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/1624",
+      "created_at": "2024-06-13T08:21:50Z",
+      "updated_at": "2024-06-13T17:59:15Z",
+      "closed_at": "2024-06-13T09:31:44Z",
+      "labels": [
+        "approved",
+        "merged 🎉"
+      ],
+      "body": "fw of #1620 \r\n\r\nIn c332869b09d99231f3c5f957089fddd257ee23ba a new computed field was introduced to show the count of a move's related pickings. But it was made stored, which is needless for this kind of field and adds a huge overhead when migrating from big DBs from previous versions.\r\n\r\nWith this commit:\r\n\r\n- We drop the storing of this field which is meant to play a UI role.\r\n- We rename the field to picking count, as a more precise nomenclature.\r\n\r\ncc @Tecnativa TT46020\r\n\r\n\r\nplease check @pedrobaeza "
+    },
+    {
+      "number": 1620,
+      "type": "pr",
+      "state": "closed",
+      "title": "[16.0][FIX] stock_picking_invoice_link: don't store auxiliar fields",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/1620",
+      "created_at": "2024-06-11T06:55:12Z",
+      "updated_at": "2024-06-13T10:05:13Z",
+      "closed_at": "2024-06-12T19:29:25Z",
+      "labels": [
+        "approved",
+        "merged 🎉"
+      ],
+      "body": "fw of https://github.com/OCA/stock-logistics-workflow/pull/1617\r\n\r\nIn c332869b09d99231f3c5f957089fddd257ee23ba a new computed field was introduced to show the count of a move's related pickings. But it was made stored, which is needless for this kind of field and adds a huge overhead when migrating from big DBs from previous versions.\r\n\r\nWith this commit:\r\n\r\n- We drop the storing of this field which is meant to play a UI role.\r\n- We rename the field to picking count, as a more precise nomenclature.\r\n\r\ncc @Tecnativa TT46020\r\n\r\nplease review @pedrobaeza @sergio-teruel "
+    },
+    {
+      "number": 1617,
+      "type": "pr",
+      "state": "closed",
+      "title": "[15.0][FIX] stock_picking_invoice_link: don't store auxiliar fields",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/1617",
+      "created_at": "2024-06-10T13:23:34Z",
+      "updated_at": "2024-06-10T18:26:30Z",
+      "closed_at": "2024-06-10T18:24:27Z",
+      "labels": [
+        "approved",
+        "merged 🎉"
+      ],
+      "body": "In c332869b09d99231f3c5f957089fddd257ee23ba a new computed field was introduced to show the count of a move's related pickings. But it was made stored, which is needless for this kind of field and adds a huge overhead when migrating from big DBs from previous versions.\r\n\r\nWith this commit:\r\n\r\n- We drop the storing of this field which is meant to play a UI role.\r\n- We rename the field to picking count, as a more precise nomenclature.\r\n\r\ncc @Tecnativa TT46020\r\n\r\nplease review @pedrobaeza @sergio-teruel "
+    },
+    {
+      "number": 1472,
+      "type": "pr",
+      "state": "closed",
+      "title": "[17.0] [IMP] stock_picking_invoice_link: Added pickings to notebook sheet",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/1472",
+      "created_at": "2024-01-08T13:14:35Z",
+      "updated_at": "2024-05-16T14:56:06Z",
+      "closed_at": "2024-05-16T14:54:57Z",
+      "labels": [],
+      "body": ""
+    },
+    {
+      "number": 1388,
+      "type": "pr",
+      "state": "closed",
+      "title": "[IMP] stock_picking_invoice_link: add pre-migration script to speed up installation.",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/1388",
+      "created_at": "2023-10-02T10:14:00Z",
+      "updated_at": "2024-04-07T12:30:09Z",
+      "closed_at": "2024-04-07T12:30:09Z",
+      "labels": [
+        "stale"
+      ],
+      "body": ""
+    },
+    {
+      "number": 1419,
+      "type": "pr",
+      "state": "closed",
+      "title": "[16.0] stock_picking_invoice_link: fix string",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/1419",
+      "created_at": "2023-11-02T23:04:17Z",
+      "updated_at": "2023-11-03T00:02:54Z",
+      "closed_at": "2023-11-03T00:02:43Z",
+      "labels": [
+        "merged 🎉"
+      ],
+      "body": ""
+    },
+    {
+      "number": 1339,
+      "type": "pr",
+      "state": "closed",
+      "title": "[15.0][FIX] stock_picking_invoice_link: Users without stock group can not view pickings. So hide button picking in invoice view",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/1339",
+      "created_at": "2023-08-03T09:10:02Z",
+      "updated_at": "2023-08-03T09:37:40Z",
+      "closed_at": "2023-08-03T09:32:46Z",
+      "labels": [
+        "approved",
+        "merged 🎉"
+      ],
+      "body": "cc @Tecnativa TT44565\r\n\r\nping @chienandalu @CarlosRoca13 "
+    },
+    {
+      "number": 1295,
+      "type": "pr",
+      "state": "closed",
+      "title": "[15.0][FIX] stock_picking_invoice_link: Wrong link when several lines have same product",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/1295",
+      "created_at": "2023-05-18T23:26:51Z",
+      "updated_at": "2023-05-24T05:43:08Z",
+      "closed_at": "2023-05-24T05:43:02Z",
+      "labels": [
+        "approved",
+        "ready to merge",
+        "merged 🎉"
+      ],
+      "body": "When credit note has several lines with the same product, all lines are linked with all related stock moves\r\n\r\n@Tecnativa TT43399\r\n\r\nPing @antonyht27 @CarlosRoca13 @chienandalu "
+    },
+    {
+      "number": 1152,
+      "type": "pr",
+      "state": "closed",
+      "title": "[14.0][IMP] stock_picking_invoice_link added case when change lot on done pickings",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/1152",
+      "created_at": "2022-12-12T15:00:19Z",
+      "updated_at": "2023-05-21T12:32:06Z",
+      "closed_at": "2023-05-21T12:32:06Z",
+      "labels": [
+        "stale"
+      ],
+      "body": "@ForgeFlow"
+    },
+    {
+      "number": 1010,
+      "type": "pr",
+      "state": "closed",
+      "title": "[14.0][IMP] stock_picking_invoice_link",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/1010",
+      "created_at": "2022-06-01T11:27:13Z",
+      "updated_at": "2023-01-23T14:09:21Z",
+      "closed_at": "2023-01-23T14:09:21Z",
+      "labels": [
+        "enhancement",
+        "needs review"
+      ],
+      "body": "port changes from https://github.com/OCA/stock-logistics-workflow/pull/816\r\n"
+    },
+    {
+      "number": 1154,
+      "type": "pr",
+      "state": "closed",
+      "title": "[16.0][MIG] stock_picking_invoice_link: Migration to 16.0",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/1154",
+      "created_at": "2022-12-13T17:26:13Z",
+      "updated_at": "2023-02-04T17:49:13Z",
+      "closed_at": "2022-12-30T19:22:44Z",
+      "labels": [
+        "needs review",
+        "approved",
+        "migration",
+        "merged 🎉"
+      ],
+      "body": ""
+    },
+    {
+      "number": 1210,
+      "type": "pr",
+      "state": "closed",
+      "title": "[16.0][FIX] stock_picking_invoice_link: inventory users cannot validate picking",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/1210",
+      "created_at": "2023-02-04T18:20:42Z",
+      "updated_at": "2023-02-04T18:29:09Z",
+      "closed_at": "2023-02-04T18:25:45Z",
+      "labels": [
+        "merged 🎉"
+      ],
+      "body": "Forward-port to v16 of #1140 by @augusto-weiss\r\n\r\n@Tecnativa"
+    },
+    {
+      "number": 1208,
+      "type": "pr",
+      "state": "closed",
+      "title": "[15.0][FIX] stock_picking_invoice_link: inventory users cannot validate picking",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/1208",
+      "created_at": "2023-02-04T17:53:40Z",
+      "updated_at": "2023-02-04T18:20:23Z",
+      "closed_at": "2023-02-04T18:13:04Z",
+      "labels": [
+        "merged 🎉"
+      ],
+      "body": "Forward-port to v15 of https://github.com/OCA/stock-logistics-workflow/pull/1140 by @augusto-weiss\r\n\r\n@Tecnativa"
+    },
+    {
+      "number": 1207,
+      "type": "pr",
+      "state": "closed",
+      "title": "[14.0][FIX] stock_picking_invoice_link: inventory users cannot validate picking",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/1207",
+      "created_at": "2023-02-04T17:44:17Z",
+      "updated_at": "2023-02-04T17:51:49Z",
+      "closed_at": "2023-02-04T17:51:11Z",
+      "labels": [
+        "merged 🎉"
+      ],
+      "body": "Forward-port to v14 of #1140 by @augusto-weiss \r\n\r\n@Tecnativa "
+    }
+  ]
+}

@@ -1,0 +1,593 @@
+{
+  "module": "stock_request",
+  "source": {
+    "repo": "stock-logistics-request",
+    "commit": "e03457881a0aca9aba3bd61219024b10d2bb969f",
+    "branch": "18.0",
+    "remote": "https://github.com/OCA/stock-logistics-request.git",
+    "path": "oca/stock-logistics-request/stock_request"
+  },
+  "collected_at": "2026-11-24T04:47:41+00:00",
+  "collector_version": "v1",
+  "manifest": {
+    "name": "Stock Request",
+    "summary": "Internal request for stock",
+    "version": "18.0.1.1.8",
+    "category": "Warehouse Management",
+    "depends": [
+      "stock"
+    ],
+    "website": "https://github.com/OCA/stock-logistics-request",
+    "license": "LGPL-3"
+  },
+  "readme": {
+    "DESCRIPTION": {
+      "file": "readme/DESCRIPTION.md",
+      "text": "This module was written to allow users to request products that are\nfrequently stocked by the company, to be transferred to their chosen\nlocation."
+    },
+    "USAGE": {
+      "file": "readme/USAGE.md",
+      "text": "\\## Creation\n\n- Go to 'Stock Requests / Stock Requests' and create a new Request.\n- Indicate a product, quantity and location.\n- Press 'Confirm'.\n\nUpon confirmation the request will be evaluated using the procurement\nrules for the selected location.\n\nIn case that transfers are created, the user will be able to access to\nthem from the button 'Transfers' available in the Stock Request.\n\n\\## Cancel\n\nWhen the user cancels a Stock Request, the related pending stock moves\nwill be also cancelled."
+    },
+    "CONFIGURE": {
+      "file": "readme/CONFIGURE.md",
+      "text": "To configure this module:\n\n- Go to Stock Requests \\> Settings\n\nUsers should be assigned to the groups 'Stock Request / User' or 'Stock\nRequest / Manager'.\n\n\\## Group Stock Request / User\n\n- Can see her/his own Stock Requests, and others that she/he's been\n  granted permission to follow.\n- Can create/update only her/his Stock Requests.\n\n\\## Group Stock Request / Manager\n\n- Can fully manage all Stock Requests"
+    },
+    "ROADMAP": {
+      "file": "readme/ROADMAP.md",
+      "text": "There is no way to achieve Storck Request and Stock Request Orders. It\nshould be developed taking into account that only Cancel and Done stock\nrequest can be archived.\n\nIt is also required to manage active field logically from Orders to SRs."
+    }
+  },
+  "text_v0": "Stock Request\n\nInternal request for stock\n\n## DESCRIPTION\nThis module was written to allow users to request products that are\nfrequently stocked by the company, to be transferred to their chosen\nlocation.\n\n## USAGE\n\\## Creation\n\n- Go to 'Stock Requests / Stock Requests' and create a new Request.\n- Indicate a product, quantity and location.\n- Press 'Confirm'.\n\nUpon confirmation the request will be evaluated using the procurement\nrules for the selected location.\n\nIn case that transfers are created, the user will be able to access to\nthem from the button 'Transfers' available in the Stock Request.\n\n\\## Cancel\n\nWhen the user cancels a Stock Request, the related pending stock moves\nwill be also cancelled.\n\n## CONFIGURE\nTo configure this module:\n\n- Go to Stock Requests \\> Settings\n\nUsers should be assigned to the groups 'Stock Request / User' or 'Stock\nRequest / Manager'.\n\n\\## Group Stock Request / User\n\n- Can see her/his own Stock Requests, and others that she/he's been\n  granted permission to follow.\n- Can create/update only her/his Stock Requests.\n\n\\## Group Stock Request / Manager\n\n- Can fully manage all Stock Requests\n\n## ROADMAP\nThere is no way to achieve Storck Request and Stock Request Orders. It\nshould be developed taking into account that only Cancel and Done stock\nrequest can be archived.\n\nIt is also required to manage active field logically from Orders to SRs.",
+  "text": "Stock Request\n\nInternal request for stock\n\n## DESCRIPTION\nThis module was written to allow users to request products that are\nfrequently stocked by the company, to be transferred to their chosen\nlocation.\n\n## USAGE\n\\## Creation\n\n- Go to 'Stock Requests / Stock Requests' and create a new Request.\n- Indicate a product, quantity and location.\n- Press 'Confirm'.\n\nUpon confirmation the request will be evaluated using the procurement\nrules for the selected location.\n\nIn case that transfers are created, the user will be able to access to\nthem from the button 'Transfers' available in the Stock Request.\n\n\\## Cancel\n\nWhen the user cancels a Stock Request, the related pending stock moves\nwill be also cancelled.\n\n## CONFIGURE\nTo configure this module:\n\n- Go to Stock Requests \\> Settings\n\nUsers should be assigned to the groups 'Stock Request / User' or 'Stock\nRequest / Manager'.\n\n\\## Group Stock Request / User\n\n- Can see her/his own Stock Requests, and others that she/he's been\n  granted permission to follow.\n- Can create/update only her/his Stock Requests.\n\n\\## Group Stock Request / Manager\n\n- Can fully manage all Stock Requests\n\n## ROADMAP\nThere is no way to achieve Storck Request and Stock Request Orders. It\nshould be developed taking into account that only Cancel and Done stock\nrequest can be archived.\n\nIt is also required to manage active field logically from Orders to SRs.\n\n## GITHUB ISSUES (selected)\n### #119 [18.0][FIX] stock_request: count allocations after push steps (pr, closed, 2026)\nWith a two step route that uses a push rule , the stock request is linked to the first move. So:\n- When the first step is done, the request is done, although the goods have not arrived yet.\n- The push copies the first move, link included, so the second step counts the quantity again.\nWith this fix only the move that reaches the requested location counts. The push moves the link to the second move instead of copying it.\n\n### #117 [18.0][FIX] stock_request: set done when partially delivered (pr, closed, 2026)\nWhen a transfer is validated partially without a backorder, or the backorder is cancelled later, the request ends up Cancelled even if part of it was delivered. If all lines of an order end up like that, the order is Cancelled too.\nThis was changed in 6260722 to cancel requests whose moves get cancelled, which makes sense when nothing was delivered. Now a request is only Cancelled when nothing was delivered, otherwise it goes to Done. The cancelled quantity still shows what was missing.\n\n### #116 [18.0][FIX] stock_request: split allocations with the move (pr, closed, 2026)\nWhen a transfer is validated partially and a backorder is created, Qty In Progress keeps the full requested quantity instead of what's left. A request for 10 with 8 done still shows 10 in progress.\r\nNow, when a move is split, the original move's allocations keep what stays on it and the new move gets the rest. This also covers the Split action on transfers. With exact quantities, a request is only closed when nothing is left in progress.\n\n### #126 [18.0][FIX] stock_request: count returns and pushed moves once (pr, open, 2026)\nBackport of the stock_request fixes of 20.0 (#108, #124, #125), already backported to 19.0 in #123, so the three versions share the same code.\n- **Count returns and pushed moves once**: a return subtracts the quantity of the move it returns, also for internal transfers. When a push rule continues a move of the request, only the last move of the chain counts, so the request is not done before the goods reach its location. A copied allocation takes the quantity of the new move. A post-migration script limits the open allocations of existing backorders and recomputes the stored quantities of existing requests (version bumped to 18.0.1.2.0).\n- **Keep split allocation qty unrounded**: when a move in a UoM other than the request's is split, or copied as a return or a push, its allocations are not rounded to the request UoM.\nThis replaces #119, which fixes the push steps with a different approach. Its tests also pass with this design (only the assertion on which move holds the allocation differs: here the first move keeps it and does not count it).\nMigration checked on a database created with the current 18.0: a returned internal transfer goes from 20 done to 0; the other requests keep their quantities.\n\n### #86 [18.0][IMP] stock_request: add default route in stock requests from order (pr, closed, 2025)\nThis was something that was in older versions but was removed (I believe it was accidentally when migrating to v16). See v15 [code](https://github.com/OCA/stock-logistics-warehouse/blob/15.0/stock_request/views/stock_request_order_views.xml#L123) with this implementation.",
+  "github": {
+    "repo": "OCA/stock-logistics-request",
+    "fetched_at": "2026-11-24T04:46:04+00:00",
+    "queries": [
+      {
+        "q": "\"stock_request\" repo:OCA/stock-logistics-request is:issue",
+        "total_count": 8,
+        "returned": 8
+      },
+      {
+        "q": "\"stock_request\" repo:OCA/stock-logistics-request is:pull-request",
+        "total_count": 48,
+        "returned": 48
+      }
+    ],
+    "n_raw": 56,
+    "n_kept": 31,
+    "n_to_llm": 20,
+    "dropped": {
+      "migration": 15,
+      "forward_port": 10
+    },
+    "candidates": [
+      {
+        "number": 107,
+        "type": "issue",
+        "state": "open",
+        "title": "Migration to version 20.0",
+        "url": "https://github.com/OCA/stock-logistics-request/issues/107",
+        "filter": "migration"
+      },
+      {
+        "number": 94,
+        "type": "issue",
+        "state": "open",
+        "title": "[stock_request] `MissingError` in `_action_done`/`_action_cancel` after parallel auto-merge unlinks moves",
+        "url": "https://github.com/OCA/stock-logistics-request/issues/94",
+        "filter": "kept"
+      },
+      {
+        "number": 77,
+        "type": "issue",
+        "state": "open",
+        "title": "Migration to version 19.0",
+        "url": "https://github.com/OCA/stock-logistics-request/issues/77",
+        "filter": "migration"
+      },
+      {
+        "number": 46,
+        "type": "issue",
+        "state": "open",
+        "title": "Migration to version 18.0",
+        "url": "https://github.com/OCA/stock-logistics-request/issues/46",
+        "filter": "migration"
+      },
+      {
+        "number": 10,
+        "type": "issue",
+        "state": "open",
+        "title": "Migration to version 17.0",
+        "url": "https://github.com/OCA/stock-logistics-request/issues/10",
+        "filter": "migration"
+      },
+      {
+        "number": 71,
+        "type": "issue",
+        "state": "closed",
+        "title": ".mapped(\"allocation_ids.stock_request_id\") called on deleted moves",
+        "url": "https://github.com/OCA/stock-logistics-request/issues/71",
+        "filter": "kept"
+      },
+      {
+        "number": 69,
+        "type": "issue",
+        "state": "closed",
+        "title": "[16.0][17.0][18.0] stock_request: expected_date is ignored on create, and breaks duplicate",
+        "url": "https://github.com/OCA/stock-logistics-request/issues/69",
+        "filter": "kept"
+      },
+      {
+        "number": 55,
+        "type": "issue",
+        "state": "closed",
+        "title": "[16] No Stock Out movement, Stock Request Orden can't be processed because one SR line is marked as done",
+        "url": "https://github.com/OCA/stock-logistics-request/issues/55",
+        "filter": "kept"
+      },
+      {
+        "number": 110,
+        "type": "pr",
+        "state": "open",
+        "title": "[18.0][FIX] stock_request: keep the expected date on create and duplicate",
+        "url": "https://github.com/OCA/stock-logistics-request/pull/110",
+        "filter": "kept"
+      },
+      {
+        "number": 126,
+        "type": "pr",
+        "state": "open",
+        "title": "[18.0][FIX] stock_request: count returns and pushed moves once",
+        "url": "https://github.com/OCA/stock-logistics-request/pull/126",
+        "filter": "kept"
+      },
+      {
+        "number": 105,
+        "type": "pr",
+        "state": "open",
+        "title": "[FIX] stock_request: assert stock.moves exist",
+        "url": "https://github.com/OCA/stock-logistics-request/pull/105",
+        "filter": "kept"
+      },
+      {
+        "number": 70,
+        "type": "pr",
+        "state": "open",
+        "title": "[16.0][FIX] stock_request: fix handling of expected_date",
+        "url": "https://github.com/OCA/stock-logistics-request/pull/70",
+        "filter": "kept"
+      },
+      {
+        "number": 125,
+        "type": "pr",
+        "state": "closed",
+        "title": "[20.0][FIX] stock_request: keep allocation qty unrounded",
+        "url": "https://github.com/OCA/stock-logistics-request/pull/125",
+        "filter": "kept"
+      },
+      {
+        "number": 123,
+        "type": "pr",
+        "state": "closed",
+        "title": "[19.0][FIX] stock_request: backport fixes from 20.0",
+        "url": "https://github.com/OCA/stock-logistics-request/pull/123",
+        "filter": "forward_port"
+      },
+      {
+        "number": 119,
+        "type": "pr",
+        "state": "closed",
+        "title": "[18.0][FIX] stock_request: count allocations after push steps",
+        "url": "https://github.com/OCA/stock-logistics-request/pull/119",
+        "filter": "kept"
+      },
+      {
+        "number": 117,
+        "type": "pr",
+        "state": "closed",
+        "title": "[18.0][FIX] stock_request: set done when partially delivered",
+        "url": "https://github.com/OCA/stock-logistics-request/pull/117",
+        "filter": "kept"
+      },
+      {
+        "number": 116,
+        "type": "pr",
+        "state": "closed",
+        "title": "[18.0][FIX] stock_request: split allocations with the move",
+        "url": "https://github.com/OCA/stock-logistics-request/pull/116",
+        "filter": "kept"
+      },
+      {
+        "number": 121,
+        "type": "pr",
+        "state": "closed",
+        "title": "[19.0][FWP][FIX] stock_request: split allocations with the move",
+        "url": "https://github.com/OCA/stock-logistics-request/pull/121",
+        "filter": "forward_port"
+      },
+      {
+        "number": 120,
+        "type": "pr",
+        "state": "closed",
+        "title": "[19.0][FWP][FIX] stock_request: set done when partially delivered",
+        "url": "https://github.com/OCA/stock-logistics-request/pull/120",
+        "filter": "forward_port"
+      },
+      {
+        "number": 127,
+        "type": "pr",
+        "state": "closed",
+        "title": "[18.0][FIX] stock_request: avoid RecursionError on cyclic move_orig_ids",
+        "url": "https://github.com/OCA/stock-logistics-request/pull/127",
+        "filter": "kept"
+      },
+      {
+        "number": 108,
+        "type": "pr",
+        "state": "closed",
+        "title": "[20.0][MIG] stock_request: Migration to 20.0",
+        "url": "https://github.com/OCA/stock-logistics-request/pull/108",
+        "filter": "migration"
+      },
+      {
+        "number": 122,
+        "type": "pr",
+        "state": "closed",
+        "title": "[18.0][FIX] stock_request: use the product UoM to take available stock",
+        "url": "https://github.com/OCA/stock-logistics-request/pull/122",
+        "filter": "kept"
+      },
+      {
+        "number": 124,
+        "type": "pr",
+        "state": "closed",
+        "title": "[20.0][FWP][FIX] stock_request: split allocations with the move and set done when partially delivered",
+        "url": "https://github.com/OCA/stock-logistics-request/pull/124",
+        "filter": "forward_port"
+      },
+      {
+        "number": 103,
+        "type": "pr",
+        "state": "closed",
+        "title": "[19.0][FIX] stock_request: avoid RecursionError on cyclic move_orig_ids",
+        "url": "https://github.com/OCA/stock-logistics-request/pull/103",
+        "filter": "kept"
+      },
+      {
+        "number": 102,
+        "type": "pr",
+        "state": "closed",
+        "title": "[19.0][FIX] stock_request: avoid RecursionError on cyclic move_orig_ids",
+        "url": "https://github.com/OCA/stock-logistics-request/pull/102",
+        "filter": "kept"
+      },
+      {
+        "number": 97,
+        "type": "pr",
+        "state": "closed",
+        "title": "[19.0][FIX] stock_request: sudo access errors",
+        "url": "https://github.com/OCA/stock-logistics-request/pull/97",
+        "filter": "kept"
+      },
+      {
+        "number": 96,
+        "type": "pr",
+        "state": "closed",
+        "title": "[18.0][FIX] stock_request: sudo access errors",
+        "url": "https://github.com/OCA/stock-logistics-request/pull/96",
+        "filter": "kept"
+      },
+      {
+        "number": 87,
+        "type": "pr",
+        "state": "closed",
+        "title": "[19.0][MIG] stock_request: Migration to version 19.0",
+        "url": "https://github.com/OCA/stock-logistics-request/pull/87",
+        "filter": "migration"
+      },
+      {
+        "number": 89,
+        "type": "pr",
+        "state": "closed",
+        "title": "[MIG] stock_request: Migration to 19.0",
+        "url": "https://github.com/OCA/stock-logistics-request/pull/89",
+        "filter": "migration"
+      },
+      {
+        "number": 79,
+        "type": "pr",
+        "state": "closed",
+        "title": "[18.0][IMP] stock_request:  update icon to align with v17+ style",
+        "url": "https://github.com/OCA/stock-logistics-request/pull/79",
+        "filter": "kept"
+      },
+      {
+        "number": 86,
+        "type": "pr",
+        "state": "closed",
+        "title": "[18.0][IMP] stock_request: add default route in stock requests from order",
+        "url": "https://github.com/OCA/stock-logistics-request/pull/86",
+        "filter": "kept"
+      },
+      {
+        "number": 81,
+        "type": "pr",
+        "state": "closed",
+        "title": "[18.0][IMP] stock_request: improve route_id consitency avoiding non-sense resets",
+        "url": "https://github.com/OCA/stock-logistics-request/pull/81",
+        "filter": "kept"
+      },
+      {
+        "number": 84,
+        "type": "pr",
+        "state": "closed",
+        "title": "[18.0][IMP] stock_request: Remove allocation_ids from a view and improve stock.view_move_form layout",
+        "url": "https://github.com/OCA/stock-logistics-request/pull/84",
+        "filter": "kept"
+      },
+      {
+        "number": 78,
+        "type": "pr",
+        "state": "closed",
+        "title": "[17.0][IMP] stock_request:  update icon to align with v17+ style",
+        "url": "https://github.com/OCA/stock-logistics-request/pull/78",
+        "filter": "kept"
+      },
+      {
+        "number": 64,
+        "type": "pr",
+        "state": "closed",
+        "title": "[18.0][FIX] stock_request: improve UI (state, confirm button and Config setting)",
+        "url": "https://github.com/OCA/stock-logistics-request/pull/64",
+        "filter": "kept"
+      },
+      {
+        "number": 63,
+        "type": "pr",
+        "state": "closed",
+        "title": "[17.0][IMP] stock_request: Add config to enable/disable requested_by check",
+        "url": "https://github.com/OCA/stock-logistics-request/pull/63",
+        "filter": "kept"
+      },
+      {
+        "number": 48,
+        "type": "pr",
+        "state": "closed",
+        "title": "[18.0][MIG] stock_request: Migration to 18.0",
+        "url": "https://github.com/OCA/stock-logistics-request/pull/48",
+        "filter": "migration"
+      },
+      {
+        "number": 50,
+        "type": "pr",
+        "state": "closed",
+        "title": "[17.0][UPD] stock_request*: explicitly assign maintainer",
+        "url": "https://github.com/OCA/stock-logistics-request/pull/50",
+        "filter": "kept"
+      },
+      {
+        "number": 49,
+        "type": "pr",
+        "state": "closed",
+        "title": "[16.0][UPD] stock_request*: explicitly assign maintainers",
+        "url": "https://github.com/OCA/stock-logistics-request/pull/49",
+        "filter": "kept"
+      },
+      {
+        "number": 23,
+        "type": "pr",
+        "state": "closed",
+        "title": "[16.0][UPD] stock_request: README.rst typo",
+        "url": "https://github.com/OCA/stock-logistics-request/pull/23",
+        "filter": "kept"
+      },
+      {
+        "number": 43,
+        "type": "pr",
+        "state": "closed",
+        "title": "[17.0][IMP] stock_request: Improve _check_qty constrain (moved to stock.request)",
+        "url": "https://github.com/OCA/stock-logistics-request/pull/43",
+        "filter": "kept"
+      },
+      {
+        "number": 40,
+        "type": "pr",
+        "state": "closed",
+        "title": "[16.0][IMP] stock_request: Improve _check_qty constrain (moved to stock.request)",
+        "url": "https://github.com/OCA/stock-logistics-request/pull/40",
+        "filter": "kept"
+      },
+      {
+        "number": 35,
+        "type": "pr",
+        "state": "closed",
+        "title": "[17.0][MIG] stock_request_purchase: Migration to 17.0",
+        "url": "https://github.com/OCA/stock-logistics-request/pull/35",
+        "filter": "migration"
+      },
+      {
+        "number": 37,
+        "type": "pr",
+        "state": "closed",
+        "title": "[17.0][FWP][FIX] stock_request: compute_move_ids",
+        "url": "https://github.com/OCA/stock-logistics-request/pull/37",
+        "filter": "forward_port"
+      },
+      {
+        "number": 36,
+        "type": "pr",
+        "state": "closed",
+        "title": "[16.0][FWP][FIX] stock_request: compute_move_ids",
+        "url": "https://github.com/OCA/stock-logistics-request/pull/36",
+        "filter": "forward_port"
+      },
+      {
+        "number": 25,
+        "type": "pr",
+        "state": "closed",
+        "title": "[17.0][FIX] stock_request: avoid failure on handling errors",
+        "url": "https://github.com/OCA/stock-logistics-request/pull/25",
+        "filter": "kept"
+      },
+      {
+        "number": 30,
+        "type": "pr",
+        "state": "closed",
+        "title": "[17.0][FWP][IMP] stock_request: add route_id to stock.request.order",
+        "url": "https://github.com/OCA/stock-logistics-request/pull/30",
+        "filter": "forward_port"
+      },
+      {
+        "number": 28,
+        "type": "pr",
+        "state": "closed",
+        "title": "[16.0][FWP][IMP] stock_request: add route_id to stock.request.order",
+        "url": "https://github.com/OCA/stock-logistics-request/pull/28",
+        "filter": "forward_port"
+      },
+      {
+        "number": 29,
+        "type": "pr",
+        "state": "closed",
+        "title": "[17.0][FWP][IMP] stock_request: Change rounding method to HALF-UP in qty_in_progress computation",
+        "url": "https://github.com/OCA/stock-logistics-request/pull/29",
+        "filter": "forward_port"
+      },
+      {
+        "number": 27,
+        "type": "pr",
+        "state": "closed",
+        "title": "[16.0][FWP][IMP] stock_request: Change rounding method to HALF-UP in qty_in_proress computation",
+        "url": "https://github.com/OCA/stock-logistics-request/pull/27",
+        "filter": "forward_port"
+      },
+      {
+        "number": 11,
+        "type": "pr",
+        "state": "closed",
+        "title": "[17.0][MIG] stock_request: Migration to 17.0",
+        "url": "https://github.com/OCA/stock-logistics-request/pull/11",
+        "filter": "migration"
+      },
+      {
+        "number": 13,
+        "type": "pr",
+        "state": "closed",
+        "title": "[16.0][MIG] stock_request: Migration to 16.0",
+        "url": "https://github.com/OCA/stock-logistics-request/pull/13",
+        "filter": "migration"
+      },
+      {
+        "number": 1,
+        "type": "pr",
+        "state": "closed",
+        "title": "[MIG] stock_request: Migration to 16.0",
+        "url": "https://github.com/OCA/stock-logistics-request/pull/1",
+        "filter": "migration"
+      },
+      {
+        "number": 6,
+        "type": "pr",
+        "state": "closed",
+        "title": "[16.0][MIG] stock_request_submit",
+        "url": "https://github.com/OCA/stock-logistics-request/pull/6",
+        "filter": "migration"
+      },
+      {
+        "number": 3,
+        "type": "pr",
+        "state": "closed",
+        "title": "[16.0][MIG] stock_request_analytic",
+        "url": "https://github.com/OCA/stock-logistics-request/pull/3",
+        "filter": "migration"
+      },
+      {
+        "number": 12,
+        "type": "pr",
+        "state": "closed",
+        "title": "[16.0][MIG] stock_request_purchase",
+        "url": "https://github.com/OCA/stock-logistics-request/pull/12",
+        "filter": "migration"
+      }
+    ],
+    "selected": [
+      {
+        "number": 119,
+        "type": "pr",
+        "state": "closed",
+        "title": "[18.0][FIX] stock_request: count allocations after push steps",
+        "url": "https://github.com/OCA/stock-logistics-request/pull/119",
+        "created_at": "2026-11-19T14:33:29Z",
+        "category": "business_rule",
+        "reason": "In multi-step push routes, a stock request is only completed when the transfer reaches the final requested location.",
+        "body_clean": "With a two step route that uses a push rule , the stock request is linked to the first move. So:\n- When the first step is done, the request is done, although the goods have not arrived yet.\n- The push copies the first move, link included, so the second step counts the quantity again.\nWith this fix only the move that reaches the requested location counts. The push moves the link to the second move instead of copying it."
+      },
+      {
+        "number": 117,
+        "type": "pr",
+        "state": "closed",
+        "title": "[18.0][FIX] stock_request: set done when partially delivered",
+        "url": "https://github.com/OCA/stock-logistics-request/pull/117",
+        "created_at": "2026-11-16T15:33:30Z",
+        "category": "business_rule",
+        "reason": "When a transfer is partially delivered without a backorder, the stock request is marked as Done for the delivered portion rather than Cancelled.",
+        "body_clean": "When a transfer is validated partially without a backorder, or the backorder is cancelled later, the request ends up Cancelled even if part of it was delivered. If all lines of an order end up like that, the order is Cancelled too.\nThis was changed in 6260722 to cancel requests whose moves get cancelled, which makes sense when nothing was delivered. Now a request is only Cancelled when nothing was delivered, otherwise it goes to Done. The cancelled quantity still shows what was missing."
+      },
+      {
+        "number": 116,
+        "type": "pr",
+        "state": "closed",
+        "title": "[18.0][FIX] stock_request: split allocations with the move",
+        "url": "https://github.com/OCA/stock-logistics-request/pull/116",
+        "created_at": "2026-11-16T15:22:12Z",
+        "category": "business_rule",
+        "reason": "When partial transfers create a backorder, in-progress allocations split between the primary transfer move and the backorder.",
+        "body_clean": "When a transfer is validated partially and a backorder is created, Qty In Progress keeps the full requested quantity instead of what's left. A request for 10 with 8 done still shows 10 in progress.\r\nNow, when a move is split, the original move's allocations keep what stays on it and the new move gets the rest. This also covers the Split action on transfers. With exact quantities, a request is only closed when nothing is left in progress."
+      },
+      {
+        "number": 126,
+        "type": "pr",
+        "state": "open",
+        "title": "[18.0][FIX] stock_request: count returns and pushed moves once",
+        "url": "https://github.com/OCA/stock-logistics-request/pull/126",
+        "created_at": "2026-11-23T13:51:23Z",
+        "category": "business_rule",
+        "reason": "Stock returns subtract fulfilled quantities from the request and push-step moves are only counted once at final destination.",
+        "body_clean": "Backport of the stock_request fixes of 20.0 (#108, #124, #125), already backported to 19.0 in #123, so the three versions share the same code.\n- **Count returns and pushed moves once**: a return subtracts the quantity of the move it returns, also for internal transfers. When a push rule continues a move of the request, only the last move of the chain counts, so the request is not done before the goods reach its location. A copied allocation takes the quantity of the new move. A post-migration script limits the open allocations of existing backorders and recomputes the stored quantities of existing requests (version bumped to 18.0.1.2.0).\n- **Keep split allocation qty unrounded**: when a move in a UoM other than the request's is split, or copied as a return or a push, its allocations are not rounded to the request UoM.\nThis replaces #119, which fixes the push steps with a different approach. Its tests also pass with this design (only the assertion on which move holds the allocation differs: here the first move keeps it and does not count it).\nMigration checked on a database created with the current 18.0: a returned internal transfer goes from 20 done to 0; the other requests keep their quantities."
+      },
+      {
+        "number": 86,
+        "type": "pr",
+        "state": "closed",
+        "title": "[18.0][IMP] stock_request: add default route in stock requests from order",
+        "url": "https://github.com/OCA/stock-logistics-request/pull/86",
+        "created_at": "2025-12-04T23:46:04Z",
+        "category": "configuration",
+        "reason": "Stock Request Orders can apply a default route to all generated child Stock Requests.",
+        "body_clean": "This was something that was in older versions but was removed (I believe it was accidentally when migrating to v16). See v15 [code](https://github.com/OCA/stock-logistics-warehouse/blob/15.0/stock_request/views/stock_request_order_views.xml#L123) with this implementation."
+      }
+    ]
+  },
+  "selection": {
+    "llm": "gemini-3.6-flash",
+    "status": "new",
+    "prompt_sha256": "f74e0194760b813e",
+    "called_at": "2026-11-24T04:51:34+00:00",
+    "invalid_numbers": []
+  },
+  "stats": {
+    "readme_sections": [
+      "DESCRIPTION",
+      "USAGE",
+      "CONFIGURE",
+      "ROADMAP"
+    ],
+    "n_chars_v0": 1388,
+    "n_chars_issues": 3333,
+    "n_chars": 4723,
+    "n_sources": 6,
+    "has_description": true
+  }
+}

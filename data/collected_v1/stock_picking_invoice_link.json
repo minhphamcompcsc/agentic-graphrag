@@ -1,0 +1,792 @@
+{
+  "module": "stock_picking_invoice_link",
+  "source": {
+    "repo": "stock-logistics-workflow",
+    "commit": "5294fea02fd83db850c4c6244bdbce156cadc92d",
+    "branch": "18.0",
+    "remote": "https://github.com/OCA/stock-logistics-workflow.git",
+    "path": "oca/stock-logistics-workflow/stock_picking_invoice_link"
+  },
+  "collected_at": "2026-11-24T04:47:41+00:00",
+  "collector_version": "v1",
+  "manifest": {
+    "name": "Stock Picking Invoice Link",
+    "summary": "Adds link between pickings and invoices",
+    "version": "18.0.2.0.1",
+    "category": "Warehouse Management",
+    "depends": [
+      "stock_account"
+    ],
+    "website": "https://github.com/OCA/stock-logistics-workflow",
+    "license": "AGPL-3"
+  },
+  "readme": {
+    "DESCRIPTION": {
+      "file": "readme/DESCRIPTION.md",
+      "text": "The base module used by sale_stock_picking_invoice_link and purchase_stock_picking_invoice_link \nto adds a link between pickings and invoices as well as on the lines."
+    },
+    "USAGE": {
+      "file": "readme/USAGE.md",
+      "text": "- Create a Sales Order and confirm.\n- Deliver its pickings totally or partially.\n- Create an invoice of the goods delivered.\n- If you open invoice form, you must see a new Pickings tab with\n  information about them."
+    }
+  },
+  "text_v0": "Stock Picking Invoice Link\n\nAdds link between pickings and invoices\n\n## DESCRIPTION\nThe base module used by sale_stock_picking_invoice_link and purchase_stock_picking_invoice_link \nto adds a link between pickings and invoices as well as on the lines.\n\n## USAGE\n- Create a Sales Order and confirm.\n- Deliver its pickings totally or partially.\n- Create an invoice of the goods delivered.\n- If you open invoice form, you must see a new Pickings tab with\n  information about them.",
+  "text": "Stock Picking Invoice Link\n\nAdds link between pickings and invoices\n\n## DESCRIPTION\nThe base module used by sale_stock_picking_invoice_link and purchase_stock_picking_invoice_link \nto adds a link between pickings and invoices as well as on the lines.\n\n## USAGE\n- Create a Sales Order and confirm.\n- Deliver its pickings totally or partially.\n- Create an invoice of the goods delivered.\n- If you open invoice form, you must see a new Pickings tab with\n  information about them.\n\n## GITHUB ISSUES (selected)\n### #292 [9.0] [stock_picking_invoice_link] Previous customer invoice linked to backorder DO (issue, closed, 2017)\nModule : stock_picking_invoice_link for version 9.0\r\nSuppose I have 1 SO with 1 kind of product with qty=3. \r\nI create Invoice from sales order partially (eq. 2), for eq. INV-0001\r\nThen I release the DO partially using 2 quantity, with back order (WH/OUT/0001 as delivered and WH/OUT/0002 as available), INV-0001 is still linked into WH/OUT/0002.\r\nThis is not the correct way I think. In WH/OUT/0002 there should be no INV-0001. CMIIW\r\nThank you.\n\n### #434 [11.0] stock_picking_invoice_link, picking link not removed when removing invoice line (issue, closed, 2018)\nWhen the invoice line of a related picking in an invoice is removed. The relation is not removed.\r\nReproduce:\r\n1. create invoice from sale order with multiple deliveries\r\n2. check how many pickings are linked\r\n3. Remove one the invoice lines\r\n4. Same amount of pickings are linked\n\n### #578 [11.0] stock_picking_invoice_link (issue, closed, 2019)\nWhen there are returns of delivery notes they do not appear in the list of delivery notes. \r\nIf invoices with positive and negative quantities to avoid making credit invoices\n\n### #780 [13.0] stock_picking_invoice_link not show all related invoices on picking (issue, closed, 2021)\nSteps to reproduce:\r\n1-Make a sale of stockable product 2 und\r\n2-Do the picking delivery for the 2 und\r\n3-Sale order is up to invoice, but on invoice decrease qty and do 1 und invoice\r\n4-Sale order is still up to invoice, then do the invoice for the remain 1 und\r\n5-At this point we have 2 invoices on the same picking, go to the picking and click on invoices smart button\r\n6-Only the first invoice form its shown\r\nSpected behaivor:\r\na tree view with the 2 related invoices\r\nTy\n\n### #127 Feature request: stock_picking_invoice_link, Print the liste of pickings on invoices (issue, closed, 2015)\nIn France (and probably elsewhere) it's now mandatory to print the delivery date of the goods on invoices.\nSince `stock_picking_invoice_link` adds the list of pickings on the invoice form, I suggest we extend stock_picking_invoice_link to print the picking references and delivery dates at the bottom of the invoices.",
+  "github": {
+    "repo": "OCA/stock-logistics-workflow",
+    "fetched_at": "2026-11-24T04:44:45+00:00",
+    "queries": [
+      {
+        "q": "\"stock_picking_invoice_link\" repo:OCA/stock-logistics-workflow is:issue",
+        "total_count": 32,
+        "returned": 32
+      },
+      {
+        "q": "\"stock_picking_invoice_link\" repo:OCA/stock-logistics-workflow is:pull-request",
+        "total_count": 115,
+        "returned": 50
+      }
+    ],
+    "n_raw": 82,
+    "n_kept": 53,
+    "n_to_llm": 20,
+    "dropped": {
+      "migration": 25,
+      "module_not_mentioned": 1,
+      "forward_port": 3
+    },
+    "candidates": [
+      {
+        "number": 2474,
+        "type": "issue",
+        "state": "open",
+        "title": "Migration to version 20.0",
+        "url": "https://github.com/OCA/stock-logistics-workflow/issues/2474",
+        "filter": "migration"
+      },
+      {
+        "number": 2118,
+        "type": "issue",
+        "state": "open",
+        "title": "Migration to version 19.0",
+        "url": "https://github.com/OCA/stock-logistics-workflow/issues/2118",
+        "filter": "migration"
+      },
+      {
+        "number": 1101,
+        "type": "issue",
+        "state": "open",
+        "title": "Migration to version 16.0",
+        "url": "https://github.com/OCA/stock-logistics-workflow/issues/1101",
+        "filter": "migration"
+      },
+      {
+        "number": 1737,
+        "type": "issue",
+        "state": "open",
+        "title": "Migration to version 18.0",
+        "url": "https://github.com/OCA/stock-logistics-workflow/issues/1737",
+        "filter": "migration"
+      },
+      {
+        "number": 913,
+        "type": "issue",
+        "state": "open",
+        "title": "Migration to version 15.0",
+        "url": "https://github.com/OCA/stock-logistics-workflow/issues/913",
+        "filter": "migration"
+      },
+      {
+        "number": 1421,
+        "type": "issue",
+        "state": "open",
+        "title": "Migration to version 17.0",
+        "url": "https://github.com/OCA/stock-logistics-workflow/issues/1421",
+        "filter": "migration"
+      },
+      {
+        "number": 457,
+        "type": "issue",
+        "state": "open",
+        "title": "Migration to version 12.0",
+        "url": "https://github.com/OCA/stock-logistics-workflow/issues/457",
+        "filter": "migration"
+      },
+      {
+        "number": 2114,
+        "type": "issue",
+        "state": "closed",
+        "title": "stock_picking_invoice_link is not working",
+        "url": "https://github.com/OCA/stock-logistics-workflow/issues/2114",
+        "filter": "kept"
+      },
+      {
+        "number": 1785,
+        "type": "issue",
+        "state": "closed",
+        "title": "[BUG] [16.0] stock_picking_invoice_link: same elements added to stock move form view from different xml view extensions",
+        "url": "https://github.com/OCA/stock-logistics-workflow/issues/1785",
+        "filter": "kept"
+      },
+      {
+        "number": 708,
+        "type": "issue",
+        "state": "closed",
+        "title": "Migration to version 14.0",
+        "url": "https://github.com/OCA/stock-logistics-workflow/issues/708",
+        "filter": "migration"
+      },
+      {
+        "number": 1371,
+        "type": "issue",
+        "state": "closed",
+        "title": "[16] _link failed to activate",
+        "url": "https://github.com/OCA/stock-logistics-workflow/issues/1371",
+        "filter": "kept"
+      },
+      {
+        "number": 1381,
+        "type": "issue",
+        "state": "closed",
+        "title": "[16.0] stock_picking_invoice_link lang po not up to date regarding pot",
+        "url": "https://github.com/OCA/stock-logistics-workflow/issues/1381",
+        "filter": "kept"
+      },
+      {
+        "number": 572,
+        "type": "issue",
+        "state": "closed",
+        "title": "Migration to version 13.0",
+        "url": "https://github.com/OCA/stock-logistics-workflow/issues/572",
+        "filter": "migration"
+      },
+      {
+        "number": 780,
+        "type": "issue",
+        "state": "closed",
+        "title": "[13.0] stock_picking_invoice_link not show all related invoices on picking",
+        "url": "https://github.com/OCA/stock-logistics-workflow/issues/780",
+        "filter": "kept"
+      },
+      {
+        "number": 578,
+        "type": "issue",
+        "state": "closed",
+        "title": "[11.0] stock_picking_invoice_link",
+        "url": "https://github.com/OCA/stock-logistics-workflow/issues/578",
+        "filter": "kept"
+      },
+      {
+        "number": 665,
+        "type": "issue",
+        "state": "closed",
+        "title": "[12.0] stock_picking_invoice_link : restore related links after update module",
+        "url": "https://github.com/OCA/stock-logistics-workflow/issues/665",
+        "filter": "kept"
+      },
+      {
+        "number": 627,
+        "type": "issue",
+        "state": "closed",
+        "title": "[11.0] stock_picking_invoice_link: Only takes one invoice related to the moves",
+        "url": "https://github.com/OCA/stock-logistics-workflow/issues/627",
+        "filter": "kept"
+      },
+      {
+        "number": 292,
+        "type": "issue",
+        "state": "closed",
+        "title": "[9.0] [stock_picking_invoice_link] Previous customer invoice linked to backorder DO",
+        "url": "https://github.com/OCA/stock-logistics-workflow/issues/292",
+        "filter": "kept"
+      },
+      {
+        "number": 377,
+        "type": "issue",
+        "state": "closed",
+        "title": "Migration to version 11.0",
+        "url": "https://github.com/OCA/stock-logistics-workflow/issues/377",
+        "filter": "migration"
+      },
+      {
+        "number": 127,
+        "type": "issue",
+        "state": "closed",
+        "title": "Feature request: stock_picking_invoice_link, Print the liste of pickings on invoices",
+        "url": "https://github.com/OCA/stock-logistics-workflow/issues/127",
+        "filter": "kept"
+      },
+      {
+        "number": 265,
+        "type": "issue",
+        "state": "closed",
+        "title": "Migration to version 10.0",
+        "url": "https://github.com/OCA/stock-logistics-workflow/issues/265",
+        "filter": "migration"
+      },
+      {
+        "number": 919,
+        "type": "issue",
+        "state": "closed",
+        "title": "[14.0] [BUG] permission error in `stock_picking_invoice_link`",
+        "url": "https://github.com/OCA/stock-logistics-workflow/issues/919",
+        "filter": "kept"
+      },
+      {
+        "number": 167,
+        "type": "issue",
+        "state": "closed",
+        "title": "Migration to version 9.0",
+        "url": "https://github.com/OCA/stock-logistics-workflow/issues/167",
+        "filter": "migration"
+      },
+      {
+        "number": 434,
+        "type": "issue",
+        "state": "closed",
+        "title": "[11.0] stock_picking_invoice_link, picking link not removed when removing invoice line",
+        "url": "https://github.com/OCA/stock-logistics-workflow/issues/434",
+        "filter": "kept"
+      },
+      {
+        "number": 680,
+        "type": "issue",
+        "state": "closed",
+        "title": "Odoo.sh install, error (post-migrated) version 12.0",
+        "url": "https://github.com/OCA/stock-logistics-workflow/issues/680",
+        "filter": "migration"
+      },
+      {
+        "number": 676,
+        "type": "issue",
+        "state": "closed",
+        "title": "[12.0] stock_picking_invoice_link: Error: Unknown field location_dest_id in domain",
+        "url": "https://github.com/OCA/stock-logistics-workflow/issues/676",
+        "filter": "kept"
+      },
+      {
+        "number": 522,
+        "type": "issue",
+        "state": "closed",
+        "title": "[12.0] [stock_picking_invoice_link] no related pickings",
+        "url": "https://github.com/OCA/stock-logistics-workflow/issues/522",
+        "filter": "kept"
+      },
+      {
+        "number": 481,
+        "type": "issue",
+        "state": "closed",
+        "title": "Does this module work with refunded invoices?",
+        "url": "https://github.com/OCA/stock-logistics-workflow/issues/481",
+        "filter": "module_not_mentioned"
+      },
+      {
+        "number": 408,
+        "type": "issue",
+        "state": "closed",
+        "title": "Help on PR",
+        "url": "https://github.com/OCA/stock-logistics-workflow/issues/408",
+        "filter": "kept"
+      },
+      {
+        "number": 126,
+        "type": "issue",
+        "state": "closed",
+        "title": "[7.0] Duplicate invoice when stock_picking_invoice_link is instaled",
+        "url": "https://github.com/OCA/stock-logistics-workflow/issues/126",
+        "filter": "kept"
+      },
+      {
+        "number": 79,
+        "type": "issue",
+        "state": "closed",
+        "title": "[8.0] stock_picking_invoice_link Error on Invoice creation",
+        "url": "https://github.com/OCA/stock-logistics-workflow/issues/79",
+        "filter": "kept"
+      },
+      {
+        "number": 114,
+        "type": "issue",
+        "state": "closed",
+        "title": "Missing readme.rst and readme to update",
+        "url": "https://github.com/OCA/stock-logistics-workflow/issues/114",
+        "filter": "kept"
+      },
+      {
+        "number": 2499,
+        "type": "pr",
+        "state": "open",
+        "title": "[MIG] stock_picking_invoice_link: Migration to version 20.0",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/2499",
+        "filter": "migration"
+      },
+      {
+        "number": 2542,
+        "type": "pr",
+        "state": "open",
+        "title": "[20.0][MIG] sale_stock_picking_invoice_link: Migration to 20.0",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/2542",
+        "filter": "migration"
+      },
+      {
+        "number": 2310,
+        "type": "pr",
+        "state": "open",
+        "title": "[16.0][ADD] stock_picking_bill_matching",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/2310",
+        "filter": "kept"
+      },
+      {
+        "number": 2493,
+        "type": "pr",
+        "state": "closed",
+        "title": "[20.0][MIG] stock_picking_invoice_link: Migration to 20.0",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/2493",
+        "filter": "migration"
+      },
+      {
+        "number": 2460,
+        "type": "pr",
+        "state": "closed",
+        "title": "[MIG] stock_picking_invoice_link: Migration to version 20.0",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/2460",
+        "filter": "migration"
+      },
+      {
+        "number": 2519,
+        "type": "pr",
+        "state": "closed",
+        "title": "[20.0][MIG] stock_picking_invoice_link: Migration to 20.0",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/2519",
+        "filter": "migration"
+      },
+      {
+        "number": 2013,
+        "type": "pr",
+        "state": "closed",
+        "title": "[FIX] stock_picking_invoice_link: correct invoice_line_ids field in stock.move form view",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/2013",
+        "filter": "kept"
+      },
+      {
+        "number": 2010,
+        "type": "pr",
+        "state": "closed",
+        "title": "[16.0] [FIX] stock_picking_invoice_link: remove duplicated element in stock.move form view",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/2010",
+        "filter": "kept"
+      },
+      {
+        "number": 2442,
+        "type": "pr",
+        "state": "closed",
+        "title": "[19.0][FIX] stock_picking_invoice_link: restrict the invoice link to invoicing users",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/2442",
+        "filter": "kept"
+      },
+      {
+        "number": 2011,
+        "type": "pr",
+        "state": "closed",
+        "title": "[17.0] [FW] [FIX] stock_picking_invoice_link: remove duplicated element in stock.move form view",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/2011",
+        "filter": "forward_port"
+      },
+      {
+        "number": 2018,
+        "type": "pr",
+        "state": "closed",
+        "title": "[18.0] [FW] [FIX] stock_picking_invoice_link: fix stock.move form view invoice_line_ids field rendering",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/2018",
+        "filter": "forward_port"
+      },
+      {
+        "number": 2017,
+        "type": "pr",
+        "state": "closed",
+        "title": "[17.0] [FIX] stock_picking_invoice_link: add colspan attribute to invoice_line_ids field in stock.move form",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/2017",
+        "filter": "kept"
+      },
+      {
+        "number": 2022,
+        "type": "pr",
+        "state": "closed",
+        "title": "[NEW][REF][16.0] stock_picking_invoice_link split to sale_stock_picking_invoice_link",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/2022",
+        "filter": "kept"
+      },
+      {
+        "number": 2180,
+        "type": "pr",
+        "state": "closed",
+        "title": "[19.0][FIX] stock_picking_invoice_link: view fix",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/2180",
+        "filter": "kept"
+      },
+      {
+        "number": 2127,
+        "type": "pr",
+        "state": "closed",
+        "title": "[19.0][MIG]: stock_picking_invoice_link",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/2127",
+        "filter": "migration"
+      },
+      {
+        "number": 1759,
+        "type": "pr",
+        "state": "closed",
+        "title": "[14.0][FIX] stock_picking_invoice_link: inv duplication: copy false",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/1759",
+        "filter": "kept"
+      },
+      {
+        "number": 2147,
+        "type": "pr",
+        "state": "closed",
+        "title": "[19.0][MIG] stock_picking_invoice_link: Migration to 19.0",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/2147",
+        "filter": "migration"
+      },
+      {
+        "number": 2023,
+        "type": "pr",
+        "state": "closed",
+        "title": "[NEW][REF][18.0] stock_picking_invoice_link split to sale_stock_picking_invoice_link",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/2023",
+        "filter": "kept"
+      },
+      {
+        "number": 2026,
+        "type": "pr",
+        "state": "closed",
+        "title": "[18.0][FIX] stock_picking_invoice_link: Fix tests to avoid wrong company",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/2026",
+        "filter": "kept"
+      },
+      {
+        "number": 1930,
+        "type": "pr",
+        "state": "closed",
+        "title": "[WIP] [14.0] [IMP] stock_picking_invoice_link: add security group to restrict canceling stock moves linked to invoices/bills",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/1930",
+        "filter": "kept"
+      },
+      {
+        "number": 1891,
+        "type": "pr",
+        "state": "closed",
+        "title": "[15.0][FIX] stock_picking_invoice_link, ensure field product_uom_qty …",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/1891",
+        "filter": "kept"
+      },
+      {
+        "number": 1688,
+        "type": "pr",
+        "state": "closed",
+        "title": "[16.0][FIX] stock_picking_invoice_link, ensure field product_uom_qty value was changed to raise exception",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/1688",
+        "filter": "kept"
+      },
+      {
+        "number": 1752,
+        "type": "pr",
+        "state": "closed",
+        "title": "[MIG] stock_picking_invoice_link: Migration to 18.0",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/1752",
+        "filter": "migration"
+      },
+      {
+        "number": 1779,
+        "type": "pr",
+        "state": "closed",
+        "title": "[18.0][MIG] stock_picking_invoice_link: Migration to 18.0",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/1779",
+        "filter": "migration"
+      },
+      {
+        "number": 1651,
+        "type": "pr",
+        "state": "closed",
+        "title": "[14.0][FIX] stock_picking_invoice_link: BackPort reverse_moves on refunds",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/1651",
+        "filter": "forward_port"
+      },
+      {
+        "number": 1135,
+        "type": "pr",
+        "state": "closed",
+        "title": "[14.0][IMP] stock_picking_invoice_link: Add support to order invoice policy",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/1135",
+        "filter": "kept"
+      },
+      {
+        "number": 1703,
+        "type": "pr",
+        "state": "closed",
+        "title": "[17.0][FIX] stock_picking_invoice_link: pass parameter to super",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/1703",
+        "filter": "kept"
+      },
+      {
+        "number": 1712,
+        "type": "pr",
+        "state": "closed",
+        "title": "[17.0][IMP] stock_picking_invoice_link: Fix argument in reverse_moves",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/1712",
+        "filter": "kept"
+      },
+      {
+        "number": 1446,
+        "type": "pr",
+        "state": "closed",
+        "title": "[17.0][MIG] stock_picking_invoice_link: Migration to 17.0",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/1446",
+        "filter": "migration"
+      },
+      {
+        "number": 1704,
+        "type": "pr",
+        "state": "closed",
+        "title": "[17.0][FIX] stock_picking_invoice_link: Avoid doble compute picking_count",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/1704",
+        "filter": "kept"
+      },
+      {
+        "number": 1667,
+        "type": "pr",
+        "state": "closed",
+        "title": "[17.0][FIX] stock_picking_invoice_link: development status",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/1667",
+        "filter": "kept"
+      },
+      {
+        "number": 1636,
+        "type": "pr",
+        "state": "closed",
+        "title": "[16.0][FIX] stock_picking_invoice_link: Avoid doble compute picking_count",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/1636",
+        "filter": "kept"
+      },
+      {
+        "number": 1630,
+        "type": "pr",
+        "state": "closed",
+        "title": "[15.0][FIX] stock_picking_invoice_link: Avoid inconsistent computes",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/1630",
+        "filter": "kept"
+      },
+      {
+        "number": 1631,
+        "type": "pr",
+        "state": "closed",
+        "title": "[17.0][FIX] stock_picking_invoice_link: Avoid inconsistent computes",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/1631",
+        "filter": "kept"
+      },
+      {
+        "number": 1625,
+        "type": "pr",
+        "state": "closed",
+        "title": "[16.0][FIX] stock_picking_invoice_link: Avoid inconsistent computes",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/1625",
+        "filter": "kept"
+      },
+      {
+        "number": 1583,
+        "type": "pr",
+        "state": "closed",
+        "title": "[15.0][IMP] stock_picking_invoice_link: speed up initialization",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/1583",
+        "filter": "kept"
+      },
+      {
+        "number": 1624,
+        "type": "pr",
+        "state": "closed",
+        "title": "[17.0][FIX] stock_picking_invoice_link: don't store auxiliar fields",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/1624",
+        "filter": "kept"
+      },
+      {
+        "number": 1620,
+        "type": "pr",
+        "state": "closed",
+        "title": "[16.0][FIX] stock_picking_invoice_link: don't store auxiliar fields",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/1620",
+        "filter": "kept"
+      },
+      {
+        "number": 1617,
+        "type": "pr",
+        "state": "closed",
+        "title": "[15.0][FIX] stock_picking_invoice_link: don't store auxiliar fields",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/1617",
+        "filter": "kept"
+      },
+      {
+        "number": 1472,
+        "type": "pr",
+        "state": "closed",
+        "title": "[17.0] [IMP] stock_picking_invoice_link: Added pickings to notebook sheet",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/1472",
+        "filter": "kept"
+      },
+      {
+        "number": 1388,
+        "type": "pr",
+        "state": "closed",
+        "title": "[IMP] stock_picking_invoice_link: add pre-migration script to speed up installation.",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/1388",
+        "filter": "migration"
+      },
+      {
+        "number": 1419,
+        "type": "pr",
+        "state": "closed",
+        "title": "[16.0] stock_picking_invoice_link: fix string",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/1419",
+        "filter": "kept"
+      },
+      {
+        "number": 1339,
+        "type": "pr",
+        "state": "closed",
+        "title": "[15.0][FIX] stock_picking_invoice_link: Users without stock group can not view pickings. So hide button picking in invoice view",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/1339",
+        "filter": "kept"
+      },
+      {
+        "number": 1295,
+        "type": "pr",
+        "state": "closed",
+        "title": "[15.0][FIX] stock_picking_invoice_link: Wrong link when several lines have same product",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/1295",
+        "filter": "kept"
+      },
+      {
+        "number": 1152,
+        "type": "pr",
+        "state": "closed",
+        "title": "[14.0][IMP] stock_picking_invoice_link added case when change lot on done pickings",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/1152",
+        "filter": "kept"
+      },
+      {
+        "number": 1010,
+        "type": "pr",
+        "state": "closed",
+        "title": "[14.0][IMP] stock_picking_invoice_link",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/1010",
+        "filter": "kept"
+      },
+      {
+        "number": 1154,
+        "type": "pr",
+        "state": "closed",
+        "title": "[16.0][MIG] stock_picking_invoice_link: Migration to 16.0",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/1154",
+        "filter": "migration"
+      },
+      {
+        "number": 1210,
+        "type": "pr",
+        "state": "closed",
+        "title": "[16.0][FIX] stock_picking_invoice_link: inventory users cannot validate picking",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/1210",
+        "filter": "kept"
+      },
+      {
+        "number": 1208,
+        "type": "pr",
+        "state": "closed",
+        "title": "[15.0][FIX] stock_picking_invoice_link: inventory users cannot validate picking",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/1208",
+        "filter": "kept"
+      },
+      {
+        "number": 1207,
+        "type": "pr",
+        "state": "closed",
+        "title": "[14.0][FIX] stock_picking_invoice_link: inventory users cannot validate picking",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/1207",
+        "filter": "kept"
+      }
+    ],
+    "selected": [
+      {
+        "number": 292,
+        "type": "issue",
+        "state": "closed",
+        "title": "[9.0] [stock_picking_invoice_link] Previous customer invoice linked to backorder DO",
+        "url": "https://github.com/OCA/stock-logistics-workflow/issues/292",
+        "created_at": "2017-01-18T10:37:27Z",
+        "category": "functional_bug",
+        "reason": "When a partial delivery creates a backorder, invoices created for delivered quantities can incorrectly link to the backorder picking.",
+        "body_clean": "Module : stock_picking_invoice_link for version 9.0\r\nSuppose I have 1 SO with 1 kind of product with qty=3. \r\nI create Invoice from sales order partially (eq. 2), for eq. INV-0001\r\nThen I release the DO partially using 2 quantity, with back order (WH/OUT/0001 as delivered and WH/OUT/0002 as available), INV-0001 is still linked into WH/OUT/0002.\r\nThis is not the correct way I think. In WH/OUT/0002 there should be no INV-0001. CMIIW\r\nThank you."
+      },
+      {
+        "number": 434,
+        "type": "issue",
+        "state": "closed",
+        "title": "[11.0] stock_picking_invoice_link, picking link not removed when removing invoice line",
+        "url": "https://github.com/OCA/stock-logistics-workflow/issues/434",
+        "created_at": "2018-06-13T13:26:06Z",
+        "category": "functional_bug",
+        "reason": "Removing an invoice line manually does not un-link the corresponding stock picking from the invoice.",
+        "body_clean": "When the invoice line of a related picking in an invoice is removed. The relation is not removed.\r\nReproduce:\r\n1. create invoice from sale order with multiple deliveries\r\n2. check how many pickings are linked\r\n3. Remove one the invoice lines\r\n4. Same amount of pickings are linked"
+      },
+      {
+        "number": 578,
+        "type": "issue",
+        "state": "closed",
+        "title": "[11.0] stock_picking_invoice_link",
+        "url": "https://github.com/OCA/stock-logistics-workflow/issues/578",
+        "created_at": "2019-10-21T09:07:30Z",
+        "category": "limitation",
+        "reason": "Return pickings and invoices with negative quantities are not properly reflected or linked in the picking list.",
+        "body_clean": "When there are returns of delivery notes they do not appear in the list of delivery notes. \r\nIf invoices with positive and negative quantities to avoid making credit invoices"
+      },
+      {
+        "number": 780,
+        "type": "issue",
+        "state": "closed",
+        "title": "[13.0] stock_picking_invoice_link not show all related invoices on picking",
+        "url": "https://github.com/OCA/stock-logistics-workflow/issues/780",
+        "created_at": "2021-02-04T14:40:56Z",
+        "category": "functional_bug",
+        "reason": "When multiple partial invoices are created for a single stock picking, the picking fails to display all associated invoices.",
+        "body_clean": "Steps to reproduce:\r\n1-Make a sale of stockable product 2 und\r\n2-Do the picking delivery for the 2 und\r\n3-Sale order is up to invoice, but on invoice decrease qty and do 1 und invoice\r\n4-Sale order is still up to invoice, then do the invoice for the remain 1 und\r\n5-At this point we have 2 invoices on the same picking, go to the picking and click on invoices smart button\r\n6-Only the first invoice form its shown\r\nSpected behaivor:\r\na tree view with the 2 related invoices\r\nTy"
+      },
+      {
+        "number": 127,
+        "type": "issue",
+        "state": "closed",
+        "title": "Feature request: stock_picking_invoice_link, Print the liste of pickings on invoices",
+        "url": "https://github.com/OCA/stock-logistics-workflow/issues/127",
+        "created_at": "2015-07-09T09:45:13Z",
+        "category": "use_case",
+        "reason": "Business requirement to print stock picking references and delivery dates on customer invoice documents for regulatory compliance.",
+        "body_clean": "In France (and probably elsewhere) it's now mandatory to print the delivery date of the goods on invoices.\nSince `stock_picking_invoice_link` adds the list of pickings on the invoice form, I suggest we extend stock_picking_invoice_link to print the picking references and delivery dates at the bottom of the invoices."
+      }
+    ]
+  },
+  "selection": {
+    "llm": "gemini-3.6-flash",
+    "status": "new",
+    "prompt_sha256": "3d6b1b968887b4be",
+    "called_at": "2026-11-24T04:49:05+00:00",
+    "invalid_numbers": []
+  },
+  "stats": {
+    "readme_sections": [
+      "DESCRIPTION",
+      "USAGE"
+    ],
+    "n_chars_v0": 476,
+    "n_chars_issues": 2250,
+    "n_chars": 2728,
+    "n_sources": 6,
+    "has_description": true
+  }
+}

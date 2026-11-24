@@ -1,0 +1,211 @@
+{
+  "module": "sale_stock_picking_invoice_link",
+  "source": {
+    "repo": "stock-logistics-workflow",
+    "commit": "5294fea02fd83db850c4c6244bdbce156cadc92d",
+    "branch": "18.0",
+    "remote": "https://github.com/OCA/stock-logistics-workflow.git",
+    "path": "oca/stock-logistics-workflow/sale_stock_picking_invoice_link"
+  },
+  "collected_at": "2026-11-24T04:47:41+00:00",
+  "collector_version": "v1",
+  "manifest": {
+    "name": "Stock Picking Invoice Link",
+    "summary": "Adds link between pickings and invoices",
+    "version": "18.0.1.0.0",
+    "category": "Warehouse Management",
+    "depends": [
+      "sale_stock",
+      "stock_picking_invoice_link"
+    ],
+    "auto_install": true,
+    "website": "https://github.com/OCA/stock-logistics-workflow",
+    "license": "AGPL-3"
+  },
+  "readme": {
+    "DESCRIPTION": {
+      "file": "readme/DESCRIPTION.md",
+      "text": "This module adds a link between pickings and invoices as well as on the lines.\nInvoices are generated from sales orders. With this module, you can find back\nwhich deliveries an invoice relates to.\n\nIn standard, if you make a partial delivery and invoice it, then make remaining\ndelivery and invoice it, it is impossible to known to what delivery the\ninvoices relate to. You only have the quantity.\n\nThis module is also useful if you want to present data on the invoice report\ngrouped by deliveries.\n\nNote that the links are only for products with an invoicing policy set on\ndelivery."
+    },
+    "USAGE": {
+      "file": "readme/USAGE.md",
+      "text": "* Create a Sales Order and confirm.\n* Deliver its pickings totally or partially.\n* Create an invoice of the goods delivered.\n* If you open invoice form, you must see a new Pickings tab with information\n  about them."
+    }
+  },
+  "text_v0": "Stock Picking Invoice Link\n\nAdds link between pickings and invoices\n\n## DESCRIPTION\nThis module adds a link between pickings and invoices as well as on the lines.\nInvoices are generated from sales orders. With this module, you can find back\nwhich deliveries an invoice relates to.\n\nIn standard, if you make a partial delivery and invoice it, then make remaining\ndelivery and invoice it, it is impossible to known to what delivery the\ninvoices relate to. You only have the quantity.\n\nThis module is also useful if you want to present data on the invoice report\ngrouped by deliveries.\n\nNote that the links are only for products with an invoicing policy set on\ndelivery.\n\n## USAGE\n* Create a Sales Order and confirm.\n* Deliver its pickings totally or partially.\n* Create an invoice of the goods delivered.\n* If you open invoice form, you must see a new Pickings tab with information\n  about them.",
+  "text": "Stock Picking Invoice Link\n\nAdds link between pickings and invoices\n\n## DESCRIPTION\nThis module adds a link between pickings and invoices as well as on the lines.\nInvoices are generated from sales orders. With this module, you can find back\nwhich deliveries an invoice relates to.\n\nIn standard, if you make a partial delivery and invoice it, then make remaining\ndelivery and invoice it, it is impossible to known to what delivery the\ninvoices relate to. You only have the quantity.\n\nThis module is also useful if you want to present data on the invoice report\ngrouped by deliveries.\n\nNote that the links are only for products with an invoicing policy set on\ndelivery.\n\n## USAGE\n* Create a Sales Order and confirm.\n* Deliver its pickings totally or partially.\n* Create an invoice of the goods delivered.\n* If you open invoice form, you must see a new Pickings tab with information\n  about them.\n\n## GITHUB ISSUES (selected)\n### #2535 [FIX] sale_stock_picking_invoice_link: link deliveries to the invoice, not the refund (pr, open, 2026)\nA move was treated as a refund whenever `to_refund` was set, and since 19.0 `stock_account` sets that field by `default=True` on every move. So an outgoing move of an order that has a credit note gets linked to the credit note instead of the invoice: the invoice ends up with no pickings and the credit note carries them.\nThe fix uses the same condition as the core (`sale_stock/models/stock.py`, `_action_synch_order`): a move refunds only when it comes back from the customer.\nWriting the link also needs read access on `account.move.line`. `Many2many.write_real` reads the previous value before writing, and since 19.0 that read goes through `_search` with access checks (in 18.0 it only applied record rules). A user with Inventory access only, validating a delivery of an order with a credit note, got:\nThe search was already done with `sudo()`; the write is too now.\nNote the two fixes belong together: with the condition fixed and the write still unprivileged, the link would be written on *every* invoiced delivery, so the `AccessError` would stop being occasional and hit every warehouse user.\n### Tests\nThe migration to 19.0 had hidden both problems by forcing `to_refund = False` on the delivered moves in two tests. Those lines are removed, so `test_link_transfer_after_invoice_creation` covers the condition again, and a new test validates a delivery of a refunded order as a user with `stock.group_stock_user` only.\nWithout the fix: `1 failed, 1 error(s) of 8 tests`. With it: `0 failed\n\n### #2319 [18.0][FIX] sale/purchase_stock_picking_invoice_link: link transit & subcontracting moves (pr, open, 2026)\n## Summary\nCloses #2314.\n`sale_stock_picking_invoice_link` and `purchase_stock_picking_invoice_link` only linked stock moves to invoice lines when the move's endpoint had usage `customer` / `supplier`. This excluded two real-world flows:\n1. **Intercompany sale/purchase** — moves route through a `transit` location, so the picking ↔ invoice link was lost.\n2. **Subcontracting (purchase only)** — receipts come from a subcontract location whose usage is `internal` but is flagged via `is_subcontracting_location` (provided by `mrp_subcontracting`).\n### Changes\n- Extracted the move-eligibility check into a predicate on `stock.move`:\n - `_is_purchase_invoice_link_candidate` — accepts `supplier`, `transit`, and any location with `is_subcontracting_location=True`.\n - `_is_sale_invoice_link_candidate` — accepts `customer` and `transit`.\n- Both `*.order.line.get_stock_moves_link_invoice` and `stock.move.get_moves_link_invoice` now delegate to the predicate, so behaviour is consistent across the order-line and `stock.move.write` invoice-link paths.\n- Subcontracting check uses `getattr(..., \"is_subcontracting_location\", False)` — no new dependency on `mrp_subcontracting`.\n- Sale-side subcontracting is intentionally **not** addressed: the canonical flow is unclear and the issue itself flagged it as uncertain. Easy to follow up if a real case surfaces.\n### Behaviour change to flag\nAdding `transit` to the accepted usages is broader than just intercompany — any custom routing through a transit \n\n### #2314 [18.0 bug] sale_stock_picking_invoice_link and purchase_stock_picking_invoice_link with subcontracting and inter company (issue, open, 2026)\n## Module\nsale_stock_picking_invoice_link and purchase_stock_picking_invoice_link\n## Describe the bug\nthese modules use location type (customer and vendor) to calculate pickings but there are cases where other location types are being used:\n1) subcontracting: Subcontracting Location type is 'internal'. who can we include this? \n2) inter company transfers: Inter-company transit location type is 'transit' which can easily be included.\n## To Reproduce\n**Affected versions**:\nSteps to reproduce the behavior:\n1. create a subcontracting or inter company sales purchase\n2. it will not link them to corresponding sales/purchase\n**Expected behavior**\nIt would be good to handle these cases.",
+  "github": {
+    "repo": "OCA/stock-logistics-workflow",
+    "fetched_at": "2026-11-24T04:45:49+00:00",
+    "queries": [
+      {
+        "q": "\"sale_stock_picking_invoice_link\" repo:OCA/stock-logistics-workflow is:issue",
+        "total_count": 3,
+        "returned": 3
+      },
+      {
+        "q": "\"sale_stock_picking_invoice_link\" repo:OCA/stock-logistics-workflow is:pull-request",
+        "total_count": 9,
+        "returned": 9
+      }
+    ],
+    "n_raw": 12,
+    "n_kept": 5,
+    "n_to_llm": 5,
+    "dropped": {
+      "migration": 4,
+      "module_not_mentioned": 3
+    },
+    "candidates": [
+      {
+        "number": 2474,
+        "type": "issue",
+        "state": "open",
+        "title": "Migration to version 20.0",
+        "url": "https://github.com/OCA/stock-logistics-workflow/issues/2474",
+        "filter": "migration"
+      },
+      {
+        "number": 2314,
+        "type": "issue",
+        "state": "open",
+        "title": "[18.0 bug] sale_stock_picking_invoice_link and purchase_stock_picking_invoice_link with subcontracting and inter company",
+        "url": "https://github.com/OCA/stock-logistics-workflow/issues/2314",
+        "filter": "kept"
+      },
+      {
+        "number": 2118,
+        "type": "issue",
+        "state": "open",
+        "title": "Migration to version 19.0",
+        "url": "https://github.com/OCA/stock-logistics-workflow/issues/2118",
+        "filter": "migration"
+      },
+      {
+        "number": 2542,
+        "type": "pr",
+        "state": "open",
+        "title": "[20.0][MIG] sale_stock_picking_invoice_link: Migration to 20.0",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/2542",
+        "filter": "migration"
+      },
+      {
+        "number": 2535,
+        "type": "pr",
+        "state": "open",
+        "title": "[FIX] sale_stock_picking_invoice_link: link deliveries to the invoice, not the refund",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/2535",
+        "filter": "kept"
+      },
+      {
+        "number": 2319,
+        "type": "pr",
+        "state": "open",
+        "title": "[18.0][FIX] sale/purchase_stock_picking_invoice_link: link transit & subcontracting moves",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/2319",
+        "filter": "kept"
+      },
+      {
+        "number": 2493,
+        "type": "pr",
+        "state": "closed",
+        "title": "[20.0][MIG] stock_picking_invoice_link: Migration to 20.0",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/2493",
+        "filter": "module_not_mentioned"
+      },
+      {
+        "number": 2022,
+        "type": "pr",
+        "state": "closed",
+        "title": "[NEW][REF][16.0] stock_picking_invoice_link split to sale_stock_picking_invoice_link",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/2022",
+        "filter": "kept"
+      },
+      {
+        "number": 2130,
+        "type": "pr",
+        "state": "closed",
+        "title": "[19.0][MIG]: sale_stock_picking_invoice_link",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/2130",
+        "filter": "migration"
+      },
+      {
+        "number": 2147,
+        "type": "pr",
+        "state": "closed",
+        "title": "[19.0][MIG] stock_picking_invoice_link: Migration to 19.0",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/2147",
+        "filter": "module_not_mentioned"
+      },
+      {
+        "number": 2023,
+        "type": "pr",
+        "state": "closed",
+        "title": "[NEW][REF][18.0] stock_picking_invoice_link split to sale_stock_picking_invoice_link",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/2023",
+        "filter": "kept"
+      },
+      {
+        "number": 1583,
+        "type": "pr",
+        "state": "closed",
+        "title": "[15.0][IMP] stock_picking_invoice_link: speed up initialization",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/1583",
+        "filter": "module_not_mentioned"
+      }
+    ],
+    "selected": [
+      {
+        "number": 2535,
+        "type": "pr",
+        "state": "open",
+        "title": "[FIX] sale_stock_picking_invoice_link: link deliveries to the invoice, not the refund",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/2535",
+        "created_at": "2026-10-27T15:29:11Z",
+        "category": "functional_bug",
+        "reason": "Ensures delivery moves are linked to the customer invoice rather than incorrectly linked to credit notes or refunds.",
+        "body_clean": "A move was treated as a refund whenever `to_refund` was set, and since 19.0 `stock_account` sets that field by `default=True` on every move. So an outgoing move of an order that has a credit note gets linked to the credit note instead of the invoice: the invoice ends up with no pickings and the credit note carries them.\nThe fix uses the same condition as the core (`sale_stock/models/stock.py`, `_action_synch_order`): a move refunds only when it comes back from the customer.\nWriting the link also needs read access on `account.move.line`. `Many2many.write_real` reads the previous value before writing, and since 19.0 that read goes through `_search` with access checks (in 18.0 it only applied record rules). A user with Inventory access only, validating a delivery of an order with a credit note, got:\nThe search was already done with `sudo()`; the write is too now.\nNote the two fixes belong together: with the condition fixed and the write still unprivileged, the link would be written on *every* invoiced delivery, so the `AccessError` would stop being occasional and hit every warehouse user.\n### Tests\nThe migration to 19.0 had hidden both problems by forcing `to_refund = False` on the delivered moves in two tests. Those lines are removed, so `test_link_transfer_after_invoice_creation` covers the condition again, and a new test validates a delivery of a refunded order as a user with `stock.group_stock_user` only.\nWithout the fix: `1 failed, 1 error(s) of 8 tests`. With it: `0 failed"
+      },
+      {
+        "number": 2319,
+        "type": "pr",
+        "state": "open",
+        "title": "[18.0][FIX] sale/purchase_stock_picking_invoice_link: link transit & subcontracting moves",
+        "url": "https://github.com/OCA/stock-logistics-workflow/pull/2319",
+        "created_at": "2026-04-27T13:24:21Z",
+        "category": "business_rule",
+        "reason": "Allows stock picking lines from intercompany transit locations and subcontracting moves to be linked to invoice lines.",
+        "body_clean": "## Summary\nCloses #2314.\n`sale_stock_picking_invoice_link` and `purchase_stock_picking_invoice_link` only linked stock moves to invoice lines when the move's endpoint had usage `customer` / `supplier`. This excluded two real-world flows:\n1. **Intercompany sale/purchase** — moves route through a `transit` location, so the picking ↔ invoice link was lost.\n2. **Subcontracting (purchase only)** — receipts come from a subcontract location whose usage is `internal` but is flagged via `is_subcontracting_location` (provided by `mrp_subcontracting`).\n### Changes\n- Extracted the move-eligibility check into a predicate on `stock.move`:\n - `_is_purchase_invoice_link_candidate` — accepts `supplier`, `transit`, and any location with `is_subcontracting_location=True`.\n - `_is_sale_invoice_link_candidate` — accepts `customer` and `transit`.\n- Both `*.order.line.get_stock_moves_link_invoice` and `stock.move.get_moves_link_invoice` now delegate to the predicate, so behaviour is consistent across the order-line and `stock.move.write` invoice-link paths.\n- Subcontracting check uses `getattr(..., \"is_subcontracting_location\", False)` — no new dependency on `mrp_subcontracting`.\n- Sale-side subcontracting is intentionally **not** addressed: the canonical flow is unclear and the issue itself flagged it as uncertain. Easy to follow up if a real case surfaces.\n### Behaviour change to flag\nAdding `transit` to the accepted usages is broader than just intercompany — any custom routing through a transit "
+      },
+      {
+        "number": 2314,
+        "type": "issue",
+        "state": "open",
+        "title": "[18.0 bug] sale_stock_picking_invoice_link and purchase_stock_picking_invoice_link with subcontracting and inter company",
+        "url": "https://github.com/OCA/stock-logistics-workflow/issues/2314",
+        "created_at": "2026-04-20T10:16:07Z",
+        "category": "limitation",
+        "reason": "Highlights that stock pickings using subcontracting or intercompany transit locations were not linked to invoices due to location type restrictions.",
+        "body_clean": "## Module\nsale_stock_picking_invoice_link and purchase_stock_picking_invoice_link\n## Describe the bug\nthese modules use location type (customer and vendor) to calculate pickings but there are cases where other location types are being used:\n1) subcontracting: Subcontracting Location type is 'internal'. who can we include this? \n2) inter company transfers: Inter-company transit location type is 'transit' which can easily be included.\n## To Reproduce\n**Affected versions**:\nSteps to reproduce the behavior:\n1. create a subcontracting or inter company sales purchase\n2. it will not link them to corresponding sales/purchase\n**Expected behavior**\nIt would be good to handle these cases."
+      }
+    ]
+  },
+  "selection": {
+    "llm": "gemini-3.6-flash",
+    "status": "new",
+    "prompt_sha256": "3faa44907fafe569",
+    "called_at": "2026-11-24T04:51:08+00:00",
+    "invalid_numbers": []
+  },
+  "stats": {
+    "readme_sections": [
+      "DESCRIPTION",
+      "USAGE"
+    ],
+    "n_chars_v0": 893,
+    "n_chars_issues": 4099,
+    "n_chars": 4994,
+    "n_sources": 4,
+    "has_description": true
+  }
+}

@@ -1,0 +1,198 @@
+{
+  "module": "sale_stock_picking_invoice_link",
+  "repo": "OCA/stock-logistics-workflow",
+  "fetched_at": "2026-11-24T04:45:49+00:00",
+  "queries": [
+    {
+      "q": "\"sale_stock_picking_invoice_link\" repo:OCA/stock-logistics-workflow is:issue",
+      "total_count": 3,
+      "returned": 3
+    },
+    {
+      "q": "\"sale_stock_picking_invoice_link\" repo:OCA/stock-logistics-workflow is:pull-request",
+      "total_count": 9,
+      "returned": 9
+    }
+  ],
+  "items": [
+    {
+      "number": 2474,
+      "type": "issue",
+      "state": "open",
+      "title": "Migration to version 20.0",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/2474",
+      "created_at": "2026-10-05T09:31:11Z",
+      "updated_at": "2026-11-18T12:51:26Z",
+      "closed_at": null,
+      "labels": [
+        "help wanted",
+        "work in progress",
+        "no stale"
+      ],
+      "body": "# Todo\n\nhttps://github.com/OCA/maintainer-tools/wiki/Migration-to-version-20.0\n\n# Modules to migrate\n\n- [ ] product_customerinfo_picking\n- [ ] purchase_stock_picking_backorder_policy\n- [ ] purchase_stock_picking_invoice_link\n- [ ] sale_line_returned_qty\n- [ ] sale_order_global_stock_route\n- [ ] sale_stock_partner_delivery_window\n- [ ] sale_stock_picking_backorder_policy\n- [ ] sale_stock_picking_invoice_link\n- [ ] sale_stock_picking_reservation_policy\n- [ ] scrap_reason_code\n- [x] stock_account_product_run_fifo_hook - By @JasminSForgeFlow - #2575\n- [ ] stock_dangerous_goods\n- [ ] stock_landed_costs_purchase_auto\n- [ ] stock_lot_scrap\n- [ ] stock_move_line_expiration_date_required\n- [ ] stock_move_valuation_usage\n- [ ] stock_no_negative\n- [ ] stock_owner_restriction\n- [ ] stock_partner_delivery_window\n- [ ] stock_picking_auto_create_lot\n- [ ] stock_picking_auto_create_package\n- [ ] stock_picking_back2draft\n- [ ] stock_picking_backorder_move_qty\n- [ ] stock_picking_backorder_policy\n- [ ] stock_picking_batch_extended\n- [ ] stock_picking_batch_group_by_date\n- [ ] stock_picking_batch_partner_enable\n- [ ] stock_picking_batch_substate\n- [ ] stock_picking_customer_ref\n- [ ] stock_picking_filter_lot\n- [x] stock_picking_invoice_link - By @HviorForgeFlow - #2493\n- [ ] stock_picking_kind\n- [ ] stock_picking_line_sequence\n- [ ] stock_picking_move_line_no_print\n- [ ] stock_picking_origin_reference\n- [ ] stock_picking_purchase_order_link\n- [ ] stock_picking_reservation_policy\n- [ ] stock_picking_return_empty_package\n- [ ] stock_picking_return_lot\n- [ ] stock_picking_return_restricted_qty\n- [ ] stock_picking_sale_order_link\n- [ ] stock_picking_send_by_mail\n- [ ] stock_production_lot_active\n- [ ] stock_restrict_lot\n- [ ] stock_split_picking\n\nMissing module? Check https://github.com/OCA/maintainer-tools/wiki/%5BFAQ%5D-Missing-modules-in-migration-issue-list"
+    },
+    {
+      "number": 2314,
+      "type": "issue",
+      "state": "open",
+      "title": "[18.0 bug] sale_stock_picking_invoice_link and purchase_stock_picking_invoice_link with subcontracting and inter company",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/2314",
+      "created_at": "2026-04-20T10:16:07Z",
+      "updated_at": "2026-04-20T10:16:07Z",
+      "closed_at": null,
+      "labels": [
+        "bug"
+      ],
+      "body": "<!-- Provide a general summary of the issue in the Title above.\nBefore opening the issue, please check that there isn't another issue addressing the same problem already created -->\n\n## Module\nsale_stock_picking_invoice_link and purchase_stock_picking_invoice_link\n\n## Describe the bug\nthese modules use location type (customer and vendor) to calculate pickings but there are cases where other location types are being used:\n\n1) subcontracting: Subcontracting Location type is 'internal'. who can we include this? \n2) inter company transfers: Inter-company transit location type is 'transit' which can easily be included.\n\n\n## To Reproduce\n**Affected versions**:\n\nSteps to reproduce the behavior:\n1. create a subcontracting or inter company sales purchase\n2. it will not link them to corresponding sales/purchase\n\n**Expected behavior**\nIt would be good to handle these cases.\n"
+    },
+    {
+      "number": 2118,
+      "type": "issue",
+      "state": "open",
+      "title": "Migration to version 19.0",
+      "url": "https://github.com/OCA/stock-logistics-workflow/issues/2118",
+      "created_at": "2025-09-29T14:10:36Z",
+      "updated_at": "2026-11-12T09:43:45Z",
+      "closed_at": null,
+      "labels": [
+        "help wanted",
+        "work in progress",
+        "no stale"
+      ],
+      "body": "# Todo\n\nhttps://github.com/OCA/maintainer-tools/wiki/Migration-to-version-19.0\n\n# Modules to migrate\n\n- [ ] delivery_procurement_group_carrier\n- [ ] delivery_total_weight_from_packaging\n- [ ] procurement_auto_create_group_carrier\n- [ ] product_cost_price_avco_sync\n- [x] product_customerinfo_picking - By @Borruso - #2362\n- [x] purchase_stock_picking_invoice_link - By @Andrii9090-tecnativa - #2388\n- [x] sale_line_returned_qty - By @domenicostragapede - #2420\n- [ ] sale_line_returned_qty_mrp\n- [x] sale_order_global_stock_route - By @sergioM-S73 - #2220\n- [x] sale_stock_picking_invoice_link - By @Alexgars73 - #2130\n- [x] scrap_reason_code - By @sergijPf - #2334\n- [ ] stock_account_product_run_fifo_hook\n- [ ] stock_checkout_sync\n- [ ] stock_dangerous_goods\n- [ ] stock_dynamic_routing\n- [ ] stock_dynamic_routing_reserve_rule\n- [x] stock_interwarehouse_transfer - By @AndreuOForgeFlow - #2444\n- [ ] stock_landed_costs_priority\n- [x] stock_landed_costs_purchase_auto - By @AaronHForgeFlow - #2286\n- [ ] stock_lock_lot - By @PaulaMForgeFlow - #2350\n- [x] stock_lot_scrap - By @Andrii9090-tecnativa - #2313\n- [ ] stock_move_actual_date - By @AungKoKoLin1997 - #2346\n- [ ] stock_move_auto_assign_auto_release\n- [ ] stock_move_backdating - By @bosd - #2332\n- [ ] stock_move_line_change_lot\n- [x] stock_move_line_expiration_date_required - By @FyasserF - #2367\n- [ ] stock_move_line_qty_picked\n- [ ] stock_move_original_date\n- [x] stock_move_quantity_product_uom - moved to stock-logistics-wareouse - https://github.com/OCA/stock-logistics-warehouse/pull/2545\n- [ ] stock_move_source_relocate\n- [ ] stock_move_source_relocate_dynamic_routing\n- [ ] stock_no_negative - By @BhaveshHeliconia - #2135\n- [ ] stock_owner_restriction\n- [x] stock_partner_delivery_window - By @ivantodorovich - #2219\n- [x] stock_picking_auto_create_lot - By @lef-adhoc - #2162\n- [x] stock_picking_auto_create_package - By @JordiMForgeFlow - #2215\n- [x] stock_picking_back2draft - By @tupaq - #2207\n- [ ] stock_picking_backorder_strategy_cancel\n- [ ] stock_picking_batch_creation\n- [ ] stock_picking_batch_creation_split_kit\n- [x] stock_picking_batch_extended - By @Andrii9090-tecnativa - #2450\n- [ ] stock_picking_batch_invoice_frequency\n- [ ] stock_picking_batch_operation_quick_change\n- [ ] stock_picking_batch_planner\n- [ ] stock_picking_batch_print_invoices\n- [ ] stock_picking_batch_print_pickings\n- [ ] stock_picking_batch_validate_confirm\n- [ ] stock_picking_consolidation_priority\n- [x] stock_picking_customer_ref - By @JasminSForgeFlow - #2259\n- [x] stock_picking_filter_lot - By @JordiMForgeFlow - #2178\n- [ ] stock_picking_group_by_base\n- [ ] stock_picking_group_by_partner_by_carrier\n- [ ] stock_picking_group_by_partner_by_carrier_by_date\n- [ ] stock_picking_group_by_partner_by_carrier_force_move_type\n- [ ] stock_picking_invoice_link\n- [ ] stock_picking_kind\n- [x] stock_picking_line_sequence - By @cyrilmanuel - #2329\n- [ ] stock_picking_mass_action\n- [x] stock_picking_move_line_no_print - By @Shide - #2339\n- [ ] stock_picking_operation_quick_change\n- [x] stock_picking_origin_reference - By @JasminSForgeFlow - #2232\n- [ ] stock_picking_origin_reference_purchase\n- [ ] stock_picking_origin_reference_sale\n- [x] stock_picking_origin_state - By @AndreuOForgeFlow - #2389\n- [ ] stock_picking_partner_note\n- [ ] stock_picking_progress\n- [ ] stock_picking_propagate_scheduled_date\n- [x] stock_picking_purchase_order_link - By @cparadis-impressfoods - #2305\n- [ ] stock_picking_restrict_cancel_printed\n- [x] stock_picking_return_lot - By @victoralmau - #2462\n- [x] stock_picking_return_restricted_qty - By @JJRR5 - #2210\n- [ ] stock_picking_sale_order_link\n- [x] stock_picking_send_by_mail - By @NICO-SOLUTIONS - #2146\n- [ ] stock_picking_show_backorder\n- [ ] stock_picking_show_return - By @Andrii9090-tecnativa - #2308\n- [ ] stock_picking_tier_validation\n- [ ] stock_picking_type_force_move_type\n- [ ] stock_picking_warn_message\n- [ ] stock_picking_whole_scrap\n- [ ] stock_product_set\n- [x] stock_production_lot_active - By @gediminasvenc - #2257\n- [ ] stock_receipt_lot_info\n- [x] stock_restrict_lot - By @lef-adhoc - #2151\n- [ ] stock_scrap_cancel - By @PaulaMForgeFlow - #2352\n- [x] stock_split_picking - By @arantxa-s73 - #2125\n- [ ] stock_split_picking_dimension\n- [ ] stock_split_picking_kit\n- [x] stock_valuation_layer_usage -> stock_move_valuation_usage https://github.com/OCA/OpenUpgrade/pull/6091\n\nMissing module? Check https://github.com/OCA/maintainer-tools/wiki/%5BFAQ%5D-Missing-modules-in-migration-issue-list"
+    },
+    {
+      "number": 2542,
+      "type": "pr",
+      "state": "open",
+      "title": "[20.0][MIG] sale_stock_picking_invoice_link: Migration to 20.0",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/2542",
+      "created_at": "2026-10-29T14:50:30Z",
+      "updated_at": "2026-11-17T07:28:44Z",
+      "closed_at": null,
+      "labels": [
+        "approved",
+        "mod:sale_stock_picking_invoice_link",
+        "series:20.0"
+      ],
+      "body": "Migration of `sale_stock_picking_invoice_link` to 20.0.\n\n### What the jump needed\n\n- **`uom.uom.rounding` is gone** ([9a4ad7cc18d3](https://github.com/odoo/odoo/commit/9a4ad7cc18d3), `[REF] *: remove 'uom.uom.rounding' field`). The check on the quantity left to invoice now calls `uom.is_zero()`, which rounds with the same `Product Unit` decimal precision the removed field exposed.\n- **The return wizard `stock.return.picking` is gone** ([36b4a0f5fb2b](https://github.com/odoo/odoo/commit/36b4a0f5fb2b), `[REM] stock: remove return wizard`). Two tests used it to build the return; they now call `stock.picking._create_return()`. The return move inherits `to_refund` from the original move and its demand starts at 0, so the test sets `product_uom_qty`.\n- **ruff**: the 20.0 branch pins 0.16.8 and 19.0 pins 0.13.0, so `PERF102` now fails on `setUpClass`, in code this migration does not otherwise touch. `company_data` is a plain dict and the key was unused.\n\n### It also carries the fix of #2535\n\n#2535 (`[FIX] ... link deliveries to the invoice, not the refund`) is still open against 19.0. Without it the bug travels to 20.0: `stock_account` sets `to_refund` by `default=True` on every move, so an outgoing move of an order that has a credit note gets linked to the credit note and the invoice ends up with no pickings. If you want this PR to be the migration only, I can drop that commit and port the fix separately once #2535 is merged.\n\nOne note on it: **the `sudo()` it adds on the write is not needed in 20.0**. In 20.0 `stock_account` runs `_action_done` as superuser (`self = self.sudo()`, `stock_account/models/stock_move.py:249`), which 19.0 does not do (`:177`), so the write already runs with `sudo()` when a delivery is validated. It is kept to stay identical to the 19.0 fix. On 20.0 its test asserts the symptom instead: the invoice shows its delivery and the credit note does not.\n\n### Migration script\n\n`migrations/20.0.1.0.0/post-migration.py` re-links the deliveries that the old behaviour wrote against the credit note: the code fix only covers what is written from now on, so the rows already in `stock_move_invoice_line_rel` stay wrong without it. Then it recomputes `account.move.picking_ids` for every invoice and credit note it touched, because that field is stored and it is what the *Delivery* and *Invoices* buttons show. Plain parametrized SQL plus that recompute, no extra dependency, and it does nothing on a database that has no such rows.\n\nIt leaves alone the links that `stock_picking_invoice_link` copies on purpose when a delivered invoice is reversed without a return: there the move stays linked to the reversed invoice too, while the bug replaced the links.\n\nTested on a 20.0 database with two orders (`invoice_policy = order`): A, the bug state (posted invoice, credit note, validated delivery linked only to the credit note); B, a delivered invoice reversed without a return.\n\n| | before | after |\n|---|---|---|\n| A, invoice `picking_ids` | none | the delivery |\n| A, credit note `picking_ids` | the delivery | none |\n| B, invoice and credit note `picking_ids` | the delivery | the delivery (unchanged) |\n\nLog: `1 wrong links removed from credit notes, 1 links written to the invoice, 0 moves left with no invoice line of their own, 2 invoices and credit notes recomputed`. A second run finds nothing.\n\n### Depends on\n\n#2493 (`stock_picking_invoice_link`), already merged in 20.0.\n\n### Tests\n\n`0 failed, 0 error(s) of 10 tests` on a 20.0 database with #2493 installed.\n\n"
+    },
+    {
+      "number": 2535,
+      "type": "pr",
+      "state": "open",
+      "title": "[FIX] sale_stock_picking_invoice_link: link deliveries to the invoice, not the refund",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/2535",
+      "created_at": "2026-10-27T15:29:11Z",
+      "updated_at": "2026-11-02T14:39:05Z",
+      "closed_at": null,
+      "labels": [
+        "series:19.0",
+        "mod:sale_stock_picking_invoice_link"
+      ],
+      "body": "A move was treated as a refund whenever `to_refund` was set, and since 19.0 `stock_account` sets that field by `default=True` on every move. So an outgoing move of an order that has a credit note gets linked to the credit note instead of the invoice: the invoice ends up with no pickings and the credit note carries them.\n\nThe fix uses the same condition as the core (`sale_stock/models/stock.py`, `_action_synch_order`): a move refunds only when it comes back from the customer.\n\nWriting the link also needs read access on `account.move.line`. `Many2many.write_real` reads the previous value before writing, and since 19.0 that read goes through `_search` with access checks (in 18.0 it only applied record rules). A user with Inventory access only, validating a delivery of an order with a credit note, got:\n\n```\nAccessError: Failed to read field stock.move.invoice_line_ids\nYou are not allowed to access 'Journal Item' (account.move.line) records.\n```\n\nThe search was already done with `sudo()`; the write is too now.\n\nNote the two fixes belong together: with the condition fixed and the write still unprivileged, the link would be written on *every* invoiced delivery, so the `AccessError` would stop being occasional and hit every warehouse user.\n\n### Tests\n\nThe migration to 19.0 had hidden both problems by forcing `to_refund = False` on the delivered moves in two tests. Those lines are removed, so `test_link_transfer_after_invoice_creation` covers the condition again, and a new test validates a delivery of a refunded order as a user with `stock.group_stock_user` only.\n\nWithout the fix: `1 failed, 1 error(s) of 8 tests`. With it: `0 failed, 0 error(s) of 8 tests`."
+    },
+    {
+      "number": 2319,
+      "type": "pr",
+      "state": "open",
+      "title": "[18.0][FIX] sale/purchase_stock_picking_invoice_link: link transit & subcontracting moves",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/2319",
+      "created_at": "2026-04-27T13:24:21Z",
+      "updated_at": "2026-04-28T05:55:31Z",
+      "closed_at": null,
+      "labels": [
+        "mod:purchase_stock_picking_invoice_link",
+        "series:18.0",
+        "mod:sale_stock_picking_invoice_link"
+      ],
+      "body": "## Summary\n\nCloses #2314.\n\n`sale_stock_picking_invoice_link` and `purchase_stock_picking_invoice_link` only linked stock moves to invoice lines when the move's endpoint had usage `customer` / `supplier`. This excluded two real-world flows:\n\n1. **Intercompany sale/purchase** — moves route through a `transit` location, so the picking ↔ invoice link was lost.\n2. **Subcontracting (purchase only)** — receipts come from a subcontract location whose usage is `internal` but is flagged via `is_subcontracting_location` (provided by `mrp_subcontracting`).\n\n### Changes\n\n- Extracted the move-eligibility check into a predicate on `stock.move`:\n  - `_is_purchase_invoice_link_candidate` — accepts `supplier`, `transit`, and any location with `is_subcontracting_location=True`.\n  - `_is_sale_invoice_link_candidate` — accepts `customer` and `transit`.\n- Both `*.order.line.get_stock_moves_link_invoice` and `stock.move.get_moves_link_invoice` now delegate to the predicate, so behaviour is consistent across the order-line and `stock.move.write` invoice-link paths.\n- Subcontracting check uses `getattr(..., \"is_subcontracting_location\", False)` — no new dependency on `mrp_subcontracting`.\n- Sale-side subcontracting is intentionally **not** addressed: the canonical flow is unclear and the issue itself flagged it as uncertain. Easy to follow up if a real case surfaces.\n\n### Behaviour change to flag\n\nAdding `transit` to the accepted usages is broader than just intercompany — any custom routing through a transit location will now produce picking ↔ invoice links. This is almost certainly the intended behaviour (the goods *are* moving as part of this SO/PO), but reviewers may want to sanity-check it.\n\n## Test plan\n\n- [x] Unit test: `sale_stock_picking_invoice_link` → `test_intercompany_transit_link` — SO whose delivery move ends in a transit location → invoice line gets `move_line_ids`.\n- [x] Unit test: `purchase_stock_picking_invoice_link` → `test_intercompany_transit_link` — PO whose receipt move starts from transit → bill line gets `move_line_ids`.\n- [x] Unit test: `purchase_stock_picking_invoice_link` → `test_subcontracting_receipt_link` — PO whose receipt move starts from a subcontract location → bill line gets `move_line_ids`. Auto-skips when `mrp_subcontracting` is not installed.\n- [x] All pre-existing tests in both modules still pass (no behaviour change for `customer`/`supplier` flows).\n- [x] `ruff check` + `ruff format --check` (pinned v0.6.8) — clean.\n- [x] `flake8 --max-line-length=88` on changed files — clean.\n\n## Module maturity\n\nBeta (matches existing `development_status` of both modules)."
+    },
+    {
+      "number": 2493,
+      "type": "pr",
+      "state": "closed",
+      "title": "[20.0][MIG] stock_picking_invoice_link: Migration to 20.0",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/2493",
+      "created_at": "2026-10-21T10:49:32Z",
+      "updated_at": "2026-11-10T14:42:27Z",
+      "closed_at": "2026-11-10T14:42:21Z",
+      "labels": [
+        "approved",
+        "merged 🎉",
+        "mod:stock_picking_invoice_link",
+        "series:20.0"
+      ],
+      "body": "Standard migration + some improvements:\n- `stock.move.product_uom` is now `uom_id` (tests)\n- `stock.return.picking` wizard is gone, tests use `stock.picking._create_return()`\n- Drop redundant `string` on `invoice_line_ids`\n- Button icons moved to Material Symbols (`edit_square`, `local_shipping`)\n\nPD: `stock_account` 20.0 defines `stock.move.invoice_line_ids` as a One2many over `account.move.line.stock_move_id`, and repair uses it. This module keeps it as the Many2many it always was (`stock_move_invoice_line_rel`), so invoice lines created or written with `stock_move_id` are also added to `move_line_ids`. That way repair keeps working. Tests added.\n\nCC @ForgeFlow\n"
+    },
+    {
+      "number": 2022,
+      "type": "pr",
+      "state": "closed",
+      "title": "[NEW][REF][16.0] stock_picking_invoice_link split to sale_stock_picking_invoice_link",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/2022",
+      "created_at": "2025-07-09T20:02:57Z",
+      "updated_at": "2026-01-18T12:54:11Z",
+      "closed_at": "2026-01-18T12:54:11Z",
+      "labels": [
+        "stale"
+      ],
+      "body": "## Current Scenario\r\n\r\nThe stock_picking_invoice_link module, which adds the relationship between the invoice and stock picking, depends on the sale_stock module, but the purchase_stock_picking_invoice_link module depends on stock_picking_invoice_link, making it mandatory to install both the purchase and sale modules, thus losing modularity.\r\n\r\n## Proposed Solution\r\n\r\nThe sale dependency on stock_picking_invoice_link was removed, and a new sale_stock_picking_invoice_link module was created. In this way, the stock_picking_invoice_link module is a base module for the sale_stock_picking_invoice_link and purchase_stock_picking_invoice_link modules, preserving modularity."
+    },
+    {
+      "number": 2130,
+      "type": "pr",
+      "state": "closed",
+      "title": "[19.0][MIG]: sale_stock_picking_invoice_link",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/2130",
+      "created_at": "2025-10-10T07:57:51Z",
+      "updated_at": "2025-12-03T09:38:21Z",
+      "closed_at": "2025-12-03T09:38:17Z",
+      "labels": [
+        "approved",
+        "ready to merge",
+        "merged 🎉"
+      ],
+      "body": "Migration to v19"
+    },
+    {
+      "number": 2147,
+      "type": "pr",
+      "state": "closed",
+      "title": "[19.0][MIG] stock_picking_invoice_link: Migration to 19.0",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/2147",
+      "created_at": "2025-10-28T17:16:22Z",
+      "updated_at": "2025-11-12T10:44:53Z",
+      "closed_at": "2025-11-11T15:37:57Z",
+      "labels": [],
+      "body": "standard migration to 19.0"
+    },
+    {
+      "number": 2023,
+      "type": "pr",
+      "state": "closed",
+      "title": "[NEW][REF][18.0] stock_picking_invoice_link split to sale_stock_picking_invoice_link",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/2023",
+      "created_at": "2025-07-10T00:28:21Z",
+      "updated_at": "2025-07-12T04:10:50Z",
+      "closed_at": "2025-07-12T04:10:46Z",
+      "labels": [
+        "approved",
+        "merged 🎉"
+      ],
+      "body": "Port PR #2022 \r\n\r\n## Current Scenario\r\n\r\nThe stock_picking_invoice_link module, which adds the relationship between the invoice and stock picking, depends on the sale_stock module, but the purchase_stock_picking_invoice_link module depends on stock_picking_invoice_link, making it mandatory to install both the purchase and sale modules, thus losing modularity.\r\n\r\n## Proposed Solution\r\n\r\nThe sale dependency on stock_picking_invoice_link was removed, and a new sale_stock_picking_invoice_link module was created. In this way, the stock_picking_invoice_link module is a base module for the sale_stock_picking_invoice_link and purchase_stock_picking_invoice_link modules, preserving modularity."
+    },
+    {
+      "number": 1583,
+      "type": "pr",
+      "state": "closed",
+      "title": "[15.0][IMP] stock_picking_invoice_link: speed up initialization",
+      "url": "https://github.com/OCA/stock-logistics-workflow/pull/1583",
+      "created_at": "2024-04-29T16:27:33Z",
+      "updated_at": "2024-06-10T14:28:18Z",
+      "closed_at": "2024-06-10T14:28:15Z",
+      "labels": [],
+      "body": "Follow up to https://github.com/OCA/stock-logistics-workflow/pull/1388\r\n\r\nNew compute stored fields on large tables like this can lead to high\r\ninitialation times when we rely on the ORM.\r\n\r\nAlso, a new stored computed field was introduced in v15 along the former\r\ncomputed method. We need to pre-compute it to avoid large migration\r\ntimes.\r\n\r\n\r\ncc @Tecnativa TT46020\r\n\r\nplease review @pedrobaeza \r\n\r\nfyi @JordiBForgeFlow "
+    }
+  ]
+}

@@ -1,0 +1,155 @@
+{
+  "collected_at": "2026-11-24T04:47:41+00:00",
+  "collector_version": "v1",
+  "llm": "gemini-3.6-flash",
+  "no_llm": false,
+  "llm_calls": 7,
+  "seconds": 247.3,
+  "results": [
+    {
+      "module": "stock_no_negative",
+      "status": "ok",
+      "repo": "stock-logistics-workflow",
+      "gh_cached": true,
+      "llm": "new",
+      "n_raw": 78,
+      "n_kept": 36,
+      "n_selected": 5,
+      "invalid_numbers": [],
+      "readme_sections": [
+        "DESCRIPTION",
+        "USAGE",
+        "CONFIGURE"
+      ],
+      "n_chars_v0": 2064,
+      "n_chars_issues": 3726,
+      "n_chars": 5792,
+      "n_sources": 6,
+      "has_description": true
+    },
+    {
+      "module": "stock_picking_invoice_link",
+      "status": "ok",
+      "repo": "stock-logistics-workflow",
+      "gh_cached": true,
+      "llm": "new",
+      "n_raw": 82,
+      "n_kept": 53,
+      "n_selected": 5,
+      "invalid_numbers": [],
+      "readme_sections": [
+        "DESCRIPTION",
+        "USAGE"
+      ],
+      "n_chars_v0": 476,
+      "n_chars_issues": 2250,
+      "n_chars": 2728,
+      "n_sources": 6,
+      "has_description": true
+    },
+    {
+      "module": "stock_picking_auto_create_lot",
+      "status": "ok",
+      "repo": "stock-logistics-workflow",
+      "gh_cached": true,
+      "llm": "new",
+      "n_raw": 51,
+      "n_kept": 26,
+      "n_selected": 5,
+      "invalid_numbers": [],
+      "readme_sections": [
+        "DESCRIPTION",
+        "USAGE",
+        "CONFIGURE"
+      ],
+      "n_chars_v0": 1718,
+      "n_chars_issues": 2743,
+      "n_chars": 4463,
+      "n_sources": 6,
+      "has_description": true
+    },
+    {
+      "module": "stock_move_location",
+      "status": "ok",
+      "repo": "stock-logistics-warehouse",
+      "gh_cached": true,
+      "llm": "new",
+      "n_raw": 77,
+      "n_kept": 54,
+      "n_selected": 5,
+      "invalid_numbers": [],
+      "readme_sections": [
+        "DESCRIPTION",
+        "USAGE",
+        "ROADMAP"
+      ],
+      "n_chars_v0": 2992,
+      "n_chars_issues": 2793,
+      "n_chars": 5787,
+      "n_sources": 6,
+      "has_description": true
+    },
+    {
+      "module": "stock_picking_back2draft",
+      "status": "ok",
+      "repo": "stock-logistics-workflow",
+      "gh_cached": true,
+      "llm": "new",
+      "n_raw": 30,
+      "n_kept": 3,
+      "n_selected": 1,
+      "invalid_numbers": [],
+      "readme_sections": [
+        "DESCRIPTION",
+        "USAGE"
+      ],
+      "n_chars_v0": 206,
+      "n_chars_issues": 665,
+      "n_chars": 873,
+      "n_sources": 2,
+      "has_description": true
+    },
+    {
+      "module": "sale_stock_picking_invoice_link",
+      "status": "ok",
+      "repo": "stock-logistics-workflow",
+      "gh_cached": true,
+      "llm": "new",
+      "n_raw": 12,
+      "n_kept": 5,
+      "n_selected": 3,
+      "invalid_numbers": [],
+      "readme_sections": [
+        "DESCRIPTION",
+        "USAGE"
+      ],
+      "n_chars_v0": 893,
+      "n_chars_issues": 4099,
+      "n_chars": 4994,
+      "n_sources": 4,
+      "has_description": true
+    },
+    {
+      "module": "stock_request",
+      "status": "ok",
+      "repo": "stock-logistics-request",
+      "gh_cached": true,
+      "llm": "new",
+      "n_raw": 56,
+      "n_kept": 31,
+      "n_selected": 5,
+      "invalid_numbers": [],
+      "readme_sections": [
+        "DESCRIPTION",
+        "USAGE",
+        "CONFIGURE",
+        "ROADMAP"
+      ],
+      "n_chars_v0": 1388,
+      "n_chars_issues": 3333,
+      "n_chars": 4723,
+      "n_sources": 6,
+      "has_description": true
+    }
+  ]
+}

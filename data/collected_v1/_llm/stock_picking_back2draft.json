@@ -1,0 +1,19 @@
+{
+  "module": "stock_picking_back2draft",
+  "collector_version": "v1",
+  "llm": "gemini-3.6-flash",
+  "temperature": 0,
+  "called_at": "2026-11-24T04:50:40+00:00",
+  "seconds": 10.9,
+  "prompt_sha256": "67ee2a431ae32a94",
+  "prompt": "You are an Odoo functional consultant. A collector agent gathers sources that explain what the\nOCA module `stock_picking_back2draft` (\"Pickings back to draft\") does, to build a knowledge graph that maps business requirements\nto Odoo modules.\n\nMODULE DOCUMENTATION (excerpt):\nPickings back to draft\n\nReopen canceled transfers\n\n## DESCRIPTION\nThis module allows to bring canceled transfers back to draft\n\n## USAGE\nJust open a canceled transfer and click on the 'back to draft' button\n\nCANDIDATE GITHUB ITEMS (issues and pull requests of OCA/stock-logistics-workflow that mention the module):\n#229 [issue, closed, 2016] [8.0] [stock_picking_back2draft] Sale order DONE instead of OPEN\n    **Module:** stock_picking_back2draft **Steps to reproduce:** 1. Create a sale order for 100 units of any product. 2. Transfer 50 units of product. 3. Cancel the transfer of the 50 remaining units. 4. Click on picking Back to draft. 5. Mark as To Do. **Problem:** - The sale order is in state \"DONE\" even though the picking is not done. - Invoice cont\n#603 [pr, closed, 2019] [12.0][ADD]stock_picking_auto_revert\n    This module means to substitute `stock_cancel`. \r **stock_cancel** cannot be migrated without changing all Odoo logic. It is impossible to handle quant history with the current design. If a user cancels and old picking, all the history should be recreated from the time the wrong picking was completed. To achieve this we need to reinvent the wheel.\r\n#222 [pr, closed, 2016] ADD stock_picking_back2draft\n    This module allows to bring canceled pickings back to draft Just click on 'back to draft' button\n\nTASK: Select at most 5 items that add useful BUSINESS knowledge about THIS module: a use case,\na business rule or expected behaviour, a configuration option, a limitation, or a functional bug\nthat shows how the module behaves in a business process (for example with deliveries, invoices,\nlots, manufacturing).\nDo NOT select: migrations or ports to another Odoo version, translations, code refactoring,\nCI or tests, performance-only changes, or items mainly about another module.\nPrefer items that add information NOT already in the documentation.\nIf no item is useful, return an empty list. Only use numbers from the candidate list.\n",
+  "output": {
+    "selected": [
+      {
+        "number": 229,
+        "category": "functional_bug",
+        "reason": "Shows how resetting a canceled picking back to draft interacts with the linked sale order state."
+      }
+    ]
+  }
+}
