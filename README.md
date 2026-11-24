@@ -41,6 +41,8 @@ KG layers:
 | `src/extractor/eval_entity_links.py` | Entity linking accuracy from a labeled CSV |
 | `src/collector/collect_modules.py` | Collector v0: manifest + readme |
 | `src/collector/collect_modules_v1.py` | Collector v1: + GitHub issues/PRs selected by an LLM |
+| `src/baselines/b1_vector_rag.py` | Baseline B1: plain vector RAG over module and model descriptions (no graph, no LLM) |
+| `src/evaluation/metrics.py`, `src/evaluation/evaluate.py` | Scoring rules (Hit@k, MRR, P/R/F1 at module and model level, lenient and strict) and scoring script |
 | `src/experiments/test_lightrag_neo4j.py` | Experiment: LightRAG with the project's Neo4j |
 | `queries/` | Cypher queries for checks and analysis (results written as comments) |
 | `data/collected/`, `data/collected_v1/` | Collector outputs |
@@ -48,7 +50,8 @@ KG layers:
 | `data/snapshots/` | KG statistics and schema snapshot |
 | `data/eval/` | Evaluation set (requirements and answers checked against KG metadata) |
 | `data/experiments/` | Side experiment results |
-| `tests/` | Offline tests (incremental update against a mock Odoo catalog) |
+| `data/runs/` | Predictions and scores of each configuration (B1, P, ...) |
+| `tests/` | Offline tests (incremental update against a mock Odoo catalog; scoring rules) |
 | `logs/` | Run logs (see `logs/README.md`) |
 
 ## Setup (summary)
@@ -72,6 +75,19 @@ python src/extractor/eval_entity_links.py data/semantic/links_YYYYMMDD.csv
 ```
 
 All LLM results are cached; reruns make no new LLM calls unless `--refresh` options are used.
+
+### Baseline B1 and scoring
+
+```bash
+python src/baselines/b1_vector_rag.py --lang en           # 0 LLM calls; embeddings cached in data/cache/
+python src/evaluation/evaluate.py data/runs/b1_en_YYYYMMDD/predictions.json
+python src/baselines/b1_vector_rag.py --lang vi           # same requirements in Vietnamese
+python tests/test_metrics.py                              # hand-checked cases of the scoring rules
+```
+
+Scoring rules (`src/evaluation/metrics.py`): a module counts as correct if it is the main or an accepted module
+(Hit@k, MRR). Recall uses the gold answers only; precision does not count accepted answers as errors (lenient),
+and a strict precision that does count them is reported next to it. Excluded models are errors.
 
 ### Incremental update with an unseen module (RQ2)
 

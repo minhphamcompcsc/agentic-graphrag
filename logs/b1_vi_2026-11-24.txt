@@ -1,0 +1,9 @@
+B1 (vi): 67 modules (7 from the Collector), 443 models, 6 requirements; new embeddings 6; 2.0 s; 0 LLM calls
+  Q01: stock_no_negative 0.532, stock_picking_auto_create_lot 0.500, stock_request 0.486 | models: stock.warn.insufficient.qty, stock.warn.insufficient.qty.scrap, stock.warehouse.orderpoint
+  Q02: sale_stock_picking_invoice_link 0.659, stock_picking_invoice_link 0.591, account 0.571 | models: report.account.report_invoice_with_payments, report.account.report_invoice, account.invoice.report
+  Q03: stock_picking_auto_create_lot 0.685, stock 0.552, stock_request 0.552 | models: account.automatic.entry.wizard, stock.lot, lot.label.layout
+  Q04: stock_move_location 0.638, stock_request 0.526, stock_picking_invoice_link 0.475 | models: stock.picking, stock.change.product.qty, sale.mass.cancel.orders
+  Q05: stock_picking_back2draft 0.543, sale_stock_picking_invoice_link 0.504, stock 0.501 | models: stock.inventory.adjustment.name, stock.replenishment.info, stock.replenishment.option
+  Q06: sale_stock_picking_invoice_link 0.546, sale_stock 0.522, account 0.503 | models: sale.order, lot.label.layout, report.account.report_invoice_with_payments
+Saved: data/runs/b1_vi_20261124/predictions.json, corpus.json
+Next: python src/evaluation/evaluate.py data/runs/b1_vi_20261124/predictions.json

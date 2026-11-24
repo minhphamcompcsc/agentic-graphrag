@@ -1,0 +1,11 @@
+B1 (en), split all: 6 requirements
+  Module  Hit@1 0.833  Hit@3 1.000  Hit@5 1.000  MRR 0.889
+  Module  P 0.833  R 0.667  F1 0.667  (strict P 0.667, F1 0.667)
+  Model   P 0.056  R 0.167  F1 0.083  (strict P 0.056, F1 0.083)
+  Q01: first correct rank 3, model P 0.00 R 0.00
+  Q02: first correct rank 1, model P 0.00 R 0.00
+  Q03: first correct rank 1, model P 0.00 R 0.00
+  Q04: first correct rank 1, model P 0.00 R 0.00
+  Q05: first correct rank 1, model P 0.33 R 1.00
+  Q06: first correct rank 1, model P 0.00 R 0.00
+Saved: data/runs/b1_en_20261124/metrics_all.json, per_question_all.csv
