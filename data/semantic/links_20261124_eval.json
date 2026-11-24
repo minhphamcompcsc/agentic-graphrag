@@ -1,0 +1,15 @@
+{
+  "file": "data/semantic/links_20261124.csv",
+  "labeled": 7,
+  "total_rows": 7,
+  "accuracy": 1.0,
+  "correct": 7,
+  "by_method": {
+    "exact_name": {
+      "correct": 7,
+      "total": 7,
+      "accuracy": 1.0
+    }
+  },
+  "errors": []
+}

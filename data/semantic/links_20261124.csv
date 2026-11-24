@@ -1,8 +1,8 @@
-﻿module,function,mention,llm_guess,guess_in_kg,linked_model,method,score,structural,top3,gold_model
-stock_request,Request internal product transfers,product,product.product,yes,product.product,exact_name,1.0,dependency,,
-stock_request,Request internal product transfers,location,stock.location,yes,stock.location,exact_name,1.0,own,,
-stock_request,Request internal product transfers,Stock Request,stock.request,yes,stock.request,exact_name,1.0,own,,
-stock_request,Request internal product transfers,Transfers,stock.picking,yes,stock.picking,exact_name,1.0,own,,
-stock_request,Cancel stock requests and related moves,Stock Request,stock.request,yes,stock.request,exact_name,1.0,own,,
-stock_request,Cancel stock requests and related moves,stock moves,stock.move,yes,stock.move,exact_name,1.0,own,,
-stock_request,Control stock request access permissions,Stock Request,stock.request,yes,stock.request,exact_name,1.0,own,,
+﻿module,function,mention,llm_guess,guess_in_kg,linked_model,method,score,structural,top3,gold_model,ambiguous,note,ba_approved,reviewed_on
+stock_request,Request internal product transfers,product,product.product,yes,product.product,exact_name,1.0,dependency,,product.product,,stock.request.product_id points to product.product,x,2026-11-24
+stock_request,Request internal product transfers,location,stock.location,yes,stock.location,exact_name,1.0,own,,stock.location,,,x,2026-11-24
+stock_request,Request internal product transfers,Stock Request,stock.request,yes,stock.request,exact_name,1.0,own,,stock.request,,,x,2026-11-24
+stock_request,Request internal product transfers,Transfers,stock.picking,yes,stock.picking,exact_name,1.0,own,,stock.picking,,internal transfers created from a request are stock.picking records,x,2026-11-24
+stock_request,Cancel stock requests and related moves,Stock Request,stock.request,yes,stock.request,exact_name,1.0,own,,stock.request,,,x,2026-11-24
+stock_request,Cancel stock requests and related moves,stock moves,stock.move,yes,stock.move,exact_name,1.0,own,,stock.move,,,x,2026-11-24
+stock_request,Control stock request access permissions,Stock Request,stock.request,yes,stock.request,exact_name,1.0,own,,stock.request,,,x,2026-11-24
