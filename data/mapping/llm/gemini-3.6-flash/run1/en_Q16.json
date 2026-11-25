@@ -1,0 +1,44 @@
+{
+  "id": "Q16",
+  "lang": "en",
+  "backend": "gemini",
+  "llm": "gemini-3.6-flash",
+  "temperature": 0,
+  "prompt_version": "map-v0.1",
+  "called_at": "2026-11-25T12:55:02+00:00",
+  "input_sha256": "91eaf98bdb66684f",
+  "input": "When a customer returns goods and accounting creates a credit note from the original invoice, the credit note lines must be linked to the corresponding return stock moves.",
+  "output": {
+    "normalized_en": "When a customer returns goods and accounting creates a credit note from the original invoice, each credit note line must be linked to its corresponding return stock move.",
+    "low_level_keywords": [
+      "customer return",
+      "credit note",
+      "credit note line",
+      "original invoice",
+      "return stock move"
+    ],
+    "high_level_keywords": [
+      "sales returns",
+      "customer invoicing",
+      "inventory accounting"
+    ],
+    "objects": [
+      {
+        "mention": "credit note",
+        "odoo_model": "account.move"
+      },
+      {
+        "mention": "credit note line",
+        "odoo_model": "account.move.line"
+      },
+      {
+        "mention": "original invoice",
+        "odoo_model": "account.move"
+      },
+      {
+        "mention": "return stock move",
+        "odoo_model": "stock.move"
+      }
+    ]
+  }
+}

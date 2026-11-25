@@ -31,8 +31,18 @@ Usage (in ~/agentic-graphrag, venv activated):
   python src/extractor/extract_semantic.py --dry-run     # test, no write to Neo4j
   python src/extractor/extract_semantic.py               # write to Neo4j (uses the LLM cache if present)
   python src/extractor/extract_semantic.py --refresh     # force new LLM calls
+  python src/extractor/extract_semantic.py --collected-dir data/collected_v1 --tag v03
+                                                         # rewrite all 7 modules from the cache, outputs with suffix _v03
 Note: extract_schema.py --reset deletes the whole graph. Run this file again afterwards
 (it uses the cache, so no LLM calls).
+
+Changes in sem-v0.3 (2026-11-24):
+  - Field linking is stricter. A field found in the scope of a function is linked to a model only if
+    that model is the one the LLM gave for the field (odoo_model), or the module itself adds the field
+    to that model (ADDS_FIELD). Before, the field was linked to every linked model that had a field with
+    the same name, e.g. "location" -> stock.location.location_id (parent location) for stock_request.
+  - --tag adds a suffix to the output files, so a rerun on the same day does not overwrite
+    links_YYYYMMDD.csv files that already carry BA labels.
 """
 import argparse
 import asyncio
@@ -53,7 +63,7 @@ from pydantic import BaseModel, Field
 
 load_dotenv(override=True)   # .env wins over stale environment variables in the terminal
 
-EXTRACTOR_VERSION = "sem-v0.2"
+EXTRACTOR_VERSION = "sem-v0.3"
 LLM_MODEL = os.getenv("GEMINI_MODEL", "gemini-3.6-flash")   # changed from gemini-3.8-flash on 2026-11-23 (3.8 was overloaded)
 EMBED_MODEL = os.getenv("EMBED_MODEL", "bge-m3")
 NEO4J_URI = os.getenv("NEO4J_URI", "bolt://localhost:7687")
@@ -228,10 +238,12 @@ def make_embedder():
 # ============ 5. Structural layer catalog (Neo4j or snapshot) ============
 class Catalog:
     """models: name -> label; fields: (model, name) -> label;
-    own[m]: models that module m defines, extends or adds fields to; dep[m]: models defined by its (transitive) dependencies."""
+    own[m]: models that module m defines, extends or adds fields to; dep[m]: models defined by its (transitive) dependencies;
+    added[m]: (model, field) pairs that module m adds (ADDS_FIELD)."""
 
-    def __init__(self, models, fields, own, dep):
+    def __init__(self, models, fields, own, dep, added=None):
         self.models, self.fields, self.own, self.dep = models, fields, own, dep
+        self.added = added or {}
         self.label_index = {}
         for name, lab in models.items():
             self.label_index.setdefault(norm(lab), []).append(name)
@@ -246,7 +258,7 @@ def catalog_from_neo4j(driver, modules):
     models = {r["n"]: r["l"] for r in q("MATCH (m:Model) RETURN m.name AS n, m.label AS l")}
     fields = {(r["mo"], r["n"]): r["l"] for r in
               q("MATCH (f:Field) RETURN f.model AS mo, f.name AS n, f.label AS l")}
-    own, dep = {}, {}
+    own, dep, added = {}, {}, {}
     for m in modules:
         own[m] = {r["x"] for r in q("""
             MATCH (:Module {name:$m})-[:DEFINES|EXTENDS]->(x:Model) RETURN x.name AS x
@@ -254,7 +266,9 @@ def catalog_from_neo4j(driver, modules):
         dep[m] = {r["x"] for r in q("""
             MATCH (:Module {name:$m})-[:DEPENDS_ON*]->(:Module)-[:DEFINES]->(x:Model)
             RETURN DISTINCT x.name AS x""", m=m)}
-    return Catalog(models, fields, own, dep)
+        added[m] = {(r["mo"], r["n"]) for r in q("""
+            MATCH (:Module {name:$m})-[:ADDS_FIELD]->(f:Field) RETURN f.model AS mo, f.name AS n""", m=m)}
+    return Catalog(models, fields, own, dep, added)
 
 
 def catalog_from_snapshot(path: Path, modules):
@@ -270,8 +284,9 @@ def catalog_from_snapshot(path: Path, modules):
     deps = {}
     for r in d["deps"]:
         deps.setdefault(r["module"], set()).add(r["depends_on"])
-    own, dep = {}, {}
+    own, dep, added = {}, {}, {}
     for m in modules:
+        added[m] = {k for k, mod in first_field.items() if mod == m}
         own[m] = {r["model"] for r in d["model_owners"] if r["module"] == m}
         own[m] |= {mo for (mo, _), mod in first_field.items() if mod == m}
         closure, stack = set(), list(deps.get(m, ()))
@@ -281,7 +296,7 @@ def catalog_from_snapshot(path: Path, modules):
                 closure.add(x)
                 stack += deps.get(x, ())
         dep[m] = {mo for mo, mod in definer.items() if mod in closure}
-    return Catalog(models, fields, own, dep)
+    return Catalog(models, fields, own, dep, added)
 
 
 # ============ 6. Entity linking ============
@@ -324,9 +339,10 @@ class Linker:
             return best[0], "embedding", best[1], top3
         return None, "new", (top3[0][1] if top3 else 0.0), top3
 
-    def link_field(self, fm: FieldMention, linked_models: List[str]):
+    def link_field(self, fm: FieldMention, linked_models: List[str], module: Optional[str] = None):
         """Return a list of (model, field, method). One option can exist on several models
-        (e.g. allow_negative_stock on product, category, location): link it to every linked model that has the field."""
+        (e.g. allow_negative_stock on product, category, location). sem-v0.3: the field is linked to a model
+        of the scope only if it is the model the LLM gave (odoo_model) or the module adds the field there."""
         fbm = self.cat.fields_by_model
         scope = list(dict.fromkeys(linked_models + ([fm.odoo_model] if fm.odoo_model in fbm else [])))
         name, method = None, None
@@ -351,7 +367,9 @@ class Linker:
                     name, method = best[0][1], "embedding"
         if not name:
             return []
-        return [(m, name, method) for m in scope if name in fbm.get(m, {})]
+        added = self.cat.added.get(module, set()) if module else set()
+        return [(m, name, method) for m in scope if name in fbm.get(m, {})
+                and (module is None or m == fm.odoo_model or (m, name) in added)]
 
 
 # ============ 7. Ghi Neo4j ============
@@ -411,6 +429,7 @@ def main():
     ap.add_argument("--catalog", choices=["neo4j", "snapshot"], default=None,
                     help="structural layer source; default neo4j, or snapshot with --dry-run")
     ap.add_argument("--snapshot", default="data/snapshots/schema_20261109.json")
+    ap.add_argument("--tag", default="", help="suffix for the output files (e.g. v03 -> links_YYYYMMDD_v03.csv)")
     args = ap.parse_args()
 
     today = f"{date.today():%Y%m%d}"
@@ -474,7 +493,7 @@ def main():
                                       top3="; ".join(f"{k}={s}" for k, s in top3), gold_model=""))
             linked_models = list(dict.fromkeys(l["target"] for l in obj_links if l["target"]))
             fld_links = [dict(mention=fm.mention, model=mo, field=f, method=mt)
-                         for fm in fn.fields for mo, f, mt in linker.link_field(fm, linked_models)]
+                         for fm in fn.fields for mo, f, mt in linker.link_field(fm, linked_models, m)]
             funcs.append(dict(key=key, fn=fn, evidence_found=ev_ok, objects=obj_links, fields=fld_links))
         results.append(dict(module=m, rec=rec, meta=meta, cached=cached, funcs=funcs))
         print(f"  {m:35} {len(funcs)} functions{' (cache)' if cached else ''}")
@@ -575,7 +594,7 @@ def main():
     stats = dict(date=today, extractor_version=EXTRACTOR_VERSION, llm=LLM_MODEL, embedding=EMBED_MODEL,
                  threshold=args.threshold, catalog=catalog_src, dry_run=args.dry_run,
                  totals=totals, per_module=per_module)
-    suffix = "_dryrun" if args.dry_run else ""
+    suffix = ("_dryrun" if args.dry_run else "") + (f"_{args.tag}" if args.tag else "")
     (Path("data/snapshots") / f"semantic_stats_{today}{suffix}.json").write_text(
         json.dumps(stats, ensure_ascii=False, indent=2), encoding="utf-8")
     links_csv = cache_dir / f"links_{today}{suffix}.csv"

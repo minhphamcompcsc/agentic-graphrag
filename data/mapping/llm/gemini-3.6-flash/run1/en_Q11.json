@@ -1,0 +1,48 @@
+{
+  "id": "Q11",
+  "lang": "en",
+  "backend": "gemini",
+  "llm": "gemini-3.6-flash",
+  "temperature": 0,
+  "prompt_version": "map-v0.1",
+  "called_at": "2026-11-25T12:54:29+00:00",
+  "input_sha256": "bea1c7892d4d212d",
+  "input": "All products in the fresh-food category must get lot numbers generated automatically at receipt, without enabling it product by product, and only for the vendor receipt operation type.",
+  "output": {
+    "normalized_en": "Products belonging to the fresh-food product category must automatically generate lot numbers upon receiving goods, specifically restricted to the vendor receipt operation type, without requiring lot tracking to be enabled individually on each product.",
+    "low_level_keywords": [
+      "vendor receipt",
+      "lot number",
+      "product category",
+      "automatic lot generation",
+      "operation type"
+    ],
+    "high_level_keywords": [
+      "inventory management",
+      "traceability",
+      "reception process"
+    ],
+    "objects": [
+      {
+        "mention": "product category",
+        "odoo_model": "product.category"
+      },
+      {
+        "mention": "product",
+        "odoo_model": "product.product"
+      },
+      {
+        "mention": "lot number",
+        "odoo_model": "stock.lot"
+      },
+      {
+        "mention": "vendor receipt",
+        "odoo_model": "stock.picking"
+      },
+      {
+        "mention": "operation type",
+        "odoo_model": "stock.picking.type"
+      }
+    ]
+  }
+}

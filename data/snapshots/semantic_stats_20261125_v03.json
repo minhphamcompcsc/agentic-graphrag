@@ -1,0 +1,217 @@
+{
+  "date": "20261125",
+  "extractor_version": "sem-v0.3",
+  "llm": "gemini-3.6-flash",
+  "embedding": "bge-m3",
+  "threshold": 0.7,
+  "catalog": "neo4j",
+  "dry_run": false,
+  "totals": {
+    "modules": 7,
+    "functions": 14,
+    "evidence_found": 14,
+    "object_mentions": 33,
+    "methods": {
+      "exact_name": 32,
+      "new": 1
+    },
+    "linked_rate": 0.97,
+    "structural": {
+      "dependency": 13,
+      "own": 19
+    },
+    "structural_consistency": 1.0,
+    "llm_calls": 0,
+    "seconds": 312.2
+  },
+  "per_module": {
+    "sale_stock_picking_invoice_link": {
+      "text_chars": 906,
+      "functions": 1,
+      "evidence_found": 1,
+      "object_mentions": 4,
+      "methods": {
+        "exact_name": 4
+      },
+      "structural": {
+        "dependency": 4
+      },
+      "field_links": 1,
+      "own_models": [
+        "sale.order.line",
+        "stock.move"
+      ],
+      "own_models_covered": [],
+      "llm_cached": true
+    },
+    "stock_move_location": {
+      "text_chars": 2038,
+      "functions": 3,
+      "evidence_found": 3,
+      "object_mentions": 8,
+      "methods": {
+        "exact_name": 8
+      },
+      "structural": {
+        "dependency": 5,
+        "own": 3
+      },
+      "field_links": 1,
+      "own_models": [
+        "stock.move",
+        "stock.picking",
+        "stock.picking.type",
+        "wiz.stock.move.location",
+        "wiz.stock.move.location.line"
+      ],
+      "own_models_covered": [
+        "stock.move",
+        "stock.picking"
+      ],
+      "llm_cached": true
+    },
+    "stock_no_negative": {
+      "text_chars": 2077,
+      "functions": 4,
+      "evidence_found": 4,
+      "object_mentions": 7,
+      "methods": {
+        "exact_name": 6,
+        "new": 1
+      },
+      "structural": {
+        "dependency": 2,
+        "own": 4
+      },
+      "field_links": 3,
+      "own_models": [
+        "product.category",
+        "product.product",
+        "product.template",
+        "stock.location",
+        "stock.quant"
+      ],
+      "own_models_covered": [
+        "product.category",
+        "product.product",
+        "product.template",
+        "stock.location"
+      ],
+      "llm_cached": true
+    },
+    "stock_picking_auto_create_lot": {
+      "text_chars": 1730,
+      "functions": 1,
+      "evidence_found": 1,
+      "object_mentions": 4,
+      "methods": {
+        "exact_name": 4
+      },
+      "structural": {
+        "own": 3,
+        "dependency": 1
+      },
+      "field_links": 3,
+      "own_models": [
+        "ir.actions.report",
+        "product.category",
+        "product.product",
+        "product.template",
+        "stock.move",
+        "stock.move.line",
+        "stock.picking",
+        "stock.picking.type"
+      ],
+      "own_models_covered": [
+        "product.template",
+        "stock.picking",
+        "stock.picking.type"
+      ],
+      "llm_cached": true
+    },
+    "stock_picking_back2draft": {
+      "text_chars": 219,
+      "functions": 1,
+      "evidence_found": 1,
+      "object_mentions": 1,
+      "methods": {
+        "exact_name": 1
+      },
+      "structural": {
+        "own": 1
+      },
+      "field_links": 0,
+      "own_models": [
+        "stock.move",
+        "stock.picking"
+      ],
+      "own_models_covered": [
+        "stock.picking"
+      ],
+      "llm_cached": true
+    },
+    "stock_picking_invoice_link": {
+      "text_chars": 489,
+      "functions": 1,
+      "evidence_found": 1,
+      "object_mentions": 2,
+      "methods": {
+        "exact_name": 2
+      },
+      "structural": {
+        "own": 2
+      },
+      "field_links": 0,
+      "own_models": [
+        "account.bank.statement.line",
+        "account.move",
+        "account.move.line",
+        "account.move.reversal",
+        "stock.move",
+        "stock.picking"
+      ],
+      "own_models_covered": [
+        "account.move",
+        "stock.picking"
+      ],
+      "llm_cached": true
+    },
+    "stock_request": {
+      "text_chars": 1147,
+      "functions": 3,
+      "evidence_found": 3,
+      "object_mentions": 7,
+      "methods": {
+        "exact_name": 7
+      },
+      "structural": {
+        "dependency": 1,
+        "own": 6
+      },
+      "field_links": 3,
+      "own_models": [
+        "procurement.group",
+        "res.company",
+        "res.config.settings",
+        "stock.location",
+        "stock.move",
+        "stock.move.line",
+        "stock.picking",
+        "stock.request",
+        "stock.request.abstract",
+        "stock.request.allocation",
+        "stock.request.order",
+        "stock.route",
+        "stock.rule",
+        "stock.warehouse"
+      ],
+      "own_models_covered": [
+        "stock.location",
+        "stock.move",
+        "stock.picking",
+        "stock.request"
+      ],
+      "llm_cached": true
+    }
+  }
+}

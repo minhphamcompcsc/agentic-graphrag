@@ -1,0 +1,78 @@
+{
+  "date": "20261125",
+  "lang": "en",
+  "split": "dev",
+  "ids": [
+    "Q08",
+    "Q11",
+    "Q13",
+    "Q16"
+  ],
+  "objective": "mean MRR + mean model F1 (lenient)",
+  "grid": {
+    "beta": [
+      0.0,
+      0.25,
+      0.5,
+      1.0,
+      2.0
+    ],
+    "gamma": [
+      0.0,
+      0.25,
+      0.5,
+      1.0
+    ],
+    "cov": [
+      "ochiai",
+      "ratio"
+    ],
+    "m_models": [
+      2,
+      3,
+      4
+    ],
+    "lam_entry": [
+      0.0,
+      0.2,
+      0.5
+    ],
+    "lam_function": [
+      0.0,
+      0.1,
+      0.3
+    ],
+    "delegated_penalty": [
+      0.0,
+      0.3
+    ]
+  },
+  "combinations": 2160,
+  "best": {
+    "objective": 1.833333,
+    "mrr": 1.0,
+    "model_f1": 0.8333
+  },
+  "default": {
+    "objective": 1.75,
+    "mrr": 1.0,
+    "model_f1": 0.75
+  },
+  "ties_at_best": 12,
+  "params": {
+    "alpha": 1.0,
+    "beta": 0.5,
+    "gamma": 0.25,
+    "cov": "ochiai",
+    "k_modules": 1,
+    "m_models": 4,
+    "lam_entry": 0.0,
+    "lam_function": 0.0,
+    "delegated_penalty": 0.3,
+    "tau": 0.0,
+    "n_functions": 5,
+    "max_distance": 3,
+    "context_weight": 2.0,
+    "link_threshold": 0.75
+  }
+}

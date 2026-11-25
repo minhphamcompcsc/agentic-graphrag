@@ -1,0 +1,40 @@
+{
+  "id": "Q08",
+  "lang": "en",
+  "backend": "gemini",
+  "llm": "gemini-3.6-flash",
+  "temperature": 0,
+  "prompt_version": "map-v0.1",
+  "called_at": "2026-11-25T12:54:11+00:00",
+  "input_sha256": "6a184cd14eceeb9d",
+  "input": "After rushed deliveries, accounting keeps finding items with on-hand quantity below zero; the system should refuse to validate such transfers, except for the spare-parts product category that is only counted at month end.",
+  "output": {
+    "normalized_en": "The system must prevent the validation of stock transfers that involve products with a negative on-hand quantity. An exception is made for products belonging to the spare-parts product category, which are counted at month end and can be processed despite negative inventory.",
+    "low_level_keywords": [
+      "on-hand quantity",
+      "validate transfer",
+      "negative inventory",
+      "product category",
+      "spare parts"
+    ],
+    "high_level_keywords": [
+      "inventory control",
+      "transfer management",
+      "stock validation"
+    ],
+    "objects": [
+      {
+        "mention": "transfer",
+        "odoo_model": "stock.picking"
+      },
+      {
+        "mention": "product category",
+        "odoo_model": "product.category"
+      },
+      {
+        "mention": "product",
+        "odoo_model": "product.product"
+      }
+    ]
+  }
+}

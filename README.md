@@ -42,6 +42,8 @@ KG layers:
 | `src/collector/collect_modules.py` | Collector v0: manifest + readme |
 | `src/collector/collect_modules_v1.py` | Collector v1: + GitHub issues/PRs selected by an LLM |
 | `src/baselines/b1_vector_rag.py` | Baseline B1: plain vector RAG over module and model descriptions (no graph, no LLM) |
+| `src/mapping/mapping_agent.py` | Mapping Agent (configuration P): requirement analysis (1 LLM call), 2-level entry points, score = alpha sim + beta cov + gamma prox, models and KG path for the answer |
+| `src/mapping/graph_view.py`, `src/mapping/analyze.py`, `src/mapping/tune.py` | In-memory KG view (Cypher loaders), LLM requirement analysis with cache, parameter search on the dev split |
 | `src/evaluation/metrics.py`, `src/evaluation/evaluate.py` | Scoring rules (Hit@k, MRR, P/R/F1 at module and model level, lenient and strict) and scoring script |
 | `src/experiments/test_lightrag_neo4j.py` | Experiment: LightRAG with the project's Neo4j |
 | `queries/` | Cypher queries for checks and analysis (results written as comments) |
@@ -50,8 +52,9 @@ KG layers:
 | `data/snapshots/` | KG statistics and schema snapshot |
 | `data/eval/` | Evaluation set (requirements and answers checked against KG metadata) |
 | `data/experiments/` | Side experiment results |
+| `data/mapping/` | Mapping Agent LLM cache (`llm/<model>/run<r>/`) and tuned parameters |
 | `data/runs/` | Predictions and scores of each configuration (B1, P, ...) |
-| `tests/` | Offline tests (incremental update against a mock Odoo catalog; scoring rules) |
+| `tests/` | Offline tests (incremental update and Mapping Agent against a mock Odoo catalog; scoring rules) |
 | `logs/` | Run logs (see `logs/README.md`) |
 
 ## Setup (summary)
@@ -88,6 +91,24 @@ python tests/test_metrics.py                              # hand-checked cases o
 Scoring rules (`src/evaluation/metrics.py`): a module counts as correct if it is the main or an accepted module
 (Hit@k, MRR). Recall uses the gold answers only; precision does not count accepted answers as errors (lenient),
 and a strict precision that does count them is reported next to it. Excluded models are errors.
+
+### Mapping Agent (configuration P)
+
+```bash
+python src/mapping/mapping_agent.py --lang en --split dev --dry-llm     # plumbing check, 0 LLM calls
+python src/mapping/mapping_agent.py --lang en --split dev               # 4 Gemini calls, cached in data/mapping/llm/
+python src/mapping/tune.py --lang en                                    # grid search on dev, 0 calls
+python src/mapping/mapping_agent.py --lang en --split test --params data/mapping/params_dev_en.json --run 1
+python src/evaluation/evaluate.py data/runs/p_en_YYYYMMDD_test_run1/predictions.json --split test
+```
+
+For each requirement the LLM (one call) restates it in English and gives low-level keywords, high-level keywords and
+business objects with a model guess (no module names). Low-level keywords find Function nodes, objects are linked to
+Model nodes; every installed module gets `score = alpha * sim + beta * cov + gamma * prox`:
+`sim` = best cosine with the module document (the B1 text) or one of its functions; `cov` = overlap between the
+requirement objects and the module footprint (DEFINES, EXTENDS, ADDS_FIELD), Ochiai by default; `prox` = 1 / (1 + d)
+with d the shortest KG path to an entry point (technical edges excluded, context fields cost more).
+With beta = gamma = 0 and no LLM the module ranking equals B1 (checked in `tests/test_mapping_offline.py`).
 
 ### Incremental update with an unseen module (RQ2)
 

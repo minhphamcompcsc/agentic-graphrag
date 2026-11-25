@@ -1,0 +1,8 @@
+Mapping map-v0.1 (en, split dev, run 1): graph from neo4j {'modules': 67, 'models': 443, 'functions': 14, 'module_model_pairs': 827, 'links_non_technical': 1729}
+  Q08: stock_picking_back2draft (0.641) | models: stock.picking, stock.move | from cache
+  Q11: stock_picking_auto_create_lot (0.764) | models: product.template, stock.picking.type, product.category | from cache
+  Q13: stock_move_location (0.780) | models: stock.picking, stock.picking.type, wiz.stock.move.location.line | from cache
+  Q16: sale_stock_picking_invoice_link (0.815) | models: sale.order.line, stock.move | from cache
+New LLM calls 0; new embeddings 567; 220.8 s
+Saved: data/runs/pnollm_en_20261125_dev_run1/predictions.json
+Next: python src/evaluation/evaluate.py data/runs/pnollm_en_20261125_dev_run1/predictions.json --split dev

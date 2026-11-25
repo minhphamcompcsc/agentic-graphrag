@@ -1,0 +1,5 @@
+Tuned on dev ['Q08', 'Q11', 'Q13', 'Q16'] (2160 combinations, 0 LLM calls)
+  default: objective 1.750 (MRR 1.000, model F1 0.750)
+  best   : objective 1.833 (MRR 1.000, model F1 0.833); 12 combinations tie, the one closest to the defaults is kept
+  params : {"beta": 0.5, "gamma": 0.25, "cov": "ochiai", "m_models": 4, "lam_entry": 0.0, "lam_function": 0.0, "delegated_penalty": 0.3}
+Saved: data/mapping/params_dev_en.json

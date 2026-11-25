@@ -1,0 +1,45 @@
+{
+  "id": "Q13",
+  "lang": "en",
+  "backend": "gemini",
+  "llm": "gemini-3.6-flash",
+  "temperature": 0,
+  "prompt_version": "map-v0.1",
+  "called_at": "2026-11-25T12:54:45+00:00",
+  "input_sha256": "387c1142d790b930",
+  "input": "On the inventory overview, each internal transfer type should have a button to move on-hand stock from one location to another, and the warehouse manager decides per operation type whether the button is shown.",
+  "output": {
+    "normalized_en": "The inventory overview should display a button on internal transfer operation types to quickly move on-hand stock between locations, with its visibility configurable per operation type by the warehouse manager.",
+    "low_level_keywords": [
+      "inventory overview",
+      "operation type",
+      "internal transfer",
+      "on-hand stock",
+      "location",
+      "button visibility"
+    ],
+    "high_level_keywords": [
+      "inventory management",
+      "stock transfers",
+      "warehouse configuration"
+    ],
+    "objects": [
+      {
+        "mention": "operation type",
+        "odoo_model": "stock.picking.type"
+      },
+      {
+        "mention": "internal transfer",
+        "odoo_model": "stock.picking"
+      },
+      {
+        "mention": "location",
+        "odoo_model": "stock.location"
+      },
+      {
+        "mention": "on-hand stock",
+        "odoo_model": "stock.quant"
+      }
+    ]
+  }
+}

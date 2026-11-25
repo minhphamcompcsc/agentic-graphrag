@@ -142,9 +142,9 @@ class CachedEmbedder:
         return np.stack([self.store[k] for k in keys])
 
 
-def run(lang: str, k: int, m: int, requirements: str, collected_dir: Path, out_root: Path,
-        cache_dir: Path, embed_fn=None, pg=None):
-    t0 = time.time()
+def read_odoo_rows(pg=None):
+    """Installed modules (name, label, summary, description) and models (name, label) from the Odoo database.
+    Shared with the Mapping Agent so that sim(q,m) uses exactly the B1 module documents."""
     with psycopg2.connect(**(pg or PG)) as conn:
         cur = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
         cur.execute(SQL_DESC_TYPE)
@@ -155,6 +155,13 @@ def run(lang: str, k: int, m: int, requirements: str, collected_dir: Path, out_r
         mod_rows = [dict(r) for r in cur.fetchall()]
         cur.execute(SQL_MODELS)
         model_rows = [dict(r) for r in cur.fetchall()]
+    return mod_rows, model_rows
+
+
+def run(lang: str, k: int, m: int, requirements: str, collected_dir: Path, out_root: Path,
+        cache_dir: Path, embed_fn=None, pg=None):
+    t0 = time.time()
+    mod_rows, model_rows = read_odoo_rows(pg)
 
     docs = module_documents(mod_rows, collected_dir)
     model_texts = [f"{r['label']} ({r['name']})" for r in model_rows]
