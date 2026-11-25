@@ -1,0 +1,3 @@
+langchain-google-genai 2.1.12 | model gemini-3.8-flash
+[T1 trả lời thường] LỖI sau 88.5s: DeadlineExceeded('Deadline expired before operation could complete.')
+T1 lỗi: vấn đề ở key, mạng hoặc model, không phải structured output
