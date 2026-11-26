@@ -47,6 +47,7 @@ for sub in ("src/verifier", "src/mapping", "src/baselines", "src/extractor", "sr
     sys.path.insert(0, str(ROOT / sub))
 import mapping_agent as ma  # noqa: E402
 from analyze import PROMPT_VERSION as MAP_PROMPT, Analyzer, DailyQuotaExceeded as MapQuota  # noqa: E402
+from analyze import TransientLLMError as MapTransient  # noqa: E402
 from verifier import (ACCEPT, PROMPT_VERSION as VER_PROMPT, VERIFIER_VERSION, DailyQuotaExceeded as VerQuota,  # noqa: E402
                       TransientLLMError, Verifier, build_prompt, dossier, kg_checks, validate)
 
@@ -195,11 +196,11 @@ def run(args, embed_fn=None, llm_fn=None, ver_llm_fn=None, pg=None):
             base = {"id": r["id"], "query": text, "analysis": analysis, "llm_cached": cached,
                     "entry_functions": feat["entry_functions"], "entry_models": feat["entry_models"]}
             out = verify_one(r, text, analysis, feat, dec0, res, p, ver, col, args)
-        except (MapQuota, VerQuota, TransientLLMError) as e:
-            stopped = f"{type(e).__name__}: {e}"
+        except (MapQuota, VerQuota, TransientLLMError, MapTransient) as e:
+            stopped = f"{type(e).__name__}: {str(e)[:2000]}"
             break
         except Exception as e:  # noqa: BLE001  (any other error: keep what is done, report, stop)
-            stopped = f"{type(e).__name__}: {repr(e)[:300]}"
+            stopped = f"{type(e).__name__}: {repr(e)[:2000]}"
             break
         items_pv.append({**base, **dec0})
         items_p.append({**base, **out})

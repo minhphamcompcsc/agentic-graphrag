@@ -48,7 +48,7 @@ import numpy as np
 ROOT = Path(__file__).resolve().parents[2]
 for sub in ("src/mapping", "src/baselines", "src/extractor", "src/evaluation"):
     sys.path.insert(0, str(ROOT / sub))
-from analyze import PROMPT_VERSION, Analyzer, DailyQuotaExceeded  # noqa: E402
+from analyze import PROMPT_VERSION, Analyzer, DailyQuotaExceeded, TransientLLMError  # noqa: E402
 from graph_view import SYSTEM_FIELDS, GraphView  # noqa: E402
 
 MAPPING_VERSION = "map-v0.1"
@@ -306,8 +306,8 @@ def run(args, embed_fn=None, llm_fn=None, pg=None):
         text = r[f"requirement_{args.lang}"]
         try:
             analysis, cached = an.analyze(r["id"], args.lang, text)
-        except DailyQuotaExceeded as e:
-            stopped = str(e)
+        except (DailyQuotaExceeded, TransientLLMError) as e:
+            stopped = f"{type(e).__name__}: {e}"
             break
         feat = features(res, text, analysis, p)
         dec = decide(feat, p, res.g)

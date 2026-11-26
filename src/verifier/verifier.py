@@ -112,6 +112,7 @@ class TransientLLMError(RuntimeError):
 TRANSIENT = ("503", "504", "DeadlineExceeded", "Deadline expired", "DEADLINE_EXCEEDED", "UNAVAILABLE",
              "ServiceUnavailable", "high demand", "overloaded", "timed out", "Timeout", "ReadTimeout")
 TRANSIENT_WAIT = int(os.getenv("LLM_TRANSIENT_WAIT", "30"))
+ERROR_CHARS = 2000                                   # keep the quota details of Google errors in the logs
 
 
 def sha(s: str) -> str:
@@ -224,7 +225,7 @@ class Verifier:
             except Exception as e:  # noqa: BLE001
                 msg = repr(e)
                 if "PerDay" in msg or "per day" in msg:
-                    raise DailyQuotaExceeded(msg[:300])
+                    raise DailyQuotaExceeded(msg[:ERROR_CHARS])
                 if attempt == 1 and ("429" in msg or "RESOURCE_EXHAUSTED" in msg):
                     print("    per-minute limit, waiting 60 s and trying once more")
                     time.sleep(60)
@@ -235,7 +236,7 @@ class Verifier:
                               f"and trying once more")
                         time.sleep(TRANSIENT_WAIT if not self.llm_fn else 0)
                         continue
-                    raise TransientLLMError(msg[:300])
+                    raise TransientLLMError(msg[:ERROR_CHARS])
                 raise
 
     def judge(self, qid: str, lang: str, rnd: int, prompt: str):

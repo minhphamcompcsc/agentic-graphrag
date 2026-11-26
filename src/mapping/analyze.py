@@ -69,6 +69,16 @@ class DailyQuotaExceeded(RuntimeError):
     pass
 
 
+class TransientLLMError(RuntimeError):
+    """503, 504 (deadline expired), timeout: the model is overloaded; rerun later (answers are cached)."""
+
+
+TRANSIENT = ("503", "504", "DeadlineExceeded", "Deadline expired", "DEADLINE_EXCEEDED", "UNAVAILABLE",
+             "ServiceUnavailable", "high demand", "overloaded", "timed out", "Timeout", "ReadTimeout")
+TRANSIENT_WAIT = int(os.getenv("LLM_TRANSIENT_WAIT", "30"))
+ERROR_CHARS = 2000                                   # keep the quota details of Google errors in the logs
+
+
 def sha(s: str) -> str:
     return hashlib.sha256(s.encode("utf-8")).hexdigest()[:16]
 
@@ -111,11 +121,18 @@ class Analyzer:
             except Exception as e:  # noqa: BLE001
                 msg = repr(e)
                 if "PerDay" in msg or "per day" in msg:
-                    raise DailyQuotaExceeded(msg[:300])
+                    raise DailyQuotaExceeded(msg[:ERROR_CHARS])
                 if attempt == 1 and ("429" in msg or "RESOURCE_EXHAUSTED" in msg):
                     print("    per-minute limit, waiting 60 s and trying once more")
                     time.sleep(60)
                     continue
+                if any(t in msg for t in TRANSIENT):
+                    if attempt == 1:
+                        print(f"    model overloaded or timeout ({msg[:80]}...), waiting {TRANSIENT_WAIT} s "
+                              f"and trying once more")
+                        time.sleep(TRANSIENT_WAIT)
+                        continue
+                    raise TransientLLMError(msg[:ERROR_CHARS])
                 raise
 
     def analyze(self, qid: str, lang: str, text: str):
