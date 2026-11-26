@@ -1,0 +1,184 @@
+You are a senior Odoo 18 functional consultant. A search agent mapped the business requirement below
+to candidate Odoo modules. Check its answer.
+
+Requirement (written by a business analyst, may be in Vietnamese or English):
+<<<
+All products in the fresh-food category must get lot numbers generated automatically at receipt, without enabling it product by product, and only for the vendor receipt operation type.
+>>>
+English restatement by the search agent: Products belonging to the fresh-food product category must automatically generate lot numbers upon receiving goods, specifically restricted to the vendor receipt operation type, without requiring lot tracking to be enabled individually on each product.
+
+Candidate modules, best first. Everything below comes from a knowledge graph built from the installed
+Odoo 18 database (models, fields, dependencies) and from the module documentation.
+
+### Candidate 1: stock_picking_auto_create_lot (OCA module, "Stock Picking Auto Create Lot")
+Direct dependencies: stock
+Documentation:
+# Stock Picking Auto Create Lot
+
+## SUMMARY
+Auto create lots for incoming pickings
+
+## DESCRIPTION
+This module extends the functionality of stock module to allow auto
+create lots for incoming pickings.
+
+## USAGE
+To use this module you need to:
+
+1.  Go to a *Product \> General Information tab*.
+2.  Set a tracking option for this product.
+3.  Set auto create lot.
+4.  Go to *Inventory \> Incoming* and create one.
+5.  Validate picking without lot.
+
+## CONFIGURE
+To configure this module, you need to:
+
+1.  Go to a *Inventory \> Configuration \> Operation Types*.
+2.  Set 'auto create lot' option for this operation type.
+3.  Go to a *Inventory \> Master Data \> Products*.
+4.  Set 'auto create lot' option for the products you need.
+
+It's possible to configure by code a way to force the setting of the auto lot when
+printing the detailed operation labels. To do so, pass the context key `force_auto_lot`
+to the report. This is a simple example with a server action, but it can be done with
+overriding methods as well:
+
+```xml
+     <record id="action_print_detailed_operation" model="ir.actions.server">
+          <field name="name">Print detailed operations</field>
+          <field name="model_id" ref="stock.model_stock_move_line" />
+          <field
+                name="binding_model_id"
+                ref="stock.model_stock_move_line"
+          />
+          <field name="binding_view_types">list</field>
+          <field name="state">code</field>
+          <field name="code">
+     if record [...]
+Business functions (knowledge graph):
+- Auto create lots for incoming stock pickings: Automatically generates lot numbers when validating incoming stock pickings for tracked products configured with auto lot creation, removing the need for manual lot entry.
+Models (relation of the module to the model; fields the module adds):
+- product.category (Product Category) [ADDS_FIELD, EXTENDS]; adds auto_create_lot
+- product.template (Product) [ADDS_FIELD, EXTENDS]; adds auto_create_lot
+- stock.picking.type (Picking Type) [ADDS_FIELD, EXTENDS]; adds auto_create_lot
+- stock.move.line (Product Moves (Stock Move Line)) [EXTENDS]
+- stock.picking (Transfer) [EXTENDS]
+- ir.actions.report (Report Action) [EXTENDS]
+- stock.move (Stock Move) [EXTENDS]
+- product.product (Product Variant) [ADDS_FIELD, delegated: no code here]; adds auto_create_lot
+
+### Candidate 2: stock_no_negative (OCA module, "Stock Disallow Negative")
+Direct dependencies: stock
+Documentation:
+# Stock Disallow Negative
+
+## SUMMARY
+Disallow negative stock levels by default
+
+## DESCRIPTION
+By default, Odoo allows negative stock. The advantage of negative stock
+is that, if some stock levels are wrong in the ERP, you will not be
+blocked when validating the picking for a customer... so you will still
+be able to ship the products on time (it's an example !). The problem is
+that, after you forced the stock level to negative, you are supposed to
+fix the stock level later via an inventory ; but this action is often
+forgotten by users, so you end up with negative stock levels in your ERP
+and it can stay like this forever (or at least until the next full
+inventory).
+
+If you disallow negative stock in Odoo with this module, you will be
+blocked when trying to validate a stock operation that will set the
+stock level of a product and/or location as negative. So you will have
+to fix the wrong stock level of that product without delay, in order to
+validate the stock operation in Odoo...you can't forget it anymore !
+
+## USAGE
+When you validate a stock operation (a stock move, a picking, a
+manufacturing order, etc.) that will set the stock level of a stockable
+product as negative, you will be blocked by an error message. The
+consumable products can still have a negative stock level.
+
+## CONFIGURE
+By default, the stockable products will not be allowed to have a
+negative stock. If you want to make some exceptions for some products,
+product categories or locations, you can activate the  [...]
+Business functions (knowledge graph):
+- Allow negative stock for individual locations: Enables negative stock levels for individual inventory locations by setting the Allow Negative Stock flag on the selected locations.
+- Allow negative stock for product categories: Permits negative stock levels for all products within a specific category by enabling the Allow Negative Stock setting on the product category.
+- Allow negative stock for specific products: Allows negative stock levels for specific products by enabling the Allow Negative Stock option on the product form.
+- Block stock operations resulting in negative stock: Prevents stock operations such as stock moves, pickings, or manufacturing orders from being validated if they would result in a negative stock level for stockable products or locations.
+Models (relation of the module to the model; fields the module adds):
+- product.category (Product Category) [ADDS_FIELD, EXTENDS]; adds allow_negative_stock
+- product.template (Product) [ADDS_FIELD, EXTENDS]; adds allow_negative_stock
+- stock.location (Inventory Locations) [ADDS_FIELD, EXTENDS]; adds allow_negative_stock
+- stock.quant (Quants) [EXTENDS]
+- product.product (Product Variant) [ADDS_FIELD, delegated: no code here]; adds allow_negative_stock
+
+### Candidate 3: stock_move_location (OCA module, "Move Stock Location")
+Direct dependencies: stock
+Documentation:
+# Move Stock Location
+
+## SUMMARY
+This module allows to move all stock in a stock location to an other one.
+
+## DESCRIPTION
+This module allows to move entire location of products from one place to
+another and move only selected quantities.
+
+## USAGE
+- A new menu item Operations \> Move from location... opens a wizard where 2 locations
+  can be specified.
+- Select origin and destination locations and press "IMMEDIATE TRANSFER" or "PLANNED
+  TRANSFER"
+- Those lines can be edited. Move quantity can't be more than a max available quantity
+- Move doesn't care about the reservations and will move stuff anyway
+- If during your operation with the wizard the real quantity will change it will move
+  only the available quantity at the button press
+- Products will be moved and a form view of picking that did that will show up
+- If "PLANNED TRANSFER" is used - the picking won't be validated automatically
+
+If you want to transfer a full quant:
+
+- Go to Inventory \> Products \> Products and click "On hand" smart button or Inventory
+  \> Reporting \> Inventory, the quants view will be opened.
+- Select the quantities which you want move to another location
+
+If you go to the Inventory Dashboard you can see the button "Move from location" in each
+of the picking types (only applicable to internal and outgoing transfers). Press it and
+you will be directed to the wizard.
+
+To enable this option, check "Show Move On Hand Stock" in the Picking Type
+configuration.
+
+If you want transfer everything from [...]
+Business functions (knowledge graph):
+- Fill draft picking with products from source location: Populates a draft picking with stock move lines for all available products in the specified source location.
+- Move specific stock quants: Enables users to select specific quants from the product on-hand or inventory reporting views and transfer them to a designated location.
+- Move stock between locations via wizard: Transfers entire stock or selected product quantities from an origin location to a destination location using a specialized wizard, supporting both immediate and planned transfers.
+Models (relation of the module to the model; fields the module adds):
+- wiz.stock.move.location.line (Wizard move location line) [ADDS_FIELD, DEFINES]; adds custom, destination_location_id, lot_id, max_quantity, move_location_wizard_id, move_quantity, origin_location_id, owner_id ...
+- stock.picking.type (Picking Type) [ADDS_FIELD, EXTENDS]; adds show_move_onhand
+- stock.picking (Transfer) [EXTENDS]
+- wiz.stock.move.location (Wizard move location) [ADDS_FIELD, DEFINES]; adds apply_putaway_strategy, company_id, destination_location_disable, destination_location_id, edit_locations, exclude_reserved_qty, origin_location_disable, origin_location_id ...
+- stock.move (Stock Move) [ADDS_FIELD, EXTENDS]; adds location_move
+
+Answer:
+1. candidates: for each candidate, does its functionality fit the requirement? "yes", "partly" or "no",
+   with one short reason based on the information above.
+2. chosen_module: the candidate that best fulfils the requirement (copy its name), or null if none fits.
+3. verdict:
+   - "supported": the chosen module covers the requirement;
+   - "partial": it covers the main need, but some parts need other settings or customization;
+   - "not_supported": no candidate covers the requirement;
+   - "insufficient_evidence": a candidate might fit, but the information above is too thin to decide.
+4. models: 1 to 4 models of the chosen module, copied exactly from its "Models" list, where this requirement
+   is configured or where the module's logic for it lives; most important first. Prefer models where the
+   module has code (DEFINES or EXTENDS) or adds the setting fields; avoid models that only receive fields
+   through delegation.
+5. missing: parts of the requirement that no candidate covers (empty list if none).
+6. evidence: 1 to 3 short quotes copied word for word from the information above.
+7. reason: 1 to 3 sentences.
+Only judge the listed candidates. You may use general Odoo knowledge to interpret them, but do not
+invent features that the information above does not support.

@@ -1,0 +1,136 @@
+You are a senior Odoo 18 functional consultant. A search agent mapped the business requirement below
+to candidate Odoo modules. Check its answer.
+
+Requirement (written by a business analyst, may be in Vietnamese or English):
+<<<
+When a customer returns goods and accounting creates a credit note from the original invoice, the credit note lines must be linked to the corresponding return stock moves.
+>>>
+English restatement by the search agent: When a customer returns goods and accounting creates a credit note from the original invoice, each credit note line must be linked to its corresponding return stock move.
+
+Candidate modules, best first. Everything below comes from a knowledge graph built from the installed
+Odoo 18 database (models, fields, dependencies) and from the module documentation.
+
+### Candidate 1: stock_picking_invoice_link (OCA module, "Stock Picking Invoice Link")
+Direct dependencies: stock_account
+Documentation:
+# Stock Picking Invoice Link
+
+## SUMMARY
+Adds link between pickings and invoices
+
+## DESCRIPTION
+The base module used by sale_stock_picking_invoice_link and purchase_stock_picking_invoice_link 
+to adds a link between pickings and invoices as well as on the lines.
+
+## USAGE
+- Create a Sales Order and confirm.
+- Deliver its pickings totally or partially.
+- Create an invoice of the goods delivered.
+- If you open invoice form, you must see a new Pickings tab with
+  information about them.
+Business functions (knowledge graph):
+- Link stock pickings and invoices: Establishes a link between stock pickings and invoices at both the header and line levels, providing visibility of related pickings in a dedicated tab on the invoice.
+Models (relation of the module to the model; fields the module adds):
+- stock.move (Stock Move) [ADDS_FIELD, EXTENDS]; adds invoice_line_ids
+- account.move.line (Journal Item) [ADDS_FIELD, EXTENDS]; adds move_line_ids
+- stock.picking (Transfer) [ADDS_FIELD, EXTENDS]; adds invoice_count, invoice_ids
+- account.move (Journal Entry) [ADDS_FIELD, EXTENDS]; adds picking_count, picking_ids
+- account.move.reversal (Account Move Reversal) [EXTENDS]
+- account.bank.statement.line (Bank Statement Line) [ADDS_FIELD, delegated: no code here]; adds picking_count, picking_ids
+
+### Candidate 2: sale_stock_picking_invoice_link (OCA module, "Stock Picking Invoice Link")
+Direct dependencies: sale_stock, stock_picking_invoice_link
+Documentation:
+# Stock Picking Invoice Link
+
+## SUMMARY
+Adds link between pickings and invoices
+
+## DESCRIPTION
+This module adds a link between pickings and invoices as well as on the lines.
+Invoices are generated from sales orders. With this module, you can find back
+which deliveries an invoice relates to.
+
+In standard, if you make a partial delivery and invoice it, then make remaining
+delivery and invoice it, it is impossible to known to what delivery the
+invoices relate to. You only have the quantity.
+
+This module is also useful if you want to present data on the invoice report
+grouped by deliveries.
+
+Note that the links are only for products with an invoicing policy set on
+delivery.
+
+## USAGE
+* Create a Sales Order and confirm.
+* Deliver its pickings totally or partially.
+* Create an invoice of the goods delivered.
+* If you open invoice form, you must see a new Pickings tab with information
+  about them.
+Business functions (knowledge graph):
+- Link stock pickings and invoices: Establishes links between stock pickings and invoices as well as invoice lines, allowing users to track which deliveries correspond to specific invoices when invoicing sales order items with a delivery invoicing policy.
+Models (relation of the module to the model; fields the module adds):
+- sale.order.line (Sales Order Line) [EXTENDS]
+- stock.move (Stock Move) [EXTENDS]
+
+### Candidate 3: sale_stock (Odoo module, "Sales and Warehouse Management")
+Direct dependencies: sale, stock_account
+Documentation:
+# Sales and Warehouse Management
+
+## SUMMARY
+Quotation, Sales Orders, Delivery & Invoicing Control
+
+## DESCRIPTION
+Manage sales quotations and orders
+
+This module makes the link between the sales and warehouses management applications.
+
+Preferences
+
+* Shipping: Choice of delivery at once or partial delivery
+* Invoicing: choose how invoices will be paid
+* Incoterms: International Commercial terms
+Models (relation of the module to the model; fields the module adds):
+- stock.move.line (Product Moves (Stock Move Line)) [EXTENDS]
+- stock.route (Inventory Routes) [ADDS_FIELD, EXTENDS]; adds sale_selectable
+- sale.order.line (Sales Order Line) [ADDS_FIELD, EXTENDS]; adds display_qty_widget, forecast_expected_date, free_qty_today, is_mto, is_storable, move_ids, qty_available_today, qty_to_deliver ...
+- stock.move (Stock Move) [ADDS_FIELD, EXTENDS]; adds sale_line_id
+- stock.picking (Transfer) [ADDS_FIELD, EXTENDS]; adds sale_id
+- stock.return.picking (Return Picking) [EXTENDS]
+- stock.rules.report (Stock Rules report) [ADDS_FIELD, EXTENDS]; adds so_route_ids
+- sale.order (Sales Order) [ADDS_FIELD, EXTENDS]; adds delivery_count, delivery_status, effective_date, incoterm, incoterm_location, json_popover, picking_ids, picking_policy ...
+- account.move.line (Journal Item) [EXTENDS]
+- stock.lot (Lot/Serial) [ADDS_FIELD, EXTENDS]; adds sale_order_count, sale_order_ids
+- account.move (Journal Entry) [EXTENDS]
+- sale.order.cancel (Sales Order Cancel) [ADDS_FIELD, EXTENDS]; adds display_delivery_alert
+- report.stock.report_stock_rule (Stock rule report) [EXTENDS]
+- stock.forecasted_product_product (Stock Replenishment Report) [EXTENDS]
+- procurement.group (Procurement Group) [ADDS_FIELD, EXTENDS]; adds sale_id
+- stock.rule (Stock Rule) [EXTENDS]
+- sale.report (Sales Analysis Report) [ADDS_FIELD, EXTENDS]; adds warehouse_id
+- res.config.settings (Config Settings) [ADDS_FIELD, EXTENDS]; adds default_picking_policy, security_lead, use_security_lead
+- stock.warehouse (Warehouse) [EXTENDS]
+- res.users (User) [ADDS_FIELD, EXTENDS]; adds property_warehouse_id
+- stock.valuation.layer (Stock Valuation Layer) [EXTENDS]
+- product.template (Product) [EXTENDS]
+- res.company (Companies) [ADDS_FIELD, EXTENDS]; adds security_lead
+
+Answer:
+1. candidates: for each candidate, does its functionality fit the requirement? "yes", "partly" or "no",
+   with one short reason based on the information above.
+2. chosen_module: the candidate that best fulfils the requirement (copy its name), or null if none fits.
+3. verdict:
+   - "supported": the chosen module covers the requirement;
+   - "partial": it covers the main need, but some parts need other settings or customization;
+   - "not_supported": no candidate covers the requirement;
+   - "insufficient_evidence": a candidate might fit, but the information above is too thin to decide.
+4. models: 1 to 4 models of the chosen module, copied exactly from its "Models" list, where this requirement
+   is configured or where the module's logic for it lives; most important first. Prefer models where the
+   module has code (DEFINES or EXTENDS) or adds the setting fields; avoid models that only receive fields
+   through delegation.
+5. missing: parts of the requirement that no candidate covers (empty list if none).
+6. evidence: 1 to 3 short quotes copied word for word from the information above.
+7. reason: 1 to 3 sentences.
+Only judge the listed candidates. You may use general Odoo knowledge to interpret them, but do not
+invent features that the information above does not support.

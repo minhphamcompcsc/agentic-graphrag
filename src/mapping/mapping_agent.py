@@ -24,7 +24,8 @@ Steps for one requirement:
                 + lam_entry * [x is an entry model] + lam_function * [an entry function of m involves x]
                 - delegated_penalty * [x only receives fields through _inherits, no code there]
      top m_models of them; plus direct dependencies and the KG path that explains the choice.
-  5. Low confidence (best score < tau): flagged; the agentic loop calls the Collector (next version).
+  5. Low confidence (best score < tau): flagged; the agentic loop (src/verifier/run_pipeline.py) then asks the
+     Collector for more evidence before the Verifier judges the candidates.
 
 Usage (in ~/agentic-graphrag, venv activated, Neo4j and Odoo running):
   python src/mapping/mapping_agent.py --lang en --split dev --dry-llm          # check, 0 LLM calls
@@ -86,6 +87,7 @@ class Resources:
 
     def __init__(self, graph: GraphView, module_docs: dict, embed):
         self.g, self.embed = graph, embed
+        self.docs = module_docs                      # module documents (same text as B1), also read by the Verifier
         self.mod_names = sorted(m for m in graph.modules if m in module_docs)
         self.mod_vecs = embed([module_docs[m] for m in self.mod_names])
         self.fun_keys = sorted(graph.functions)
@@ -230,32 +232,41 @@ def features(res: Resources, req_text: str, analysis: dict, p: Params) -> dict:
 
 
 # ============ decision (cheap, used by tuning) ============
-def decide(feat: dict, p: Params, g: GraphView) -> dict:
+def rank_models(feat: dict, m: str, p: Params) -> list:
+    """Models of the footprint of module m, most relevant first (rel, see step 4). Also used by the Verifier."""
+    rows = []
+    for r in feat["modules"][m]["models"]:
+        rel = (r["cos"] + p.lam_entry * r["entry"] + p.lam_function * r["function"]
+               - p.delegated_penalty * (not r["code"]))
+        rows.append({**r, "rel": round(rel, 4)})
+    rows.sort(key=lambda r: (-r["rel"], r["model"]))
+    return rows
+
+
+def decide(feat: dict, p: Params, g: GraphView, exclude=()) -> dict:
+    """exclude: modules rejected by the Verifier (agentic loop); they are moved to the end of the ranking and
+    the answer is taken from the remaining modules."""
     scored = []
     for m, f in feat["modules"].items():
         cov = f["cov_ochiai"] if p.cov == "ochiai" else f["cov_ratio"]
         s = p.alpha * f["sim"] + p.beta * cov + p.gamma * f["prox"]
         scored.append((round(s, 6), m))
-    scored.sort(key=lambda t: (-t[0], t[1]))
+    scored.sort(key=lambda t: (t[1] in exclude, -t[0], t[1]))
     ranking = [m for _, m in scored]
     answer = []
-    for s, m in scored[:p.k_modules]:
-        rows = []
-        for r in feat["modules"][m]["models"]:
-            rel = (r["cos"] + p.lam_entry * r["entry"] + p.lam_function * r["function"]
-                   - p.delegated_penalty * (not r["code"]))
-            rows.append({**r, "rel": round(rel, 4)})
-        rows.sort(key=lambda r: (-r["rel"], r["model"]))
+    for s, m in [t for t in scored if t[1] not in exclude][:p.k_modules]:
+        rows = rank_models(feat, m, p)
         answer.append({"module": m, "score": s, "models": rows[:p.m_models],
                        "depends": sorted(g.deps.get(m, ())), "path": feat["modules"][m]["path"],
                        "functions": [k for k in g.functions_of(m)]})
     models = list(dict.fromkeys(r["model"] for a in answer for r in a["models"]))
+    kept = [t for t in scored if t[1] not in exclude]
     top = [{"module": m, "score": s, **{k: feat["modules"][m][k] for k in
             ("sim", "sim_doc", "sim_fun", "cov_ratio", "cov_ochiai", "cov_models", "prox", "d")}}
-           for s, m in scored[:10]]
+           for s, m in kept[:10]]
     return {"module_ranking": ranking, "modules": [a["module"] for a in answer], "models": models,
             "answer": answer, "top_modules": top,
-            "low_confidence": bool(scored and scored[0][0] < p.tau)}
+            "low_confidence": bool(kept and kept[0][0] < p.tau)}
 
 
 # ============ loading ============

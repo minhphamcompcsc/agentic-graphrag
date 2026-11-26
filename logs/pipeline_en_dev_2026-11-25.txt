@@ -1,0 +1,122 @@
+Pipeline pipe-v0.1 = Mapping map-v0.1 + Verifier ver-v0.1 (en, split dev, run 1, tau 0.0): graph from neo4j {'modules': 67, 'models': 443, 'functions': 14, 'module_model_pairs': 827, 'links_non_technical': 1729}
+  Q08: stock_no_negative | models: product.category, stock.quant, product.template, stock.location | supported, 1 round(s), 1 new call(s)
+  Q11: stock_picking_auto_create_lot | models: product.category, stock.picking.type, stock.picking, stock.move | supported, 1 round(s), 1 new call(s)
+  Q13: stock_move_location | models: stock.picking.type, wiz.stock.move.location | supported, 1 round(s), 1 new call(s)
+Traceback (most recent call last):
+  File "/home/minhpham/agentic-graphrag/.venv/lib/python3.12/site-packages/google/api_core/grpc_helpers.py", line 140, in error_remapped_callable
+    return callable_(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/minhpham/agentic-graphrag/.venv/lib/python3.12/site-packages/grpc/_interceptor.py", line 276, in __call__
+    response, ignored_call = self._with_call(
+                             ^^^^^^^^^^^^^^^^
+  File "/home/minhpham/agentic-graphrag/.venv/lib/python3.12/site-packages/grpc/_interceptor.py", line 331, in _with_call
+    return call.result(), call
+           ^^^^^^^^^^^^^
+  File "/home/minhpham/agentic-graphrag/.venv/lib/python3.12/site-packages/grpc/_channel.py", line 447, in result
+    raise self
+  File "/home/minhpham/agentic-graphrag/.venv/lib/python3.12/site-packages/grpc/_interceptor.py", line 314, in continuation
+    response, call = self._thunk(new_method).with_call(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/minhpham/agentic-graphrag/.venv/lib/python3.12/site-packages/grpc/_channel.py", line 1182, in with_call
+    return _end_unary_response_blocking(state, call, True, None)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/minhpham/agentic-graphrag/.venv/lib/python3.12/site-packages/grpc/_channel.py", line 999, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)  # pytype: disable=not-instantiable
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.DEADLINE_EXCEEDED
+	details = "Deadline expired before operation could complete."
+	debug_error_string = "DEADLINE_EXCEEDED:Deadline expired before operation could complete."
+>
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/minhpham/agentic-graphrag/src/verifier/run_pipeline.py", line 259, in <module>
+    run(build_parser().parse_args())
+  File "/home/minhpham/agentic-graphrag/src/verifier/run_pipeline.py", line 197, in run
+    out = verify_one(r, text, analysis, feat, dec0, res, p, ver, col, args)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/minhpham/agentic-graphrag/src/verifier/run_pipeline.py", line 119, in verify_one
+    raw, cached = ver.judge(r["id"], args.lang, rnd, prompt)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/minhpham/agentic-graphrag/src/verifier/verifier.py", line 236, in judge
+    out = self._call(prompt)
+          ^^^^^^^^^^^^^^^^^^
+  File "/home/minhpham/agentic-graphrag/src/verifier/verifier.py", line 208, in _call
+    out = self._llm.invoke(prompt)
+          ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/minhpham/agentic-graphrag/.venv/lib/python3.12/site-packages/langchain_core/runnables/base.py", line 3266, in invoke
+    input_ = context.run(step.invoke, input_, config, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/minhpham/agentic-graphrag/.venv/lib/python3.12/site-packages/langchain_core/runnables/base.py", line 5734, in invoke
+    return self.bound.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/minhpham/agentic-graphrag/.venv/lib/python3.12/site-packages/langchain_google_genai/chat_models.py", line 1676, in invoke
+    return super().invoke(input, config, stop=stop, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/minhpham/agentic-graphrag/.venv/lib/python3.12/site-packages/langchain_core/language_models/chat_models.py", line 395, in invoke
+    self.generate_prompt(
+  File "/home/minhpham/agentic-graphrag/.venv/lib/python3.12/site-packages/langchain_core/language_models/chat_models.py", line 1025, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/minhpham/agentic-graphrag/.venv/lib/python3.12/site-packages/langchain_core/language_models/chat_models.py", line 842, in generate
+    self._generate_with_cache(
+  File "/home/minhpham/agentic-graphrag/.venv/lib/python3.12/site-packages/langchain_core/language_models/chat_models.py", line 1091, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "/home/minhpham/agentic-graphrag/.venv/lib/python3.12/site-packages/langchain_google_genai/chat_models.py", line 1790, in _generate
+    response: GenerateContentResponse = _chat_with_retry(
+                                        ^^^^^^^^^^^^^^^^^
+  File "/home/minhpham/agentic-graphrag/.venv/lib/python3.12/site-packages/langchain_google_genai/chat_models.py", line 238, in _chat_with_retry
+    return _chat_with_retry(**params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/minhpham/agentic-graphrag/.venv/lib/python3.12/site-packages/tenacity/__init__.py", line 331, in wrapped_f
+    return copy(f, *args, **kw)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/minhpham/agentic-graphrag/.venv/lib/python3.12/site-packages/tenacity/__init__.py", line 470, in __call__
+    do = self.iter(retry_state=retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/minhpham/agentic-graphrag/.venv/lib/python3.12/site-packages/tenacity/__init__.py", line 371, in iter
+    result = action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/minhpham/agentic-graphrag/.venv/lib/python3.12/site-packages/tenacity/__init__.py", line 413, in exc_check
+    raise retry_exc.reraise()
+          ^^^^^^^^^^^^^^^^^^^
+  File "/home/minhpham/agentic-graphrag/.venv/lib/python3.12/site-packages/tenacity/__init__.py", line 184, in reraise
+    raise self.last_attempt.result()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/minhpham/agentic-graphrag/.venv/lib/python3.12/site-packages/tenacity/__init__.py", line 473, in __call__
+    result = fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/minhpham/agentic-graphrag/.venv/lib/python3.12/site-packages/langchain_google_genai/chat_models.py", line 208, in _chat_with_retry
+    return generation_method(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/minhpham/agentic-graphrag/.venv/lib/python3.12/site-packages/google/ai/generativelanguage_v1beta/services/generative_service/client.py", line 752, in generate_content
+    response = rpc(
+               ^^^^
+  File "/home/minhpham/agentic-graphrag/.venv/lib/python3.12/site-packages/google/api_core/gapic_v1/method.py", line 415, in __call__
+    return wrapped_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/minhpham/agentic-graphrag/.venv/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 295, in retry_wrapped_func
+    return retry_target(
+           ^^^^^^^^^^^^^
+  File "/home/minhpham/agentic-graphrag/.venv/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 157, in retry_target
+    next_sleep = _retry_error_helper(
+                 ^^^^^^^^^^^^^^^^^^^^
+  File "/home/minhpham/agentic-graphrag/.venv/lib/python3.12/site-packages/google/api_core/retry/retry_base.py", line 215, in _retry_error_helper
+    raise final_exc from source_exc
+  File "/home/minhpham/agentic-graphrag/.venv/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 148, in retry_target
+    result = target()
+             ^^^^^^^^
+  File "/home/minhpham/agentic-graphrag/.venv/lib/python3.12/site-packages/google/api_core/timeout.py", line 130, in func_with_timeout
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/minhpham/agentic-graphrag/.venv/lib/python3.12/site-packages/google/api_core/grpc_helpers.py", line 142, in error_remapped_callable
+    raise exceptions.from_grpc_error(exc) from exc
+google.api_core.exceptions.DeadlineExceeded: 504 Deadline expired before operation could complete.

@@ -42,8 +42,10 @@ KG layers:
 | `src/collector/collect_modules.py` | Collector v0: manifest + readme |
 | `src/collector/collect_modules_v1.py` | Collector v1: + GitHub issues/PRs selected by an LLM |
 | `src/baselines/b1_vector_rag.py` | Baseline B1: plain vector RAG over module and model descriptions (no graph, no LLM) |
-| `src/mapping/mapping_agent.py` | Mapping Agent (configuration P): requirement analysis (1 LLM call), 2-level entry points, score = alpha sim + beta cov + gamma prox, models and KG path for the answer |
+| `src/mapping/mapping_agent.py` | Mapping Agent (alone = configuration P-V): requirement analysis (1 LLM call), 2-level entry points, score = alpha sim + beta cov + gamma prox, models and KG path for the answer |
 | `src/mapping/graph_view.py`, `src/mapping/analyze.py`, `src/mapping/tune.py` | In-memory KG view (Cypher loaders), LLM requirement analysis with cache, parameter search on the dev split |
+| `src/verifier/verifier.py` | Verifier Agent: KG checks, candidate dossiers, 1 LLM judgement per round (validated against the KG) |
+| `src/verifier/run_pipeline.py` | Full pipeline P (Mapping + Verifier, at most 2 rounds, back to Mapping, Collector in the loop) and P-V in one run |
 | `src/evaluation/metrics.py`, `src/evaluation/evaluate.py` | Scoring rules (Hit@k, MRR, P/R/F1 at module and model level, lenient and strict) and scoring script |
 | `src/experiments/test_lightrag_neo4j.py` | Experiment: LightRAG with the project's Neo4j |
 | `queries/` | Cypher queries for checks and analysis (results written as comments) |
@@ -53,8 +55,9 @@ KG layers:
 | `data/eval/` | Evaluation set (requirements and answers checked against KG metadata) |
 | `data/experiments/` | Side experiment results |
 | `data/mapping/` | Mapping Agent LLM cache (`llm/<model>/run<r>/`) and tuned parameters |
+| `data/verifier/` | Verifier LLM cache (`llm/<model>/run<r>/`, prompt included) and prompts of dry runs |
 | `data/runs/` | Predictions and scores of each configuration (B1, P, ...) |
-| `tests/` | Offline tests (incremental update and Mapping Agent against a mock Odoo catalog; scoring rules) |
+| `tests/` | Offline tests (incremental update, Mapping Agent and Verifier against a mock Odoo catalog; scoring rules) |
 | `logs/` | Run logs (see `logs/README.md`) |
 
 ## Setup (summary)
@@ -92,7 +95,7 @@ Scoring rules (`src/evaluation/metrics.py`): a module counts as correct if it is
 (Hit@k, MRR). Recall uses the gold answers only; precision does not count accepted answers as errors (lenient),
 and a strict precision that does count them is reported next to it. Excluded models are errors.
 
-### Mapping Agent (configuration P)
+### Mapping Agent
 
 ```bash
 python src/mapping/mapping_agent.py --lang en --split dev --dry-llm     # plumbing check, 0 LLM calls
@@ -109,6 +112,31 @@ Model nodes; every installed module gets `score = alpha * sim + beta * cov + gam
 requirement objects and the module footprint (DEFINES, EXTENDS, ADDS_FIELD), Ochiai by default; `prox` = 1 / (1 + d)
 with d the shortest KG path to an entry point (technical edges excluded, context fields cost more).
 With beta = gamma = 0 and no LLM the module ranking equals B1 (checked in `tests/test_mapping_offline.py`).
+
+Runs of the Mapping Agent alone are written to `data/runs/p_...` (dev runs of 2026-11-25); in the evaluation they are
+the Mapping-only configuration (P-V).
+
+### Verifier Agent and agentic loop (configuration P)
+
+```bash
+python src/verifier/run_pipeline.py --lang en --split dev --params data/mapping/params_dev_en.json --dry-verifier
+#   0 LLM calls: Mapping from cache, Verifier prompts saved to data/verifier/prompts/ for inspection
+python src/verifier/run_pipeline.py --lang en --split dev --params data/mapping/params_dev_en.json
+#   1 to 2 Verifier calls per requirement (cached in data/verifier/llm/)
+python src/evaluation/evaluate.py data/runs/pfull_en_YYYYMMDD_dev_run1/predictions.json --split dev
+python src/evaluation/evaluate.py data/runs/pv_en_YYYYMMDD_dev_run1/predictions.json --split dev
+```
+
+For each requirement the Verifier receives the top 3 Mapping candidates as dossiers built only from the KG and the
+module documentation (business functions, models touched with their relation, fields added, delegated models,
+dependencies) and makes one LLM judgement: fit of each candidate, chosen module, verdict (`supported`, `partial`,
+`not_supported`, `insufficient_evidence`), the models where the requirement is configured or implemented,
+missing parts, evidence quotes. The output is validated against the KG (a module that is not a candidate and models
+outside the footprint are dropped; evidence quotes are checked against the dossier). Agentic loop, at most 2 rounds:
+`not_supported` sends the Mapping Agent back with the rejected modules excluded; `insufficient_evidence` or a Mapping
+score below `tau` calls the Collector (GitHub issues of Collector v1, cached; Odoo core modules have no source).
+If no round accepts, the Mapping answer is kept and flagged `verified = false`. The same run writes P (`pfull_...`)
+and P-V (`pv_...`, Mapping only, identical to `mapping_agent.py`). Checked offline in `tests/test_verifier_offline.py`.
 
 ### Incremental update with an unseen module (RQ2)
 

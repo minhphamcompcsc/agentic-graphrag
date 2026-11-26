@@ -1,0 +1,181 @@
+You are a senior Odoo 18 functional consultant. A search agent mapped the business requirement below
+to candidate Odoo modules. Check its answer.
+
+Requirement (written by a business analyst, may be in Vietnamese or English):
+<<<
+On the inventory overview, each internal transfer type should have a button to move on-hand stock from one location to another, and the warehouse manager decides per operation type whether the button is shown.
+>>>
+English restatement by the search agent: The inventory overview should display a button on internal transfer operation types to quickly move on-hand stock between locations, with its visibility configurable per operation type by the warehouse manager.
+
+Candidate modules, best first. Everything below comes from a knowledge graph built from the installed
+Odoo 18 database (models, fields, dependencies) and from the module documentation.
+
+### Candidate 1: stock_move_location (OCA module, "Move Stock Location")
+Direct dependencies: stock
+Documentation:
+# Move Stock Location
+
+## SUMMARY
+This module allows to move all stock in a stock location to an other one.
+
+## DESCRIPTION
+This module allows to move entire location of products from one place to
+another and move only selected quantities.
+
+## USAGE
+- A new menu item Operations \> Move from location... opens a wizard where 2 locations
+  can be specified.
+- Select origin and destination locations and press "IMMEDIATE TRANSFER" or "PLANNED
+  TRANSFER"
+- Those lines can be edited. Move quantity can't be more than a max available quantity
+- Move doesn't care about the reservations and will move stuff anyway
+- If during your operation with the wizard the real quantity will change it will move
+  only the available quantity at the button press
+- Products will be moved and a form view of picking that did that will show up
+- If "PLANNED TRANSFER" is used - the picking won't be validated automatically
+
+If you want to transfer a full quant:
+
+- Go to Inventory \> Products \> Products and click "On hand" smart button or Inventory
+  \> Reporting \> Inventory, the quants view will be opened.
+- Select the quantities which you want move to another location
+
+If you go to the Inventory Dashboard you can see the button "Move from location" in each
+of the picking types (only applicable to internal and outgoing transfers). Press it and
+you will be directed to the wizard.
+
+To enable this option, check "Show Move On Hand Stock" in the Picking Type
+configuration.
+
+If you want transfer everything from [...]
+Business functions (knowledge graph):
+- Fill draft picking with products from source location: Populates a draft picking with stock move lines for all available products in the specified source location.
+- Move specific stock quants: Enables users to select specific quants from the product on-hand or inventory reporting views and transfer them to a designated location.
+- Move stock between locations via wizard: Transfers entire stock or selected product quantities from an origin location to a destination location using a specialized wizard, supporting both immediate and planned transfers.
+Models (relation of the module to the model; fields the module adds):
+- stock.picking.type (Picking Type) [ADDS_FIELD, EXTENDS]; adds show_move_onhand
+- stock.picking (Transfer) [EXTENDS]
+- wiz.stock.move.location.line (Wizard move location line) [ADDS_FIELD, DEFINES]; adds custom, destination_location_id, lot_id, max_quantity, move_location_wizard_id, move_quantity, origin_location_id, owner_id ...
+- stock.move (Stock Move) [ADDS_FIELD, EXTENDS]; adds location_move
+- wiz.stock.move.location (Wizard move location) [ADDS_FIELD, DEFINES]; adds apply_putaway_strategy, company_id, destination_location_disable, destination_location_id, edit_locations, exclude_reserved_qty, origin_location_disable, origin_location_id ...
+
+### Candidate 2: stock (Odoo module, "Inventory")
+Direct dependencies: barcodes_gs1_nomenclature, digest, product
+Documentation:
+# Inventory
+
+## SUMMARY
+Manage your stock and logistics activities
+Models (relation of the module to the model; fields the module adds), 25 most relevant of 66:
+- stock.warehouse (Warehouse) [ADDS_FIELD, DEFINES]; adds active, code, company_id, crossdock_route_id, delivery_route_id, delivery_steps, in_type_id, int_type_id ...
+- stock.move (Stock Move) [ADDS_FIELD, DEFINES]; adds additional, availability, company_id, date, date_deadline, delay_alert_date, description_picking, display_assign_serial ...
+- product.template (Product) [ADDS_FIELD, EXTENDS]; adds description_picking, description_pickingin, description_pickingout, has_available_route_ids, incoming_qty, is_storable, location_id, nbr_moves_in ...
+- stock.location (Inventory Locations) [ADDS_FIELD, DEFINES]; adds active, barcode, child_ids, child_internal_location_ids, comment, company_id, complete_name, cyclic_inventory_frequency ...
+- stock.move.line (Product Moves (Stock Move Line)) [ADDS_FIELD, DEFINES]; adds company_id, consume_line_ids, date, description_picking, is_inventory, is_locked, location_dest_id, location_dest_usage ...
+- product.product (Product Variant) [ADDS_FIELD, EXTENDS]; adds description_picking, description_pickingin, description_pickingout, free_qty, has_available_route_ids, incoming_qty, is_storable, location_id ...
+- stock.lot (Lot/Serial) [ADDS_FIELD, DEFINES]; adds company_id, delivery_count, delivery_ids, display_complete, has_message, last_delivery_partner_id, location_id, lot_properties ...
+- stock.quant (Quants) [ADDS_FIELD, DEFINES]; adds available_quantity, company_id, cyclic_inventory_frequency, in_date, inventory_date, inventory_diff_quantity, inventory_quantity, inventory_quantity_auto_apply ...
+- stock.replenishment.option (Stock warehouse replenishment option) [ADDS_FIELD, DEFINES]; adds free_qty, lead_time, location_id, product_id, qty_to_order, replenishment_info_id, route_id, uom ...
+- stock.change.product.qty (Change Product Quantity) [ADDS_FIELD, DEFINES]; adds new_quantity, product_id, product_tmpl_id, product_uom_id, product_variant_count
+- stock.putaway.rule (Putaway Rule) [ADDS_FIELD, DEFINES]; adds active, category_id, company_id, location_in_id, location_out_id, package_type_ids, product_id, sequence ...
+- stock.picking.type (Picking Type) [ADDS_FIELD, DEFINES]; adds active, auto_print_delivery_slip, auto_print_lot_labels, auto_print_package_label, auto_print_packages, auto_print_product_labels, auto_print_reception_report, auto_print_reception_report_labels ...
+- stock.warehouse.orderpoint (Minimum Inventory Rule) [ADDS_FIELD, DEFINES]; adds active, allowed_location_ids, company_id, days_to_order, group_id, lead_days_date, location_id, name ...
+- stock.backorder.confirmation.line (Backorder Confirmation Line) [ADDS_FIELD, DEFINES]; adds backorder_confirmation_id, picking_id, to_backorder
+- stock.inventory.adjustment.name (Inventory Adjustment Reference / Reason) [ADDS_FIELD, DEFINES]; adds inventory_adjustment_name, quant_ids
+- stock.picking (Transfer) [ADDS_FIELD, DEFINES]; adds backorder_id, backorder_ids, company_id, date, date_deadline, date_done, delay_alert_date, group_id ...
+- stock.backorder.confirmation (Backorder Confirmation) [ADDS_FIELD, DEFINES]; adds backorder_confirmation_line_ids, pick_ids, show_transfers
+- stock.route (Inventory Routes) [ADDS_FIELD, DEFINES]; adds active, categ_ids, company_id, name, packaging_ids, packaging_selectable, product_categ_selectable, product_ids ...
+- res.company (Companies) [ADDS_FIELD, EXTENDS]; adds annual_inventory_day, annual_inventory_month, internal_transit_location_id, stock_mail_confirmation_template_id, stock_move_email_validation
+- stock.request.count (Stock Request an Inventory Count) [ADDS_FIELD, DEFINES]; adds inventory_date, quant_ids, set_count, user_id
+- stock.scrap (Scrap) [ADDS_FIELD, DEFINES]; adds company_id, date_done, has_message, location_id, lot_id, move_ids, name, origin ...
+- stock.return.picking (Return Picking) [ADDS_FIELD, DEFINES]; adds company_id, picking_id, picking_type_code, product_return_moves
+- stock.storage.category (Storage Category) [ADDS_FIELD, DEFINES]; adds allow_new_product, capacity_ids, company_id, location_ids, max_weight, name, package_capacity_ids, product_capacity_ids ...
+- stock.package_level (Stock Package Level) [ADDS_FIELD, DEFINES]; adds company_id, is_done, is_fresh_package, location_dest_id, location_id, move_ids, move_line_ids, package_id ...
+- stock.storage.category.capacity (Storage Category Capacity) [ADDS_FIELD, DEFINES]; adds company_id, package_type_id, product_id, product_uom_id, quantity, storage_category_id
+
+### Candidate 3: stock_request (OCA module, "Stock Request")
+Direct dependencies: stock
+Documentation:
+# Stock Request
+
+## SUMMARY
+Internal request for stock
+
+## DESCRIPTION
+This module was written to allow users to request products that are
+frequently stocked by the company, to be transferred to their chosen
+location.
+
+## USAGE
+\## Creation
+
+- Go to 'Stock Requests / Stock Requests' and create a new Request.
+- Indicate a product, quantity and location.
+- Press 'Confirm'.
+
+Upon confirmation the request will be evaluated using the procurement
+rules for the selected location.
+
+In case that transfers are created, the user will be able to access to
+them from the button 'Transfers' available in the Stock Request.
+
+\## Cancel
+
+When the user cancels a Stock Request, the related pending stock moves
+will be also cancelled.
+
+## CONFIGURE
+To configure this module:
+
+- Go to Stock Requests \> Settings
+
+Users should be assigned to the groups 'Stock Request / User' or 'Stock
+Request / Manager'.
+
+\## Group Stock Request / User
+
+- Can see her/his own Stock Requests, and others that she/he's been
+  granted permission to follow.
+- Can create/update only her/his Stock Requests.
+
+\## Group Stock Request / Manager
+
+- Can fully manage all Stock Requests
+Business functions (knowledge graph):
+- Cancel stock requests and related moves: Cancels any related pending stock moves automatically when a stock request is cancelled by the user.
+- Control stock request access permissions: Controls access levels to stock requests using user and manager security groups.
+- Request internal product transfers: Allows users to create and confirm requests for products frequently stocked by the company to be transferred to a specific location, triggering procurement rules and linking any generated stock transfers.
+Models (relation of the module to the model; fields the module adds):
+- stock.request.order (Stock Request Order) [ADDS_FIELD, DEFINES]; adds allow_virtual_location, company_id, expected_date, has_message, location_id, move_ids, my_activity_date_deadline, name ...
+- stock.request (Stock Request) [ADDS_FIELD, DEFINES]; adds allocation_ids, allow_virtual_location, allowed_uom_categ_id, company_id, expected_date, has_message, location_id, move_ids ...
+- stock.request.abstract (Stock Request Template) [ADDS_FIELD, DEFINES]; adds allow_virtual_location, allowed_uom_categ_id, company_id, has_message, location_id, my_activity_date_deadline, name, procurement_group_id ...
+- stock.location (Inventory Locations) [EXTENDS]
+- res.company (Companies) [ADDS_FIELD, EXTENDS]; adds stock_request_allow_virtual_loc, stock_request_check_available_first
+- stock.move (Stock Move) [ADDS_FIELD, EXTENDS]; adds allocation_ids, stock_request_ids
+- stock.route (Inventory Routes) [EXTENDS]
+- stock.picking (Transfer) [ADDS_FIELD, EXTENDS]; adds stock_request_count, stock_request_ids
+- stock.request.allocation (Stock Request Allocation) [ADDS_FIELD, DEFINES]; adds allocated_product_qty, company_id, open_product_qty, product_id, product_uom_id, requested_product_qty, requested_product_uom_qty, stock_move_id ...
+- stock.warehouse (Warehouse) [EXTENDS]
+- res.config.settings (Config Settings) [ADDS_FIELD, EXTENDS]; adds group_stock_request_order, module_stock_request_analytic, module_stock_request_kanban, module_stock_request_mrp, module_stock_request_purchase, module_stock_request_submit, stock_request_allow_virtual_loc, stock_request_check_available_first
+- stock.move.line (Product Moves (Stock Move Line)) [EXTENDS]
+- stock.rule (Stock Rule) [EXTENDS]
+- procurement.group (Procurement Group) [EXTENDS]
+
+Answer:
+1. candidates: for each candidate, does its functionality fit the requirement? "yes", "partly" or "no",
+   with one short reason based on the information above.
+2. chosen_module: the candidate that best fulfils the requirement (copy its name), or null if none fits.
+3. verdict:
+   - "supported": the chosen module covers the requirement;
+   - "partial": it covers the main need, but some parts need other settings or customization;
+   - "not_supported": no candidate covers the requirement;
+   - "insufficient_evidence": a candidate might fit, but the information above is too thin to decide.
+4. models: 1 to 4 models of the chosen module, copied exactly from its "Models" list, where this requirement
+   is configured or where the module's logic for it lives; most important first. Prefer models where the
+   module has code (DEFINES or EXTENDS) or adds the setting fields; avoid models that only receive fields
+   through delegation.
+5. missing: parts of the requirement that no candidate covers (empty list if none).
+6. evidence: 1 to 3 short quotes copied word for word from the information above.
+7. reason: 1 to 3 sentences.
+Only judge the listed candidates. You may use general Odoo knowledge to interpret them, but do not
+invent features that the information above does not support.
