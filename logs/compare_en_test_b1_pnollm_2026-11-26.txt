@@ -1,0 +1,13 @@
+Wilcoxon signed-rank, two-sided, split test, n = 16 requirements; primary metric: model_f1
+
+P-noLLM vs B1:
+  metric             base config    diff  W/T/L     n   W+     W-     p        p(Holm)  r_rb
+  model_f1 *        0.123  0.695  +0.572  12/ 3/1   13    89.0    2.0 0.0007   0.0037   +0.96
+  model_f1_strict   0.113  0.512  +0.400  11/ 4/1   12    75.5    2.5 0.0020   0.0078   +0.94
+  mrr               0.747  0.938  +0.191   5/11/0    5    15.0    0.0 0.0625   0.1875   +1.00
+  hit@1             0.625  0.875  +0.250   4/12/0    4    10.0    0.0 0.1250   0.2500   +1.00
+  module_f1         0.500  0.750  +0.250   4/12/0    4    10.0    0.0 0.1250   0.2500   +1.00
+
+  * primary metric. W/T/L = requirements where the configuration is better / equal / worse. n = non-zero differences.
+  p: exact when n <= 20. r_rb: rank-biserial correlation (effect size).
+Saved: data/runs/compare/en_test_b1_vs_pnollm.json

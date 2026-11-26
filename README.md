@@ -47,6 +47,7 @@ KG layers:
 | `src/verifier/verifier.py` | Verifier Agent: KG checks, candidate dossiers, 1 LLM judgement per round (validated against the KG) |
 | `src/verifier/run_pipeline.py` | Full pipeline P (Mapping + Verifier, at most 2 rounds, back to Mapping, Collector in the loop) and P-V in one run |
 | `src/evaluation/metrics.py`, `src/evaluation/evaluate.py` | Scoring rules (Hit@k, MRR, P/R/F1 at module and model level, lenient and strict) and scoring script |
+| `src/evaluation/compare.py` | Paired Wilcoxon signed-rank comparison of configurations (exact p-values, effect size) |
 | `src/evaluation/tune_b1.py`, `src/mapping/finalize_params.py` | Parameter choice on the dev split before the test runs: m of B1; frozen parameters of P with tau |
 | `src/experiments/test_lightrag_neo4j.py` | Experiment: LightRAG with the project's Neo4j |
 | `queries/` | Cypher queries for checks and analysis (results written as comments) |
@@ -165,6 +166,24 @@ python src/verifier/run_pipeline.py --lang en --split test --run 1 --params data
     --no-new-collect --max-llm-calls 19
 python src/evaluation/evaluate.py data/runs/pfull_en_YYYYMMDD_test_run1/predictions.json --split test
 ```
+
+### Statistical comparison (Wilcoxon signed-rank)
+
+```bash
+python src/evaluation/compare.py --split test --baseline B1 \
+    --config B1=data/runs/b1_en_20261126/predictions.json \
+    --config P-noLLM=data/runs/pnollm_en_20261126_all_run1/predictions.json \
+    --config P=<run1>/predictions.json,<run2>/predictions.json,<run3>/predictions.json \
+    --out data/runs/compare/en_test.json
+python tests/test_compare.py          # exact p-values checked against scipy and a brute-force permutation
+```
+
+Per requirement, each configuration gets the scores of `src/evaluation/metrics.py` (mean over its runs).
+Every configuration is compared with the baseline: two-sided Wilcoxon signed-rank test on the paired differences
+(zero differences dropped, tied ranks averaged), exact p-value for up to 20 non-zero differences, rank-biserial
+correlation as effect size, wins / ties / losses. Primary metric, fixed before the test runs: model F1 (lenient).
+Other metrics are secondary; Holm-adjusted p-values are shown for reference. With 16 test requirements the tests
+are preliminary (Internship 1).
 
 ### Incremental update with an unseen module (RQ2)
 
