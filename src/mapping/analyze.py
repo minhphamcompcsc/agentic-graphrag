@@ -83,10 +83,32 @@ def sha(s: str) -> str:
     return hashlib.sha256(s.encode("utf-8")).hexdigest()[:16]
 
 
+def no_hidden_retry(llm):
+    """Turns off the silent retries of the Google client under LangChain.
+
+    The generated client (google-ai-generativelanguage) retries generate_content on 503 ServiceUnavailable
+    with exponential backoff (1 s to 10 s) for up to 600 s, even with max_retries=0 in LangChain. Every retry
+    is a request counted in the free-tier daily quota (20 per day): one "slow" call that ends in 504 after
+    300 s can use the whole day (checked offline: 19 attempts in 40 s). With retry=None the client makes one
+    attempt and the 503 reaches our own handling (1 visible retry, then a clean stop).
+    """
+    client = getattr(llm, "client", None)
+    if client is not None and not getattr(client, "_no_hidden_retry", False):
+        original = client.generate_content
+
+        def generate_content(*args, **kwargs):
+            kwargs["retry"] = None
+            return original(*args, **kwargs)
+
+        client.generate_content = generate_content
+        client._no_hidden_retry = True
+    return llm
+
+
 def make_llm(backend: str, model: str):
     if backend == "gemini":
         from langchain_google_genai import ChatGoogleGenerativeAI
-        llm = ChatGoogleGenerativeAI(model=model, temperature=0, max_retries=0, timeout=LLM_TIMEOUT)
+        llm = no_hidden_retry(ChatGoogleGenerativeAI(model=model, temperature=0, max_retries=0, timeout=LLM_TIMEOUT))
     elif backend == "ollama":
         from langchain_ollama import ChatOllama
         llm = ChatOllama(model=model, temperature=0)

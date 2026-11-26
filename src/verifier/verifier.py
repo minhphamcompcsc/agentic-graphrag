@@ -184,8 +184,11 @@ def dossier(res, feat, p, rank_models, module, rank, issues=None):
 # ============ 3. LLM judgement ============
 def make_llm(backend: str, model: str):
     if backend == "gemini":
+        import sys
         from langchain_google_genai import ChatGoogleGenerativeAI
-        llm = ChatGoogleGenerativeAI(model=model, temperature=0, max_retries=0, timeout=LLM_TIMEOUT)
+        sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "mapping"))
+        from analyze import no_hidden_retry       # same fix as the Mapping Agent (no silent 503 retries)
+        llm = no_hidden_retry(ChatGoogleGenerativeAI(model=model, temperature=0, max_retries=0, timeout=LLM_TIMEOUT))
     elif backend == "ollama":
         from langchain_ollama import ChatOllama
         llm = ChatOllama(model=model, temperature=0)

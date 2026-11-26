@@ -1,0 +1,6 @@
+Pipeline pipe-v0.1 = Mapping map-v0.1 + Verifier ver-v0.1 (en, split test, run 1, tau 1.0): graph from neo4j {'modules': 67, 'models': 443, 'functions': 14, 'module_model_pairs': 827, 'links_non_technical': 1729}
+New LLM calls: Mapping 0, Verifier 0, Collector 0; 0 requirements; module changed by the Verifier 0; unverified 0; 5.4 s
+STOPPED early at requirement 1/16: DailyQuotaExceeded: ResourceExhausted('You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelangu
+  Rerun the same command (after the quota resets if the daily quota is exhausted); answers already received are cached and are not called again. The files below hold only the finished requirements.
+Saved: data/runs/pfull_en_20261126_test_run1/predictions.json (P), data/runs/pv_en_20261126_test_run1/predictions.json (P-V)
+Next: python src/evaluation/evaluate.py data/runs/pfull_en_20261126_test_run1/predictions.json --split test
