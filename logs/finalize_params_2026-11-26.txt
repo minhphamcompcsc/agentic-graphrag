@@ -1,0 +1,7 @@
+Dev top Mapping scores (en):
+  Q08: stock_no_negative 1.0936 (second 0.9595), correct
+  Q11: stock_picking_auto_create_lot 1.1420 (second 0.8681), correct
+  Q13: stock_move_location 1.0269 (second 0.9097), correct
+  Q16: stock_picking_invoice_link 1.1327 (second 1.0188), correct
+tau = 1.0 (lowest correct 1.0269, rounded down to 0.05); low_confidence on dev: 0/4
+Saved: data/mapping/params_final_en.json

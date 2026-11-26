@@ -1,0 +1,9 @@
+B1 on dev ['Q08', 'Q11', 'Q13', 'Q16'] (en, vi; 0 LLM calls)
+  m=1: en model F1 0.000 (strict 0.000); vi model F1 0.000 (strict 0.000); objective 0.000
+  m=2: en model F1 0.000 (strict 0.000); vi model F1 0.000 (strict 0.000); objective 0.000
+  m=3: en model F1 0.000 (strict 0.000); vi model F1 0.000 (strict 0.000); objective 0.000
+  m=4: en model F1 0.083 (strict 0.083); vi model F1 0.000 (strict 0.000); objective 0.042
+  m=5: en model F1 0.071 (strict 0.071); vi model F1 0.000 (strict 0.000); objective 0.036
+  m=6: en model F1 0.062 (strict 0.062); vi model F1 0.000 (strict 0.000); objective 0.031
+Chosen: k = 1, m = 4 (ties at best: [4])
+Saved: data/baselines/params_b1_dev.json

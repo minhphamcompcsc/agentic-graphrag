@@ -1,0 +1,24 @@
+Mapping map-v0.1 (vi, split all, run 1): graph from neo4j {'modules': 67, 'models': 443, 'functions': 14, 'module_model_pairs': 827, 'links_non_technical': 1729}
+  Q01: stock_no_negative (0.664) | models: stock.location, product.template, product.category, stock.quant | from cache
+  Q02: sale_stock_picking_invoice_link (0.784) | models: sale.order.line, stock.move | from cache
+  Q03: stock_picking_auto_create_lot (0.844) | models: product.template, stock.picking.type, product.category, stock.picking | from cache
+  Q04: stock_move_location (0.763) | models: stock.picking, stock.picking.type, stock.move, wiz.stock.move.location.line | from cache
+  Q05: stock_picking_back2draft (0.724) | models: stock.picking, stock.move | from cache
+  Q06: sale_stock_picking_invoice_link (0.671) | models: sale.order.line, stock.move | from cache
+  Q07: stock_no_negative (0.653) | models: stock.location, product.category, product.template, stock.quant | from cache
+  Q08: sale_stock_picking_invoice_link (0.663) | models: sale.order.line, stock.move | from cache
+  Q09: sale_stock_picking_invoice_link (0.714) | models: sale.order.line, stock.move | from cache
+  Q10: stock_picking_auto_create_lot (0.714) | models: stock.picking.type, stock.picking, product.template, product.category | from cache
+  Q11: stock_picking_auto_create_lot (0.735) | models: product.template, product.category, stock.picking.type, stock.move.line | from cache
+  Q12: stock_move_location (0.765) | models: wiz.stock.move.location.line, stock.picking, stock.picking.type, stock.move | from cache
+  Q13: stock_move_location (0.768) | models: wiz.stock.move.location.line, stock.picking.type, wiz.stock.move.location, stock.picking | from cache
+  Q14: stock_picking_back2draft (0.683) | models: stock.picking, stock.move | from cache
+  Q15: stock_picking_auto_create_lot (0.708) | models: stock.picking.type, product.template, product.category, ir.actions.report | from cache
+  Q16: sale_stock_picking_invoice_link (0.688) | models: sale.order.line, stock.move | from cache
+  Q17: sale_stock_picking_invoice_link (0.764) | models: sale.order.line, stock.move | from cache
+  Q18: stock_request (0.728) | models: stock.request.order, stock.request, stock.request.abstract, stock.request.allocation | from cache
+  Q19: stock_request (0.713) | models: stock.request.order, stock.request, stock.request.allocation, res.config.settings | from cache
+  Q20: stock_request (0.783) | models: stock.request.order, stock.request, stock.request.allocation, stock.picking | from cache
+New LLM calls 0; new embeddings 0; 8.4 s
+Saved: data/runs/pnollm_vi_20261126_all_run1/predictions.json
+Next: python src/evaluation/evaluate.py data/runs/pnollm_vi_20261126_all_run1/predictions.json --split all

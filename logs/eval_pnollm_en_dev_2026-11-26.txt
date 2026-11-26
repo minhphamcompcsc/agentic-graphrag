@@ -1,0 +1,9 @@
+P-noLLM (en), split dev: 4 requirements
+  Module  Hit@1 0.750  Hit@3 1.000  Hit@5 1.000  MRR 0.875
+  Module  P 0.750  R 0.500  F1 0.500  (strict P 0.500, F1 0.500)
+  Model   P 0.625  R 0.375  F1 0.417  (strict P 0.188, F1 0.250)
+  Q08: first correct rank 2, model P 0.00 R 0.00
+  Q11: first correct rank 1, model P 1.00 R 1.00
+  Q13: first correct rank 1, model P 1.00 R 0.50
+  Q16: first correct rank 1, model P 0.50 R 0.00
+Saved: data/runs/pnollm_en_20261126_all_run1/metrics_dev.json, per_question_dev.csv

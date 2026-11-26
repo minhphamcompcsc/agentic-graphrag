@@ -1,0 +1,61 @@
+{
+  "date": "20261126",
+  "lang": "en",
+  "status": "frozen for the official runs on the test split",
+  "params": {
+    "alpha": 1.0,
+    "beta": 0.5,
+    "gamma": 0.25,
+    "cov": "ochiai",
+    "k_modules": 1,
+    "m_models": 4,
+    "lam_entry": 0.0,
+    "lam_function": 0.0,
+    "delegated_penalty": 0.3,
+    "tau": 1.0,
+    "n_functions": 5,
+    "max_distance": 3,
+    "context_weight": 2.0,
+    "link_threshold": 0.75
+  },
+  "sources": {
+    "mapping_params": "data/mapping/params_dev_en.json",
+    "dev_run": "data/runs/pv_en_20261126_dev_run1/predictions.json"
+  },
+  "tau_rule": "lowest top Mapping score among correct dev answers, rounded down to a multiple of 0.05",
+  "tau_dev_scores": [
+    {
+      "id": "Q08",
+      "top_module": "stock_no_negative",
+      "top_score": 1.0936,
+      "second_score": 0.9595,
+      "correct": true
+    },
+    {
+      "id": "Q11",
+      "top_module": "stock_picking_auto_create_lot",
+      "top_score": 1.14195,
+      "second_score": 0.8681,
+      "correct": true
+    },
+    {
+      "id": "Q13",
+      "top_module": "stock_move_location",
+      "top_score": 1.0269,
+      "second_score": 0.9097,
+      "correct": true
+    },
+    {
+      "id": "Q16",
+      "top_module": "stock_picking_invoice_link",
+      "top_score": 1.13275,
+      "second_score": 1.0188,
+      "correct": true
+    }
+  ],
+  "notes": [
+    "Mapping parameters unchanged from tune.py (12 combinations tie on dev; the one closest to the defaults is kept). Changing them would need new Verifier calls on dev without a dev signal.",
+    "With this tau no dev requirement is flagged low_confidence, so the dev results of P and P-V (R-34) stay valid.",
+    "Collector evidence in the loop comes from data/collected_v1 (0 LLM calls); run_pipeline.py is run with --no-new-collect."
+  ]
+}

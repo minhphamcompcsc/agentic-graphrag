@@ -1,0 +1,21 @@
+P-noLLM (en), split test: 16 requirements
+  Module  Hit@1 0.875  Hit@3 1.000  Hit@5 1.000  MRR 0.938
+  Module  P 0.875  R 0.750  F1 0.750  (strict P 0.750, F1 0.750)
+  Model   P 0.766  R 0.750  F1 0.695  (strict P 0.422, F1 0.512)
+  Q01: first correct rank 1, model P 1.00 R 1.00
+  Q02: first correct rank 1, model P 0.50 R 0.00
+  Q03: first correct rank 1, model P 1.00 R 1.00
+  Q04: first correct rank 1, model P 1.00 R 0.50
+  Q05: first correct rank 1, model P 1.00 R 1.00
+  Q06: first correct rank 1, model P 1.00 R 1.00
+  Q07: first correct rank 2, model P 0.00 R 0.00
+  Q09: first correct rank 1, model P 0.50 R 0.00
+  Q10: first correct rank 2, model P 0.25 R 1.00
+  Q12: first correct rank 1, model P 1.00 R 0.50
+  Q14: first correct rank 1, model P 1.00 R 1.00
+  Q15: first correct rank 1, model P 1.00 R 1.00
+  Q17: first correct rank 1, model P 1.00 R 1.00
+  Q18: first correct rank 1, model P 0.75 R 1.00
+  Q19: first correct rank 1, model P 0.50 R 1.00
+  Q20: first correct rank 1, model P 0.75 R 1.00
+Saved: data/runs/pnollm_en_20261126_all_run1/metrics_test.json, per_question_test.csv

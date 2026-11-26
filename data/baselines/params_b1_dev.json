@@ -1,0 +1,97 @@
+{
+  "date": "20261126",
+  "split": "dev",
+  "ids": [
+    "Q08",
+    "Q11",
+    "Q13",
+    "Q16"
+  ],
+  "inputs": [
+    "data/runs/b1_en_20261124/predictions.json",
+    "data/runs/b1_vi_20261124/predictions.json"
+  ],
+  "objective": "mean model F1 (lenient) over the languages",
+  "tie_break": "closest to the m of P (4), then smaller m",
+  "grid": [
+    {
+      "m": 1,
+      "en_mrr": 0.875,
+      "en_model_f1": 0.0,
+      "en_model_f1_strict": 0.0,
+      "en_model_r": 0.0,
+      "vi_mrr": 0.6042,
+      "vi_model_f1": 0.0,
+      "vi_model_f1_strict": 0.0,
+      "vi_model_r": 0.0,
+      "objective": 0.0
+    },
+    {
+      "m": 2,
+      "en_mrr": 0.875,
+      "en_model_f1": 0.0,
+      "en_model_f1_strict": 0.0,
+      "en_model_r": 0.0,
+      "vi_mrr": 0.6042,
+      "vi_model_f1": 0.0,
+      "vi_model_f1_strict": 0.0,
+      "vi_model_r": 0.0,
+      "objective": 0.0
+    },
+    {
+      "m": 3,
+      "en_mrr": 0.875,
+      "en_model_f1": 0.0,
+      "en_model_f1_strict": 0.0,
+      "en_model_r": 0.0,
+      "vi_mrr": 0.6042,
+      "vi_model_f1": 0.0,
+      "vi_model_f1_strict": 0.0,
+      "vi_model_r": 0.0,
+      "objective": 0.0
+    },
+    {
+      "m": 4,
+      "en_mrr": 0.875,
+      "en_model_f1": 0.0833,
+      "en_model_f1_strict": 0.0833,
+      "en_model_r": 0.125,
+      "vi_mrr": 0.6042,
+      "vi_model_f1": 0.0,
+      "vi_model_f1_strict": 0.0,
+      "vi_model_r": 0.0,
+      "objective": 0.0416
+    },
+    {
+      "m": 5,
+      "en_mrr": 0.875,
+      "en_model_f1": 0.0714,
+      "en_model_f1_strict": 0.0714,
+      "en_model_r": 0.125,
+      "vi_mrr": 0.6042,
+      "vi_model_f1": 0.0,
+      "vi_model_f1_strict": 0.0,
+      "vi_model_r": 0.0,
+      "objective": 0.0357
+    },
+    {
+      "m": 6,
+      "en_mrr": 0.875,
+      "en_model_f1": 0.0625,
+      "en_model_f1_strict": 0.0625,
+      "en_model_r": 0.125,
+      "vi_mrr": 0.6042,
+      "vi_model_f1": 0.0,
+      "vi_model_f1_strict": 0.0,
+      "vi_model_r": 0.0,
+      "objective": 0.0312
+    }
+  ],
+  "ties_at_best": [
+    4
+  ],
+  "params": {
+    "k": 1,
+    "m": 4
+  }
+}

@@ -1,0 +1,9 @@
+B1 (vi), split dev: 4 requirements
+  Module  Hit@1 0.500  Hit@3 0.500  Hit@5 0.750  MRR 0.604
+  Module  P 0.500  R 0.500  F1 0.500  (strict P 0.500, F1 0.500)
+  Model   P 0.000  R 0.000  F1 0.000  (strict P 0.000, F1 0.000)
+  Q08: first correct rank 6, model P 0.00 R 0.00
+  Q11: first correct rank 1, model P 0.00 R 0.00
+  Q13: first correct rank 1, model P 0.00 R 0.00
+  Q16: first correct rank 4, model P 0.00 R 0.00
+Saved: data/runs/b1_vi_20261126/metrics_dev.json, per_question_dev.csv

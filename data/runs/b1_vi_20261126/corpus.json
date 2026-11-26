@@ -1,0 +1,471 @@
+[
+ {
+  "name": "account",
+  "source": "ir_module_module",
+  "chars": 595,
+  "truncated": false,
+  "sha": "83a2a9b9d661ed36"
+ },
+ {
+  "name": "account_add_gln",
+  "source": "ir_module_module",
+  "chars": 281,
+  "truncated": false,
+  "sha": "ef55d47459a9eadd"
+ },
+ {
+  "name": "account_edi_ubl_cii",
+  "source": "ir_module_module",
+  "chars": 1007,
+  "truncated": false,
+  "sha": "2357f6e9a05dbf7f"
+ },
+ {
+  "name": "account_payment",
+  "source": "ir_module_module",
+  "chars": 129,
+  "truncated": false,
+  "sha": "d17f8e5cda4c5ea9"
+ },
+ {
+  "name": "analytic",
+  "source": "ir_module_module",
+  "chars": 299,
+  "truncated": false,
+  "sha": "7519fdade8e75460"
+ },
+ {
+  "name": "auth_signup",
+  "source": "ir_module_module",
+  "chars": 72,
+  "truncated": false,
+  "sha": "c9b7ecf61fba0ffd"
+ },
+ {
+  "name": "auth_totp",
+  "source": "ir_module_module",
+  "chars": 607,
+  "truncated": false,
+  "sha": "bb7a6c718241272b"
+ },
+ {
+  "name": "auth_totp_mail",
+  "source": "ir_module_module",
+  "chars": 312,
+  "truncated": false,
+  "sha": "e867969ab83123fc"
+ },
+ {
+  "name": "auth_totp_portal",
+  "source": "ir_module_module",
+  "chars": 11,
+  "truncated": false,
+  "sha": "56285fdf6a0c678e"
+ },
+ {
+  "name": "barcodes",
+  "source": "ir_module_module",
+  "chars": 45,
+  "truncated": false,
+  "sha": "3ea8c23cf0beb395"
+ },
+ {
+  "name": "barcodes_gs1_nomenclature",
+  "source": "ir_module_module",
+  "chars": 95,
+  "truncated": false,
+  "sha": "37d7c233c92e5252"
+ },
+ {
+  "name": "base",
+  "source": "ir_module_module",
+  "chars": 71,
+  "truncated": false,
+  "sha": "69ec177a7bc5c402"
+ },
+ {
+  "name": "base_import",
+  "source": "ir_module_module",
+  "chars": 828,
+  "truncated": false,
+  "sha": "7d325ada06e0fd31"
+ },
+ {
+  "name": "base_import_module",
+  "source": "ir_module_module",
+  "chars": 191,
+  "truncated": false,
+  "sha": "da3ae7bbe0deb070"
+ },
+ {
+  "name": "base_install_request",
+  "source": "ir_module_module",
+  "chars": 101,
+  "truncated": false,
+  "sha": "fa73417af51785fa"
+ },
+ {
+  "name": "base_setup",
+  "source": "ir_module_module",
+  "chars": 178,
+  "truncated": false,
+  "sha": "0988ad2f817a288c"
+ },
+ {
+  "name": "bus",
+  "source": "ir_module_module",
+  "chars": 92,
+  "truncated": false,
+  "sha": "407c578f6525af19"
+ },
+ {
+  "name": "digest",
+  "source": "ir_module_module",
+  "chars": 59,
+  "truncated": false,
+  "sha": "b01d324df7ab2c92"
+ },
+ {
+  "name": "google_gmail",
+  "source": "ir_module_module",
+  "chars": 81,
+  "truncated": false,
+  "sha": "e1a68d929a7bb3e1"
+ },
+ {
+  "name": "html_editor",
+  "source": "ir_module_module",
+  "chars": 166,
+  "truncated": false,
+  "sha": "50692a4a4ad1b689"
+ },
+ {
+  "name": "http_routing",
+  "source": "ir_module_module",
+  "chars": 145,
+  "truncated": false,
+  "sha": "3c0ecb528bd8bc7f"
+ },
+ {
+  "name": "iap",
+  "source": "ir_module_module",
+  "chars": 222,
+  "truncated": false,
+  "sha": "aa20a1c0752e5b8f"
+ },
+ {
+  "name": "iap_mail",
+  "source": "ir_module_module",
+  "chars": 96,
+  "truncated": false,
+  "sha": "2eca0efb872d4c18"
+ },
+ {
+  "name": "mail",
+  "source": "ir_module_module",
+  "chars": 2133,
+  "truncated": false,
+  "sha": "f8d1cd0ae813071a"
+ },
+ {
+  "name": "mail_bot",
+  "source": "ir_module_module",
+  "chars": 48,
+  "truncated": false,
+  "sha": "1187c2d7c1b0998c"
+ },
+ {
+  "name": "onboarding",
+  "source": "ir_module_module",
+  "chars": 96,
+  "truncated": false,
+  "sha": "bb0c842726985a5c"
+ },
+ {
+  "name": "partner_autocomplete",
+  "source": "ir_module_module",
+  "chars": 126,
+  "truncated": false,
+  "sha": "a1b9702f9f3ba890"
+ },
+ {
+  "name": "payment",
+  "source": "ir_module_module",
+  "chars": 81,
+  "truncated": false,
+  "sha": "4a2e7417c878facd"
+ },
+ {
+  "name": "phone_validation",
+  "source": "ir_module_module",
+  "chars": 414,
+  "truncated": false,
+  "sha": "c87f230d50929db3"
+ },
+ {
+  "name": "portal",
+  "source": "ir_module_module",
+  "chars": 513,
+  "truncated": false,
+  "sha": "a3c80b37e13ce28b"
+ },
+ {
+  "name": "privacy_lookup",
+  "source": "ir_module_module",
+  "chars": 9,
+  "truncated": false,
+  "sha": "b822d2bd26cb191f"
+ },
+ {
+  "name": "product",
+  "source": "ir_module_module",
+  "chars": 544,
+  "truncated": false,
+  "sha": "6077f928b1a80683"
+ },
+ {
+  "name": "resource",
+  "source": "ir_module_module",
+  "chars": 294,
+  "truncated": false,
+  "sha": "bf3ad2cbcac82acb"
+ },
+ {
+  "name": "resource_mail",
+  "source": "ir_module_module",
+  "chars": 118,
+  "truncated": false,
+  "sha": "99f935bc823ef01c"
+ },
+ {
+  "name": "sale",
+  "source": "ir_module_module",
+  "chars": 140,
+  "truncated": false,
+  "sha": "8387a29fd8f0f0ed"
+ },
+ {
+  "name": "sale_async_emails",
+  "source": "ir_module_module",
+  "chars": 74,
+  "truncated": false,
+  "sha": "b72f0813e393521f"
+ },
+ {
+  "name": "sale_edi_ubl",
+  "source": "ir_module_module",
+  "chars": 295,
+  "truncated": false,
+  "sha": "bd4080ba204fc2a8"
+ },
+ {
+  "name": "sale_management",
+  "source": "ir_module_module",
+  "chars": 840,
+  "truncated": false,
+  "sha": "2058e875ce5f5f11"
+ },
+ {
+  "name": "sale_pdf_quote_builder",
+  "source": "ir_module_module",
+  "chars": 67,
+  "truncated": false,
+  "sha": "164729567f2006b0"
+ },
+ {
+  "name": "sale_sms",
+  "source": "ir_module_module",
+  "chars": 130,
+  "truncated": false,
+  "sha": "afd526e40f9b59c6"
+ },
+ {
+  "name": "sale_stock",
+  "source": "ir_module_module",
+  "chars": 398,
+  "truncated": false,
+  "sha": "41f2a5f5fc7baa57"
+ },
+ {
+  "name": "sale_stock_picking_invoice_link",
+  "source": "data/collected_v1",
+  "chars": 906,
+  "truncated": false,
+  "sha": "7e6d7ad529719a1e"
+ },
+ {
+  "name": "sales_team",
+  "source": "ir_module_module",
+  "chars": 125,
+  "truncated": false,
+  "sha": "bdc6384aeb6d24cd"
+ },
+ {
+  "name": "sms",
+  "source": "ir_module_module",
+  "chars": 176,
+  "truncated": false,
+  "sha": "7c07b9b4ef0d4f47"
+ },
+ {
+  "name": "snailmail",
+  "source": "ir_module_module",
+  "chars": 67,
+  "truncated": false,
+  "sha": "c3acef1d40ac8efa"
+ },
+ {
+  "name": "snailmail_account",
+  "source": "ir_module_module",
+  "chars": 76,
+  "truncated": false,
+  "sha": "79e1a195b02fb11b"
+ },
+ {
+  "name": "spreadsheet",
+  "source": "ir_module_module",
+  "chars": 65,
+  "truncated": false,
+  "sha": "937257d968a1009b"
+ },
+ {
+  "name": "spreadsheet_account",
+  "source": "ir_module_module",
+  "chars": 125,
+  "truncated": false,
+  "sha": "ab24385bf9f66784"
+ },
+ {
+  "name": "spreadsheet_dashboard",
+  "source": "ir_module_module",
+  "chars": 75,
+  "truncated": false,
+  "sha": "faf0e07391e32380"
+ },
+ {
+  "name": "spreadsheet_dashboard_account",
+  "source": "ir_module_module",
+  "chars": 90,
+  "truncated": false,
+  "sha": "e878cbf1bae7076a"
+ },
+ {
+  "name": "spreadsheet_dashboard_sale",
+  "source": "ir_module_module",
+  "chars": 85,
+  "truncated": false,
+  "sha": "e30ba473eaa8f047"
+ },
+ {
+  "name": "spreadsheet_dashboard_stock_account",
+  "source": "ir_module_module",
+  "chars": 85,
+  "truncated": false,
+  "sha": "4986ea05b9f948ec"
+ },
+ {
+  "name": "stock",
+  "source": "ir_module_module",
+  "chars": 66,
+  "truncated": false,
+  "sha": "88970b49f269189a"
+ },
+ {
+  "name": "stock_account",
+  "source": "ir_module_module",
+  "chars": 458,
+  "truncated": false,
+  "sha": "db56770c764421dd"
+ },
+ {
+  "name": "stock_move_location",
+  "source": "data/collected_v1",
+  "chars": 2038,
+  "truncated": false,
+  "sha": "675ff0afe3d0672a"
+ },
+ {
+  "name": "stock_no_negative",
+  "source": "data/collected_v1",
+  "chars": 2077,
+  "truncated": false,
+  "sha": "2bbfc325cf47d4e7"
+ },
+ {
+  "name": "stock_picking_auto_create_lot",
+  "source": "data/collected_v1",
+  "chars": 1730,
+  "truncated": false,
+  "sha": "e2c5d45b1327afe9"
+ },
+ {
+  "name": "stock_picking_back2draft",
+  "source": "data/collected_v1",
+  "chars": 219,
+  "truncated": false,
+  "sha": "d01d124244489281"
+ },
+ {
+  "name": "stock_picking_invoice_link",
+  "source": "data/collected_v1",
+  "chars": 489,
+  "truncated": false,
+  "sha": "f344870aebff798b"
+ },
+ {
+  "name": "stock_request",
+  "source": "data/collected_v1",
+  "chars": 1147,
+  "truncated": false,
+  "sha": "75d4f556ac719722"
+ },
+ {
+  "name": "stock_sms",
+  "source": "ir_module_module",
+  "chars": 123,
+  "truncated": false,
+  "sha": "7aefed1825afa59b"
+ },
+ {
+  "name": "uom",
+  "source": "ir_module_module",
+  "chars": 89,
+  "truncated": false,
+  "sha": "9f8da44cf10f09df"
+ },
+ {
+  "name": "utm",
+  "source": "ir_module_module",
+  "chars": 91,
+  "truncated": false,
+  "sha": "e81563c34687b51a"
+ },
+ {
+  "name": "web",
+  "source": "ir_module_module",
+  "chars": 98,
+  "truncated": false,
+  "sha": "0a7befc2032da839"
+ },
+ {
+  "name": "web_editor",
+  "source": "ir_module_module",
+  "chars": 52,
+  "truncated": false,
+  "sha": "a1718eb332927cdc"
+ },
+ {
+  "name": "web_tour",
+  "source": "ir_module_module",
+  "chars": 39,
+  "truncated": false,
+  "sha": "20b80ab8b30466a2"
+ },
+ {
+  "name": "web_unsplash",
+  "source": "ir_module_module",
+  "chars": 254,
+  "truncated": false,
+  "sha": "4457b2f9f2dd0ebf"
+ }
+]

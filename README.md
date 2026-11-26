@@ -47,6 +47,7 @@ KG layers:
 | `src/verifier/verifier.py` | Verifier Agent: KG checks, candidate dossiers, 1 LLM judgement per round (validated against the KG) |
 | `src/verifier/run_pipeline.py` | Full pipeline P (Mapping + Verifier, at most 2 rounds, back to Mapping, Collector in the loop) and P-V in one run |
 | `src/evaluation/metrics.py`, `src/evaluation/evaluate.py` | Scoring rules (Hit@k, MRR, P/R/F1 at module and model level, lenient and strict) and scoring script |
+| `src/evaluation/tune_b1.py`, `src/mapping/finalize_params.py` | Parameter choice on the dev split before the test runs: m of B1; frozen parameters of P with tau |
 | `src/experiments/test_lightrag_neo4j.py` | Experiment: LightRAG with the project's Neo4j |
 | `queries/` | Cypher queries for checks and analysis (results written as comments) |
 | `data/collected/`, `data/collected_v1/` | Collector outputs |
@@ -54,7 +55,8 @@ KG layers:
 | `data/snapshots/` | KG statistics and schema snapshot |
 | `data/eval/` | Evaluation set (requirements and answers checked against KG metadata) |
 | `data/experiments/` | Side experiment results |
-| `data/mapping/` | Mapping Agent LLM cache (`llm/<model>/run<r>/`) and tuned parameters |
+| `data/mapping/` | Mapping Agent LLM cache (`llm/<model>/run<r>/`), tuned parameters (`params_dev_en.json`) and frozen parameters for the test runs (`params_final_en.json`) |
+| `data/baselines/` | Parameters of the baselines chosen on dev (`params_b1_dev.json`) |
 | `data/verifier/` | Verifier LLM cache (`llm/<model>/run<r>/`, prompt included) and prompts of dry runs |
 | `data/runs/` | Predictions and scores of each configuration (B1, P, ...) |
 | `tests/` | Offline tests (incremental update, Mapping Agent and Verifier against a mock Odoo catalog; scoring rules) |
@@ -137,6 +139,32 @@ outside the footprint are dropped; evidence quotes are checked against the dossi
 score below `tau` calls the Collector (GitHub issues of Collector v1, cached; Odoo core modules have no source).
 If no round accepts, the Mapping answer is kept and flagged `verified = false`. The same run writes P (`pfull_...`)
 and P-V (`pv_...`, Mapping only, identical to `mapping_agent.py`). Checked offline in `tests/test_verifier_offline.py`.
+
+### Frozen parameters and official runs (test split)
+
+Parameters are chosen on the dev split only (0 LLM calls), then frozen before any run of P on the test split:
+
+```bash
+python src/evaluation/tune_b1.py data/runs/b1_en_20261124/predictions.json data/runs/b1_vi_20261124/predictions.json
+#   B1: k = 1 (as P), m chosen on dev -> data/baselines/params_b1_dev.json (m = 4)
+python src/mapping/finalize_params.py --params data/mapping/params_dev_en.json \
+    --dev-run data/runs/pv_en_20261126_dev_run1/predictions.json
+#   P: Mapping parameters from tune.py + tau (lowest top score of a correct dev answer, rounded down to 0.05)
+#   -> data/mapping/params_final_en.json (tau = 1.0)
+```
+
+Official runs (D25): P in English, 3 runs on the 16 test requirements (each run has its own LLM caches);
+Vietnamese only without LLM (P-noLLM). About 2 Gemini calls per requirement; the free tier allows 20 calls per day,
+so a run takes about 2 days: the script stops cleanly at the limit and the same command continues the next day
+(finished requirements are read from the caches). Score only the last, complete run directory.
+
+```bash
+python src/baselines/b1_vector_rag.py --lang en --k 1 --m 4
+python src/mapping/mapping_agent.py --lang vi --split all --dry-llm --params data/mapping/params_final_en.json
+python src/verifier/run_pipeline.py --lang en --split test --run 1 --params data/mapping/params_final_en.json \
+    --no-new-collect --max-llm-calls 19
+python src/evaluation/evaluate.py data/runs/pfull_en_YYYYMMDD_test_run1/predictions.json --split test
+```
 
 ### Incremental update with an unseen module (RQ2)
 
