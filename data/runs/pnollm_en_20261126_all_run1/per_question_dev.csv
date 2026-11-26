@@ -1,0 +1,5 @@
+id,split,first_correct_rank,hit@1,hit@3,hit@5,mrr,module_p,module_r,module_f1,module_p_strict,module_f1_strict,model_p,model_r,model_f1,model_p_strict,model_f1_strict,excluded_predicted
+Q08,dev,2,0.0,1.0,1.0,0.5,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,
+Q11,dev,1,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.5,0.6667,
+Q13,dev,1,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.5,0.6667,0.25,0.3333,
+Q16,dev,1,1.0,1.0,1.0,1.0,1.0,0.0,0.0,0.0,0.0,0.5,0.0,0.0,0.0,0.0,
