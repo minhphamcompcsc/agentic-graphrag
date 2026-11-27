@@ -1,0 +1,381 @@
+{
+  "date": "20261127",
+  "split": "test",
+  "n_test": 16,
+  "n_dev": 4,
+  "sources": {
+    "B1 (en)": [
+      "data/runs/b1_en_20261126"
+    ],
+    "B1 (vi)": [
+      "data/runs/b1_vi_20261126"
+    ],
+    "P-noLLM (en)": [
+      "data/runs/pnollm_en_20261126_all_run1"
+    ],
+    "P-noLLM (vi)": [
+      "data/runs/pnollm_vi_20261126_all_run1"
+    ]
+  },
+  "scores": {
+    "B1 (en)": {
+      "mean": {
+        "hit@1": 0.625,
+        "hit@3": 0.9375,
+        "hit@5": 0.9375,
+        "mrr": 0.7465,
+        "module_p": 0.625,
+        "module_r": 0.5,
+        "module_f1": 0.5,
+        "module_p_strict": 0.5,
+        "module_f1_strict": 0.5,
+        "model_p": 0.1406,
+        "model_r": 0.2188,
+        "model_f1": 0.1229,
+        "model_p_strict": 0.0781,
+        "model_f1_strict": 0.1125
+      },
+      "runs": [
+        {
+          "hit@1": 0.625,
+          "hit@3": 0.9375,
+          "hit@5": 0.9375,
+          "mrr": 0.7465,
+          "module_p": 0.625,
+          "module_r": 0.5,
+          "module_f1": 0.5,
+          "module_p_strict": 0.5,
+          "module_f1_strict": 0.5,
+          "model_p": 0.1406,
+          "model_r": 0.2188,
+          "model_f1": 0.1229,
+          "model_p_strict": 0.0781,
+          "model_f1_strict": 0.1125,
+          "n": 16
+        }
+      ]
+    },
+    "B1 (vi)": {
+      "mean": {
+        "hit@1": 0.5,
+        "hit@3": 0.75,
+        "hit@5": 0.9375,
+        "mrr": 0.6375,
+        "module_p": 0.5,
+        "module_r": 0.4375,
+        "module_f1": 0.4375,
+        "module_p_strict": 0.4375,
+        "module_f1_strict": 0.4375,
+        "model_p": 0.0781,
+        "model_r": 0.0625,
+        "model_f1": 0.0417,
+        "model_p_strict": 0.0156,
+        "model_f1_strict": 0.025
+      },
+      "runs": [
+        {
+          "hit@1": 0.5,
+          "hit@3": 0.75,
+          "hit@5": 0.9375,
+          "mrr": 0.6375,
+          "module_p": 0.5,
+          "module_r": 0.4375,
+          "module_f1": 0.4375,
+          "module_p_strict": 0.4375,
+          "module_f1_strict": 0.4375,
+          "model_p": 0.0781,
+          "model_r": 0.0625,
+          "model_f1": 0.0417,
+          "model_p_strict": 0.0156,
+          "model_f1_strict": 0.025,
+          "n": 16
+        }
+      ]
+    },
+    "P-noLLM (en)": {
+      "mean": {
+        "hit@1": 0.875,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "mrr": 0.9375,
+        "module_p": 0.875,
+        "module_r": 0.75,
+        "module_f1": 0.75,
+        "module_p_strict": 0.75,
+        "module_f1_strict": 0.75,
+        "model_p": 0.7656,
+        "model_r": 0.75,
+        "model_f1": 0.6946,
+        "model_p_strict": 0.4219,
+        "model_f1_strict": 0.5125
+      },
+      "runs": [
+        {
+          "hit@1": 0.875,
+          "hit@3": 1.0,
+          "hit@5": 1.0,
+          "mrr": 0.9375,
+          "module_p": 0.875,
+          "module_r": 0.75,
+          "module_f1": 0.75,
+          "module_p_strict": 0.75,
+          "module_f1_strict": 0.75,
+          "model_p": 0.7656,
+          "model_r": 0.75,
+          "model_f1": 0.6946,
+          "model_p_strict": 0.4219,
+          "model_f1_strict": 0.5125,
+          "n": 16
+        }
+      ]
+    },
+    "P-noLLM (vi)": {
+      "mean": {
+        "hit@1": 0.8125,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "mrr": 0.8854,
+        "module_p": 0.8125,
+        "module_r": 0.6875,
+        "module_f1": 0.6875,
+        "module_p_strict": 0.6875,
+        "module_f1_strict": 0.6875,
+        "model_p": 0.75,
+        "model_r": 0.6562,
+        "model_f1": 0.6384,
+        "model_p_strict": 0.3594,
+        "model_f1_strict": 0.4458
+      },
+      "runs": [
+        {
+          "hit@1": 0.8125,
+          "hit@3": 1.0,
+          "hit@5": 1.0,
+          "mrr": 0.8854,
+          "module_p": 0.8125,
+          "module_r": 0.6875,
+          "module_f1": 0.6875,
+          "module_p_strict": 0.6875,
+          "module_f1_strict": 0.6875,
+          "model_p": 0.75,
+          "model_r": 0.6562,
+          "model_f1": 0.6384,
+          "model_p_strict": 0.3594,
+          "model_f1_strict": 0.4458,
+          "n": 16
+        }
+      ]
+    }
+  },
+  "p_v_test": null,
+  "wilcoxon_vs_b1": {
+    "P-noLLM (en)": {
+      "model_f1": {
+        "metric": "model_f1",
+        "primary": true,
+        "mean_baseline": 0.122917,
+        "mean_config": 0.694643,
+        "mean_diff": 0.571726,
+        "wins": 12,
+        "ties": 3,
+        "losses": 1,
+        "n_nonzero": 13,
+        "w_plus": 89.0,
+        "w_minus": 2.0,
+        "p_value": 0.000732,
+        "method": "exact (2^13 sign assignments)",
+        "rank_biserial": 0.956044,
+        "p_holm": 0.00293
+      },
+      "model_f1_strict": {
+        "metric": "model_f1_strict",
+        "primary": false,
+        "mean_baseline": 0.1125,
+        "mean_config": 0.5125,
+        "mean_diff": 0.4,
+        "wins": 11,
+        "ties": 4,
+        "losses": 1,
+        "n_nonzero": 12,
+        "w_plus": 75.5,
+        "w_minus": 2.5,
+        "p_value": 0.001953,
+        "method": "exact (2^12 sign assignments)",
+        "rank_biserial": 0.935897,
+        "p_holm": 0.005859
+      },
+      "mrr": {
+        "metric": "mrr",
+        "primary": false,
+        "mean_baseline": 0.746528,
+        "mean_config": 0.9375,
+        "mean_diff": 0.190972,
+        "wins": 5,
+        "ties": 11,
+        "losses": 0,
+        "n_nonzero": 5,
+        "w_plus": 15.0,
+        "w_minus": 0,
+        "p_value": 0.0625,
+        "method": "exact (2^5 sign assignments)",
+        "rank_biserial": 1.0,
+        "p_holm": 0.125
+      },
+      "hit@1": {
+        "metric": "hit@1",
+        "primary": false,
+        "mean_baseline": 0.625,
+        "mean_config": 0.875,
+        "mean_diff": 0.25,
+        "wins": 4,
+        "ties": 12,
+        "losses": 0,
+        "n_nonzero": 4,
+        "w_plus": 10.0,
+        "w_minus": 0,
+        "p_value": 0.125,
+        "method": "exact (2^4 sign assignments)",
+        "rank_biserial": 1.0,
+        "p_holm": 0.125
+      }
+    },
+    "P-noLLM (vi)": {
+      "model_f1": {
+        "metric": "model_f1",
+        "primary": true,
+        "mean_baseline": 0.041667,
+        "mean_config": 0.638393,
+        "mean_diff": 0.596726,
+        "wins": 12,
+        "ties": 4,
+        "losses": 0,
+        "n_nonzero": 12,
+        "w_plus": 78.0,
+        "w_minus": 0,
+        "p_value": 0.000488,
+        "method": "exact (2^12 sign assignments)",
+        "rank_biserial": 1.0,
+        "p_holm": 0.001953
+      },
+      "model_f1_strict": {
+        "metric": "model_f1_strict",
+        "primary": false,
+        "mean_baseline": 0.025,
+        "mean_config": 0.445833,
+        "mean_diff": 0.420833,
+        "wins": 11,
+        "ties": 5,
+        "losses": 0,
+        "n_nonzero": 11,
+        "w_plus": 66.0,
+        "w_minus": 0,
+        "p_value": 0.000977,
+        "method": "exact (2^11 sign assignments)",
+        "rank_biserial": 1.0,
+        "p_holm": 0.00293
+      },
+      "mrr": {
+        "metric": "mrr",
+        "primary": false,
+        "mean_baseline": 0.6375,
+        "mean_config": 0.885417,
+        "mean_diff": 0.247917,
+        "wins": 8,
+        "ties": 8,
+        "losses": 0,
+        "n_nonzero": 8,
+        "w_plus": 36.0,
+        "w_minus": 0,
+        "p_value": 0.007812,
+        "method": "exact (2^8 sign assignments)",
+        "rank_biserial": 1.0,
+        "p_holm": 0.015625
+      },
+      "hit@1": {
+        "metric": "hit@1",
+        "primary": false,
+        "mean_baseline": 0.5,
+        "mean_config": 0.8125,
+        "mean_diff": 0.3125,
+        "wins": 5,
+        "ties": 11,
+        "losses": 0,
+        "n_nonzero": 5,
+        "w_plus": 15.0,
+        "w_minus": 0,
+        "p_value": 0.0625,
+        "method": "exact (2^5 sign assignments)",
+        "rank_biserial": 1.0,
+        "p_holm": 0.0625
+      }
+    }
+  },
+  "rq3": {
+    "dev": {
+      "P": {
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "mrr": 1.0,
+        "module_p": 1.0,
+        "module_r": 1.0,
+        "module_f1": 1.0,
+        "module_p_strict": 1.0,
+        "module_f1_strict": 1.0,
+        "model_p": 1.0,
+        "model_r": 1.0,
+        "model_f1": 1.0,
+        "model_p_strict": 0.625,
+        "model_f1_strict": 0.75
+      },
+      "P-V": {
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0,
+        "mrr": 1.0,
+        "module_p": 1.0,
+        "module_r": 1.0,
+        "module_f1": 1.0,
+        "module_p_strict": 1.0,
+        "module_f1_strict": 1.0,
+        "model_p": 1.0,
+        "model_r": 0.75,
+        "model_f1": 0.8333,
+        "model_p_strict": 0.375,
+        "model_f1_strict": 0.5
+      },
+      "verifier": {
+        "changed_module": 0.0,
+        "changed_models": 4.0,
+        "unverified": 0.0,
+        "weak": 0.0,
+        "two_rounds": 0.0,
+        "calls_per_req": 1.0,
+        "collector_reqs": 0.0,
+        "low_confidence": 0.0,
+        "issues_in_prompt": 0.0,
+        "issues_in_prompt_ids": []
+      },
+      "files": [
+        "data/runs/pfull_en_20261126_dev_run1",
+        "data/runs/pv_en_20261126_dev_run1"
+      ],
+      "wilcoxon_model_f1": null
+    }
+  },
+  "notes": [
+    "P (en, test): no complete run yet, skipped"
+  ],
+  "outputs": [
+    "reports/tt1/tables/tab_rq1_vi.tex",
+    "reports/tt1/tables/tab_wilcoxon_vi.tex",
+    "reports/tt1/tables/tab_rq3_vi.tex",
+    "reports/tt1/tables/all_tables_vi.tex",
+    "reports/tt1/tables/tab_rq1_en.tex",
+    "reports/tt1/tables/tab_wilcoxon_en.tex",
+    "reports/tt1/tables/tab_rq3_en.tex",
+    "reports/tt1/tables/all_tables_en.tex",
+    "reports/tt1/figures/fig_rq1_bar.pdf",
+    "reports/tt1/figures/fig_rq1_bar_vi.pdf"
+  ]
+}

@@ -48,6 +48,7 @@ KG layers:
 | `src/verifier/run_pipeline.py` | Full pipeline P (Mapping + Verifier, at most 2 rounds, back to Mapping, Collector in the loop) and P-V in one run |
 | `src/demo/demo.py` | BA demo of the prototype: one requirement (Vietnamese or English, or `--id`) through pipeline P with the frozen parameters, readable answer (text, Markdown, JSON) |
 | `src/evaluation/metrics.py`, `src/evaluation/evaluate.py` | Scoring rules (Hit@k, MRR, P/R/F1 at module and model level, lenient and strict) and scoring script |
+| `src/evaluation/report_tables.py` | Report tables (LaTeX, Vietnamese and English) and bar chart (vector PDF) generated from `data/runs` in one command; output in `reports/tt1/` |
 | `src/evaluation/compare.py` | Paired Wilcoxon signed-rank comparison of configurations (exact p-values, effect size) |
 | `src/evaluation/tune_b1.py`, `src/mapping/finalize_params.py` | Parameter choice on the dev split before the test runs: m of B1; frozen parameters of P with tau |
 | `src/experiments/test_lightrag_neo4j.py` | Experiment: LightRAG with the project's Neo4j |
@@ -207,6 +208,21 @@ Every configuration is compared with the baseline: two-sided Wilcoxon signed-ran
 correlation as effect size, wins / ties / losses. Primary metric, fixed before the test runs: model F1 (lenient).
 Other metrics are secondary; Holm-adjusted p-values are shown for reference. With 16 test requirements the tests
 are preliminary (Internship 1).
+
+### Report tables and figure
+
+```bash
+python src/evaluation/report_tables.py 2>&1 | tee logs/report_tables_YYYY-MM-DD.txt     # 0 LLM calls, no database
+```
+
+Finds the latest complete run of each configuration in `data/runs` (B1, P-noLLM, P runs 1 to 3 with their P-V,
+P and P-V on dev; an unfinished P run is ignored, a missing one is skipped), recomputes every score with
+`metrics.py`, runs the Wilcoxon tests with `compare.py` (saved as `data/runs/compare/report_*.json`) and writes to
+`reports/tt1/`: `tables/tab_rq1_{vi,en}.tex`, `tab_wilcoxon_{vi,en}.tex`, `tab_rq3_{vi,en}.tex`,
+`tab_p_runs_{vi,en}.tex`, `all_tables_{vi,en}.tex` (booktabs, tabularx, decimal comma in the Vietnamese tables),
+`figures/fig_rq1_bar.pdf` and `fig_rq1_bar_vi.pdf` (Hit@1 and model F1; P is the mean of its runs, the error bar
+is the range over runs) and `summary.json` (every number with its source folders). Checked offline in
+`tests/test_report_tables.py`.
 
 ### Incremental update with an unseen module (RQ2)
 

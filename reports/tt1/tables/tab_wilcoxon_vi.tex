@@ -1,0 +1,21 @@
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{@{}P{2.3cm}LrrP{1.7cm}rP{1.2cm}r@{}}
+\toprule
+\textbf{So sánh} & \textbf{Chỉ số} & \textbf{B1} & \textbf{Cấu hình} & \textbf{Thắng/ hoà/ thua} & \textbf{n} & \textbf{p} & \textbf{r} \\
+\midrule
+P-noLLM, tiếng Anh & \textbf{Model F1 (chính)} & 0,123 & 0,695 & 12/3/1 & 13 & \textbf{0,0007} & 0,96 \\
+ & Model F1 chặt & 0,113 & 0,512 & 11/4/1 & 12 & 0,0020 & 0,94 \\
+ & MRR & 0,747 & 0,938 & 5/11/0 & 5 & 0,0625 & 1,00 \\
+ & Hit@1 & 0,625 & 0,875 & 4/12/0 & 4 & 0,125 & 1,00 \\
+\addlinespace
+P-noLLM, tiếng Việt & \textbf{Model F1 (chính)} & 0,042 & 0,638 & 12/4/0 & 12 & \textbf{0,0005} & 1,00 \\
+ & Model F1 chặt & 0,025 & 0,446 & 11/5/0 & 11 & 0,0010 & 1,00 \\
+ & MRR & 0,637 & 0,885 & 8/8/0 & 8 & 0,0078 & 1,00 \\
+ & Hit@1 & 0,5 & 0,812 & 5/11/0 & 5 & 0,0625 & 1,00 \\
+\bottomrule
+\end{tabularx}
+\caption{Wilcoxon signed-rank 2 phía, so với B1 trên 16 câu kiểm thử. n: số câu có hiệu khác 0; p chính xác; r: rank-biserial}
+\label{tab:wilcoxon}
+\end{table}

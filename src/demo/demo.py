@@ -409,7 +409,7 @@ def render(rep, md=False):
     for rd in rep["verifier_rounds"]:
         L.append(f"- Round {rd['round']}: candidates {', '.join(rd['candidates'])} -> "
                  f"{rd['verdict'] or 'skipped'}" + (f", chose {rd['chosen_module']}" if rd["chosen_module"] else "")
-                 + (" (with GitHub issues)" if rd["with_issues"] else ""))
+                 + (" (with GitHub issues)" if rd["with_issues"] and rd["verdict"] else ""))
     if rep["rejected"]:
         L.append(f"- Rejected and sent back to the Mapping Agent: {', '.join(rep['rejected'])}")
     for col in rep["collector"]:

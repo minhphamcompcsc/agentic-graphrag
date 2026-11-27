@@ -1,0 +1,27 @@
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{@{}LP{1.7cm}P{1.7cm}@{}}
+\toprule
+& \multicolumn{2}{c}{\textbf{Dev split (4)}} \\
+\cmidrule(l){2-3}
+\textbf{Metric} & \textbf{P-V} & \textbf{P} \\
+\midrule
+Hit@1 & 1.0 & 1.0 \\
+Model precision (lenient) & 1.0 & 1.0 \\
+Model recall & 0.75 & 1.0 \\
+Model F1 (lenient) & 0.833 & 1.0 \\
+Model F1 (strict) & 0.5 & 0.75 \\
+\addlinespace
+Requirements where the Verifier changed the module &  & 0 \\
+Requirements where the Verifier changed the models &  & 4 \\
+Verifier calls per requirement &  & 1.0 \\
+Requirements with a second round &  & 0 \\
+Unverified requirements &  & 0 \\
+Requirements with Mapping score below $\tau$ &  & 0 \\
+Requirements with GitHub issues given to the Verifier &  & 0 \\
+\bottomrule
+\end{tabularx}
+\caption{P (Mapping and Verifier) against P-V (Mapping only). Dev numbers are illustrative only}
+\label{tab:rq3_en}
+\end{table}
