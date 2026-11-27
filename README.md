@@ -46,6 +46,7 @@ KG layers:
 | `src/mapping/graph_view.py`, `src/mapping/analyze.py`, `src/mapping/tune.py` | In-memory KG view (Cypher loaders), LLM requirement analysis with cache, parameter search on the dev split |
 | `src/verifier/verifier.py` | Verifier Agent: KG checks, candidate dossiers, 1 LLM judgement per round (validated against the KG) |
 | `src/verifier/run_pipeline.py` | Full pipeline P (Mapping + Verifier, at most 2 rounds, back to Mapping, Collector in the loop) and P-V in one run |
+| `src/demo/demo.py` | BA demo of the prototype: one requirement (Vietnamese or English, or `--id`) through pipeline P with the frozen parameters, readable answer (text, Markdown, JSON) |
 | `src/evaluation/metrics.py`, `src/evaluation/evaluate.py` | Scoring rules (Hit@k, MRR, P/R/F1 at module and model level, lenient and strict) and scoring script |
 | `src/evaluation/compare.py` | Paired Wilcoxon signed-rank comparison of configurations (exact p-values, effect size) |
 | `src/evaluation/tune_b1.py`, `src/mapping/finalize_params.py` | Parameter choice on the dev split before the test runs: m of B1; frozen parameters of P with tau |
@@ -141,6 +142,28 @@ score below `tau` calls the Collector (GitHub issues of Collector v1, cached; Od
 If no round accepts, the Mapping answer is kept and flagged `verified = false`. The same run writes P (`pfull_...`)
 and P-V (`pv_...`, Mapping only, identical to `mapping_agent.py`). Checked offline in `tests/test_verifier_offline.py`.
 
+### BA demo (prototype)
+
+`src/demo/demo.py` runs one requirement through pipeline P (same code as `run_pipeline.py`: Mapping, Verifier,
+agentic loop, frozen parameters `data/mapping/params_final_en.json`) and prints an answer for a Business Analyst:
+recommended module and other candidates, models and fields where the requirement is configured or where its logic
+lives (with `DEFINES`, `EXTENDS`, `ADDS_FIELD`), modules to install with it, parts that need customization, the KG
+path behind the choice, and the Verifier verdict with its quotes.
+
+```bash
+python src/demo/demo.py --id Q08 --dry-llm                      # 0 LLM calls (dev requirement, cached answers)
+python src/demo/demo.py --id Q08 --format md --out docs/demo/demo_Q08_en.md
+python src/demo/demo.py "Không cho xuất kho khi tồn kho không đủ" --dry-llm   # language detected (vi)
+python src/demo/demo.py "Block delivery when stock is not enough" --max-llm-calls 2 --no-new-collect
+```
+
+- Cached answers are read first (caches of the official runs for `--run`, then `data/demo/llm/`); a cached
+  requirement costs 0 calls. New calls are saved only in `data/demo/llm/`, never in the caches of the official runs.
+- `--dry-llm` never calls the LLM: without a cached analysis the Mapping Agent runs without LLM (as P-noLLM) and the
+  Verifier is skipped (answer flagged "not verified"). `--max-llm-calls` (default 3) caps Mapping + Verifier +
+  Collector calls in the same way. `--show-gold` adds the expected answer for an `--id`.
+- Checked offline in `tests/test_demo_offline.py` (same answer as `run_pipeline.py` from the same caches).
+
 ### Frozen parameters and official runs (test split)
 
 Parameters are chosen on the dev split only (0 LLM calls), then frozen before any run of P on the test split:
@@ -206,4 +229,5 @@ Code, comments, commit messages and documentation are in English. Exceptions:
 
 - `requirement_vi` in `data/eval/requirements_*.csv`: the evaluation set is bilingual (Vietnamese and English requirements).
 - Vietnamese test sentences in `check_env.py` and `src/test_env.py`: they check Vietnamese support of the embedding model.
+- Vietnamese example requirements in the BA demo section above, in `tests/test_demo_offline.py` (inputs of the language detection test) and the Vietnamese letters used for detection in `src/demo/demo.py`.
 - Logs created before 2026-11-24 (see `logs/README.md`).
