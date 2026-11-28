@@ -143,7 +143,10 @@ def num(x, lang, nd=3):
 
 
 def pval(p, lang):
-    s = f"{p:.4f}" if p < 0.01 else num(p, "en", 4)
+    if p < 0.0001:                      # exact p can be far below the 4-digit display (e.g. 2/2^16)
+        s = "$<$0.0001"
+    else:
+        s = f"{p:.4f}" if p < 0.01 else num(p, "en", 4)
     return s.replace(".", ",") if lang == "vi" else s
 
 
@@ -505,7 +508,7 @@ def main(argv=None):
     for (lang, c), tests in W.items():
         x = tests["model_f1"]
         print(f"  Wilcoxon {c} vs B1 ({lang}), model F1: {x['wins']}/{x['ties']}/{x['losses']}, "
-              f"n {x['n_nonzero']}, p {x['p_value']:.4f}, r {x['rank_biserial']:+.2f}")
+              f"n {x['n_nonzero']}, p {('< 0.0001' if x['p_value'] < 0.0001 else format(x['p_value'], '.4f'))}, r {x['rank_biserial']:+.2f}")
     for s in R:
         print(f"  RQ3 {s}: P-V model F1 {R[s]['P-V']['mean']['model_f1']:.3f} -> P {R[s]['P']['mean']['model_f1']:.3f}; "
               f"Verifier changed module in {count(R[s]['verifier']['mean']['changed_module'], 'en')} requirement(s)")

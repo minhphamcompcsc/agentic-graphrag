@@ -217,7 +217,7 @@ class Analyzer:
             if c["input_sha256"] == sha(text) and c["prompt_version"] == PROMPT_VERSION:
                 return c["output"], True
         if self.calls >= self.max_calls:
-            raise DailyQuotaExceeded(f"--max-llm-calls {self.max_calls} reached")
+            raise DailyQuotaExceeded(f"--max-llm-calls {getattr(self, 'budget_label', self.max_calls)} reached")
         self.failures = []
         try:
             out = self._call(PROMPT.format(requirement=text))

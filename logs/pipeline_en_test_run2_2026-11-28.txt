@@ -1,0 +1,9 @@
+Pipeline pipe-v0.1 = Mapping map-v0.1 + Verifier ver-v0.1 (en, split test, run 2, tau 1.0): graph from neo4j {'modules': 67, 'models': 443, 'functions': 14, 'module_model_pairs': 827, 'links_non_technical': 1729}
+  Q01: stock_no_negative | models: stock.quant, stock.location, product.template, product.category | supported, 1 round(s), 1 new call(s)
+  Q02: stock_picking_invoice_link | models: stock.picking, account.move | supported, 1 round(s), 1 new call(s)
+  Q03: stock_picking_auto_create_lot | models: stock.picking, stock.picking.type, product.template, stock.move.line | supported, 1 round(s), 1 new call(s)
+New LLM calls: Mapping 3, Verifier 3, Collector 0; 3 requirements; module changed by the Verifier 0; unverified 0; 178.1 s
+STOPPED early at requirement 4/16: DailyQuotaExceeded: --max-llm-calls 3 reached
+  Rerun the same command (after the quota resets if the daily quota is exhausted); answers already received are cached and are not called again. The files below hold only the finished requirements.
+Saved: data/runs/pfull_en_20261128_test_run2/predictions.json (P), data/runs/pv_en_20261128_test_run2/predictions.json (P-V)
+Next: python src/evaluation/evaluate.py data/runs/pfull_en_20261128_test_run2/predictions.json --split test

@@ -191,6 +191,7 @@ def run(args, embed_fn=None, llm_fn=None, ver_llm_fn=None, pg=None):
         text = r[f"requirement_{args.lang}"]
         try:
             an.max_calls = an.calls + max(0, budget())   # one shared budget for Mapping, Verifier, Collector
+            an.budget_label = f"{args.max_llm_calls} (shared by Mapping, Verifier, Collector)"
             analysis, cached = an.analyze(r["id"], args.lang, text)
             feat = ma.features(res, text, analysis, p)
             dec0 = ma.decide(feat, p, res.g)
