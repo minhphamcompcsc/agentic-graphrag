@@ -230,6 +230,15 @@ bargs = rp.build_parser().parse_args(["--lang", "en", "--split", "test", "--sour
 *_, cb = rp.run(bargs, fake_embed, fake_llm, fake, PG)
 check(cb["stopped"] and cb["mapping"] + cb["verifier"] == 5, f"budget 5: stopped after {cb['mapping']} Mapping + "
       f"{cb['verifier']} Verifier calls")
+for cap in (3, 4):                            # the budget is shared: Mapping never adds a call beyond it
+    fake_c, _ = make_fake("accept")
+    cargs = rp.build_parser().parse_args(["--lang", "en", "--split", "test", "--source", "snapshot",
+                                          "--out-root", str(tmp / f"runs_c{cap}"), "--llm-cache", str(tmp / f"llm_c{cap}"),
+                                          "--cache-dir", str(tmp / "cache"), "--max-llm-calls", str(cap),
+                                          "--verifier-cache", str(tmp / f"ver_c{cap}"), "--oca-dir", str(tmp / "no_oca")])
+    *_, cc = rp.run(cargs, fake_embed, fake_llm, fake_c, PG)
+    check(cc["stopped"] and cc["mapping"] + cc["verifier"] == cap,
+          f"budget {cap}: exactly {cap} calls ({cc['mapping']} Mapping + {cc['verifier']} Verifier)")
 bargs.max_llm_calls = 60
 *_, it_b1, _, cb1 = rp.run(bargs, fake_embed, fake_llm, fake, PG)
 *_, it_b2, _, cb2 = rp.run(bargs, fake_embed, fake_llm, fake, PG)

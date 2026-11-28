@@ -1,0 +1,8 @@
+prompt chars 5721
+parsed is None: False
+parsing_error: None
+finish_reason: STOP
+safety: []
+usage: {'input_tokens': 1647, 'output_tokens': 1368, 'total_tokens': 3015, 'input_token_details': {'cache_read': 0}, 'output_token_details': {'reasoning': 1023}}
+tool_calls: [{"name": "Judgement", "args": {"missing": [], "verdict": "supported", "models": ["account.move", "account.move.line", "stock.picking", "stock.move"], "candidates": [{"fit": "yes", "module": "stock_picking_invoice_link", "reason": "Establishes links between stock transfers and invoices at both the document header and invoice line levels."}, {"fit": "partly", "module": "sale_stock_picking_invoice_link", "reason": "Provides picking-to-invoice link logic specifically for sales orders, relying on stock_picking_invoice_link for core structures."}, {"fit": "no", "module": "stock_picking_back2draft", "reason": "Focuses on resetting canceled transfers back to draft, which is unrelated to invoice links."}], "chosen_module": "stock_picking_invoice_link", "reason": "`stock_picking_invoice_link` directly satisfies the business requirement by adding links between pickings and invoices at both header level (account.move) and line level (account.move.line). It also adds a Pickings tab on the invoice form to give accounting full visibility into related stock transfers and stock moves.", "evidence": ["Adds link between pickings and invoices as well as on the lines.", "If you open invoice form, you must see a new Pickings tab with information about them.", "Establishes a link between stock pickings and invoices at both the header and line levels, providing visibility of related pickings in a dedicated tab on the invoice."]}, "id": "39c79e27-2276-4e7a-9e08-2b8686f90519", "type": "tool_call"}]
+content: 

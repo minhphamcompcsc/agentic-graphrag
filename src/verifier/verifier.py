@@ -26,12 +26,16 @@ import hashlib
 import json
 import os
 import re
+import sys
 import time
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import List, Optional
 
 from pydantic import BaseModel, Field
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "mapping"))
+from analyze import NO_OUTPUT_WAIT, NoStructuredOutput, save_failures, unwrap  # noqa: E402  (shared with Mapping)
 
 VERIFIER_VERSION = "ver-v0.1"
 PROMPT_VERSION = "ver-v0.1"
@@ -184,9 +188,7 @@ def dossier(res, feat, p, rank_models, module, rank, issues=None):
 # ============ 3. LLM judgement ============
 def make_llm(backend: str, model: str):
     if backend == "gemini":
-        import sys
         from langchain_google_genai import ChatGoogleGenerativeAI
-        sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "mapping"))
         from analyze import no_hidden_retry       # same fix as the Mapping Agent (no silent 503 retries)
         llm = no_hidden_retry(ChatGoogleGenerativeAI(model=model, temperature=0, max_retries=0, timeout=LLM_TIMEOUT))
     elif backend == "ollama":
@@ -194,7 +196,7 @@ def make_llm(backend: str, model: str):
         llm = ChatOllama(model=model, temperature=0)
     else:
         raise ValueError(backend)
-    return llm.with_structured_output(Judgement)
+    return llm.with_structured_output(Judgement, include_raw=True)
 
 
 class Verifier:
@@ -210,21 +212,26 @@ class Verifier:
         self.calls, self.budget = 0, budget or (lambda: 10 ** 9)
         self._llm, self.llm_fn = None, llm_fn      # llm_fn(prompt) -> dict, used by offline tests
         self.prompt_dir = Path(prompt_dir) if prompt_dir else None
+        self.failures = []                         # failed structured-output attempts of the current call
 
     def _invoke(self, prompt: str) -> dict:
         if self.llm_fn:
             return self.llm_fn(prompt)
         if self._llm is None:
             self._llm = make_llm(self.backend, self.model)
-        out = self._llm.invoke(prompt)
-        if out is None:
-            raise RuntimeError("LLM returned no structured output")
-        return out.model_dump()
+        return unwrap(self._llm.invoke(prompt))
 
     def _call(self, prompt: str) -> dict:
         for attempt in (1, 2):
             try:
                 return self._invoke(prompt)
+            except NoStructuredOutput as e:
+                self.failures.append({"attempt": attempt, "error": str(e), **e.detail})
+                if attempt == 1:
+                    print(f"    {str(e)[:160]}; trying once more in {NO_OUTPUT_WAIT} s")
+                    time.sleep(NO_OUTPUT_WAIT if not self.llm_fn else 0)
+                    continue
+                raise TransientLLMError(f"{e} (twice; raw answers saved)")
             except Exception as e:  # noqa: BLE001
                 msg = repr(e)
                 if "PerDay" in msg or "per day" in msg:
@@ -256,7 +263,15 @@ class Verifier:
         if self.budget() <= 0:
             raise DailyQuotaExceeded("--max-llm-calls reached")
         t = time.time()
-        out = self._call(prompt)
+        self.failures = []
+        try:
+            out = self._call(prompt)
+        except Exception:
+            if self.failures:
+                save_failures(self.dir / "errors", f"{lang}_{qid}_round{rnd}", self.failures, recovered=False)
+            raise
+        if self.failures:                          # first attempt failed, the retry worked: keep the evidence
+            save_failures(self.dir / "errors", f"{lang}_{qid}_round{rnd}", self.failures, recovered=True)
         self.calls += 1
         self.dir.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps({

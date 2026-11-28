@@ -76,7 +76,52 @@ class TransientLLMError(RuntimeError):
 TRANSIENT = ("503", "504", "DeadlineExceeded", "Deadline expired", "DEADLINE_EXCEEDED", "UNAVAILABLE",
              "ServiceUnavailable", "high demand", "overloaded", "timed out", "Timeout", "ReadTimeout")
 TRANSIENT_WAIT = int(os.getenv("LLM_TRANSIENT_WAIT", "30"))
+NO_OUTPUT_WAIT = int(os.getenv("LLM_NO_OUTPUT_WAIT", "15"))
 ERROR_CHARS = 2000                                   # keep the quota details of Google errors in the logs
+
+
+class NoStructuredOutput(RuntimeError):
+    """The model answered, but not with the expected structured output (no function call, malformed call,
+    truncated answer, safety block, invalid fields). Retried once; the raw answer is saved for diagnosis."""
+
+    def __init__(self, msg, detail):
+        super().__init__(msg)
+        self.detail = detail
+
+
+def raw_detail(out: dict) -> dict:
+    """What the model actually returned, from the output of with_structured_output(..., include_raw=True)."""
+    raw = out.get("raw")
+    meta = getattr(raw, "response_metadata", None) or {}
+    content = getattr(raw, "content", "")
+    return {"finish_reason": str(meta.get("finish_reason")), "safety_ratings": meta.get("safety_ratings"),
+            "content": str(content)[:ERROR_CHARS], "tool_calls": getattr(raw, "tool_calls", None),
+            "invalid_tool_calls": getattr(raw, "invalid_tool_calls", None),
+            "usage": getattr(raw, "usage_metadata", None), "parsing_error": repr(out.get("parsing_error"))[:ERROR_CHARS]}
+
+
+def unwrap(out) -> dict:
+    """Structured answer as a dict. Accepts the include_raw dict or a plain pydantic object (offline tests)."""
+    if isinstance(out, dict) and "raw" in out:
+        if out.get("parsed") is None:
+            d = raw_detail(out)
+            raise NoStructuredOutput(f"LLM returned no structured output (finish_reason {d['finish_reason']}, "
+                                     f"{len(d['tool_calls'] or [])} tool call(s), {len(d['content'])} text chars, "
+                                     f"parsing error {d['parsing_error'][:200]})", d)
+        out = out["parsed"]
+    if out is None:
+        raise NoStructuredOutput("LLM returned no structured output", {})
+    return out.model_dump()
+
+
+def save_failures(directory: Path, name: str, failures: list, recovered: bool):
+    """Raw answers of failed structured-output attempts (evidence; the cache keeps only good answers)."""
+    directory.mkdir(parents=True, exist_ok=True)
+    stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    path = directory / f"{name}_{stamp}.json"
+    path.write_text(json.dumps({"name": name, "recovered": recovered, "attempts": failures}, ensure_ascii=False,
+                               indent=2, default=str), encoding="utf-8")
+    return path
 
 
 def sha(s: str) -> str:
@@ -114,7 +159,7 @@ def make_llm(backend: str, model: str):
         llm = ChatOllama(model=model, temperature=0)
     else:
         raise ValueError(backend)
-    return llm.with_structured_output(RequirementAnalysis)
+    return llm.with_structured_output(RequirementAnalysis, include_raw=True)
 
 
 class Analyzer:
@@ -128,6 +173,7 @@ class Analyzer:
         self.dir = Path(cache_root) / self.model.replace(":", "_").replace("/", "_") / f"run{run}"
         self.max_calls, self.calls = max_calls, 0
         self._llm, self.llm_fn = None, llm_fn     # llm_fn(prompt) -> dict, used by offline tests
+        self.failures = []                         # failed structured-output attempts of the current call
 
     def _call(self, prompt: str) -> dict:
         if self.llm_fn:
@@ -136,10 +182,14 @@ class Analyzer:
             self._llm = make_llm(self.backend, self.model)
         for attempt in (1, 2):
             try:
-                out = self._llm.invoke(prompt)
-                if out is None:
-                    raise RuntimeError("LLM returned no structured output")
-                return out.model_dump()
+                return unwrap(self._llm.invoke(prompt))
+            except NoStructuredOutput as e:
+                self.failures.append({"attempt": attempt, "error": str(e), **e.detail})
+                if attempt == 1:
+                    print(f"    {str(e)[:160]}; trying once more in {NO_OUTPUT_WAIT} s")
+                    time.sleep(NO_OUTPUT_WAIT)
+                    continue
+                raise TransientLLMError(f"{e} (twice; raw answers saved)")
             except Exception as e:  # noqa: BLE001
                 msg = repr(e)
                 if "PerDay" in msg or "per day" in msg:
@@ -168,7 +218,15 @@ class Analyzer:
                 return c["output"], True
         if self.calls >= self.max_calls:
             raise DailyQuotaExceeded(f"--max-llm-calls {self.max_calls} reached")
-        out = self._call(PROMPT.format(requirement=text))
+        self.failures = []
+        try:
+            out = self._call(PROMPT.format(requirement=text))
+        except Exception:
+            if self.failures:
+                save_failures(self.dir / "errors", f"{lang}_{qid}", self.failures, recovered=False)
+            raise
+        if self.failures:                          # first attempt failed, the retry worked: keep the evidence
+            save_failures(self.dir / "errors", f"{lang}_{qid}", self.failures, recovered=True)
         self.calls += 1
         self.dir.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps({

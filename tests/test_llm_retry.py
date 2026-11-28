@@ -3,6 +3,8 @@ Offline check of the error handling of the Mapping Agent LLM call (src/mapping/a
   1. 503 / 504 / timeout: wait and try once more; a second transient error raises TransientLLMError
   2. daily quota: DailyQuotaExceeded at once, with the full Google message (quota id and limit kept in the logs)
   3. any other error: raised at once, no retry
+  5. no structured output (model answered without a valid function call): retried once; the raw answers are
+     saved in <cache>/errors/; a second failure raises TransientLLMError (clean stop); Mapping and Verifier
   4. no hidden retries: through LangChain and the real Google client (fake key, no network), a 503 reaches
      our code after exactly 1 request (the client alone retries 503 for up to 600 s, each retry uses quota)
 Usage: python tests/test_llm_retry.py
@@ -12,8 +14,12 @@ import sys
 from pathlib import Path
 
 os.environ["LLM_TRANSIENT_WAIT"] = "0"
+os.environ["LLM_NO_OUTPUT_WAIT"] = "0"
+os.environ["LLM_PAUSE"] = "0"
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src" / "mapping"))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src" / "verifier"))
 import analyze  # noqa: E402
+import verifier  # noqa: E402
 
 
 
@@ -65,6 +71,68 @@ try:
     results.append(("other error: no retry", False))
 except Exception as e:  # noqa: BLE001
     results.append(("other error: no retry", a._llm.n == 1 and isinstance(e, ValueError)))
+
+# 5. no structured output (include_raw answers of with_structured_output)
+import json  # noqa: E402
+import shutil  # noqa: E402
+import tempfile  # noqa: E402
+
+
+class RawMsg:
+    content = ""
+    tool_calls = []
+    invalid_tool_calls = []
+    usage_metadata = {"output_tokens": 0}
+    response_metadata = {"finish_reason": "MALFORMED_FUNCTION_CALL"}
+
+
+BAD = {"raw": RawMsg(), "parsed": None, "parsing_error": None}
+
+
+class SeqLLM:
+    def __init__(self, answers):
+        self.answers, self.n = list(answers), 0
+
+    def invoke(self, prompt):
+        self.n += 1
+        return self.answers.pop(0)
+
+
+tmp = Path(tempfile.mkdtemp())
+a = analyze.Analyzer("gemini", "test-model", 1, tmp / "map", 5)
+a._llm = SeqLLM([BAD, {"raw": RawMsg(), "parsed": Out(), "parsing_error": None}])
+out, cached = a.analyze("Q09", "en", "some requirement")
+errs = list((tmp / "map").glob("**/errors/en_Q09_*.json"))
+rec = json.loads(errs[0].read_text()) if errs else {}
+results.append(("Mapping, no structured output once: retried, answer cached, raw answer saved",
+                out == {"ok": 1} and a._llm.n == 2 and a.calls == 1 and rec.get("recovered") is True
+                and rec["attempts"][0]["finish_reason"] == "MALFORMED_FUNCTION_CALL"))
+a = analyze.Analyzer("gemini", "test-model", 1, tmp / "map", 5)
+a._llm = SeqLLM([BAD, BAD])
+try:
+    a.analyze("Q10", "en", "another requirement")
+    results.append(("Mapping, no structured output twice: TransientLLMError", False))
+except analyze.TransientLLMError:
+    errs = list((tmp / "map").glob("**/errors/en_Q10_*.json"))
+    results.append(("Mapping, no structured output twice: TransientLLMError, nothing cached, raw saved",
+                    a._llm.n == 2 and a.calls == 0 and len(errs) == 1
+                    and json.loads(errs[0].read_text())["recovered"] is False
+                    and not list((tmp / "map").glob("**/en_Q10.json"))))
+v = verifier.Verifier("gemini", "test-model", 1, tmp / "ver")
+v._llm = SeqLLM([BAD, BAD])
+try:
+    v.judge("Q09", "en", 1, "prompt")
+    results.append(("Verifier, no structured output twice: TransientLLMError", False))
+except verifier.TransientLLMError:
+    errs = list((tmp / "ver").glob("**/errors/en_Q09_round1_*.json"))
+    results.append(("Verifier, no structured output twice: TransientLLMError (clean stop), raw saved",
+                    v._llm.n == 2 and v.calls == 0 and len(errs) == 1))
+v = verifier.Verifier("gemini", "test-model", 1, tmp / "ver2")
+v._llm = SeqLLM([BAD, {"raw": RawMsg(), "parsed": Out(), "parsing_error": None}])
+o, c = v.judge("Q09", "en", 1, "prompt")
+results.append(("Verifier, no structured output once: retried and cached", o == {"ok": 1} and v.calls == 1
+                 and not c and len(list((tmp / "ver2").glob("**/en_Q09_round1.json"))) == 1))
+shutil.rmtree(tmp)
 
 # 4. hidden retries of the Google client, end to end (the RPC is replaced, nothing is sent)
 import signal  # noqa: E402
