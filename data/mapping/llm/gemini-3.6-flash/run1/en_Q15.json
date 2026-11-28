@@ -1,0 +1,44 @@
+{
+  "id": "Q15",
+  "lang": "en",
+  "backend": "gemini",
+  "llm": "gemini-3.6-flash",
+  "temperature": 0,
+  "prompt_version": "map-v0.1",
+  "called_at": "2026-11-28T08:55:21+00:00",
+  "input_sha256": "73cf9e6eaa55b29c",
+  "input": "When an invoice is created from a partially delivered sales order, each invoice line should automatically record the deliveries it bills, without accounting picking them by hand.",
+  "output": {
+    "normalized_en": "When generating an invoice from a sales order that has been partially delivered, each invoice line must automatically link to the specific delivery records it is billing, removing the need for manual selection by accounting staff.",
+    "low_level_keywords": [
+      "partially delivered sales order",
+      "invoice line",
+      "delivery order",
+      "invoice creation",
+      "billed quantity"
+    ],
+    "high_level_keywords": [
+      "sales invoicing",
+      "delivery traceability",
+      "order to cash"
+    ],
+    "objects": [
+      {
+        "mention": "invoice",
+        "odoo_model": "account.move"
+      },
+      {
+        "mention": "invoice line",
+        "odoo_model": "account.move.line"
+      },
+      {
+        "mention": "sales order",
+        "odoo_model": "sale.order"
+      },
+      {
+        "mention": "delivery",
+        "odoo_model": "stock.picking"
+      }
+    ]
+  }
+}

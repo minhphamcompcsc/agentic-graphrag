@@ -1,0 +1,36 @@
+{
+  "id": "Q03",
+  "lang": "en",
+  "backend": "gemini",
+  "llm": "gemini-3.6-flash",
+  "temperature": 0,
+  "prompt_version": "map-v0.1",
+  "called_at": "2026-11-27T10:52:53+00:00",
+  "input_sha256": "56fcbd395fead4ef",
+  "input": "Lot numbers should be generated automatically when receiving goods",
+  "output": {
+    "normalized_en": "When receiving goods, lot numbers should be generated automatically for tracked items during the receipt process.",
+    "low_level_keywords": [
+      "lot number",
+      "automatic lot generation",
+      "goods receipt",
+      "incoming shipment",
+      "receipt picking"
+    ],
+    "high_level_keywords": [
+      "inventory traceability",
+      "receipt management",
+      "lot management"
+    ],
+    "objects": [
+      {
+        "mention": "lot number",
+        "odoo_model": "stock.lot"
+      },
+      {
+        "mention": "goods receipt",
+        "odoo_model": "stock.picking"
+      }
+    ]
+  }
+}

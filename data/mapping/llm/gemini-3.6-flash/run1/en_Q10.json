@@ -1,0 +1,40 @@
+{
+  "id": "Q10",
+  "lang": "en",
+  "backend": "gemini",
+  "llm": "gemini-3.6-flash",
+  "temperature": 0,
+  "prompt_version": "map-v0.1",
+  "called_at": "2026-11-27T11:14:52+00:00",
+  "input_sha256": "190e27b0f2a7c67f",
+  "input": "When emptying a shelf for maintenance, the storekeeper wants to create an internal transfer without typing each product: pick the source shelf and the system fills the transfer with everything currently stored there.",
+  "output": {
+    "normalized_en": "When creating an internal transfer to empty a shelf for maintenance, selecting the source location should automatically populate the transfer with all products and quantities currently stored at that location.",
+    "low_level_keywords": [
+      "internal transfer",
+      "source location",
+      "shelf location",
+      "stock on hand",
+      "auto populate transfer lines"
+    ],
+    "high_level_keywords": [
+      "warehouse management",
+      "transfer management",
+      "inventory control"
+    ],
+    "objects": [
+      {
+        "mention": "internal transfer",
+        "odoo_model": "stock.picking"
+      },
+      {
+        "mention": "source shelf",
+        "odoo_model": "stock.location"
+      },
+      {
+        "mention": "transfer line",
+        "odoo_model": "stock.move"
+      }
+    ]
+  }
+}

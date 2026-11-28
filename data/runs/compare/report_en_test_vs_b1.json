@@ -1,5 +1,5 @@
 {
-  "date": "20261127",
+  "date": "20261128",
   "split": "test",
   "requirements": [
     "Q01",
@@ -37,6 +37,16 @@
       {
         "file": "data/runs/pnollm_en_20261126_all_run1/predictions.json",
         "config": "P-noLLM",
+        "lang": "en",
+        "run": 1,
+        "missing": [],
+        "stopped": null
+      }
+    ],
+    "P": [
+      {
+        "file": "data/runs/pfull_en_20261128_test_run1/predictions.json",
+        "config": "P",
         "lang": "en",
         "run": 1,
         "missing": [],
@@ -188,6 +198,152 @@
             "Q20": 1.0
           },
           "p_holm": 0.125
+        }
+      ]
+    },
+    {
+      "config": "P",
+      "baseline": "B1",
+      "tests": [
+        {
+          "metric": "model_f1",
+          "primary": true,
+          "mean_baseline": 0.12291666666666667,
+          "mean_config": 0.9452380952380952,
+          "mean_diff": 0.8223214285714285,
+          "wins": 16,
+          "ties": 0,
+          "losses": 0,
+          "n_nonzero": 16,
+          "w_plus": 136.0,
+          "w_minus": 0,
+          "p_value": 3.0517578125e-05,
+          "method": "exact (2^16 sign assignments)",
+          "rank_biserial": 1.0,
+          "per_requirement_diff": {
+            "Q01": 1.0,
+            "Q02": 1.0,
+            "Q03": 1.0,
+            "Q04": 1.0,
+            "Q05": 0.6,
+            "Q06": 0.6,
+            "Q07": 0.6667,
+            "Q09": 1.0,
+            "Q10": 0.6,
+            "Q12": 0.5,
+            "Q14": 1.0,
+            "Q15": 0.3333,
+            "Q17": 1.0,
+            "Q18": 1.0,
+            "Q19": 0.8571,
+            "Q20": 1.0
+          },
+          "p_holm": 0.0001220703125
+        },
+        {
+          "metric": "model_f1_strict",
+          "primary": false,
+          "mean_baseline": 0.1125,
+          "mean_config": 0.66875,
+          "mean_diff": 0.55625,
+          "wins": 14,
+          "ties": 2,
+          "losses": 0,
+          "n_nonzero": 14,
+          "w_plus": 105.0,
+          "w_minus": 0,
+          "p_value": 0.0001220703125,
+          "method": "exact (2^14 sign assignments)",
+          "rank_biserial": 1.0,
+          "per_requirement_diff": {
+            "Q01": 1.0,
+            "Q02": 1.0,
+            "Q03": 0.6667,
+            "Q04": 0.8,
+            "Q05": 0.2667,
+            "Q06": 0.3333,
+            "Q07": 0.6667,
+            "Q09": 0.6667,
+            "Q10": 0.0,
+            "Q12": 0.3333,
+            "Q14": 0.6667,
+            "Q15": 0.0,
+            "Q17": 0.5,
+            "Q18": 0.6667,
+            "Q19": 0.6667,
+            "Q20": 0.6667
+          },
+          "p_holm": 0.0003662109375
+        },
+        {
+          "metric": "mrr",
+          "primary": false,
+          "mean_baseline": 0.7465277777777778,
+          "mean_config": 1.0,
+          "mean_diff": 0.2534722222222222,
+          "wins": 6,
+          "ties": 10,
+          "losses": 0,
+          "n_nonzero": 6,
+          "w_plus": 21.0,
+          "w_minus": 0,
+          "p_value": 0.03125,
+          "method": "exact (2^6 sign assignments)",
+          "rank_biserial": 1.0,
+          "per_requirement_diff": {
+            "Q01": 0.6667,
+            "Q02": 0.0,
+            "Q03": 0.0,
+            "Q04": 0.0,
+            "Q05": 0.0,
+            "Q06": 0.0,
+            "Q07": 0.8889,
+            "Q09": 0.0,
+            "Q10": 0.5,
+            "Q12": 0.0,
+            "Q14": 0.6667,
+            "Q15": 0.0,
+            "Q17": 0.0,
+            "Q18": 0.6667,
+            "Q19": 0.0,
+            "Q20": 0.6667
+          },
+          "p_holm": 0.0625
+        },
+        {
+          "metric": "hit@1",
+          "primary": false,
+          "mean_baseline": 0.625,
+          "mean_config": 1.0,
+          "mean_diff": 0.375,
+          "wins": 6,
+          "ties": 10,
+          "losses": 0,
+          "n_nonzero": 6,
+          "w_plus": 21.0,
+          "w_minus": 0,
+          "p_value": 0.03125,
+          "method": "exact (2^6 sign assignments)",
+          "rank_biserial": 1.0,
+          "per_requirement_diff": {
+            "Q01": 1.0,
+            "Q02": 0.0,
+            "Q03": 0.0,
+            "Q04": 0.0,
+            "Q05": 0.0,
+            "Q06": 0.0,
+            "Q07": 1.0,
+            "Q09": 0.0,
+            "Q10": 1.0,
+            "Q12": 0.0,
+            "Q14": 1.0,
+            "Q15": 0.0,
+            "Q17": 0.0,
+            "Q18": 1.0,
+            "Q19": 0.0,
+            "Q20": 1.0
+          },
+          "p_holm": 0.0625
         }
       ]
     }

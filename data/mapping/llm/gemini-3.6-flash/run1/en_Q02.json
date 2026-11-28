@@ -1,0 +1,36 @@
+{
+  "id": "Q02",
+  "lang": "en",
+  "backend": "gemini",
+  "llm": "gemini-3.6-flash",
+  "temperature": 0,
+  "prompt_version": "map-v0.1",
+  "called_at": "2026-11-27T10:52:15+00:00",
+  "input_sha256": "36f7838dd9729fb1",
+  "input": "From a delivery order, users should be able to see the related invoices",
+  "output": {
+    "normalized_en": "Users must be able to view and access all invoices related to a specific delivery order directly from that delivery order.",
+    "low_level_keywords": [
+      "delivery order",
+      "invoice",
+      "related invoice",
+      "stock picking",
+      "customer invoice"
+    ],
+    "high_level_keywords": [
+      "inventory management",
+      "sales invoicing",
+      "document traceability"
+    ],
+    "objects": [
+      {
+        "mention": "delivery order",
+        "odoo_model": "stock.picking"
+      },
+      {
+        "mention": "invoice",
+        "odoo_model": "account.move"
+      }
+    ]
+  }
+}

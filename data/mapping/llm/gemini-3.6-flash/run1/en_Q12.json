@@ -1,0 +1,41 @@
+{
+  "id": "Q12",
+  "lang": "en",
+  "backend": "gemini",
+  "llm": "gemini-3.6-flash",
+  "temperature": 0,
+  "prompt_version": "map-v0.1",
+  "called_at": "2026-11-27T11:15:34+00:00",
+  "input_sha256": "1ef6b1d344161744",
+  "input": "From the on-hand stock list, the storekeeper wants to select a few stock lines and move only those quantities to another location right away.",
+  "output": {
+    "normalized_en": "The storekeeper needs to select specific stock quants directly from the on-hand stock list view and immediately move those selected quantities to another target location.",
+    "low_level_keywords": [
+      "on-hand stock list",
+      "stock line",
+      "stock quant",
+      "target location",
+      "relocate stock",
+      "immediate transfer"
+    ],
+    "high_level_keywords": [
+      "inventory control",
+      "internal transfer",
+      "stock location management"
+    ],
+    "objects": [
+      {
+        "mention": "on-hand stock line",
+        "odoo_model": "stock.quant"
+      },
+      {
+        "mention": "location",
+        "odoo_model": "stock.location"
+      },
+      {
+        "mention": "stock transfer",
+        "odoo_model": "stock.picking"
+      }
+    ]
+  }
+}

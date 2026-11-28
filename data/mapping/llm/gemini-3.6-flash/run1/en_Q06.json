@@ -1,0 +1,41 @@
+{
+  "id": "Q06",
+  "lang": "en",
+  "backend": "gemini",
+  "llm": "gemini-3.6-flash",
+  "temperature": 0,
+  "prompt_version": "map-v0.1",
+  "called_at": "2026-11-27T10:55:01+00:00",
+  "input_sha256": "fad1868ae0ec2ac5",
+  "input": "When invoicing a sales order based on delivered quantities, each invoice must be traceable to the delivery it covers",
+  "output": {
+    "normalized_en": "When creating invoices for sales orders using the delivered quantities invoicing policy, each invoice must maintain explicit traceability to the corresponding delivery order it covers.",
+    "low_level_keywords": [
+      "delivered quantities",
+      "invoicing policy",
+      "customer invoice",
+      "delivery order",
+      "traceability",
+      "sales order"
+    ],
+    "high_level_keywords": [
+      "sales invoicing",
+      "delivery tracking",
+      "order to cash"
+    ],
+    "objects": [
+      {
+        "mention": "sales order",
+        "odoo_model": "sale.order"
+      },
+      {
+        "mention": "invoice",
+        "odoo_model": "account.move"
+      },
+      {
+        "mention": "delivery",
+        "odoo_model": "stock.picking"
+      }
+    ]
+  }
+}

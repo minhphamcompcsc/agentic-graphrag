@@ -1,0 +1,45 @@
+{
+  "id": "Q19",
+  "lang": "en",
+  "backend": "gemini",
+  "llm": "gemini-3.6-flash",
+  "temperature": 0,
+  "prompt_version": "map-v0.1",
+  "called_at": "2026-11-28T08:57:52+00:00",
+  "input_sha256": "07830be95e2c29dc",
+  "input": "When a department requests goods and enough unreserved quantity is already available at the destination location, that stock should be used directly without triggering replenishment from the central warehouse; this rule applies company-wide.",
+  "output": {
+    "normalized_en": "When goods are requested by a department, available unreserved stock at the destination location must be used directly instead of creating a replenishment request from the central warehouse across the entire company.",
+    "low_level_keywords": [
+      "unreserved quantity",
+      "destination location",
+      "central warehouse",
+      "replenishment rule",
+      "goods request",
+      "internal transfer"
+    ],
+    "high_level_keywords": [
+      "inventory management",
+      "stock replenishment",
+      "warehouse routing"
+    ],
+    "objects": [
+      {
+        "mention": "destination location",
+        "odoo_model": "stock.location"
+      },
+      {
+        "mention": "goods request",
+        "odoo_model": "stock.picking"
+      },
+      {
+        "mention": "central warehouse",
+        "odoo_model": "stock.warehouse"
+      },
+      {
+        "mention": "replenishment rule",
+        "odoo_model": "stock.warehouse.orderpoint"
+      }
+    ]
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "id": "Q17",
+  "lang": "en",
+  "backend": "gemini",
+  "llm": "gemini-3.6-flash",
+  "temperature": 0,
+  "prompt_version": "map-v0.1",
+  "called_at": "2026-11-28T08:56:07+00:00",
+  "input_sha256": "e7865c8b0bd86f92",
+  "input": "The production department needs to send the warehouse a request for materials stating product, quantity and delivery location, and then follow the transfers created for that request.",
+  "output": {
+    "normalized_en": "The production department requires the ability to submit material requests to the warehouse specifying products, quantities, and delivery locations, and subsequently track the inventory transfers generated for those requests.",
+    "low_level_keywords": [
+      "material request",
+      "delivery location",
+      "inventory transfer",
+      "product quantity",
+      "transfer tracking"
+    ],
+    "high_level_keywords": [
+      "material management",
+      "inventory transfer",
+      "production supply"
+    ],
+    "objects": [
+      {
+        "mention": "material request",
+        "odoo_model": "stock.picking"
+      },
+      {
+        "mention": "product",
+        "odoo_model": "product.product"
+      },
+      {
+        "mention": "delivery location",
+        "odoo_model": "stock.location"
+      },
+      {
+        "mention": "transfer",
+        "odoo_model": "stock.picking"
+      }
+    ]
+  }
+}

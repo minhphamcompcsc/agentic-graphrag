@@ -1,0 +1,44 @@
+{
+  "id": "Q09",
+  "lang": "en",
+  "backend": "gemini",
+  "llm": "gemini-3.6-flash",
+  "temperature": 0,
+  "prompt_version": "map-v0.1",
+  "called_at": "2026-11-27T10:56:17+00:00",
+  "input_sha256": "2ffa52b6a1b2b029",
+  "input": "When opening an invoice, accounting needs to see which stock transfers it covers and which stock moves each invoice line corresponds to.",
+  "output": {
+    "normalized_en": "When viewing an invoice, accountants need to see the related stock transfers linked to the overall document as well as the specific stock moves corresponding to each individual invoice line.",
+    "low_level_keywords": [
+      "invoice line",
+      "stock transfer",
+      "stock move",
+      "invoice",
+      "picking"
+    ],
+    "high_level_keywords": [
+      "invoicing",
+      "stock management",
+      "inventory traceability"
+    ],
+    "objects": [
+      {
+        "mention": "invoice",
+        "odoo_model": "account.move"
+      },
+      {
+        "mention": "invoice line",
+        "odoo_model": "account.move.line"
+      },
+      {
+        "mention": "stock transfer",
+        "odoo_model": "stock.picking"
+      },
+      {
+        "mention": "stock move",
+        "odoo_model": "stock.move"
+      }
+    ]
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "id": "Q07",
+  "lang": "en",
+  "backend": "gemini",
+  "llm": "gemini-3.6-flash",
+  "temperature": 0,
+  "prompt_version": "map-v0.1",
+  "called_at": "2026-11-27T10:55:39+00:00",
+  "input_sha256": "49816321a30ef1b6",
+  "input": "The main warehouse must never ship more than it has on hand, but one consignment location should still allow outgoing moves even when its quantities are not yet reconciled.",
+  "output": {
+    "normalized_en": "The main warehouse must strictly prevent outgoing stock shipments from exceeding available on-hand quantities, whereas a specific consignment location must be allowed to process outgoing stock moves even when its stock quantities are not yet reconciled.",
+    "low_level_keywords": [
+      "main warehouse",
+      "consignment location",
+      "outgoing move",
+      "on-hand quantity",
+      "negative stock",
+      "reconciled quantity"
+    ],
+    "high_level_keywords": [
+      "inventory control",
+      "warehouse management",
+      "stock movement"
+    ],
+    "objects": [
+      {
+        "mention": "main warehouse",
+        "odoo_model": "stock.warehouse"
+      },
+      {
+        "mention": "consignment location",
+        "odoo_model": "stock.location"
+      },
+      {
+        "mention": "outgoing move",
+        "odoo_model": "stock.move"
+      }
+    ]
+  }
+}

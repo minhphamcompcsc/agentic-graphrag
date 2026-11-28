@@ -1,0 +1,32 @@
+{
+  "id": "Q05",
+  "lang": "en",
+  "backend": "gemini",
+  "llm": "gemini-3.6-flash",
+  "temperature": 0,
+  "prompt_version": "map-v0.1",
+  "called_at": "2026-11-27T10:54:15+00:00",
+  "input_sha256": "79c4cbbf73bf804b",
+  "input": "Reopen a cancelled transfer so it can be edited and processed again",
+  "output": {
+    "normalized_en": "Allow users to reopen a cancelled inventory transfer back to an editable state so that its details can be updated and it can be processed again.",
+    "low_level_keywords": [
+      "cancelled transfer",
+      "reopen transfer",
+      "draft state",
+      "inventory transfer",
+      "reset to draft"
+    ],
+    "high_level_keywords": [
+      "inventory management",
+      "transfer management",
+      "workflow control"
+    ],
+    "objects": [
+      {
+        "mention": "cancelled transfer",
+        "odoo_model": "stock.picking"
+      }
+    ]
+  }
+}

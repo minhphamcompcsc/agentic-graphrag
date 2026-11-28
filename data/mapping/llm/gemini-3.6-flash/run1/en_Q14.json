@@ -1,0 +1,32 @@
+{
+  "id": "Q14",
+  "lang": "en",
+  "backend": "gemini",
+  "llm": "gemini-3.6-flash",
+  "temperature": 0,
+  "prompt_version": "map-v0.1",
+  "called_at": "2026-11-28T08:54:28+00:00",
+  "input_sha256": "3879562d9dd48ae2",
+  "input": "A user cancelled a customer delivery by mistake; we need to bring that same delivery back and process it instead of creating a new one with a different reference.",
+  "output": {
+    "normalized_en": "The system must allow a user to restore an accidentally cancelled customer delivery order back to an operational state so it can be processed directly under its original document reference without creating a new transfer.",
+    "low_level_keywords": [
+      "cancelled delivery",
+      "delivery order",
+      "document reference",
+      "reopen picking",
+      "reset to draft"
+    ],
+    "high_level_keywords": [
+      "delivery management",
+      "inventory control",
+      "warehouse operations"
+    ],
+    "objects": [
+      {
+        "mention": "customer delivery order",
+        "odoo_model": "stock.picking"
+      }
+    ]
+  }
+}

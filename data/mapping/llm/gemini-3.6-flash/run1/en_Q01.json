@@ -1,0 +1,36 @@
+{
+  "id": "Q01",
+  "lang": "en",
+  "backend": "gemini",
+  "llm": "gemini-3.6-flash",
+  "temperature": 0,
+  "prompt_version": "map-v0.1",
+  "called_at": "2026-11-27T10:51:19+00:00",
+  "input_sha256": "f6ae2d9237022027",
+  "input": "Block outgoing shipments when there is not enough stock on hand",
+  "output": {
+    "normalized_en": "Prevent the processing or validation of outgoing shipments when the physical stock on hand is insufficient to fulfill the required quantity.",
+    "low_level_keywords": [
+      "outgoing shipment",
+      "stock on hand",
+      "insufficient stock",
+      "delivery order",
+      "validate transfer"
+    ],
+    "high_level_keywords": [
+      "inventory control",
+      "delivery management",
+      "stock validation"
+    ],
+    "objects": [
+      {
+        "mention": "outgoing shipment",
+        "odoo_model": "stock.picking"
+      },
+      {
+        "mention": "stock on hand",
+        "odoo_model": "stock.quant"
+      }
+    ]
+  }
+}

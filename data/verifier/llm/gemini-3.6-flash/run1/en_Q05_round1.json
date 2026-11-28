@@ -1,0 +1,45 @@
+{
+  "id": "Q05",
+  "lang": "en",
+  "round": 1,
+  "backend": "gemini",
+  "llm": "gemini-3.6-flash",
+  "temperature": 0,
+  "prompt_version": "ver-v0.1",
+  "verifier_version": "ver-v0.1",
+  "called_at": "2026-11-27T10:54:45+00:00",
+  "seconds": 15.8,
+  "prompt_sha256": "301733c8badefe39",
+  "prompt": "You are a senior Odoo 18 functional consultant. A search agent mapped the business requirement below\nto candidate Odoo modules. Check its answer.\n\nRequirement (written by a business analyst, may be in Vietnamese or English):\n<<<\nReopen a cancelled transfer so it can be edited and processed again\n>>>\nEnglish restatement by the search agent: Allow users to reopen a cancelled inventory transfer back to an editable state so that its details can be updated and it can be processed again.\n\nCandidate modules, best first. Everything below comes from a knowledge graph built from the installed\nOdoo 18 database (models, fields, dependencies) and from the module documentation.\n\n### Candidate 1: stock_picking_back2draft (OCA module, \"Pickings back to draft\")\nDirect dependencies: stock\nDocumentation:\n# Pickings back to draft\n\n## SUMMARY\nReopen canceled transfers\n\n## DESCRIPTION\nThis module allows to bring canceled transfers back to draft\n\n## USAGE\nJust open a canceled transfer and click on the 'back to draft' button\nBusiness functions (knowledge graph):\n- Reopen canceled transfers: Allows users to reset canceled inventory transfers back to the draft state by clicking a button on the canceled picking.\nModels (relation of the module to the model; fields the module adds):\n- stock.picking (Transfer) [EXTENDS]\n- stock.move (Stock Move) [EXTENDS]\n\n### Candidate 2: stock_move_location (OCA module, \"Move Stock Location\")\nDirect dependencies: stock\nDocumentation:\n# Move Stock Location\n\n## SUMMARY\nThis module allows to move all stock in a stock location to an other one.\n\n## DESCRIPTION\nThis module allows to move entire location of products from one place to\nanother and move only selected quantities.\n\n## USAGE\n- A new menu item Operations \\> Move from location... opens a wizard where 2 locations\n  can be specified.\n- Select origin and destination locations and press \"IMMEDIATE TRANSFER\" or \"PLANNED\n  TRANSFER\"\n- Those lines can be edited. Move quantity can't be more than a max available quantity\n- Move doesn't care about the reservations and will move stuff anyway\n- If during your operation with the wizard the real quantity will change it will move\n  only the available quantity at the button press\n- Products will be moved and a form view of picking that did that will show up\n- If \"PLANNED TRANSFER\" is used - the picking won't be validated automatically\n\nIf you want to transfer a full quant:\n\n- Go to Inventory \\> Products \\> Products and click \"On hand\" smart button or Inventory\n  \\> Reporting \\> Inventory, the quants view will be opened.\n- Select the quantities which you want move to another location\n\nIf you go to the Inventory Dashboard you can see the button \"Move from location\" in each\nof the picking types (only applicable to internal and outgoing transfers). Press it and\nyou will be directed to the wizard.\n\nTo enable this option, check \"Show Move On Hand Stock\" in the Picking Type\nconfiguration.\n\nIf you want transfer everything from [...]\nBusiness functions (knowledge graph):\n- Fill draft picking with products from source location: Populates a draft picking with stock move lines for all available products in the specified source location.\n- Move specific stock quants: Enables users to select specific quants from the product on-hand or inventory reporting views and transfer them to a designated location.\n- Move stock between locations via wizard: Transfers entire stock or selected product quantities from an origin location to a destination location using a specialized wizard, supporting both immediate and planned transfers.\nModels (relation of the module to the model; fields the module adds):\n- stock.picking (Transfer) [EXTENDS]\n- stock.picking.type (Picking Type) [ADDS_FIELD, EXTENDS]; adds show_move_onhand\n- wiz.stock.move.location (Wizard move location) [ADDS_FIELD, DEFINES]; adds apply_putaway_strategy, company_id, destination_location_disable, destination_location_id, edit_locations, exclude_reserved_qty, origin_location_disable, origin_location_id ...\n- wiz.stock.move.location.line (Wizard move location line) [ADDS_FIELD, DEFINES]; adds custom, destination_location_id, lot_id, max_quantity, move_location_wizard_id, move_quantity, origin_location_id, owner_id ...\n- stock.move (Stock Move) [ADDS_FIELD, EXTENDS]; adds location_move\n\n### Candidate 3: stock_picking_invoice_link (OCA module, \"Stock Picking Invoice Link\")\nDirect dependencies: stock_account\nDocumentation:\n# Stock Picking Invoice Link\n\n## SUMMARY\nAdds link between pickings and invoices\n\n## DESCRIPTION\nThe base module used by sale_stock_picking_invoice_link and purchase_stock_picking_invoice_link \nto adds a link between pickings and invoices as well as on the lines.\n\n## USAGE\n- Create a Sales Order and confirm.\n- Deliver its pickings totally or partially.\n- Create an invoice of the goods delivered.\n- If you open invoice form, you must see a new Pickings tab with\n  information about them.\nBusiness functions (knowledge graph):\n- Link stock pickings and invoices: Establishes a link between stock pickings and invoices at both the header and line levels, providing visibility of related pickings in a dedicated tab on the invoice.\nModels (relation of the module to the model; fields the module adds):\n- account.move.reversal (Account Move Reversal) [EXTENDS]\n- stock.picking (Transfer) [ADDS_FIELD, EXTENDS]; adds invoice_count, invoice_ids\n- stock.move (Stock Move) [ADDS_FIELD, EXTENDS]; adds invoice_line_ids\n- account.move (Journal Entry) [ADDS_FIELD, EXTENDS]; adds picking_count, picking_ids\n- account.move.line (Journal Item) [ADDS_FIELD, EXTENDS]; adds move_line_ids\n- account.bank.statement.line (Bank Statement Line) [ADDS_FIELD, delegated: no code here]; adds picking_count, picking_ids\n\nAnswer:\n1. candidates: for each candidate, does its functionality fit the requirement? \"yes\", \"partly\" or \"no\",\n   with one short reason based on the information above.\n2. chosen_module: the candidate that best fulfils the requirement (copy its name), or null if none fits.\n3. verdict:\n   - \"supported\": the chosen module covers the requirement;\n   - \"partial\": it covers the main need, but some parts need other settings or customization;\n   - \"not_supported\": no candidate covers the requirement;\n   - \"insufficient_evidence\": a candidate might fit, but the information above is too thin to decide.\n4. models: 1 to 4 models of the chosen module, copied exactly from its \"Models\" list, where this requirement\n   is configured or where the module's logic for it lives; most important first. Prefer models where the\n   module has code (DEFINES or EXTENDS) or adds the setting fields; avoid models that only receive fields\n   through delegation.\n5. missing: parts of the requirement that no candidate covers (empty list if none).\n6. evidence: 1 to 3 short quotes copied word for word from the information above.\n7. reason: 1 to 3 sentences.\nOnly judge the listed candidates. You may use general Odoo knowledge to interpret them, but do not\ninvent features that the information above does not support.\n",
+  "output": {
+    "candidates": [
+      {
+        "module": "stock_picking_back2draft",
+        "fit": "yes",
+        "reason": "Directly allows bringing canceled transfers back to draft state so they can be edited and reprocessed."
+      },
+      {
+        "module": "stock_move_location",
+        "fit": "no",
+        "reason": "Moves stock between locations via a wizard and does not deal with reopening canceled transfers."
+      },
+      {
+        "module": "stock_picking_invoice_link",
+        "fit": "no",
+        "reason": "Establishes links between transfers and invoices, which is unrelated to reopening canceled transfers."
+      }
+    ],
+    "chosen_module": "stock_picking_back2draft",
+    "verdict": "supported",
+    "models": [
+      "stock.picking",
+      "stock.move"
+    ],
+    "missing": [],
+    "evidence": [
+      "This module allows to bring canceled transfers back to draft",
+      "Just open a canceled transfer and click on the 'back to draft' button"
+    ],
+    "reason": "The module stock_picking_back2draft completely satisfies the requirement by adding a button to reset canceled transfers back to draft. Once back in draft state, the transfer details can be edited and processed again."
+  }
+}

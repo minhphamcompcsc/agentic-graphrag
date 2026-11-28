@@ -1,0 +1,48 @@
+{
+  "id": "Q09",
+  "lang": "en",
+  "round": 1,
+  "backend": "gemini",
+  "llm": "gemini-3.6-flash",
+  "temperature": 0,
+  "prompt_version": "ver-v0.1",
+  "verifier_version": "ver-v0.1",
+  "called_at": "2026-11-27T11:14:36+00:00",
+  "seconds": 7.9,
+  "prompt_sha256": "e965fbb8ab25893d",
+  "prompt": "You are a senior Odoo 18 functional consultant. A search agent mapped the business requirement below\nto candidate Odoo modules. Check its answer.\n\nRequirement (written by a business analyst, may be in Vietnamese or English):\n<<<\nWhen opening an invoice, accounting needs to see which stock transfers it covers and which stock moves each invoice line corresponds to.\n>>>\nEnglish restatement by the search agent: When viewing an invoice, accountants need to see the related stock transfers linked to the overall document as well as the specific stock moves corresponding to each individual invoice line.\n\nCandidate modules, best first. Everything below comes from a knowledge graph built from the installed\nOdoo 18 database (models, fields, dependencies) and from the module documentation.\n\n### Candidate 1: stock_picking_invoice_link (OCA module, \"Stock Picking Invoice Link\")\nDirect dependencies: stock_account\nDocumentation:\n# Stock Picking Invoice Link\n\n## SUMMARY\nAdds link between pickings and invoices\n\n## DESCRIPTION\nThe base module used by sale_stock_picking_invoice_link and purchase_stock_picking_invoice_link \nto adds a link between pickings and invoices as well as on the lines.\n\n## USAGE\n- Create a Sales Order and confirm.\n- Deliver its pickings totally or partially.\n- Create an invoice of the goods delivered.\n- If you open invoice form, you must see a new Pickings tab with\n  information about them.\nBusiness functions (knowledge graph):\n- Link stock pickings and invoices: Establishes a link between stock pickings and invoices at both the header and line levels, providing visibility of related pickings in a dedicated tab on the invoice.\nModels (relation of the module to the model; fields the module adds):\n- stock.move (Stock Move) [ADDS_FIELD, EXTENDS]; adds invoice_line_ids\n- stock.picking (Transfer) [ADDS_FIELD, EXTENDS]; adds invoice_count, invoice_ids\n- account.move.line (Journal Item) [ADDS_FIELD, EXTENDS]; adds move_line_ids\n- account.move (Journal Entry) [ADDS_FIELD, EXTENDS]; adds picking_count, picking_ids\n- account.move.reversal (Account Move Reversal) [EXTENDS]\n- account.bank.statement.line (Bank Statement Line) [ADDS_FIELD, delegated: no code here]; adds picking_count, picking_ids\n\n### Candidate 2: sale_stock_picking_invoice_link (OCA module, \"Stock Picking Invoice Link\")\nDirect dependencies: sale_stock, stock_picking_invoice_link\nDocumentation:\n# Stock Picking Invoice Link\n\n## SUMMARY\nAdds link between pickings and invoices\n\n## DESCRIPTION\nThis module adds a link between pickings and invoices as well as on the lines.\nInvoices are generated from sales orders. With this module, you can find back\nwhich deliveries an invoice relates to.\n\nIn standard, if you make a partial delivery and invoice it, then make remaining\ndelivery and invoice it, it is impossible to known to what delivery the\ninvoices relate to. You only have the quantity.\n\nThis module is also useful if you want to present data on the invoice report\ngrouped by deliveries.\n\nNote that the links are only for products with an invoicing policy set on\ndelivery.\n\n## USAGE\n* Create a Sales Order and confirm.\n* Deliver its pickings totally or partially.\n* Create an invoice of the goods delivered.\n* If you open invoice form, you must see a new Pickings tab with information\n  about them.\nBusiness functions (knowledge graph):\n- Link stock pickings and invoices: Establishes links between stock pickings and invoices as well as invoice lines, allowing users to track which deliveries correspond to specific invoices when invoicing sales order items with a delivery invoicing policy.\nModels (relation of the module to the model; fields the module adds):\n- stock.move (Stock Move) [EXTENDS]\n- sale.order.line (Sales Order Line) [EXTENDS]\n\n### Candidate 3: stock_picking_back2draft (OCA module, \"Pickings back to draft\")\nDirect dependencies: stock\nDocumentation:\n# Pickings back to draft\n\n## SUMMARY\nReopen canceled transfers\n\n## DESCRIPTION\nThis module allows to bring canceled transfers back to draft\n\n## USAGE\nJust open a canceled transfer and click on the 'back to draft' button\nBusiness functions (knowledge graph):\n- Reopen canceled transfers: Allows users to reset canceled inventory transfers back to the draft state by clicking a button on the canceled picking.\nModels (relation of the module to the model; fields the module adds):\n- stock.picking (Transfer) [EXTENDS]\n- stock.move (Stock Move) [EXTENDS]\n\nAnswer:\n1. candidates: for each candidate, does its functionality fit the requirement? \"yes\", \"partly\" or \"no\",\n   with one short reason based on the information above.\n2. chosen_module: the candidate that best fulfils the requirement (copy its name), or null if none fits.\n3. verdict:\n   - \"supported\": the chosen module covers the requirement;\n   - \"partial\": it covers the main need, but some parts need other settings or customization;\n   - \"not_supported\": no candidate covers the requirement;\n   - \"insufficient_evidence\": a candidate might fit, but the information above is too thin to decide.\n4. models: 1 to 4 models of the chosen module, copied exactly from its \"Models\" list, where this requirement\n   is configured or where the module's logic for it lives; most important first. Prefer models where the\n   module has code (DEFINES or EXTENDS) or adds the setting fields; avoid models that only receive fields\n   through delegation.\n5. missing: parts of the requirement that no candidate covers (empty list if none).\n6. evidence: 1 to 3 short quotes copied word for word from the information above.\n7. reason: 1 to 3 sentences.\nOnly judge the listed candidates. You may use general Odoo knowledge to interpret them, but do not\ninvent features that the information above does not support.\n",
+  "output": {
+    "candidates": [
+      {
+        "module": "stock_picking_invoice_link",
+        "fit": "yes",
+        "reason": "Links stock pickings to invoices at the header level and stock moves to individual invoice lines."
+      },
+      {
+        "module": "sale_stock_picking_invoice_link",
+        "fit": "partly",
+        "reason": "Focuses specifically on sales orders and relies on stock_picking_invoice_link for the core header and line linking."
+      },
+      {
+        "module": "stock_picking_back2draft",
+        "fit": "no",
+        "reason": "Allows reopening canceled transfers, which is unrelated to linking invoices with stock pickings."
+      }
+    ],
+    "chosen_module": "stock_picking_invoice_link",
+    "verdict": "supported",
+    "models": [
+      "account.move",
+      "account.move.line",
+      "stock.picking",
+      "stock.move"
+    ],
+    "missing": [],
+    "evidence": [
+      "Adds a link between pickings and invoices as well as on the lines.",
+      "If you open invoice form, you must see a new Pickings tab with information about them.",
+      "Establishes a link between stock pickings and invoices at both the header and line levels, providing visibility of related pickings in a dedicated tab on the invoice."
+    ],
+    "reason": "The stock_picking_invoice_link module completely fulfills the requirement by adding picking_ids to account.move and move_line_ids to account.move.line. This allows accountants to view related stock transfers at the document level in a dedicated Pickings tab and track specific stock moves per invoice line."
+  }
+}

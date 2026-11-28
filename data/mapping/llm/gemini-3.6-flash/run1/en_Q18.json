@@ -1,0 +1,45 @@
+{
+  "id": "Q18",
+  "lang": "en",
+  "backend": "gemini",
+  "llm": "gemini-3.6-flash",
+  "temperature": 0,
+  "prompt_version": "map-v0.1",
+  "called_at": "2026-11-28T08:56:45+00:00",
+  "input_sha256": "a49170e38308aca1",
+  "input": "A shift leader wants to submit one request covering several products at once, sharing the same warehouse, destination location and needed date, and follow the overall status of the whole request.",
+  "output": {
+    "normalized_en": "A user can submit a single request for multiple products sharing the same warehouse, destination location, and required date, and track the overall status of the entire request.",
+    "low_level_keywords": [
+      "stock request",
+      "destination location",
+      "needed date",
+      "multi-product request",
+      "request status",
+      "warehouse"
+    ],
+    "high_level_keywords": [
+      "inventory control",
+      "stock transfers",
+      "material request management"
+    ],
+    "objects": [
+      {
+        "mention": "stock request",
+        "odoo_model": null
+      },
+      {
+        "mention": "product",
+        "odoo_model": "product.product"
+      },
+      {
+        "mention": "warehouse",
+        "odoo_model": "stock.warehouse"
+      },
+      {
+        "mention": "destination location",
+        "odoo_model": "stock.location"
+      }
+    ]
+  }
+}

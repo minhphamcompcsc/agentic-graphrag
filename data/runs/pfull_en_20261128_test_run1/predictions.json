@@ -1,0 +1,4861 @@
+{
+  "config": "P",
+  "lang": "en",
+  "date": "20261128",
+  "run": 1,
+  "mapping_version": "map-v0.1",
+  "mapping_prompt": "map-v0.1",
+  "llm": "gemini-3.6-flash",
+  "graph": {
+    "modules": 67,
+    "models": 443,
+    "functions": 14,
+    "module_model_pairs": 827,
+    "links_non_technical": 1729
+  },
+  "graph_source": "neo4j",
+  "params": {
+    "alpha": 1.0,
+    "beta": 0.5,
+    "gamma": 0.25,
+    "cov": "ochiai",
+    "k_modules": 1,
+    "m_models": 4,
+    "lam_entry": 0.0,
+    "lam_function": 0.0,
+    "delegated_penalty": 0.3,
+    "tau": 1.0,
+    "n_functions": 5,
+    "max_distance": 3,
+    "context_weight": 2.0,
+    "link_threshold": 0.75
+  },
+  "params_file": "data/mapping/params_final_en.json",
+  "requirements_file": "data/eval/requirements_v0.csv",
+  "split": "test",
+  "new_embeddings": 19,
+  "stopped": null,
+  "pipeline_version": "pipe-v0.1",
+  "verifier_version": "ver-v0.1",
+  "verifier_prompt": "ver-v0.1",
+  "verifier_backend": "gemini",
+  "candidates": 3,
+  "max_rounds": 2,
+  "llm_calls_mapping": 6,
+  "llm_calls_verifier": 6,
+  "llm_calls_collector": 0,
+  "seconds": 406.6,
+  "items": [
+    {
+      "id": "Q01",
+      "query": "Block outgoing shipments when there is not enough stock on hand",
+      "analysis": {
+        "normalized_en": "Prevent the processing or validation of outgoing shipments when the physical stock on hand is insufficient to fulfill the required quantity.",
+        "low_level_keywords": [
+          "outgoing shipment",
+          "stock on hand",
+          "insufficient stock",
+          "delivery order",
+          "validate transfer"
+        ],
+        "high_level_keywords": [
+          "inventory control",
+          "delivery management",
+          "stock validation"
+        ],
+        "objects": [
+          {
+            "mention": "outgoing shipment",
+            "odoo_model": "stock.picking"
+          },
+          {
+            "mention": "stock on hand",
+            "odoo_model": "stock.quant"
+          }
+        ]
+      },
+      "llm_cached": true,
+      "entry_functions": [
+        {
+          "key": "stock_no_negative:block_stock_operations_resulting_in_negative_stock",
+          "module": "stock_no_negative",
+          "name": "Block stock operations resulting in negative stock",
+          "score": 0.6888
+        },
+        {
+          "key": "stock_request:request_internal_product_transfers",
+          "module": "stock_request",
+          "name": "Request internal product transfers",
+          "score": 0.6086
+        },
+        {
+          "key": "stock_picking_auto_create_lot:auto_create_lots_for_incoming_stock_pickings",
+          "module": "stock_picking_auto_create_lot",
+          "name": "Auto create lots for incoming stock pickings",
+          "score": 0.575
+        },
+        {
+          "key": "sale_stock_picking_invoice_link:link_stock_pickings_and_invoices",
+          "module": "sale_stock_picking_invoice_link",
+          "name": "Link stock pickings and invoices",
+          "score": 0.5593
+        },
+        {
+          "key": "stock_no_negative:allow_negative_stock_for_individual_locations",
+          "module": "stock_no_negative",
+          "name": "Allow negative stock for individual locations",
+          "score": 0.5567
+        }
+      ],
+      "entry_models": [
+        {
+          "mention": "outgoing shipment",
+          "model": "stock.picking",
+          "method": "exact_name",
+          "score": 1.0
+        },
+        {
+          "mention": "stock on hand",
+          "model": "stock.quant",
+          "method": "exact_name",
+          "score": 1.0
+        }
+      ],
+      "module_ranking": [
+        "stock_no_negative",
+        "stock_picking_back2draft",
+        "stock",
+        "sale_stock",
+        "stock_move_location",
+        "stock_picking_auto_create_lot",
+        "stock_account",
+        "stock_request",
+        "stock_picking_invoice_link",
+        "stock_sms",
+        "sale_stock_picking_invoice_link",
+        "sale_management",
+        "product",
+        "account",
+        "sale_async_emails",
+        "account_payment",
+        "phone_validation",
+        "sale_edi_ubl",
+        "sale",
+        "utm",
+        "account_add_gln",
+        "base_import",
+        "resource",
+        "account_edi_ubl_cii",
+        "uom",
+        "sale_pdf_quote_builder",
+        "mail",
+        "snailmail_account",
+        "portal",
+        "auth_signup",
+        "digest",
+        "privacy_lookup",
+        "sales_team",
+        "base_setup",
+        "snailmail",
+        "barcodes",
+        "partner_autocomplete",
+        "payment",
+        "sms",
+        "bus",
+        "onboarding",
+        "auth_totp",
+        "base",
+        "spreadsheet",
+        "barcodes_gs1_nomenclature",
+        "analytic",
+        "html_editor",
+        "google_gmail",
+        "base_import_module",
+        "spreadsheet_dashboard_stock_account",
+        "web_tour",
+        "sale_sms",
+        "auth_totp_portal",
+        "auth_totp_mail",
+        "base_install_request",
+        "spreadsheet_dashboard_sale",
+        "web",
+        "http_routing",
+        "iap",
+        "resource_mail",
+        "iap_mail",
+        "mail_bot",
+        "spreadsheet_account",
+        "spreadsheet_dashboard",
+        "spreadsheet_dashboard_account",
+        "web_unsplash",
+        "web_editor"
+      ],
+      "modules": [
+        "stock_no_negative"
+      ],
+      "models": [
+        "stock.quant",
+        "product.template",
+        "stock.location",
+        "product.category"
+      ],
+      "answer": [
+        {
+          "module": "stock_no_negative",
+          "models": [
+            {
+              "model": "stock.quant",
+              "relations": [
+                "EXTENDS"
+              ],
+              "code": true
+            },
+            {
+              "model": "product.template",
+              "relations": [
+                "ADDS_FIELD",
+                "EXTENDS"
+              ],
+              "code": true
+            },
+            {
+              "model": "stock.location",
+              "relations": [
+                "ADDS_FIELD",
+                "EXTENDS"
+              ],
+              "code": true
+            },
+            {
+              "model": "product.category",
+              "relations": [
+                "ADDS_FIELD",
+                "EXTENDS"
+              ],
+              "code": true
+            }
+          ],
+          "kg_checks": {
+            "module_in_kg": true,
+            "models_in_footprint": [
+              "stock.quant",
+              "product.template",
+              "stock.location",
+              "product.category"
+            ],
+            "models_not_in_footprint": [],
+            "models_without_code": [],
+            "direct_depends": [
+              "stock"
+            ],
+            "transitive_depends": 18
+          },
+          "path": [
+            "stock_no_negative",
+            "-[EXTENDS]-",
+            "stock.quant"
+          ],
+          "functions": [
+            "stock_no_negative:allow_negative_stock_for_individual_locations",
+            "stock_no_negative:allow_negative_stock_for_product_categories",
+            "stock_no_negative:allow_negative_stock_for_specific_products",
+            "stock_no_negative:block_stock_operations_resulting_in_negative_stock"
+          ],
+          "verdict": "supported",
+          "missing": [],
+          "evidence": [
+            "If you disallow negative stock in Odoo with this module, you will be blocked when trying to validate a stock operation that will set the stock level of a product and/or location as negative.",
+            "When you validate a stock operation (a stock move, a picking, a manufacturing order, etc.) that will set the stock level of a stockable product as negative, you will be blocked by an error message."
+          ],
+          "reason": "The `stock_no_negative` module fulfills the requirement by raising a blocking error whenever a user attempts to validate a picking or stock operation that would drive stock levels below zero. Standard Odoo allows negative stock by default, making this OCA module necessary to enforce strict stock availability checks."
+        }
+      ],
+      "verification": {
+        "verified": true,
+        "weak": false,
+        "changed_module": false,
+        "changed_models": true,
+        "rounds": [
+          {
+            "round": 1,
+            "candidates": [
+              "stock_no_negative",
+              "stock_picking_back2draft",
+              "stock"
+            ],
+            "llm_cached": true,
+            "prompt_chars": 13132,
+            "with_issues": [
+              "stock_no_negative",
+              "stock_picking_back2draft"
+            ],
+            "verdict": "supported",
+            "chosen_module": "stock_no_negative",
+            "models": [
+              "stock.quant",
+              "product.template",
+              "stock.location",
+              "product.category"
+            ],
+            "invalid_module": null,
+            "invalid_models": [],
+            "candidate_checks": [
+              {
+                "module": "stock_no_negative",
+                "fit": "yes",
+                "reason": "It blocks stock operations, including outgoing pickings, from being validated if they would result in negative stock levels."
+              },
+              {
+                "module": "stock_picking_back2draft",
+                "fit": "no",
+                "reason": "It only allows resetting canceled inventory transfers back to draft state."
+              },
+              {
+                "module": "stock",
+                "fit": "no",
+                "reason": "By default, standard Odoo allows negative stock and does not block pickings from being validated when stock is insufficient."
+              }
+            ],
+            "missing": [],
+            "evidence": [
+              "If you disallow negative stock in Odoo with this module, you will be blocked when trying to validate a stock operation that will set the stock level of a product and/or location as negative.",
+              "When you validate a stock operation (a stock move, a picking, a manufacturing order, etc.) that will set the stock level of a stockable product as negative, you will be blocked by an error message."
+            ],
+            "evidence_found": 2,
+            "reason": "The `stock_no_negative` module fulfills the requirement by raising a blocking error whenever a user attempts to validate a picking or stock operation that would drive stock levels below zero. Standard Odoo allows negative stock by default, making this OCA module necessary to enforce strict stock availability checks."
+          }
+        ],
+        "rejected": [],
+        "collector": [
+          {
+            "module": "stock_no_negative",
+            "why": "low_confidence",
+            "status": "cache",
+            "issues": 5
+          },
+          {
+            "module": "stock_picking_back2draft",
+            "why": "low_confidence",
+            "status": "cache",
+            "issues": 1
+          },
+          {
+            "module": "stock",
+            "why": "low_confidence",
+            "status": "no_source",
+            "issues": 0
+          }
+        ],
+        "llm_calls": 0
+      },
+      "mapping": {
+        "modules": [
+          "stock_no_negative"
+        ],
+        "models": [
+          "stock.location",
+          "product.template",
+          "product.category",
+          "stock.quant"
+        ],
+        "low_confidence": true
+      }
+    },
+    {
+      "id": "Q02",
+      "query": "From a delivery order, users should be able to see the related invoices",
+      "analysis": {
+        "normalized_en": "Users must be able to view and access all invoices related to a specific delivery order directly from that delivery order.",
+        "low_level_keywords": [
+          "delivery order",
+          "invoice",
+          "related invoice",
+          "stock picking",
+          "customer invoice"
+        ],
+        "high_level_keywords": [
+          "inventory management",
+          "sales invoicing",
+          "document traceability"
+        ],
+        "objects": [
+          {
+            "mention": "delivery order",
+            "odoo_model": "stock.picking"
+          },
+          {
+            "mention": "invoice",
+            "odoo_model": "account.move"
+          }
+        ]
+      },
+      "llm_cached": true,
+      "entry_functions": [
+        {
+          "key": "sale_stock_picking_invoice_link:link_stock_pickings_and_invoices",
+          "module": "sale_stock_picking_invoice_link",
+          "name": "Link stock pickings and invoices",
+          "score": 0.7268
+        },
+        {
+          "key": "stock_picking_invoice_link:link_stock_pickings_and_invoices",
+          "module": "stock_picking_invoice_link",
+          "name": "Link stock pickings and invoices",
+          "score": 0.6745
+        },
+        {
+          "key": "stock_request:request_internal_product_transfers",
+          "module": "stock_request",
+          "name": "Request internal product transfers",
+          "score": 0.5971
+        },
+        {
+          "key": "stock_move_location:move_specific_stock_quants",
+          "module": "stock_move_location",
+          "name": "Move specific stock quants",
+          "score": 0.5616
+        },
+        {
+          "key": "stock_move_location:fill_draft_picking_with_products_from_source_location",
+          "module": "stock_move_location",
+          "name": "Fill draft picking with products from source location",
+          "score": 0.5509
+        }
+      ],
+      "entry_models": [
+        {
+          "mention": "delivery order",
+          "model": "stock.picking",
+          "method": "exact_name",
+          "score": 1.0
+        },
+        {
+          "mention": "invoice",
+          "model": "account.move",
+          "method": "exact_name",
+          "score": 1.0
+        }
+      ],
+      "module_ranking": [
+        "stock_picking_invoice_link",
+        "sale_stock",
+        "account_payment",
+        "stock_picking_back2draft",
+        "stock_account",
+        "sale_stock_picking_invoice_link",
+        "stock_move_location",
+        "account",
+        "stock_request",
+        "stock_picking_auto_create_lot",
+        "stock",
+        "account_edi_ubl_cii",
+        "sale",
+        "sale_management",
+        "stock_sms",
+        "snailmail_account",
+        "utm",
+        "sale_edi_ubl",
+        "account_add_gln",
+        "sale_async_emails",
+        "portal",
+        "product",
+        "snailmail",
+        "base_import",
+        "resource",
+        "digest",
+        "sales_team",
+        "payment",
+        "google_gmail",
+        "sale_pdf_quote_builder",
+        "bus",
+        "mail",
+        "base_install_request",
+        "auth_totp_mail",
+        "stock_no_negative",
+        "iap",
+        "html_editor",
+        "base",
+        "spreadsheet",
+        "auth_signup",
+        "web",
+        "base_setup",
+        "web_tour",
+        "analytic",
+        "phone_validation",
+        "resource_mail",
+        "base_import_module",
+        "uom",
+        "privacy_lookup",
+        "sms",
+        "barcodes",
+        "iap_mail",
+        "partner_autocomplete",
+        "spreadsheet_dashboard_sale",
+        "auth_totp",
+        "spreadsheet_account",
+        "web_unsplash",
+        "auth_totp_portal",
+        "barcodes_gs1_nomenclature",
+        "web_editor",
+        "sale_sms",
+        "onboarding",
+        "spreadsheet_dashboard_account",
+        "mail_bot",
+        "spreadsheet_dashboard_stock_account",
+        "http_routing",
+        "spreadsheet_dashboard"
+      ],
+      "modules": [
+        "stock_picking_invoice_link"
+      ],
+      "models": [
+        "stock.picking",
+        "account.move"
+      ],
+      "answer": [
+        {
+          "module": "stock_picking_invoice_link",
+          "models": [
+            {
+              "model": "stock.picking",
+              "relations": [
+                "ADDS_FIELD",
+                "EXTENDS"
+              ],
+              "code": true
+            },
+            {
+              "model": "account.move",
+              "relations": [
+                "ADDS_FIELD",
+                "EXTENDS"
+              ],
+              "code": true
+            }
+          ],
+          "kg_checks": {
+            "module_in_kg": true,
+            "models_in_footprint": [
+              "stock.picking",
+              "account.move"
+            ],
+            "models_not_in_footprint": [],
+            "models_without_code": [],
+            "direct_depends": [
+              "stock_account"
+            ],
+            "transitive_depends": 22
+          },
+          "path": [
+            "stock_picking_invoice_link",
+            "-[ADDS_FIELD|EXTENDS]-",
+            "account.move"
+          ],
+          "functions": [
+            "stock_picking_invoice_link:link_stock_pickings_and_invoices"
+          ],
+          "verdict": "supported",
+          "missing": [],
+          "evidence": [
+            "Adds link between pickings and invoices",
+            "stock.picking (Transfer) [ADDS_FIELD, EXTENDS]; adds invoice_count, invoice_ids"
+          ],
+          "reason": "The stock_picking_invoice_link module fulfills the requirement by extending stock.picking with invoice_ids and invoice_count fields. This enables users to see and navigate to all related invoices directly from the delivery order form view."
+        }
+      ],
+      "verification": {
+        "verified": true,
+        "weak": false,
+        "changed_module": false,
+        "changed_models": true,
+        "rounds": [
+          {
+            "round": 1,
+            "candidates": [
+              "stock_picking_invoice_link",
+              "sale_stock",
+              "account_payment"
+            ],
+            "llm_cached": true,
+            "prompt_chars": 7727,
+            "with_issues": [],
+            "verdict": "supported",
+            "chosen_module": "stock_picking_invoice_link",
+            "models": [
+              "stock.picking",
+              "account.move"
+            ],
+            "invalid_module": null,
+            "invalid_models": [],
+            "candidate_checks": [
+              {
+                "module": "stock_picking_invoice_link",
+                "fit": "yes",
+                "reason": "Directly adds invoice_ids and invoice_count to stock.picking (delivery orders), allowing direct access to related invoices."
+              },
+              {
+                "module": "sale_stock",
+                "fit": "partly",
+                "reason": "Links delivery orders to sales orders via sale_id, but does not provide a direct link to invoices on stock pickings."
+              },
+              {
+                "module": "account_payment",
+                "fit": "no",
+                "reason": "Focuses on online payments and payment transactions for invoices, not stock pickings."
+              }
+            ],
+            "missing": [],
+            "evidence": [
+              "Adds link between pickings and invoices",
+              "stock.picking (Transfer) [ADDS_FIELD, EXTENDS]; adds invoice_count, invoice_ids"
+            ],
+            "evidence_found": 2,
+            "reason": "The stock_picking_invoice_link module fulfills the requirement by extending stock.picking with invoice_ids and invoice_count fields. This enables users to see and navigate to all related invoices directly from the delivery order form view."
+          }
+        ],
+        "rejected": [],
+        "collector": [],
+        "llm_calls": 0
+      },
+      "mapping": {
+        "modules": [
+          "stock_picking_invoice_link"
+        ],
+        "models": [
+          "stock.picking",
+          "stock.move",
+          "account.move",
+          "account.move.line"
+        ],
+        "low_confidence": false
+      }
+    },
+    {
+      "id": "Q03",
+      "query": "Lot numbers should be generated automatically when receiving goods",
+      "analysis": {
+        "normalized_en": "When receiving goods, lot numbers should be generated automatically for tracked items during the receipt process.",
+        "low_level_keywords": [
+          "lot number",
+          "automatic lot generation",
+          "goods receipt",
+          "incoming shipment",
+          "receipt picking"
+        ],
+        "high_level_keywords": [
+          "inventory traceability",
+          "receipt management",
+          "lot management"
+        ],
+        "objects": [
+          {
+            "mention": "lot number",
+            "odoo_model": "stock.lot"
+          },
+          {
+            "mention": "goods receipt",
+            "odoo_model": "stock.picking"
+          }
+        ]
+      },
+      "llm_cached": true,
+      "entry_functions": [
+        {
+          "key": "stock_picking_auto_create_lot:auto_create_lots_for_incoming_stock_pickings",
+          "module": "stock_picking_auto_create_lot",
+          "name": "Auto create lots for incoming stock pickings",
+          "score": 0.7767
+        },
+        {
+          "key": "stock_request:request_internal_product_transfers",
+          "module": "stock_request",
+          "name": "Request internal product transfers",
+          "score": 0.5714
+        },
+        {
+          "key": "sale_stock_picking_invoice_link:link_stock_pickings_and_invoices",
+          "module": "sale_stock_picking_invoice_link",
+          "name": "Link stock pickings and invoices",
+          "score": 0.5623
+        },
+        {
+          "key": "stock_move_location:fill_draft_picking_with_products_from_source_location",
+          "module": "stock_move_location",
+          "name": "Fill draft picking with products from source location",
+          "score": 0.5613
+        },
+        {
+          "key": "stock_picking_invoice_link:link_stock_pickings_and_invoices",
+          "module": "stock_picking_invoice_link",
+          "name": "Link stock pickings and invoices",
+          "score": 0.5197
+        }
+      ],
+      "entry_models": [
+        {
+          "mention": "lot number",
+          "model": "stock.lot",
+          "method": "exact_name",
+          "score": 1.0
+        },
+        {
+          "mention": "goods receipt",
+          "model": "stock.picking",
+          "method": "exact_name",
+          "score": 1.0
+        }
+      ],
+      "module_ranking": [
+        "stock_picking_auto_create_lot",
+        "sale_stock",
+        "stock_move_location",
+        "stock_picking_back2draft",
+        "stock_account",
+        "stock",
+        "stock_sms",
+        "stock_request",
+        "stock_picking_invoice_link",
+        "sale_stock_picking_invoice_link",
+        "sale_management",
+        "sale_async_emails",
+        "account",
+        "utm",
+        "account_payment",
+        "account_add_gln",
+        "stock_no_negative",
+        "phone_validation",
+        "digest",
+        "sale_edi_ubl",
+        "product",
+        "sale_pdf_quote_builder",
+        "sale",
+        "mail",
+        "resource",
+        "partner_autocomplete",
+        "uom",
+        "bus",
+        "sms",
+        "account_edi_ubl_cii",
+        "barcodes",
+        "snailmail_account",
+        "barcodes_gs1_nomenclature",
+        "payment",
+        "snailmail",
+        "base_import",
+        "sales_team",
+        "auth_signup",
+        "auth_totp",
+        "privacy_lookup",
+        "base_setup",
+        "portal",
+        "spreadsheet",
+        "onboarding",
+        "analytic",
+        "base",
+        "auth_totp_portal",
+        "web_tour",
+        "base_import_module",
+        "sale_sms",
+        "mail_bot",
+        "html_editor",
+        "iap",
+        "spreadsheet_account",
+        "auth_totp_mail",
+        "web",
+        "resource_mail",
+        "spreadsheet_dashboard_sale",
+        "base_install_request",
+        "spreadsheet_dashboard_stock_account",
+        "web_unsplash",
+        "iap_mail",
+        "google_gmail",
+        "spreadsheet_dashboard_account",
+        "spreadsheet_dashboard",
+        "http_routing",
+        "web_editor"
+      ],
+      "modules": [
+        "stock_picking_auto_create_lot"
+      ],
+      "models": [
+        "stock.picking.type",
+        "product.template",
+        "stock.picking",
+        "stock.move.line"
+      ],
+      "answer": [
+        {
+          "module": "stock_picking_auto_create_lot",
+          "models": [
+            {
+              "model": "stock.picking.type",
+              "relations": [
+                "ADDS_FIELD",
+                "EXTENDS"
+              ],
+              "code": true
+            },
+            {
+              "model": "product.template",
+              "relations": [
+                "ADDS_FIELD",
+                "EXTENDS"
+              ],
+              "code": true
+            },
+            {
+              "model": "stock.picking",
+              "relations": [
+                "EXTENDS"
+              ],
+              "code": true
+            },
+            {
+              "model": "stock.move.line",
+              "relations": [
+                "EXTENDS"
+              ],
+              "code": true
+            }
+          ],
+          "kg_checks": {
+            "module_in_kg": true,
+            "models_in_footprint": [
+              "stock.picking.type",
+              "product.template",
+              "stock.picking",
+              "stock.move.line"
+            ],
+            "models_not_in_footprint": [],
+            "models_without_code": [],
+            "direct_depends": [
+              "stock"
+            ],
+            "transitive_depends": 18
+          },
+          "path": [
+            "stock_picking_auto_create_lot",
+            "-[EXTENDS]-",
+            "stock.picking"
+          ],
+          "functions": [
+            "stock_picking_auto_create_lot:auto_create_lots_for_incoming_stock_pickings"
+          ],
+          "verdict": "supported",
+          "missing": [],
+          "evidence": [
+            "Auto create lots for incoming pickings",
+            "Auto create lots for incoming stock pickings: Automatically generates lot numbers when validating incoming stock pickings for tracked products configured with auto lot creation, removing the need for manual lot entry."
+          ],
+          "reason": "The stock_picking_auto_create_lot module fulfills the requirement by enabling automatic creation and assignment of lot numbers during the incoming receipt process for tracked products. The feature can be configured per picking type and product or product category."
+        }
+      ],
+      "verification": {
+        "verified": true,
+        "weak": false,
+        "changed_module": false,
+        "changed_models": true,
+        "rounds": [
+          {
+            "round": 1,
+            "candidates": [
+              "stock_picking_auto_create_lot",
+              "sale_stock",
+              "stock_move_location"
+            ],
+            "llm_cached": true,
+            "prompt_chars": 9738,
+            "with_issues": [],
+            "verdict": "supported",
+            "chosen_module": "stock_picking_auto_create_lot",
+            "models": [
+              "stock.picking.type",
+              "product.template",
+              "stock.picking",
+              "stock.move.line"
+            ],
+            "invalid_module": null,
+            "invalid_models": [],
+            "candidate_checks": [
+              {
+                "module": "stock_picking_auto_create_lot",
+                "fit": "yes",
+                "reason": "Automatically generates lot numbers when receiving goods ( incoming pickings) for tracked products."
+              },
+              {
+                "module": "sale_stock",
+                "fit": "no",
+                "reason": "Integrates sales orders with inventory management, not related to auto-generating lot numbers on receipts."
+              },
+              {
+                "module": "stock_move_location",
+                "fit": "no",
+                "reason": "Provides a wizard to move stock between inventory locations."
+              }
+            ],
+            "missing": [],
+            "evidence": [
+              "Auto create lots for incoming pickings",
+              "Auto create lots for incoming stock pickings: Automatically generates lot numbers when validating incoming stock pickings for tracked products configured with auto lot creation, removing the need for manual lot entry."
+            ],
+            "evidence_found": 2,
+            "reason": "The stock_picking_auto_create_lot module fulfills the requirement by enabling automatic creation and assignment of lot numbers during the incoming receipt process for tracked products. The feature can be configured per picking type and product or product category."
+          }
+        ],
+        "rejected": [],
+        "collector": [],
+        "llm_calls": 0
+      },
+      "mapping": {
+        "modules": [
+          "stock_picking_auto_create_lot"
+        ],
+        "models": [
+          "product.template",
+          "stock.picking.type",
+          "product.category",
+          "stock.move.line"
+        ],
+        "low_confidence": false
+      }
+    },
+    {
+      "id": "Q04",
+      "query": "Move all products from shelf A to shelf B in one operation",
+      "analysis": {
+        "normalized_en": "Relocate all products currently stored in a specific source location (shelf A) to a destination location (shelf B) within a single internal transfer operation.",
+        "low_level_keywords": [
+          "internal transfer",
+          "source location",
+          "destination location",
+          "stock move",
+          "inventory relocation",
+          "bulk move"
+        ],
+        "high_level_keywords": [
+          "inventory management",
+          "warehouse operations",
+          "transfer management"
+        ],
+        "objects": [
+          {
+            "mention": "product",
+            "odoo_model": "product.product"
+          },
+          {
+            "mention": "shelf",
+            "odoo_model": "stock.location"
+          },
+          {
+            "mention": "operation",
+            "odoo_model": "stock.picking"
+          }
+        ]
+      },
+      "llm_cached": true,
+      "entry_functions": [
+        {
+          "key": "stock_request:request_internal_product_transfers",
+          "module": "stock_request",
+          "name": "Request internal product transfers",
+          "score": 0.7163
+        },
+        {
+          "key": "stock_move_location:move_stock_between_locations_via_wizard",
+          "module": "stock_move_location",
+          "name": "Move stock between locations via wizard",
+          "score": 0.6848
+        },
+        {
+          "key": "stock_move_location:move_specific_stock_quants",
+          "module": "stock_move_location",
+          "name": "Move specific stock quants",
+          "score": 0.6522
+        },
+        {
+          "key": "stock_move_location:fill_draft_picking_with_products_from_source_location",
+          "module": "stock_move_location",
+          "name": "Fill draft picking with products from source location",
+          "score": 0.6051
+        },
+        {
+          "key": "sale_stock_picking_invoice_link:link_stock_pickings_and_invoices",
+          "module": "sale_stock_picking_invoice_link",
+          "name": "Link stock pickings and invoices",
+          "score": 0.5676
+        }
+      ],
+      "entry_models": [
+        {
+          "mention": "product",
+          "model": "product.product",
+          "method": "exact_name",
+          "score": 1.0
+        },
+        {
+          "mention": "shelf",
+          "model": "stock.location",
+          "method": "exact_name",
+          "score": 1.0
+        },
+        {
+          "mention": "operation",
+          "model": "stock.picking",
+          "method": "exact_name",
+          "score": 1.0
+        }
+      ],
+      "module_ranking": [
+        "stock_move_location",
+        "stock_request",
+        "stock_no_negative",
+        "stock_picking_back2draft",
+        "stock_account",
+        "stock",
+        "sale_stock",
+        "stock_picking_auto_create_lot",
+        "stock_picking_invoice_link",
+        "stock_sms",
+        "sale",
+        "sale_stock_picking_invoice_link",
+        "sale_management",
+        "account",
+        "product",
+        "sms",
+        "resource",
+        "base_import",
+        "base_install_request",
+        "account_payment",
+        "portal",
+        "sale_edi_ubl",
+        "sale_async_emails",
+        "account_add_gln",
+        "bus",
+        "utm",
+        "base_setup",
+        "sales_team",
+        "snailmail",
+        "iap",
+        "snailmail_account",
+        "analytic",
+        "auth_signup",
+        "auth_totp_mail",
+        "base_import_module",
+        "resource_mail",
+        "digest",
+        "uom",
+        "account_edi_ubl_cii",
+        "mail",
+        "base",
+        "payment",
+        "google_gmail",
+        "onboarding",
+        "web_tour",
+        "spreadsheet",
+        "auth_totp",
+        "auth_totp_portal",
+        "iap_mail",
+        "sale_pdf_quote_builder",
+        "barcodes",
+        "privacy_lookup",
+        "partner_autocomplete",
+        "sale_sms",
+        "phone_validation",
+        "web",
+        "spreadsheet_account",
+        "mail_bot",
+        "web_unsplash",
+        "http_routing",
+        "spreadsheet_dashboard_sale",
+        "spreadsheet_dashboard_stock_account",
+        "barcodes_gs1_nomenclature",
+        "spreadsheet_dashboard_account",
+        "html_editor",
+        "web_editor",
+        "spreadsheet_dashboard"
+      ],
+      "modules": [
+        "stock_move_location"
+      ],
+      "models": [
+        "wiz.stock.move.location",
+        "wiz.stock.move.location.line",
+        "stock.picking"
+      ],
+      "answer": [
+        {
+          "module": "stock_move_location",
+          "models": [
+            {
+              "model": "wiz.stock.move.location",
+              "relations": [
+                "ADDS_FIELD",
+                "DEFINES"
+              ],
+              "code": true
+            },
+            {
+              "model": "wiz.stock.move.location.line",
+              "relations": [
+                "ADDS_FIELD",
+                "DEFINES"
+              ],
+              "code": true
+            },
+            {
+              "model": "stock.picking",
+              "relations": [
+                "EXTENDS"
+              ],
+              "code": true
+            }
+          ],
+          "kg_checks": {
+            "module_in_kg": true,
+            "models_in_footprint": [
+              "wiz.stock.move.location",
+              "wiz.stock.move.location.line",
+              "stock.picking"
+            ],
+            "models_not_in_footprint": [],
+            "models_without_code": [],
+            "direct_depends": [
+              "stock"
+            ],
+            "transitive_depends": 18
+          },
+          "path": [
+            "stock_move_location",
+            "-[EXTENDS]-",
+            "stock.picking"
+          ],
+          "functions": [
+            "stock_move_location:fill_draft_picking_with_products_from_source_location",
+            "stock_move_location:move_specific_stock_quants",
+            "stock_move_location:move_stock_between_locations_via_wizard"
+          ],
+          "verdict": "supported",
+          "missing": [],
+          "evidence": [
+            "This module allows to move all stock in a stock location to an other one.",
+            "This module allows to move entire location of products from one place to another and move only selected quantities."
+          ],
+          "reason": "The stock_move_location module provides a wizard to select an origin location and a destination location to move all available stock in one operation. It fully satisfies the requirement to relocate all products from shelf A to shelf B."
+        }
+      ],
+      "verification": {
+        "verified": true,
+        "weak": false,
+        "changed_module": true,
+        "changed_models": true,
+        "rounds": [
+          {
+            "round": 1,
+            "candidates": [
+              "stock_request",
+              "stock_move_location",
+              "stock_no_negative"
+            ],
+            "llm_cached": true,
+            "prompt_chars": 19299,
+            "with_issues": [
+              "stock_request",
+              "stock_move_location",
+              "stock_no_negative"
+            ],
+            "verdict": "supported",
+            "chosen_module": "stock_move_location",
+            "models": [
+              "wiz.stock.move.location",
+              "wiz.stock.move.location.line",
+              "stock.picking"
+            ],
+            "invalid_module": null,
+            "invalid_models": [],
+            "candidate_checks": [
+              {
+                "module": "stock_request",
+                "fit": "no",
+                "reason": "Focuses on requesting specific products to be transferred rather than moving all stock from a source location at once."
+              },
+              {
+                "module": "stock_move_location",
+                "fit": "yes",
+                "reason": "Allows moving all stock from an origin location (shelf A) to a destination location (shelf B) in a single operation."
+              },
+              {
+                "module": "stock_no_negative",
+                "fit": "no",
+                "reason": "Prevents negative stock levels during stock operations and does not handle location stock transfers."
+              }
+            ],
+            "missing": [],
+            "evidence": [
+              "This module allows to move all stock in a stock location to an other one.",
+              "This module allows to move entire location of products from one place to another and move only selected quantities."
+            ],
+            "evidence_found": 2,
+            "reason": "The stock_move_location module provides a wizard to select an origin location and a destination location to move all available stock in one operation. It fully satisfies the requirement to relocate all products from shelf A to shelf B."
+          }
+        ],
+        "rejected": [],
+        "collector": [
+          {
+            "module": "stock_request",
+            "why": "low_confidence",
+            "status": "cache",
+            "issues": 5
+          },
+          {
+            "module": "stock_move_location",
+            "why": "low_confidence",
+            "status": "cache",
+            "issues": 5
+          },
+          {
+            "module": "stock_no_negative",
+            "why": "low_confidence",
+            "status": "cache",
+            "issues": 5
+          }
+        ],
+        "llm_calls": 0
+      },
+      "mapping": {
+        "modules": [
+          "stock_request"
+        ],
+        "models": [
+          "stock.location",
+          "stock.picking",
+          "stock.request.order",
+          "stock.request"
+        ],
+        "low_confidence": true
+      }
+    },
+    {
+      "id": "Q05",
+      "query": "Reopen a cancelled transfer so it can be edited and processed again",
+      "analysis": {
+        "normalized_en": "Allow users to reopen a cancelled inventory transfer back to an editable state so that its details can be updated and it can be processed again.",
+        "low_level_keywords": [
+          "cancelled transfer",
+          "reopen transfer",
+          "draft state",
+          "inventory transfer",
+          "reset to draft"
+        ],
+        "high_level_keywords": [
+          "inventory management",
+          "transfer management",
+          "workflow control"
+        ],
+        "objects": [
+          {
+            "mention": "cancelled transfer",
+            "odoo_model": "stock.picking"
+          }
+        ]
+      },
+      "llm_cached": true,
+      "entry_functions": [
+        {
+          "key": "stock_picking_back2draft:reopen_canceled_transfers",
+          "module": "stock_picking_back2draft",
+          "name": "Reopen canceled transfers",
+          "score": 0.8222
+        },
+        {
+          "key": "stock_move_location:move_specific_stock_quants",
+          "module": "stock_move_location",
+          "name": "Move specific stock quants",
+          "score": 0.6564
+        },
+        {
+          "key": "stock_request:request_internal_product_transfers",
+          "module": "stock_request",
+          "name": "Request internal product transfers",
+          "score": 0.6317
+        },
+        {
+          "key": "stock_picking_invoice_link:link_stock_pickings_and_invoices",
+          "module": "stock_picking_invoice_link",
+          "name": "Link stock pickings and invoices",
+          "score": 0.5747
+        },
+        {
+          "key": "stock_no_negative:allow_negative_stock_for_individual_locations",
+          "module": "stock_no_negative",
+          "name": "Allow negative stock for individual locations",
+          "score": 0.5685
+        }
+      ],
+      "entry_models": [
+        {
+          "mention": "cancelled transfer",
+          "model": "stock.picking",
+          "method": "exact_name",
+          "score": 1.0
+        }
+      ],
+      "module_ranking": [
+        "stock_picking_back2draft",
+        "stock_move_location",
+        "stock_picking_invoice_link",
+        "stock_request",
+        "sale_stock",
+        "stock_sms",
+        "stock",
+        "stock_picking_auto_create_lot",
+        "stock_account",
+        "auth_signup",
+        "sale_management",
+        "stock_no_negative",
+        "account_payment",
+        "sale_stock_picking_invoice_link",
+        "sale_edi_ubl",
+        "snailmail_account",
+        "utm",
+        "snailmail",
+        "sale_async_emails",
+        "sale",
+        "account",
+        "base_import",
+        "resource",
+        "product",
+        "base_setup",
+        "portal",
+        "html_editor",
+        "digest",
+        "sales_team",
+        "bus",
+        "base_import_module",
+        "onboarding",
+        "mail",
+        "privacy_lookup",
+        "auth_totp_mail",
+        "account_add_gln",
+        "base_install_request",
+        "account_edi_ubl_cii",
+        "sale_pdf_quote_builder",
+        "payment",
+        "uom",
+        "phone_validation",
+        "spreadsheet",
+        "analytic",
+        "base",
+        "partner_autocomplete",
+        "sms",
+        "mail_bot",
+        "sale_sms",
+        "auth_totp",
+        "auth_totp_portal",
+        "resource_mail",
+        "web_tour",
+        "spreadsheet_dashboard_sale",
+        "barcodes",
+        "iap",
+        "web_unsplash",
+        "spreadsheet_dashboard_stock_account",
+        "web_editor",
+        "web",
+        "http_routing",
+        "iap_mail",
+        "spreadsheet_dashboard_account",
+        "spreadsheet_dashboard",
+        "spreadsheet_account",
+        "google_gmail",
+        "barcodes_gs1_nomenclature"
+      ],
+      "modules": [
+        "stock_picking_back2draft"
+      ],
+      "models": [
+        "stock.picking",
+        "stock.move"
+      ],
+      "answer": [
+        {
+          "module": "stock_picking_back2draft",
+          "models": [
+            {
+              "model": "stock.picking",
+              "relations": [
+                "EXTENDS"
+              ],
+              "code": true
+            },
+            {
+              "model": "stock.move",
+              "relations": [
+                "EXTENDS"
+              ],
+              "code": true
+            }
+          ],
+          "kg_checks": {
+            "module_in_kg": true,
+            "models_in_footprint": [
+              "stock.picking",
+              "stock.move"
+            ],
+            "models_not_in_footprint": [],
+            "models_without_code": [],
+            "direct_depends": [
+              "stock"
+            ],
+            "transitive_depends": 18
+          },
+          "path": [
+            "stock_picking_back2draft",
+            "-[EXTENDS]-",
+            "stock.picking"
+          ],
+          "functions": [
+            "stock_picking_back2draft:reopen_canceled_transfers"
+          ],
+          "verdict": "supported",
+          "missing": [],
+          "evidence": [
+            "This module allows to bring canceled transfers back to draft",
+            "Just open a canceled transfer and click on the 'back to draft' button"
+          ],
+          "reason": "The module stock_picking_back2draft completely satisfies the requirement by adding a button to reset canceled transfers back to draft. Once back in draft state, the transfer details can be edited and processed again."
+        }
+      ],
+      "verification": {
+        "verified": true,
+        "weak": false,
+        "changed_module": false,
+        "changed_models": false,
+        "rounds": [
+          {
+            "round": 1,
+            "candidates": [
+              "stock_picking_back2draft",
+              "stock_move_location",
+              "stock_picking_invoice_link"
+            ],
+            "llm_cached": true,
+            "prompt_chars": 7028,
+            "with_issues": [],
+            "verdict": "supported",
+            "chosen_module": "stock_picking_back2draft",
+            "models": [
+              "stock.picking",
+              "stock.move"
+            ],
+            "invalid_module": null,
+            "invalid_models": [],
+            "candidate_checks": [
+              {
+                "module": "stock_picking_back2draft",
+                "fit": "yes",
+                "reason": "Directly allows bringing canceled transfers back to draft state so they can be edited and reprocessed."
+              },
+              {
+                "module": "stock_move_location",
+                "fit": "no",
+                "reason": "Moves stock between locations via a wizard and does not deal with reopening canceled transfers."
+              },
+              {
+                "module": "stock_picking_invoice_link",
+                "fit": "no",
+                "reason": "Establishes links between transfers and invoices, which is unrelated to reopening canceled transfers."
+              }
+            ],
+            "missing": [],
+            "evidence": [
+              "This module allows to bring canceled transfers back to draft",
+              "Just open a canceled transfer and click on the 'back to draft' button"
+            ],
+            "evidence_found": 2,
+            "reason": "The module stock_picking_back2draft completely satisfies the requirement by adding a button to reset canceled transfers back to draft. Once back in draft state, the transfer details can be edited and processed again."
+          }
+        ],
+        "rejected": [],
+        "collector": [],
+        "llm_calls": 0
+      },
+      "mapping": {
+        "modules": [
+          "stock_picking_back2draft"
+        ],
+        "models": [
+          "stock.picking",
+          "stock.move"
+        ],
+        "low_confidence": false
+      }
+    },
+    {
+      "id": "Q06",
+      "query": "When invoicing a sales order based on delivered quantities, each invoice must be traceable to the delivery it covers",
+      "analysis": {
+        "normalized_en": "When creating invoices for sales orders using the delivered quantities invoicing policy, each invoice must maintain explicit traceability to the corresponding delivery order it covers.",
+        "low_level_keywords": [
+          "delivered quantities",
+          "invoicing policy",
+          "customer invoice",
+          "delivery order",
+          "traceability",
+          "sales order"
+        ],
+        "high_level_keywords": [
+          "sales invoicing",
+          "delivery tracking",
+          "order to cash"
+        ],
+        "objects": [
+          {
+            "mention": "sales order",
+            "odoo_model": "sale.order"
+          },
+          {
+            "mention": "invoice",
+            "odoo_model": "account.move"
+          },
+          {
+            "mention": "delivery",
+            "odoo_model": "stock.picking"
+          }
+        ]
+      },
+      "llm_cached": true,
+      "entry_functions": [
+        {
+          "key": "sale_stock_picking_invoice_link:link_stock_pickings_and_invoices",
+          "module": "sale_stock_picking_invoice_link",
+          "name": "Link stock pickings and invoices",
+          "score": 0.7001
+        },
+        {
+          "key": "stock_picking_invoice_link:link_stock_pickings_and_invoices",
+          "module": "stock_picking_invoice_link",
+          "name": "Link stock pickings and invoices",
+          "score": 0.6088
+        },
+        {
+          "key": "stock_request:request_internal_product_transfers",
+          "module": "stock_request",
+          "name": "Request internal product transfers",
+          "score": 0.561
+        },
+        {
+          "key": "stock_move_location:fill_draft_picking_with_products_from_source_location",
+          "module": "stock_move_location",
+          "name": "Fill draft picking with products from source location",
+          "score": 0.521
+        },
+        {
+          "key": "stock_move_location:move_specific_stock_quants",
+          "module": "stock_move_location",
+          "name": "Move specific stock quants",
+          "score": 0.4989
+        }
+      ],
+      "entry_models": [
+        {
+          "mention": "sales order",
+          "model": "sale.order",
+          "method": "exact_name",
+          "score": 1.0
+        },
+        {
+          "mention": "invoice",
+          "model": "account.move",
+          "method": "exact_name",
+          "score": 1.0
+        },
+        {
+          "mention": "delivery",
+          "model": "stock.picking",
+          "method": "exact_name",
+          "score": 1.0
+        }
+      ],
+      "module_ranking": [
+        "stock_picking_invoice_link",
+        "sale_async_emails",
+        "sale_stock",
+        "sale_management",
+        "sale_edi_ubl",
+        "sale_stock_picking_invoice_link",
+        "account_payment",
+        "account",
+        "stock_account",
+        "stock_picking_back2draft",
+        "stock_move_location",
+        "stock_request",
+        "stock_picking_auto_create_lot",
+        "account_edi_ubl_cii",
+        "sale",
+        "stock_sms",
+        "stock",
+        "sale_pdf_quote_builder",
+        "snailmail_account",
+        "product",
+        "account_add_gln",
+        "utm",
+        "iap",
+        "base_import",
+        "mail",
+        "sales_team",
+        "resource",
+        "phone_validation",
+        "digest",
+        "portal",
+        "payment",
+        "sms",
+        "privacy_lookup",
+        "stock_no_negative",
+        "snailmail",
+        "spreadsheet_account",
+        "base_setup",
+        "bus",
+        "spreadsheet",
+        "uom",
+        "analytic",
+        "base_install_request",
+        "barcodes",
+        "google_gmail",
+        "auth_totp_mail",
+        "auth_totp",
+        "base_import_module",
+        "sale_sms",
+        "spreadsheet_dashboard_sale",
+        "partner_autocomplete",
+        "base",
+        "web_tour",
+        "resource_mail",
+        "auth_totp_portal",
+        "auth_signup",
+        "mail_bot",
+        "barcodes_gs1_nomenclature",
+        "onboarding",
+        "web",
+        "html_editor",
+        "iap_mail",
+        "spreadsheet_dashboard_account",
+        "spreadsheet_dashboard_stock_account",
+        "spreadsheet_dashboard",
+        "web_unsplash",
+        "web_editor",
+        "http_routing"
+      ],
+      "modules": [
+        "stock_picking_invoice_link"
+      ],
+      "models": [
+        "account.move",
+        "stock.picking",
+        "account.move.line",
+        "stock.move"
+      ],
+      "answer": [
+        {
+          "module": "stock_picking_invoice_link",
+          "models": [
+            {
+              "model": "account.move",
+              "relations": [
+                "ADDS_FIELD",
+                "EXTENDS"
+              ],
+              "code": true
+            },
+            {
+              "model": "stock.picking",
+              "relations": [
+                "ADDS_FIELD",
+                "EXTENDS"
+              ],
+              "code": true
+            },
+            {
+              "model": "account.move.line",
+              "relations": [
+                "ADDS_FIELD",
+                "EXTENDS"
+              ],
+              "code": true
+            },
+            {
+              "model": "stock.move",
+              "relations": [
+                "ADDS_FIELD",
+                "EXTENDS"
+              ],
+              "code": true
+            }
+          ],
+          "kg_checks": {
+            "module_in_kg": true,
+            "models_in_footprint": [
+              "account.move",
+              "stock.picking",
+              "account.move.line",
+              "stock.move"
+            ],
+            "models_not_in_footprint": [],
+            "models_without_code": [],
+            "direct_depends": [
+              "stock_account"
+            ],
+            "transitive_depends": 22
+          },
+          "path": [
+            "stock_picking_invoice_link",
+            "-[ADDS_FIELD|EXTENDS]-",
+            "account.move"
+          ],
+          "functions": [
+            "stock_picking_invoice_link:link_stock_pickings_and_invoices"
+          ],
+          "verdict": "supported",
+          "missing": [],
+          "evidence": [
+            "Adds link between pickings and invoices",
+            "adds a link between pickings and invoices as well as on the lines.",
+            "If you open invoice form, you must see a new Pickings tab with information about them."
+          ],
+          "reason": "The module `stock_picking_invoice_link` directly addresses the requirement by linking stock pickings to invoices and invoice lines. When an invoice is created from delivered quantities, a dedicated Pickings tab on the invoice displays the associated delivery orders."
+        }
+      ],
+      "verification": {
+        "verified": true,
+        "weak": false,
+        "changed_module": false,
+        "changed_models": true,
+        "rounds": [
+          {
+            "round": 1,
+            "candidates": [
+              "stock_picking_invoice_link",
+              "sale_async_emails",
+              "sale_stock"
+            ],
+            "llm_cached": true,
+            "prompt_chars": 8540,
+            "with_issues": [
+              "stock_picking_invoice_link"
+            ],
+            "verdict": "supported",
+            "chosen_module": "stock_picking_invoice_link",
+            "models": [
+              "account.move",
+              "stock.picking",
+              "account.move.line",
+              "stock.move"
+            ],
+            "invalid_module": null,
+            "invalid_models": [],
+            "candidate_checks": [
+              {
+                "module": "stock_picking_invoice_link",
+                "fit": "yes",
+                "reason": "It links stock pickings (deliveries) directly to invoices and invoice lines, adding a dedicated Pickings tab on the invoice for full traceability."
+              },
+              {
+                "module": "sale_async_emails",
+                "fit": "no",
+                "reason": "It sends order status emails asynchronously and is unrelated to picking or invoice traceability."
+              },
+              {
+                "module": "sale_stock",
+                "fit": "partly",
+                "reason": "It links sales orders to deliveries and invoices via sales order lines, but does not provide direct explicit traceability between individual deliveries and invoices."
+              }
+            ],
+            "missing": [],
+            "evidence": [
+              "Adds link between pickings and invoices",
+              "adds a link between pickings and invoices as well as on the lines.",
+              "If you open invoice form, you must see a new Pickings tab with information about them."
+            ],
+            "evidence_found": 3,
+            "reason": "The module `stock_picking_invoice_link` directly addresses the requirement by linking stock pickings to invoices and invoice lines. When an invoice is created from delivered quantities, a dedicated Pickings tab on the invoice displays the associated delivery orders."
+          }
+        ],
+        "rejected": [],
+        "collector": [
+          {
+            "module": "stock_picking_invoice_link",
+            "why": "low_confidence",
+            "status": "cache",
+            "issues": 5
+          },
+          {
+            "module": "sale_async_emails",
+            "why": "low_confidence",
+            "status": "no_source",
+            "issues": 0
+          },
+          {
+            "module": "sale_stock",
+            "why": "low_confidence",
+            "status": "no_source",
+            "issues": 0
+          }
+        ],
+        "llm_calls": 0
+      },
+      "mapping": {
+        "modules": [
+          "stock_picking_invoice_link"
+        ],
+        "models": [
+          "stock.picking",
+          "stock.move",
+          "account.move",
+          "account.move.line"
+        ],
+        "low_confidence": true
+      }
+    },
+    {
+      "id": "Q07",
+      "query": "The main warehouse must never ship more than it has on hand, but one consignment location should still allow outgoing moves even when its quantities are not yet reconciled.",
+      "analysis": {
+        "normalized_en": "The main warehouse must strictly prevent outgoing stock shipments from exceeding available on-hand quantities, whereas a specific consignment location must be allowed to process outgoing stock moves even when its stock quantities are not yet reconciled.",
+        "low_level_keywords": [
+          "main warehouse",
+          "consignment location",
+          "outgoing move",
+          "on-hand quantity",
+          "negative stock",
+          "reconciled quantity"
+        ],
+        "high_level_keywords": [
+          "inventory control",
+          "warehouse management",
+          "stock movement"
+        ],
+        "objects": [
+          {
+            "mention": "main warehouse",
+            "odoo_model": "stock.warehouse"
+          },
+          {
+            "mention": "consignment location",
+            "odoo_model": "stock.location"
+          },
+          {
+            "mention": "outgoing move",
+            "odoo_model": "stock.move"
+          }
+        ]
+      },
+      "llm_cached": true,
+      "entry_functions": [
+        {
+          "key": "stock_no_negative:block_stock_operations_resulting_in_negative_stock",
+          "module": "stock_no_negative",
+          "name": "Block stock operations resulting in negative stock",
+          "score": 0.641
+        },
+        {
+          "key": "stock_move_location:move_stock_between_locations_via_wizard",
+          "module": "stock_move_location",
+          "name": "Move stock between locations via wizard",
+          "score": 0.5858
+        },
+        {
+          "key": "stock_request:request_internal_product_transfers",
+          "module": "stock_request",
+          "name": "Request internal product transfers",
+          "score": 0.5711
+        },
+        {
+          "key": "stock_no_negative:allow_negative_stock_for_individual_locations",
+          "module": "stock_no_negative",
+          "name": "Allow negative stock for individual locations",
+          "score": 0.5532
+        },
+        {
+          "key": "stock_move_location:move_specific_stock_quants",
+          "module": "stock_move_location",
+          "name": "Move specific stock quants",
+          "score": 0.5492
+        }
+      ],
+      "entry_models": [
+        {
+          "mention": "main warehouse",
+          "model": "stock.warehouse",
+          "method": "exact_name",
+          "score": 1.0
+        },
+        {
+          "mention": "consignment location",
+          "model": "stock.location",
+          "method": "exact_name",
+          "score": 1.0
+        },
+        {
+          "mention": "outgoing move",
+          "model": "stock.move",
+          "method": "exact_name",
+          "score": 1.0
+        }
+      ],
+      "module_ranking": [
+        "stock_no_negative",
+        "stock_request",
+        "stock",
+        "sale_stock",
+        "sale_stock_picking_invoice_link",
+        "stock_move_location",
+        "stock_account",
+        "stock_picking_back2draft",
+        "stock_picking_auto_create_lot",
+        "stock_picking_invoice_link",
+        "sale_management",
+        "resource",
+        "base_import",
+        "account_add_gln",
+        "account_payment",
+        "sale",
+        "stock_sms",
+        "utm",
+        "account",
+        "product",
+        "sale_async_emails",
+        "sales_team",
+        "uom",
+        "sale_edi_ubl",
+        "google_gmail",
+        "digest",
+        "portal",
+        "base_setup",
+        "auth_signup",
+        "barcodes",
+        "base_import_module",
+        "onboarding",
+        "analytic",
+        "payment",
+        "mail",
+        "privacy_lookup",
+        "iap_mail",
+        "auth_totp_portal",
+        "auth_totp",
+        "account_edi_ubl_cii",
+        "sale_pdf_quote_builder",
+        "spreadsheet_dashboard_stock_account",
+        "resource_mail",
+        "spreadsheet",
+        "phone_validation",
+        "bus",
+        "sms",
+        "snailmail_account",
+        "base_install_request",
+        "base",
+        "snailmail",
+        "partner_autocomplete",
+        "iap",
+        "http_routing",
+        "spreadsheet_dashboard_sale",
+        "web_tour",
+        "mail_bot",
+        "spreadsheet_account",
+        "auth_totp_mail",
+        "html_editor",
+        "sale_sms",
+        "web",
+        "barcodes_gs1_nomenclature",
+        "web_unsplash",
+        "spreadsheet_dashboard_account",
+        "spreadsheet_dashboard",
+        "web_editor"
+      ],
+      "modules": [
+        "stock_no_negative"
+      ],
+      "models": [
+        "stock.location",
+        "stock.quant"
+      ],
+      "answer": [
+        {
+          "module": "stock_no_negative",
+          "models": [
+            {
+              "model": "stock.location",
+              "relations": [
+                "ADDS_FIELD",
+                "EXTENDS"
+              ],
+              "code": true
+            },
+            {
+              "model": "stock.quant",
+              "relations": [
+                "EXTENDS"
+              ],
+              "code": true
+            }
+          ],
+          "kg_checks": {
+            "module_in_kg": true,
+            "models_in_footprint": [
+              "stock.location",
+              "stock.quant"
+            ],
+            "models_not_in_footprint": [],
+            "models_without_code": [],
+            "direct_depends": [
+              "stock"
+            ],
+            "transitive_depends": 18
+          },
+          "path": [
+            "stock_no_negative",
+            "-[ADDS_FIELD|EXTENDS]-",
+            "stock.location"
+          ],
+          "functions": [
+            "stock_no_negative:allow_negative_stock_for_individual_locations",
+            "stock_no_negative:allow_negative_stock_for_product_categories",
+            "stock_no_negative:allow_negative_stock_for_specific_products",
+            "stock_no_negative:block_stock_operations_resulting_in_negative_stock"
+          ],
+          "verdict": "supported",
+          "missing": [],
+          "evidence": [
+            "By default, the stockable products will not be allowed to have a negative stock. If you want to make some exceptions for some products, product categories or locations, you can activate the  [...]",
+            "Allow negative stock for individual locations: Enables negative stock levels for individual inventory locations by setting the Allow Negative Stock flag on the selected locations.",
+            "Block stock operations resulting in negative stock: Prevents stock operations such as stock moves, pickings, or manufacturing orders from being validated if they would result in a negative stock level for stockable products or locations."
+          ],
+          "reason": " The stock_no_negative module prevents stock validation when quantities would turn negative, securing the main warehouse shipments. By enabling the allow_negative_stock flag on the specific consignment location, outgoing moves from that location can still proceed even when stock is not yet reconciled."
+        }
+      ],
+      "verification": {
+        "verified": true,
+        "weak": false,
+        "changed_module": true,
+        "changed_models": true,
+        "rounds": [
+          {
+            "round": 1,
+            "candidates": [
+              "stock_request",
+              "stock",
+              "stock_no_negative"
+            ],
+            "llm_cached": true,
+            "prompt_chars": 18791,
+            "with_issues": [
+              "stock_request",
+              "stock_no_negative"
+            ],
+            "verdict": "supported",
+            "chosen_module": "stock_no_negative",
+            "models": [
+              "stock.location",
+              "stock.quant"
+            ],
+            "invalid_module": null,
+            "invalid_models": [],
+            "candidate_checks": [
+              {
+                "module": "stock_request",
+                "fit": "no",
+                "reason": "This module handles internal stock requests rather than enforcing negative stock rules or location exceptions."
+              },
+              {
+                "module": "stock",
+                "fit": "partly",
+                "reason": "Provides base inventory management, but standard Odoo stock allows negative stock globally without a built-in mechanism to block negative stock by default with per-location exception flags."
+              },
+              {
+                "module": "stock_no_negative",
+                "fit": "yes",
+                "reason": "Blocks stock operations resulting in negative stock by default, while allowing explicit negative stock exceptions for specific locations using the allow_negative_stock setting."
+              }
+            ],
+            "missing": [],
+            "evidence": [
+              "By default, the stockable products will not be allowed to have a negative stock. If you want to make some exceptions for some products, product categories or locations, you can activate the  [...]",
+              "Allow negative stock for individual locations: Enables negative stock levels for individual inventory locations by setting the Allow Negative Stock flag on the selected locations.",
+              "Block stock operations resulting in negative stock: Prevents stock operations such as stock moves, pickings, or manufacturing orders from being validated if they would result in a negative stock level for stockable products or locations."
+            ],
+            "evidence_found": 3,
+            "reason": " The stock_no_negative module prevents stock validation when quantities would turn negative, securing the main warehouse shipments. By enabling the allow_negative_stock flag on the specific consignment location, outgoing moves from that location can still proceed even when stock is not yet reconciled."
+          }
+        ],
+        "rejected": [],
+        "collector": [
+          {
+            "module": "stock_request",
+            "why": "low_confidence",
+            "status": "cache",
+            "issues": 5
+          },
+          {
+            "module": "stock",
+            "why": "low_confidence",
+            "status": "no_source",
+            "issues": 0
+          },
+          {
+            "module": "stock_no_negative",
+            "why": "low_confidence",
+            "status": "cache",
+            "issues": 5
+          }
+        ],
+        "llm_calls": 0
+      },
+      "mapping": {
+        "modules": [
+          "stock_request"
+        ],
+        "models": [
+          "stock.request.order",
+          "stock.request",
+          "res.company",
+          "stock.request.allocation"
+        ],
+        "low_confidence": true
+      }
+    },
+    {
+      "id": "Q09",
+      "query": "When opening an invoice, accounting needs to see which stock transfers it covers and which stock moves each invoice line corresponds to.",
+      "analysis": {
+        "normalized_en": "When viewing an invoice, accountants need to see the related stock transfers linked to the overall document as well as the specific stock moves corresponding to each individual invoice line.",
+        "low_level_keywords": [
+          "invoice line",
+          "stock transfer",
+          "stock move",
+          "invoice",
+          "picking"
+        ],
+        "high_level_keywords": [
+          "invoicing",
+          "stock management",
+          "inventory traceability"
+        ],
+        "objects": [
+          {
+            "mention": "invoice",
+            "odoo_model": "account.move"
+          },
+          {
+            "mention": "invoice line",
+            "odoo_model": "account.move.line"
+          },
+          {
+            "mention": "stock transfer",
+            "odoo_model": "stock.picking"
+          },
+          {
+            "mention": "stock move",
+            "odoo_model": "stock.move"
+          }
+        ]
+      },
+      "llm_cached": true,
+      "entry_functions": [
+        {
+          "key": "stock_picking_invoice_link:link_stock_pickings_and_invoices",
+          "module": "stock_picking_invoice_link",
+          "name": "Link stock pickings and invoices",
+          "score": 0.7055
+        },
+        {
+          "key": "sale_stock_picking_invoice_link:link_stock_pickings_and_invoices",
+          "module": "sale_stock_picking_invoice_link",
+          "name": "Link stock pickings and invoices",
+          "score": 0.7039
+        },
+        {
+          "key": "stock_move_location:move_specific_stock_quants",
+          "module": "stock_move_location",
+          "name": "Move specific stock quants",
+          "score": 0.6159
+        },
+        {
+          "key": "stock_request:request_internal_product_transfers",
+          "module": "stock_request",
+          "name": "Request internal product transfers",
+          "score": 0.6132
+        },
+        {
+          "key": "stock_move_location:fill_draft_picking_with_products_from_source_location",
+          "module": "stock_move_location",
+          "name": "Fill draft picking with products from source location",
+          "score": 0.6073
+        }
+      ],
+      "entry_models": [
+        {
+          "mention": "invoice",
+          "model": "account.move",
+          "method": "exact_name",
+          "score": 1.0
+        },
+        {
+          "mention": "invoice line",
+          "model": "account.move.line",
+          "method": "exact_name",
+          "score": 1.0
+        },
+        {
+          "mention": "stock transfer",
+          "model": "stock.picking",
+          "method": "exact_name",
+          "score": 1.0
+        },
+        {
+          "mention": "stock move",
+          "model": "stock.move",
+          "method": "exact_name",
+          "score": 1.0
+        }
+      ],
+      "module_ranking": [
+        "stock_picking_invoice_link",
+        "sale_stock_picking_invoice_link",
+        "stock_picking_back2draft",
+        "stock_account",
+        "stock_move_location",
+        "sale_stock",
+        "stock_request",
+        "stock_picking_auto_create_lot",
+        "stock",
+        "account",
+        "account_payment",
+        "stock_sms",
+        "sale_management",
+        "sale",
+        "account_edi_ubl_cii",
+        "analytic",
+        "utm",
+        "snailmail_account",
+        "account_add_gln",
+        "stock_no_negative",
+        "product",
+        "base_setup",
+        "spreadsheet_account",
+        "resource",
+        "sale_edi_ubl",
+        "base_import",
+        "digest",
+        "sale_async_emails",
+        "iap_mail",
+        "uom",
+        "sales_team",
+        "mail",
+        "spreadsheet",
+        "payment",
+        "privacy_lookup",
+        "iap",
+        "portal",
+        "google_gmail",
+        "partner_autocomplete",
+        "phone_validation",
+        "base_import_module",
+        "snailmail",
+        "auth_totp_mail",
+        "barcodes",
+        "onboarding",
+        "sale_pdf_quote_builder",
+        "auth_signup",
+        "auth_totp",
+        "bus",
+        "spreadsheet_dashboard_account",
+        "spreadsheet_dashboard_stock_account",
+        "sms",
+        "base",
+        "barcodes_gs1_nomenclature",
+        "web_tour",
+        "base_install_request",
+        "resource_mail",
+        "mail_bot",
+        "html_editor",
+        "auth_totp_portal",
+        "spreadsheet_dashboard_sale",
+        "sale_sms",
+        "spreadsheet_dashboard",
+        "web",
+        "web_unsplash",
+        "web_editor",
+        "http_routing"
+      ],
+      "modules": [
+        "stock_picking_invoice_link"
+      ],
+      "models": [
+        "account.move",
+        "account.move.line",
+        "stock.picking",
+        "stock.move"
+      ],
+      "answer": [
+        {
+          "module": "stock_picking_invoice_link",
+          "models": [
+            {
+              "model": "account.move",
+              "relations": [
+                "ADDS_FIELD",
+                "EXTENDS"
+              ],
+              "code": true
+            },
+            {
+              "model": "account.move.line",
+              "relations": [
+                "ADDS_FIELD",
+                "EXTENDS"
+              ],
+              "code": true
+            },
+            {
+              "model": "stock.picking",
+              "relations": [
+                "ADDS_FIELD",
+                "EXTENDS"
+              ],
+              "code": true
+            },
+            {
+              "model": "stock.move",
+              "relations": [
+                "ADDS_FIELD",
+                "EXTENDS"
+              ],
+              "code": true
+            }
+          ],
+          "kg_checks": {
+            "module_in_kg": true,
+            "models_in_footprint": [
+              "account.move",
+              "account.move.line",
+              "stock.picking",
+              "stock.move"
+            ],
+            "models_not_in_footprint": [],
+            "models_without_code": [],
+            "direct_depends": [
+              "stock_account"
+            ],
+            "transitive_depends": 22
+          },
+          "path": [
+            "stock_picking_invoice_link",
+            "-[ADDS_FIELD|EXTENDS]-",
+            "account.move"
+          ],
+          "functions": [
+            "stock_picking_invoice_link:link_stock_pickings_and_invoices"
+          ],
+          "verdict": "supported",
+          "missing": [],
+          "evidence": [
+            "Adds a link between pickings and invoices as well as on the lines.",
+            "If you open invoice form, you must see a new Pickings tab with information about them.",
+            "Establishes a link between stock pickings and invoices at both the header and line levels, providing visibility of related pickings in a dedicated tab on the invoice."
+          ],
+          "reason": "The stock_picking_invoice_link module completely fulfills the requirement by adding picking_ids to account.move and move_line_ids to account.move.line. This allows accountants to view related stock transfers at the document level in a dedicated Pickings tab and track specific stock moves per invoice line."
+        }
+      ],
+      "verification": {
+        "verified": true,
+        "weak": false,
+        "changed_module": false,
+        "changed_models": true,
+        "rounds": [
+          {
+            "round": 1,
+            "candidates": [
+              "stock_picking_invoice_link",
+              "sale_stock_picking_invoice_link",
+              "stock_picking_back2draft"
+            ],
+            "llm_cached": true,
+            "prompt_chars": 5721,
+            "with_issues": [],
+            "verdict": "supported",
+            "chosen_module": "stock_picking_invoice_link",
+            "models": [
+              "account.move",
+              "account.move.line",
+              "stock.picking",
+              "stock.move"
+            ],
+            "invalid_module": null,
+            "invalid_models": [],
+            "candidate_checks": [
+              {
+                "module": "stock_picking_invoice_link",
+                "fit": "yes",
+                "reason": "Links stock pickings to invoices at the header level and stock moves to individual invoice lines."
+              },
+              {
+                "module": "sale_stock_picking_invoice_link",
+                "fit": "partly",
+                "reason": "Focuses specifically on sales orders and relies on stock_picking_invoice_link for the core header and line linking."
+              },
+              {
+                "module": "stock_picking_back2draft",
+                "fit": "no",
+                "reason": "Allows reopening canceled transfers, which is unrelated to linking invoices with stock pickings."
+              }
+            ],
+            "missing": [],
+            "evidence": [
+              "Adds a link between pickings and invoices as well as on the lines.",
+              "If you open invoice form, you must see a new Pickings tab with information about them.",
+              "Establishes a link between stock pickings and invoices at both the header and line levels, providing visibility of related pickings in a dedicated tab on the invoice."
+            ],
+            "evidence_found": 3,
+            "reason": "The stock_picking_invoice_link module completely fulfills the requirement by adding picking_ids to account.move and move_line_ids to account.move.line. This allows accountants to view related stock transfers at the document level in a dedicated Pickings tab and track specific stock moves per invoice line."
+          }
+        ],
+        "rejected": [],
+        "collector": [],
+        "llm_calls": 0
+      },
+      "mapping": {
+        "modules": [
+          "stock_picking_invoice_link"
+        ],
+        "models": [
+          "stock.move",
+          "stock.picking",
+          "account.move.line",
+          "account.move"
+        ],
+        "low_confidence": false
+      }
+    },
+    {
+      "id": "Q10",
+      "query": "When emptying a shelf for maintenance, the storekeeper wants to create an internal transfer without typing each product: pick the source shelf and the system fills the transfer with everything currently stored there.",
+      "analysis": {
+        "normalized_en": "When creating an internal transfer to empty a shelf for maintenance, selecting the source location should automatically populate the transfer with all products and quantities currently stored at that location.",
+        "low_level_keywords": [
+          "internal transfer",
+          "source location",
+          "shelf location",
+          "stock on hand",
+          "auto populate transfer lines"
+        ],
+        "high_level_keywords": [
+          "warehouse management",
+          "transfer management",
+          "inventory control"
+        ],
+        "objects": [
+          {
+            "mention": "internal transfer",
+            "odoo_model": "stock.picking"
+          },
+          {
+            "mention": "source shelf",
+            "odoo_model": "stock.location"
+          },
+          {
+            "mention": "transfer line",
+            "odoo_model": "stock.move"
+          }
+        ]
+      },
+      "llm_cached": true,
+      "entry_functions": [
+        {
+          "key": "stock_move_location:fill_draft_picking_with_products_from_source_location",
+          "module": "stock_move_location",
+          "name": "Fill draft picking with products from source location",
+          "score": 0.6748
+        },
+        {
+          "key": "stock_request:request_internal_product_transfers",
+          "module": "stock_request",
+          "name": "Request internal product transfers",
+          "score": 0.6606
+        },
+        {
+          "key": "stock_picking_auto_create_lot:auto_create_lots_for_incoming_stock_pickings",
+          "module": "stock_picking_auto_create_lot",
+          "name": "Auto create lots for incoming stock pickings",
+          "score": 0.61
+        },
+        {
+          "key": "stock_move_location:move_stock_between_locations_via_wizard",
+          "module": "stock_move_location",
+          "name": "Move stock between locations via wizard",
+          "score": 0.5926
+        },
+        {
+          "key": "stock_move_location:move_specific_stock_quants",
+          "module": "stock_move_location",
+          "name": "Move specific stock quants",
+          "score": 0.5839
+        }
+      ],
+      "entry_models": [
+        {
+          "mention": "internal transfer",
+          "model": "stock.picking",
+          "method": "exact_name",
+          "score": 1.0
+        },
+        {
+          "mention": "source shelf",
+          "model": "stock.location",
+          "method": "exact_name",
+          "score": 1.0
+        },
+        {
+          "mention": "transfer line",
+          "model": "stock.move",
+          "method": "exact_name",
+          "score": 1.0
+        }
+      ],
+      "module_ranking": [
+        "stock_move_location",
+        "stock_picking_back2draft",
+        "stock_request",
+        "stock_picking_auto_create_lot",
+        "sale_stock_picking_invoice_link",
+        "stock_picking_invoice_link",
+        "sale_stock",
+        "stock_account",
+        "stock",
+        "stock_no_negative",
+        "stock_sms",
+        "sale_management",
+        "account",
+        "account_payment",
+        "resource",
+        "base_import",
+        "account_add_gln",
+        "base_setup",
+        "sale",
+        "utm",
+        "digest",
+        "base_install_request",
+        "portal",
+        "product",
+        "auth_signup",
+        "payment",
+        "sale_async_emails",
+        "sms",
+        "base_import_module",
+        "sale_edi_ubl",
+        "resource_mail",
+        "sales_team",
+        "iap",
+        "snailmail_account",
+        "mail",
+        "bus",
+        "snailmail",
+        "analytic",
+        "uom",
+        "auth_totp",
+        "auth_totp_mail",
+        "partner_autocomplete",
+        "google_gmail",
+        "base",
+        "onboarding",
+        "phone_validation",
+        "iap_mail",
+        "web_unsplash",
+        "sale_pdf_quote_builder",
+        "account_edi_ubl_cii",
+        "spreadsheet",
+        "web_tour",
+        "barcodes",
+        "privacy_lookup",
+        "auth_totp_portal",
+        "html_editor",
+        "sale_sms",
+        "web",
+        "mail_bot",
+        "http_routing",
+        "spreadsheet_account",
+        "spreadsheet_dashboard_sale",
+        "web_editor",
+        "spreadsheet_dashboard_stock_account",
+        "spreadsheet_dashboard_account",
+        "barcodes_gs1_nomenclature",
+        "spreadsheet_dashboard"
+      ],
+      "modules": [
+        "stock_move_location"
+      ],
+      "models": [
+        "wiz.stock.move.location",
+        "wiz.stock.move.location.line",
+        "stock.picking",
+        "stock.picking.type"
+      ],
+      "answer": [
+        {
+          "module": "stock_move_location",
+          "models": [
+            {
+              "model": "wiz.stock.move.location",
+              "relations": [
+                "ADDS_FIELD",
+                "DEFINES"
+              ],
+              "code": true
+            },
+            {
+              "model": "wiz.stock.move.location.line",
+              "relations": [
+                "ADDS_FIELD",
+                "DEFINES"
+              ],
+              "code": true
+            },
+            {
+              "model": "stock.picking",
+              "relations": [
+                "EXTENDS"
+              ],
+              "code": true
+            },
+            {
+              "model": "stock.picking.type",
+              "relations": [
+                "ADDS_FIELD",
+                "EXTENDS"
+              ],
+              "code": true
+            }
+          ],
+          "kg_checks": {
+            "module_in_kg": true,
+            "models_in_footprint": [
+              "wiz.stock.move.location",
+              "wiz.stock.move.location.line",
+              "stock.picking",
+              "stock.picking.type"
+            ],
+            "models_not_in_footprint": [],
+            "models_without_code": [],
+            "direct_depends": [
+              "stock"
+            ],
+            "transitive_depends": 18
+          },
+          "path": [
+            "stock_move_location",
+            "-[ADDS_FIELD|EXTENDS]-",
+            "stock.move"
+          ],
+          "functions": [
+            "stock_move_location:fill_draft_picking_with_products_from_source_location",
+            "stock_move_location:move_specific_stock_quants",
+            "stock_move_location:move_stock_between_locations_via_wizard"
+          ],
+          "verdict": "supported",
+          "missing": [],
+          "evidence": [
+            "This module allows to move all stock in a stock location to an other one.",
+            "Select origin and destination locations and press \"IMMEDIATE TRANSFER\" or \"PLANNED TRANSFER\"",
+            "Fill draft picking with products from source location: Populates a draft picking with stock move lines for all available products in the specified source location."
+          ],
+          "reason": "The stock_move_location module provides a wizard to select an origin and destination location, automatically populating the transfer with all available products in that source location. This satisfies the requirement of emptying a shelf without typing each product manually."
+        }
+      ],
+      "verification": {
+        "verified": true,
+        "weak": false,
+        "changed_module": true,
+        "changed_models": true,
+        "rounds": [
+          {
+            "round": 1,
+            "candidates": [
+              "stock_picking_back2draft",
+              "stock_move_location",
+              "stock_request"
+            ],
+            "llm_cached": true,
+            "prompt_chars": 9407,
+            "with_issues": [],
+            "verdict": "supported",
+            "chosen_module": "stock_move_location",
+            "models": [
+              "wiz.stock.move.location",
+              "wiz.stock.move.location.line",
+              "stock.picking",
+              "stock.picking.type"
+            ],
+            "invalid_module": null,
+            "invalid_models": [],
+            "candidate_checks": [
+              {
+                "module": "stock_picking_back2draft",
+                "fit": "no",
+                "reason": "Reopens canceled transfers back to draft state, which does not help populate transfers from a location's contents."
+              },
+              {
+                "module": "stock_move_location",
+                "fit": "yes",
+                "reason": "Allows transferring all stock from a source location to a destination location, populating products automatically."
+              },
+              {
+                "module": "stock_request",
+                "fit": "no",
+                "reason": "Used for requesting specific stocked products to a location rather than moving all contents from a shelf."
+              }
+            ],
+            "missing": [],
+            "evidence": [
+              "This module allows to move all stock in a stock location to an other one.",
+              "Select origin and destination locations and press \"IMMEDIATE TRANSFER\" or \"PLANNED TRANSFER\"",
+              "Fill draft picking with products from source location: Populates a draft picking with stock move lines for all available products in the specified source location."
+            ],
+            "evidence_found": 3,
+            "reason": "The stock_move_location module provides a wizard to select an origin and destination location, automatically populating the transfer with all available products in that source location. This satisfies the requirement of emptying a shelf without typing each product manually."
+          }
+        ],
+        "rejected": [],
+        "collector": [],
+        "llm_calls": 0
+      },
+      "mapping": {
+        "modules": [
+          "stock_picking_back2draft"
+        ],
+        "models": [
+          "stock.picking",
+          "stock.move"
+        ],
+        "low_confidence": false
+      }
+    },
+    {
+      "id": "Q12",
+      "query": "From the on-hand stock list, the storekeeper wants to select a few stock lines and move only those quantities to another location right away.",
+      "analysis": {
+        "normalized_en": "The storekeeper needs to select specific stock quants directly from the on-hand stock list view and immediately move those selected quantities to another target location.",
+        "low_level_keywords": [
+          "on-hand stock list",
+          "stock line",
+          "stock quant",
+          "target location",
+          "relocate stock",
+          "immediate transfer"
+        ],
+        "high_level_keywords": [
+          "inventory control",
+          "internal transfer",
+          "stock location management"
+        ],
+        "objects": [
+          {
+            "mention": "on-hand stock line",
+            "odoo_model": "stock.quant"
+          },
+          {
+            "mention": "location",
+            "odoo_model": "stock.location"
+          },
+          {
+            "mention": "stock transfer",
+            "odoo_model": "stock.picking"
+          }
+        ]
+      },
+      "llm_cached": true,
+      "entry_functions": [
+        {
+          "key": "stock_move_location:move_specific_stock_quants",
+          "module": "stock_move_location",
+          "name": "Move specific stock quants",
+          "score": 0.7645
+        },
+        {
+          "key": "stock_move_location:move_stock_between_locations_via_wizard",
+          "module": "stock_move_location",
+          "name": "Move stock between locations via wizard",
+          "score": 0.6566
+        },
+        {
+          "key": "stock_move_location:fill_draft_picking_with_products_from_source_location",
+          "module": "stock_move_location",
+          "name": "Fill draft picking with products from source location",
+          "score": 0.6076
+        },
+        {
+          "key": "stock_request:request_internal_product_transfers",
+          "module": "stock_request",
+          "name": "Request internal product transfers",
+          "score": 0.5995
+        },
+        {
+          "key": "stock_picking_auto_create_lot:auto_create_lots_for_incoming_stock_pickings",
+          "module": "stock_picking_auto_create_lot",
+          "name": "Auto create lots for incoming stock pickings",
+          "score": 0.5784
+        }
+      ],
+      "entry_models": [
+        {
+          "mention": "on-hand stock line",
+          "model": "stock.quant",
+          "method": "exact_name",
+          "score": 1.0
+        },
+        {
+          "mention": "location",
+          "model": "stock.location",
+          "method": "exact_name",
+          "score": 1.0
+        },
+        {
+          "mention": "stock transfer",
+          "model": "stock.picking",
+          "method": "exact_name",
+          "score": 1.0
+        }
+      ],
+      "module_ranking": [
+        "stock_move_location",
+        "stock_no_negative",
+        "stock_request",
+        "stock",
+        "stock_account",
+        "stock_picking_back2draft",
+        "sale_stock",
+        "stock_picking_invoice_link",
+        "stock_picking_auto_create_lot",
+        "stock_sms",
+        "sale_management",
+        "sale_stock_picking_invoice_link",
+        "sale",
+        "account_add_gln",
+        "account",
+        "utm",
+        "sales_team",
+        "resource",
+        "account_payment",
+        "product",
+        "sale_edi_ubl",
+        "base_setup",
+        "sale_async_emails",
+        "base_install_request",
+        "base_import",
+        "bus",
+        "digest",
+        "sale_pdf_quote_builder",
+        "auth_signup",
+        "portal",
+        "mail",
+        "account_edi_ubl_cii",
+        "uom",
+        "base_import_module",
+        "iap",
+        "sms",
+        "snailmail_account",
+        "resource_mail",
+        "auth_totp",
+        "onboarding",
+        "privacy_lookup",
+        "payment",
+        "analytic",
+        "barcodes",
+        "auth_totp_mail",
+        "google_gmail",
+        "snailmail",
+        "phone_validation",
+        "iap_mail",
+        "partner_autocomplete",
+        "auth_totp_portal",
+        "spreadsheet",
+        "base",
+        "sale_sms",
+        "mail_bot",
+        "spreadsheet_dashboard_stock_account",
+        "web_tour",
+        "spreadsheet_dashboard_sale",
+        "web_unsplash",
+        "html_editor",
+        "spreadsheet_account",
+        "web_editor",
+        "barcodes_gs1_nomenclature",
+        "web",
+        "spreadsheet_dashboard_account",
+        "http_routing",
+        "spreadsheet_dashboard"
+      ],
+      "modules": [
+        "stock_move_location"
+      ],
+      "models": [
+        "wiz.stock.move.location",
+        "wiz.stock.move.location.line",
+        "stock.move",
+        "stock.picking.type"
+      ],
+      "answer": [
+        {
+          "module": "stock_move_location",
+          "models": [
+            {
+              "model": "wiz.stock.move.location",
+              "relations": [
+                "ADDS_FIELD",
+                "DEFINES"
+              ],
+              "code": true
+            },
+            {
+              "model": "wiz.stock.move.location.line",
+              "relations": [
+                "ADDS_FIELD",
+                "DEFINES"
+              ],
+              "code": true
+            },
+            {
+              "model": "stock.move",
+              "relations": [
+                "ADDS_FIELD",
+                "EXTENDS"
+              ],
+              "code": true
+            },
+            {
+              "model": "stock.picking.type",
+              "relations": [
+                "ADDS_FIELD",
+                "EXTENDS"
+              ],
+              "code": true
+            }
+          ],
+          "kg_checks": {
+            "module_in_kg": true,
+            "models_in_footprint": [
+              "wiz.stock.move.location",
+              "wiz.stock.move.location.line",
+              "stock.move",
+              "stock.picking.type"
+            ],
+            "models_not_in_footprint": [],
+            "models_without_code": [],
+            "direct_depends": [
+              "stock"
+            ],
+            "transitive_depends": 18
+          },
+          "path": [
+            "stock_move_location",
+            "-[EXTENDS]-",
+            "stock.picking"
+          ],
+          "functions": [
+            "stock_move_location:fill_draft_picking_with_products_from_source_location",
+            "stock_move_location:move_specific_stock_quants",
+            "stock_move_location:move_stock_between_locations_via_wizard"
+          ],
+          "verdict": "supported",
+          "missing": [],
+          "evidence": [
+            "Select the quantities which you want move to another location",
+            "Move specific stock quants: Enables users to select specific quants from the product on-hand or inventory reporting views and transfer them to a designated location."
+          ],
+          "reason": "The module stock_move_location fully satisfies the requirement by allowing users to select specific stock quants from the on-hand or inventory view and move those selected quantities to another location via a wizard. The other candidates handle negative stock rules and procurement stock requests, which do not address this requirement."
+        }
+      ],
+      "verification": {
+        "verified": true,
+        "weak": false,
+        "changed_module": false,
+        "changed_models": true,
+        "rounds": [
+          {
+            "round": 1,
+            "candidates": [
+              "stock_move_location",
+              "stock_no_negative",
+              "stock_request"
+            ],
+            "llm_cached": true,
+            "prompt_chars": 11513,
+            "with_issues": [],
+            "verdict": "supported",
+            "chosen_module": "stock_move_location",
+            "models": [
+              "wiz.stock.move.location",
+              "wiz.stock.move.location.line",
+              "stock.move",
+              "stock.picking.type"
+            ],
+            "invalid_module": null,
+            "invalid_models": [],
+            "candidate_checks": [
+              {
+                "module": "stock_move_location",
+                "fit": "yes",
+                "reason": "Allows selecting specific stock quants directly from on-hand or inventory reporting views and transferring them to a chosen location."
+              },
+              {
+                "module": "stock_no_negative",
+                "fit": "no",
+                "reason": "Disallows negative stock levels, which does not cover selecting and moving stock lines to another location."
+              },
+              {
+                "module": "stock_request",
+                "fit": "no",
+                "reason": "Manages internal stock requests and procurements rather than moving selected quants directly from the on-hand list view."
+              }
+            ],
+            "missing": [],
+            "evidence": [
+              "Select the quantities which you want move to another location",
+              "Move specific stock quants: Enables users to select specific quants from the product on-hand or inventory reporting views and transfer them to a designated location."
+            ],
+            "evidence_found": 2,
+            "reason": "The module stock_move_location fully satisfies the requirement by allowing users to select specific stock quants from the on-hand or inventory view and move those selected quantities to another location via a wizard. The other candidates handle negative stock rules and procurement stock requests, which do not address this requirement."
+          }
+        ],
+        "rejected": [],
+        "collector": [],
+        "llm_calls": 0
+      },
+      "mapping": {
+        "modules": [
+          "stock_move_location"
+        ],
+        "models": [
+          "stock.picking.type",
+          "wiz.stock.move.location.line",
+          "stock.picking",
+          "stock.move"
+        ],
+        "low_confidence": false
+      }
+    },
+    {
+      "id": "Q14",
+      "query": "A user cancelled a customer delivery by mistake; we need to bring that same delivery back and process it instead of creating a new one with a different reference.",
+      "analysis": {
+        "normalized_en": "The system must allow a user to restore an accidentally cancelled customer delivery order back to an operational state so it can be processed directly under its original document reference without creating a new transfer.",
+        "low_level_keywords": [
+          "cancelled delivery",
+          "delivery order",
+          "document reference",
+          "reopen picking",
+          "reset to draft"
+        ],
+        "high_level_keywords": [
+          "delivery management",
+          "inventory control",
+          "warehouse operations"
+        ],
+        "objects": [
+          {
+            "mention": "customer delivery order",
+            "odoo_model": "stock.picking"
+          }
+        ]
+      },
+      "llm_cached": false,
+      "entry_functions": [
+        {
+          "key": "stock_picking_back2draft:reopen_canceled_transfers",
+          "module": "stock_picking_back2draft",
+          "name": "Reopen canceled transfers",
+          "score": 0.7177
+        },
+        {
+          "key": "stock_request:request_internal_product_transfers",
+          "module": "stock_request",
+          "name": "Request internal product transfers",
+          "score": 0.6337
+        },
+        {
+          "key": "stock_request:cancel_stock_requests_and_related_moves",
+          "module": "stock_request",
+          "name": "Cancel stock requests and related moves",
+          "score": 0.595
+        },
+        {
+          "key": "sale_stock_picking_invoice_link:link_stock_pickings_and_invoices",
+          "module": "sale_stock_picking_invoice_link",
+          "name": "Link stock pickings and invoices",
+          "score": 0.5785
+        },
+        {
+          "key": "stock_move_location:move_stock_between_locations_via_wizard",
+          "module": "stock_move_location",
+          "name": "Move stock between locations via wizard",
+          "score": 0.5635
+        }
+      ],
+      "entry_models": [
+        {
+          "mention": "customer delivery order",
+          "model": "stock.picking",
+          "method": "exact_name",
+          "score": 1.0
+        }
+      ],
+      "module_ranking": [
+        "stock_picking_back2draft",
+        "stock_move_location",
+        "sale_stock",
+        "stock_request",
+        "stock_picking_invoice_link",
+        "stock_picking_auto_create_lot",
+        "stock",
+        "stock_sms",
+        "stock_account",
+        "sale_stock_picking_invoice_link",
+        "sale_management",
+        "account_payment",
+        "auth_signup",
+        "base_import",
+        "sale_async_emails",
+        "stock_no_negative",
+        "account",
+        "portal",
+        "sale_edi_ubl",
+        "snailmail",
+        "snailmail_account",
+        "sale",
+        "product",
+        "base_setup",
+        "bus",
+        "resource",
+        "base",
+        "mail",
+        "web",
+        "auth_totp_mail",
+        "payment",
+        "utm",
+        "sms",
+        "digest",
+        "account_add_gln",
+        "sales_team",
+        "partner_autocomplete",
+        "html_editor",
+        "sale_pdf_quote_builder",
+        "auth_totp",
+        "phone_validation",
+        "resource_mail",
+        "http_routing",
+        "base_import_module",
+        "account_edi_ubl_cii",
+        "analytic",
+        "onboarding",
+        "privacy_lookup",
+        "uom",
+        "base_install_request",
+        "web_tour",
+        "google_gmail",
+        "iap",
+        "sale_sms",
+        "spreadsheet",
+        "iap_mail",
+        "barcodes",
+        "spreadsheet_dashboard_sale",
+        "auth_totp_portal",
+        "spreadsheet_dashboard_stock_account",
+        "mail_bot",
+        "web_unsplash",
+        "spreadsheet_account",
+        "spreadsheet_dashboard_account",
+        "spreadsheet_dashboard",
+        "web_editor",
+        "barcodes_gs1_nomenclature"
+      ],
+      "modules": [
+        "stock_picking_back2draft"
+      ],
+      "models": [
+        "stock.picking",
+        "stock.move"
+      ],
+      "answer": [
+        {
+          "module": "stock_picking_back2draft",
+          "models": [
+            {
+              "model": "stock.picking",
+              "relations": [
+                "EXTENDS"
+              ],
+              "code": true
+            },
+            {
+              "model": "stock.move",
+              "relations": [
+                "EXTENDS"
+              ],
+              "code": true
+            }
+          ],
+          "kg_checks": {
+            "module_in_kg": true,
+            "models_in_footprint": [
+              "stock.picking",
+              "stock.move"
+            ],
+            "models_not_in_footprint": [],
+            "models_without_code": [],
+            "direct_depends": [
+              "stock"
+            ],
+            "transitive_depends": 18
+          },
+          "path": [
+            "stock_picking_back2draft",
+            "-[EXTENDS]-",
+            "stock.picking"
+          ],
+          "functions": [
+            "stock_picking_back2draft:reopen_canceled_transfers"
+          ],
+          "verdict": "supported",
+          "missing": [],
+          "evidence": [
+            "This module allows to bring canceled transfers back to draft",
+            "Just open a canceled transfer and click on the 'back to draft' button"
+          ],
+          "reason": "The stock_picking_back2draft module adds a 'back to draft' button to canceled transfers, enabling users to reopen the original customer delivery and process it without creating a new transfer."
+        }
+      ],
+      "verification": {
+        "verified": true,
+        "weak": false,
+        "changed_module": false,
+        "changed_models": false,
+        "rounds": [
+          {
+            "round": 1,
+            "candidates": [
+              "stock_picking_back2draft",
+              "stock_move_location",
+              "sale_stock"
+            ],
+            "llm_cached": false,
+            "prompt_chars": 8134,
+            "with_issues": [],
+            "verdict": "supported",
+            "chosen_module": "stock_picking_back2draft",
+            "models": [
+              "stock.picking",
+              "stock.move"
+            ],
+            "invalid_module": null,
+            "invalid_models": [],
+            "candidate_checks": [
+              {
+                "module": "stock_picking_back2draft",
+                "fit": "yes",
+                "reason": "Allows users to reset canceled transfers back to draft state so they can be processed again under the original document."
+              },
+              {
+                "module": "stock_move_location",
+                "fit": "no",
+                "reason": "Used to move stock between inventory locations, not to reopen canceled transfers."
+              },
+              {
+                "module": "sale_stock",
+                "fit": "no",
+                "reason": "Integrates sales orders with inventory operations but does not allow reopening canceled delivery pickings."
+              }
+            ],
+            "missing": [],
+            "evidence": [
+              "This module allows to bring canceled transfers back to draft",
+              "Just open a canceled transfer and click on the 'back to draft' button"
+            ],
+            "evidence_found": 2,
+            "reason": "The stock_picking_back2draft module adds a 'back to draft' button to canceled transfers, enabling users to reopen the original customer delivery and process it without creating a new transfer."
+          }
+        ],
+        "rejected": [],
+        "collector": [],
+        "llm_calls": 1
+      },
+      "mapping": {
+        "modules": [
+          "stock_picking_back2draft"
+        ],
+        "models": [
+          "stock.picking",
+          "stock.move"
+        ],
+        "low_confidence": false
+      }
+    },
+    {
+      "id": "Q15",
+      "query": "When an invoice is created from a partially delivered sales order, each invoice line should automatically record the deliveries it bills, without accounting picking them by hand.",
+      "analysis": {
+        "normalized_en": "When generating an invoice from a sales order that has been partially delivered, each invoice line must automatically link to the specific delivery records it is billing, removing the need for manual selection by accounting staff.",
+        "low_level_keywords": [
+          "partially delivered sales order",
+          "invoice line",
+          "delivery order",
+          "invoice creation",
+          "billed quantity"
+        ],
+        "high_level_keywords": [
+          "sales invoicing",
+          "delivery traceability",
+          "order to cash"
+        ],
+        "objects": [
+          {
+            "mention": "invoice",
+            "odoo_model": "account.move"
+          },
+          {
+            "mention": "invoice line",
+            "odoo_model": "account.move.line"
+          },
+          {
+            "mention": "sales order",
+            "odoo_model": "sale.order"
+          },
+          {
+            "mention": "delivery",
+            "odoo_model": "stock.picking"
+          }
+        ]
+      },
+      "llm_cached": false,
+      "entry_functions": [
+        {
+          "key": "sale_stock_picking_invoice_link:link_stock_pickings_and_invoices",
+          "module": "sale_stock_picking_invoice_link",
+          "name": "Link stock pickings and invoices",
+          "score": 0.7155
+        },
+        {
+          "key": "stock_picking_invoice_link:link_stock_pickings_and_invoices",
+          "module": "stock_picking_invoice_link",
+          "name": "Link stock pickings and invoices",
+          "score": 0.6612
+        },
+        {
+          "key": "stock_picking_auto_create_lot:auto_create_lots_for_incoming_stock_pickings",
+          "module": "stock_picking_auto_create_lot",
+          "name": "Auto create lots for incoming stock pickings",
+          "score": 0.6182
+        },
+        {
+          "key": "stock_move_location:fill_draft_picking_with_products_from_source_location",
+          "module": "stock_move_location",
+          "name": "Fill draft picking with products from source location",
+          "score": 0.5591
+        },
+        {
+          "key": "stock_request:request_internal_product_transfers",
+          "module": "stock_request",
+          "name": "Request internal product transfers",
+          "score": 0.5487
+        }
+      ],
+      "entry_models": [
+        {
+          "mention": "invoice",
+          "model": "account.move",
+          "method": "exact_name",
+          "score": 1.0
+        },
+        {
+          "mention": "invoice line",
+          "model": "account.move.line",
+          "method": "exact_name",
+          "score": 1.0
+        },
+        {
+          "mention": "sales order",
+          "model": "sale.order",
+          "method": "exact_name",
+          "score": 1.0
+        },
+        {
+          "mention": "delivery",
+          "model": "stock.picking",
+          "method": "exact_name",
+          "score": 1.0
+        }
+      ],
+      "module_ranking": [
+        "stock_picking_invoice_link",
+        "sale_stock",
+        "sale_async_emails",
+        "sale_stock_picking_invoice_link",
+        "stock_account",
+        "sale_management",
+        "stock_picking_auto_create_lot",
+        "account",
+        "sale_edi_ubl",
+        "stock_move_location",
+        "stock_picking_back2draft",
+        "account_payment",
+        "stock_request",
+        "sale",
+        "account_edi_ubl_cii",
+        "sale_pdf_quote_builder",
+        "stock",
+        "stock_sms",
+        "snailmail_account",
+        "product",
+        "account_add_gln",
+        "analytic",
+        "utm",
+        "base_import",
+        "digest",
+        "sales_team",
+        "partner_autocomplete",
+        "portal",
+        "base_setup",
+        "resource",
+        "stock_no_negative",
+        "payment",
+        "iap",
+        "mail",
+        "phone_validation",
+        "snailmail",
+        "base_import_module",
+        "uom",
+        "privacy_lookup",
+        "sms",
+        "google_gmail",
+        "bus",
+        "iap_mail",
+        "base_install_request",
+        "resource_mail",
+        "base",
+        "auth_totp_mail",
+        "html_editor",
+        "spreadsheet",
+        "auth_totp",
+        "spreadsheet_account",
+        "sale_sms",
+        "barcodes",
+        "auth_totp_portal",
+        "web",
+        "auth_signup",
+        "spreadsheet_dashboard_sale",
+        "web_tour",
+        "barcodes_gs1_nomenclature",
+        "onboarding",
+        "mail_bot",
+        "http_routing",
+        "web_editor",
+        "web_unsplash",
+        "spreadsheet_dashboard_account",
+        "spreadsheet_dashboard_stock_account",
+        "spreadsheet_dashboard"
+      ],
+      "modules": [
+        "stock_picking_invoice_link"
+      ],
+      "models": [
+        "account.move.line",
+        "account.move",
+        "stock.move",
+        "stock.picking"
+      ],
+      "answer": [
+        {
+          "module": "stock_picking_invoice_link",
+          "models": [
+            {
+              "model": "account.move.line",
+              "relations": [
+                "ADDS_FIELD",
+                "EXTENDS"
+              ],
+              "code": true
+            },
+            {
+              "model": "account.move",
+              "relations": [
+                "ADDS_FIELD",
+                "EXTENDS"
+              ],
+              "code": true
+            },
+            {
+              "model": "stock.move",
+              "relations": [
+                "ADDS_FIELD",
+                "EXTENDS"
+              ],
+              "code": true
+            },
+            {
+              "model": "stock.picking",
+              "relations": [
+                "ADDS_FIELD",
+                "EXTENDS"
+              ],
+              "code": true
+            }
+          ],
+          "kg_checks": {
+            "module_in_kg": true,
+            "models_in_footprint": [
+              "account.move.line",
+              "account.move",
+              "stock.move",
+              "stock.picking"
+            ],
+            "models_not_in_footprint": [],
+            "models_without_code": [],
+            "direct_depends": [
+              "stock_account"
+            ],
+            "transitive_depends": 22
+          },
+          "path": [
+            "stock_picking_invoice_link",
+            "-[ADDS_FIELD|EXTENDS]-",
+            "account.move"
+          ],
+          "functions": [
+            "stock_picking_invoice_link:link_stock_pickings_and_invoices"
+          ],
+          "verdict": "supported",
+          "missing": [],
+          "evidence": [
+            "Adds link between pickings and invoices",
+            "Establishes a link between stock pickings and invoices at both the header and line levels, providing visibility of related pickings in a dedicated tab on the invoice.",
+            "Deliver its pickings totally or partially. Create an invoice of the goods delivered."
+          ],
+          "reason": "The stock_picking_invoice_link module automatically links stock pickings and stock moves directly to the resulting invoice and invoice lines. This allows accounting to automatically see which specific deliveries are billed per invoice line when invoicing a partially or fully delivered sales order."
+        }
+      ],
+      "verification": {
+        "verified": true,
+        "weak": false,
+        "changed_module": false,
+        "changed_models": true,
+        "rounds": [
+          {
+            "round": 1,
+            "candidates": [
+              "stock_picking_invoice_link",
+              "sale_stock",
+              "sale_async_emails"
+            ],
+            "llm_cached": false,
+            "prompt_chars": 6317,
+            "with_issues": [],
+            "verdict": "supported",
+            "chosen_module": "stock_picking_invoice_link",
+            "models": [
+              "account.move.line",
+              "account.move",
+              "stock.move",
+              "stock.picking"
+            ],
+            "invalid_module": null,
+            "invalid_models": [],
+            "candidate_checks": [
+              {
+                "module": "stock_picking_invoice_link",
+                "fit": "yes",
+                "reason": "Automatically links stock pickings and moves to invoices and invoice lines when invoicing delivered sales orders."
+              },
+              {
+                "module": "sale_stock",
+                "fit": "partly",
+                "reason": "Integrates sales with delivery and invoicing control, but does not provide line-level linking between invoice lines and delivery pickings."
+              },
+              {
+                "module": "sale_async_emails",
+                "fit": "no",
+                "reason": "Sends sales order emails asynchronously and has no functionality related to invoicing or stock deliveries."
+              }
+            ],
+            "missing": [],
+            "evidence": [
+              "Adds link between pickings and invoices",
+              "Establishes a link between stock pickings and invoices at both the header and line levels, providing visibility of related pickings in a dedicated tab on the invoice.",
+              "Deliver its pickings totally or partially. Create an invoice of the goods delivered."
+            ],
+            "evidence_found": 2,
+            "reason": "The stock_picking_invoice_link module automatically links stock pickings and stock moves directly to the resulting invoice and invoice lines. This allows accounting to automatically see which specific deliveries are billed per invoice line when invoicing a partially or fully delivered sales order."
+          }
+        ],
+        "rejected": [],
+        "collector": [],
+        "llm_calls": 1
+      },
+      "mapping": {
+        "modules": [
+          "stock_picking_invoice_link"
+        ],
+        "models": [
+          "stock.move",
+          "stock.picking",
+          "account.move",
+          "account.move.line"
+        ],
+        "low_confidence": false
+      }
+    },
+    {
+      "id": "Q17",
+      "query": "The production department needs to send the warehouse a request for materials stating product, quantity and delivery location, and then follow the transfers created for that request.",
+      "analysis": {
+        "normalized_en": "The production department requires the ability to submit material requests to the warehouse specifying products, quantities, and delivery locations, and subsequently track the inventory transfers generated for those requests.",
+        "low_level_keywords": [
+          "material request",
+          "delivery location",
+          "inventory transfer",
+          "product quantity",
+          "transfer tracking"
+        ],
+        "high_level_keywords": [
+          "material management",
+          "inventory transfer",
+          "production supply"
+        ],
+        "objects": [
+          {
+            "mention": "material request",
+            "odoo_model": "stock.picking"
+          },
+          {
+            "mention": "product",
+            "odoo_model": "product.product"
+          },
+          {
+            "mention": "delivery location",
+            "odoo_model": "stock.location"
+          },
+          {
+            "mention": "transfer",
+            "odoo_model": "stock.picking"
+          }
+        ]
+      },
+      "llm_cached": false,
+      "entry_functions": [
+        {
+          "key": "stock_request:request_internal_product_transfers",
+          "module": "stock_request",
+          "name": "Request internal product transfers",
+          "score": 0.7188
+        },
+        {
+          "key": "stock_move_location:move_specific_stock_quants",
+          "module": "stock_move_location",
+          "name": "Move specific stock quants",
+          "score": 0.6286
+        },
+        {
+          "key": "sale_stock_picking_invoice_link:link_stock_pickings_and_invoices",
+          "module": "sale_stock_picking_invoice_link",
+          "name": "Link stock pickings and invoices",
+          "score": 0.6156
+        },
+        {
+          "key": "stock_move_location:move_stock_between_locations_via_wizard",
+          "module": "stock_move_location",
+          "name": "Move stock between locations via wizard",
+          "score": 0.6033
+        },
+        {
+          "key": "stock_move_location:fill_draft_picking_with_products_from_source_location",
+          "module": "stock_move_location",
+          "name": "Fill draft picking with products from source location",
+          "score": 0.6019
+        }
+      ],
+      "entry_models": [
+        {
+          "mention": "material request",
+          "model": "stock.picking",
+          "method": "exact_name",
+          "score": 1.0
+        },
+        {
+          "mention": "product",
+          "model": "product.product",
+          "method": "exact_name",
+          "score": 1.0
+        },
+        {
+          "mention": "delivery location",
+          "model": "stock.location",
+          "method": "exact_name",
+          "score": 1.0
+        },
+        {
+          "mention": "transfer",
+          "model": "stock.picking",
+          "method": "exact_name",
+          "score": 1.0
+        }
+      ],
+      "module_ranking": [
+        "stock_request",
+        "stock_picking_auto_create_lot",
+        "stock_no_negative",
+        "stock_move_location",
+        "stock_picking_back2draft",
+        "stock_account",
+        "stock",
+        "sale_stock",
+        "stock_picking_invoice_link",
+        "sale_stock_picking_invoice_link",
+        "stock_sms",
+        "product",
+        "sale_management",
+        "account",
+        "portal",
+        "account_payment",
+        "sms",
+        "sale",
+        "resource",
+        "sale_async_emails",
+        "snailmail_account",
+        "snailmail",
+        "base_setup",
+        "base_import",
+        "sale_edi_ubl",
+        "digest",
+        "account_add_gln",
+        "base_install_request",
+        "mail",
+        "sales_team",
+        "auth_totp_mail",
+        "uom",
+        "utm",
+        "iap_mail",
+        "base",
+        "payment",
+        "phone_validation",
+        "onboarding",
+        "base_import_module",
+        "sale_pdf_quote_builder",
+        "analytic",
+        "resource_mail",
+        "iap",
+        "auth_signup",
+        "bus",
+        "web",
+        "auth_totp",
+        "google_gmail",
+        "account_edi_ubl_cii",
+        "spreadsheet",
+        "html_editor",
+        "web_tour",
+        "barcodes",
+        "spreadsheet_account",
+        "auth_totp_portal",
+        "partner_autocomplete",
+        "barcodes_gs1_nomenclature",
+        "privacy_lookup",
+        "sale_sms",
+        "mail_bot",
+        "web_editor",
+        "web_unsplash",
+        "spreadsheet_dashboard_sale",
+        "http_routing",
+        "spreadsheet_dashboard_stock_account",
+        "spreadsheet_dashboard",
+        "spreadsheet_dashboard_account"
+      ],
+      "modules": [
+        "stock_request"
+      ],
+      "models": [
+        "stock.request",
+        "stock.request.order",
+        "stock.picking"
+      ],
+      "answer": [
+        {
+          "module": "stock_request",
+          "models": [
+            {
+              "model": "stock.request",
+              "relations": [
+                "ADDS_FIELD",
+                "DEFINES"
+              ],
+              "code": true
+            },
+            {
+              "model": "stock.request.order",
+              "relations": [
+                "ADDS_FIELD",
+                "DEFINES"
+              ],
+              "code": true
+            },
+            {
+              "model": "stock.picking",
+              "relations": [
+                "ADDS_FIELD",
+                "EXTENDS"
+              ],
+              "code": true
+            }
+          ],
+          "kg_checks": {
+            "module_in_kg": true,
+            "models_in_footprint": [
+              "stock.request",
+              "stock.request.order",
+              "stock.picking"
+            ],
+            "models_not_in_footprint": [],
+            "models_without_code": [],
+            "direct_depends": [
+              "stock"
+            ],
+            "transitive_depends": 18
+          },
+          "path": [
+            "stock_request",
+            "-[EXTENDS]-",
+            "stock.location"
+          ],
+          "functions": [
+            "stock_request:cancel_stock_requests_and_related_moves",
+            "stock_request:control_stock_request_access_permissions",
+            "stock_request:request_internal_product_transfers"
+          ],
+          "verdict": "supported",
+          "missing": [],
+          "evidence": [
+            "This module was written to allow users to request products that are frequently stocked by the company, to be transferred to their chosen location.",
+            "Indicate a product, quantity and location.",
+            "In case that transfers are created, the user will be able to access to them from the button 'Transfers' available in the Stock Request."
+          ],
+          "reason": "The stock_request module fulfills all parts of the requirement by allowing production staff to specify products, quantities, and target locations in a stock request. Once confirmed, procurement rules create the necessary stock transfers, which can be tracked directly from the request record."
+        }
+      ],
+      "verification": {
+        "verified": true,
+        "weak": false,
+        "changed_module": false,
+        "changed_models": true,
+        "rounds": [
+          {
+            "round": 1,
+            "candidates": [
+              "stock_request",
+              "stock_picking_auto_create_lot",
+              "stock_no_negative"
+            ],
+            "llm_cached": false,
+            "prompt_chars": 19187,
+            "with_issues": [
+              "stock_request",
+              "stock_picking_auto_create_lot",
+              "stock_no_negative"
+            ],
+            "verdict": "supported",
+            "chosen_module": "stock_request",
+            "models": [
+              "stock.request",
+              "stock.request.order",
+              "stock.picking"
+            ],
+            "invalid_module": null,
+            "invalid_models": [],
+            "candidate_checks": [
+              {
+                "module": "stock_request",
+                "fit": "yes",
+                "reason": "It allows users to create material requests with a specified product, quantity, and destination location, and track the resulting stock transfers via a button on the request."
+              },
+              {
+                "module": "stock_picking_auto_create_lot",
+                "fit": "no",
+                "reason": "It automatically generates lot numbers for incoming stock pickings, which is unrelated to requesting materials."
+              },
+              {
+                "module": "stock_no_negative",
+                "fit": "no",
+                "reason": "It prevents stock validation if inventory levels become negative, which does not handle material requesting or transfer tracking."
+              }
+            ],
+            "missing": [],
+            "evidence": [
+              "This module was written to allow users to request products that are frequently stocked by the company, to be transferred to their chosen location.",
+              "Indicate a product, quantity and location.",
+              "In case that transfers are created, the user will be able to access to them from the button 'Transfers' available in the Stock Request."
+            ],
+            "evidence_found": 3,
+            "reason": "The stock_request module fulfills all parts of the requirement by allowing production staff to specify products, quantities, and target locations in a stock request. Once confirmed, procurement rules create the necessary stock transfers, which can be tracked directly from the request record."
+          }
+        ],
+        "rejected": [],
+        "collector": [
+          {
+            "module": "stock_request",
+            "why": "low_confidence",
+            "status": "cache",
+            "issues": 5
+          },
+          {
+            "module": "stock_picking_auto_create_lot",
+            "why": "low_confidence",
+            "status": "cache",
+            "issues": 5
+          },
+          {
+            "module": "stock_no_negative",
+            "why": "low_confidence",
+            "status": "cache",
+            "issues": 5
+          }
+        ],
+        "llm_calls": 1
+      },
+      "mapping": {
+        "modules": [
+          "stock_request"
+        ],
+        "models": [
+          "stock.request.order",
+          "stock.request",
+          "stock.request.abstract",
+          "stock.picking"
+        ],
+        "low_confidence": true
+      }
+    },
+    {
+      "id": "Q18",
+      "query": "A shift leader wants to submit one request covering several products at once, sharing the same warehouse, destination location and needed date, and follow the overall status of the whole request.",
+      "analysis": {
+        "normalized_en": "A user can submit a single request for multiple products sharing the same warehouse, destination location, and required date, and track the overall status of the entire request.",
+        "low_level_keywords": [
+          "stock request",
+          "destination location",
+          "needed date",
+          "multi-product request",
+          "request status",
+          "warehouse"
+        ],
+        "high_level_keywords": [
+          "inventory control",
+          "stock transfers",
+          "material request management"
+        ],
+        "objects": [
+          {
+            "mention": "stock request",
+            "odoo_model": null
+          },
+          {
+            "mention": "product",
+            "odoo_model": "product.product"
+          },
+          {
+            "mention": "warehouse",
+            "odoo_model": "stock.warehouse"
+          },
+          {
+            "mention": "destination location",
+            "odoo_model": "stock.location"
+          }
+        ]
+      },
+      "llm_cached": false,
+      "entry_functions": [
+        {
+          "key": "stock_request:request_internal_product_transfers",
+          "module": "stock_request",
+          "name": "Request internal product transfers",
+          "score": 0.7215
+        },
+        {
+          "key": "sale_stock_picking_invoice_link:link_stock_pickings_and_invoices",
+          "module": "sale_stock_picking_invoice_link",
+          "name": "Link stock pickings and invoices",
+          "score": 0.6262
+        },
+        {
+          "key": "stock_move_location:move_specific_stock_quants",
+          "module": "stock_move_location",
+          "name": "Move specific stock quants",
+          "score": 0.6204
+        },
+        {
+          "key": "stock_move_location:move_stock_between_locations_via_wizard",
+          "module": "stock_move_location",
+          "name": "Move stock between locations via wizard",
+          "score": 0.6161
+        },
+        {
+          "key": "stock_move_location:fill_draft_picking_with_products_from_source_location",
+          "module": "stock_move_location",
+          "name": "Fill draft picking with products from source location",
+          "score": 0.612
+        }
+      ],
+      "entry_models": [
+        {
+          "mention": "stock request",
+          "model": "stock.request",
+          "method": "exact_label",
+          "score": 1.0
+        },
+        {
+          "mention": "product",
+          "model": "product.product",
+          "method": "exact_name",
+          "score": 1.0
+        },
+        {
+          "mention": "warehouse",
+          "model": "stock.warehouse",
+          "method": "exact_name",
+          "score": 1.0
+        },
+        {
+          "mention": "destination location",
+          "model": "stock.location",
+          "method": "exact_name",
+          "score": 1.0
+        }
+      ],
+      "module_ranking": [
+        "stock_request",
+        "stock",
+        "stock_no_negative",
+        "sale_stock",
+        "stock_account",
+        "stock_picking_auto_create_lot",
+        "sale_stock_picking_invoice_link",
+        "stock_move_location",
+        "account",
+        "product",
+        "sale",
+        "sale_management",
+        "sale_async_emails",
+        "portal",
+        "account_payment",
+        "sms",
+        "base_install_request",
+        "snailmail",
+        "resource",
+        "stock_picking_invoice_link",
+        "stock_picking_back2draft",
+        "snailmail_account",
+        "sale_edi_ubl",
+        "base_import",
+        "account_add_gln",
+        "sales_team",
+        "utm",
+        "base_setup",
+        "partner_autocomplete",
+        "auth_signup",
+        "digest",
+        "auth_totp_mail",
+        "mail",
+        "iap",
+        "base_import_module",
+        "bus",
+        "payment",
+        "auth_totp",
+        "resource_mail",
+        "uom",
+        "stock_sms",
+        "onboarding",
+        "google_gmail",
+        "web_tour",
+        "spreadsheet",
+        "base",
+        "phone_validation",
+        "barcodes",
+        "web",
+        "analytic",
+        "sale_pdf_quote_builder",
+        "html_editor",
+        "iap_mail",
+        "privacy_lookup",
+        "account_edi_ubl_cii",
+        "sale_sms",
+        "http_routing",
+        "spreadsheet_dashboard_sale",
+        "barcodes_gs1_nomenclature",
+        "spreadsheet_account",
+        "web_unsplash",
+        "mail_bot",
+        "web_editor",
+        "auth_totp_portal",
+        "spreadsheet_dashboard",
+        "spreadsheet_dashboard_stock_account",
+        "spreadsheet_dashboard_account"
+      ],
+      "modules": [
+        "stock_request"
+      ],
+      "models": [
+        "stock.request.order",
+        "stock.request"
+      ],
+      "answer": [
+        {
+          "module": "stock_request",
+          "models": [
+            {
+              "model": "stock.request.order",
+              "relations": [
+                "ADDS_FIELD",
+                "DEFINES"
+              ],
+              "code": true
+            },
+            {
+              "model": "stock.request",
+              "relations": [
+                "ADDS_FIELD",
+                "DEFINES"
+              ],
+              "code": true
+            }
+          ],
+          "kg_checks": {
+            "module_in_kg": true,
+            "models_in_footprint": [
+              "stock.request.order",
+              "stock.request"
+            ],
+            "models_not_in_footprint": [],
+            "models_without_code": [],
+            "direct_depends": [
+              "stock"
+            ],
+            "transitive_depends": 18
+          },
+          "path": [
+            "stock_request",
+            "-[EXTENDS]-",
+            "stock.location"
+          ],
+          "functions": [
+            "stock_request:cancel_stock_requests_and_related_moves",
+            "stock_request:control_stock_request_access_permissions",
+            "stock_request:request_internal_product_transfers"
+          ],
+          "verdict": "supported",
+          "missing": [],
+          "evidence": [
+            "This module was written to allow users to request products that are frequently stocked by the company, to be transferred to their chosen location.",
+            "stock.request.order (Stock Request Order) [ADDS_FIELD, DEFINES]; adds allow_virtual_location, company_id, expected_date, has_message, location_id, move_ids, my_activity_date_deadline, name ..."
+          ],
+          "reason": "The stock_request module introduces stock.request.order, which allows users to submit a single request order containing multiple requested products that share the same target location and expected date. It enables shift leaders to track the status of the overall request order as well as the individual stock moves and transfers created from it."
+        }
+      ],
+      "verification": {
+        "verified": true,
+        "weak": false,
+        "changed_module": false,
+        "changed_models": true,
+        "rounds": [
+          {
+            "round": 1,
+            "candidates": [
+              "stock_request",
+              "stock",
+              "stock_no_negative"
+            ],
+            "llm_cached": false,
+            "prompt_chars": 13370,
+            "with_issues": [],
+            "verdict": "supported",
+            "chosen_module": "stock_request",
+            "models": [
+              "stock.request.order",
+              "stock.request"
+            ],
+            "invalid_module": null,
+            "invalid_models": [],
+            "candidate_checks": [
+              {
+                "module": "stock_request",
+                "fit": "yes",
+                "reason": "Provides stock.request.order to group multiple product requests with shared expected date and target location, enabling status tracking."
+              },
+              {
+                "module": "stock",
+                "fit": "no",
+                "reason": "Standard inventory operations handle stock transfers directly rather than providing an internal multi-product stock request order document."
+              },
+              {
+                "module": "stock_no_negative",
+                "fit": "no",
+                "reason": "Focuses solely on preventing negative stock levels during inventory validation."
+              }
+            ],
+            "missing": [],
+            "evidence": [
+              "This module was written to allow users to request products that are frequently stocked by the company, to be transferred to their chosen location.",
+              "stock.request.order (Stock Request Order) [ADDS_FIELD, DEFINES]; adds allow_virtual_location, company_id, expected_date, has_message, location_id, move_ids, my_activity_date_deadline, name ..."
+            ],
+            "evidence_found": 2,
+            "reason": "The stock_request module introduces stock.request.order, which allows users to submit a single request order containing multiple requested products that share the same target location and expected date. It enables shift leaders to track the status of the overall request order as well as the individual stock moves and transfers created from it."
+          }
+        ],
+        "rejected": [],
+        "collector": [],
+        "llm_calls": 1
+      },
+      "mapping": {
+        "modules": [
+          "stock_request"
+        ],
+        "models": [
+          "stock.request.order",
+          "stock.request",
+          "stock.request.abstract",
+          "stock.request.allocation"
+        ],
+        "low_confidence": false
+      }
+    },
+    {
+      "id": "Q19",
+      "query": "When a department requests goods and enough unreserved quantity is already available at the destination location, that stock should be used directly without triggering replenishment from the central warehouse; this rule applies company-wide.",
+      "analysis": {
+        "normalized_en": "When goods are requested by a department, available unreserved stock at the destination location must be used directly instead of creating a replenishment request from the central warehouse across the entire company.",
+        "low_level_keywords": [
+          "unreserved quantity",
+          "destination location",
+          "central warehouse",
+          "replenishment rule",
+          "goods request",
+          "internal transfer"
+        ],
+        "high_level_keywords": [
+          "inventory management",
+          "stock replenishment",
+          "warehouse routing"
+        ],
+        "objects": [
+          {
+            "mention": "destination location",
+            "odoo_model": "stock.location"
+          },
+          {
+            "mention": "goods request",
+            "odoo_model": "stock.picking"
+          },
+          {
+            "mention": "central warehouse",
+            "odoo_model": "stock.warehouse"
+          },
+          {
+            "mention": "replenishment rule",
+            "odoo_model": "stock.warehouse.orderpoint"
+          }
+        ]
+      },
+      "llm_cached": false,
+      "entry_functions": [
+        {
+          "key": "stock_request:request_internal_product_transfers",
+          "module": "stock_request",
+          "name": "Request internal product transfers",
+          "score": 0.6669
+        },
+        {
+          "key": "stock_move_location:move_stock_between_locations_via_wizard",
+          "module": "stock_move_location",
+          "name": "Move stock between locations via wizard",
+          "score": 0.6
+        },
+        {
+          "key": "stock_move_location:fill_draft_picking_with_products_from_source_location",
+          "module": "stock_move_location",
+          "name": "Fill draft picking with products from source location",
+          "score": 0.587
+        },
+        {
+          "key": "stock_picking_auto_create_lot:auto_create_lots_for_incoming_stock_pickings",
+          "module": "stock_picking_auto_create_lot",
+          "name": "Auto create lots for incoming stock pickings",
+          "score": 0.5629
+        },
+        {
+          "key": "stock_no_negative:block_stock_operations_resulting_in_negative_stock",
+          "module": "stock_no_negative",
+          "name": "Block stock operations resulting in negative stock",
+          "score": 0.5394
+        }
+      ],
+      "entry_models": [
+        {
+          "mention": "destination location",
+          "model": "stock.location",
+          "method": "exact_name",
+          "score": 1.0
+        },
+        {
+          "mention": "goods request",
+          "model": "stock.picking",
+          "method": "exact_name",
+          "score": 1.0
+        },
+        {
+          "mention": "central warehouse",
+          "model": "stock.warehouse",
+          "method": "exact_name",
+          "score": 1.0
+        },
+        {
+          "mention": "replenishment rule",
+          "model": "stock.warehouse.orderpoint",
+          "method": "exact_name",
+          "score": 1.0
+        }
+      ],
+      "module_ranking": [
+        "stock_request",
+        "stock",
+        "stock_move_location",
+        "stock_picking_back2draft",
+        "sale_stock",
+        "stock_picking_auto_create_lot",
+        "stock_account",
+        "stock_no_negative",
+        "stock_picking_invoice_link",
+        "stock_sms",
+        "sale_management",
+        "sale_stock_picking_invoice_link",
+        "resource",
+        "base_import",
+        "resource_mail",
+        "account_payment",
+        "account_add_gln",
+        "base_install_request",
+        "sale_async_emails",
+        "sale_edi_ubl",
+        "account",
+        "sales_team",
+        "portal",
+        "sale",
+        "auth_signup",
+        "product",
+        "utm",
+        "payment",
+        "base_setup",
+        "digest",
+        "snailmail",
+        "snailmail_account",
+        "bus",
+        "mail",
+        "base_import_module",
+        "auth_totp_mail",
+        "account_edi_ubl_cii",
+        "http_routing",
+        "partner_autocomplete",
+        "iap",
+        "barcodes",
+        "auth_totp",
+        "phone_validation",
+        "uom",
+        "base",
+        "iap_mail",
+        "sale_pdf_quote_builder",
+        "analytic",
+        "spreadsheet",
+        "auth_totp_portal",
+        "sms",
+        "google_gmail",
+        "web_unsplash",
+        "spreadsheet_dashboard_stock_account",
+        "privacy_lookup",
+        "spreadsheet_dashboard_sale",
+        "html_editor",
+        "web",
+        "onboarding",
+        "spreadsheet_account",
+        "web_tour",
+        "mail_bot",
+        "barcodes_gs1_nomenclature",
+        "sale_sms",
+        "spreadsheet_dashboard_account",
+        "spreadsheet_dashboard",
+        "web_editor"
+      ],
+      "modules": [
+        "stock_request"
+      ],
+      "models": [
+        "res.company",
+        "res.config.settings",
+        "stock.request",
+        "stock.request.order"
+      ],
+      "answer": [
+        {
+          "module": "stock_request",
+          "models": [
+            {
+              "model": "res.company",
+              "relations": [
+                "ADDS_FIELD",
+                "EXTENDS"
+              ],
+              "code": true
+            },
+            {
+              "model": "res.config.settings",
+              "relations": [
+                "ADDS_FIELD",
+                "EXTENDS"
+              ],
+              "code": true
+            },
+            {
+              "model": "stock.request",
+              "relations": [
+                "ADDS_FIELD",
+                "DEFINES"
+              ],
+              "code": true
+            },
+            {
+              "model": "stock.request.order",
+              "relations": [
+                "ADDS_FIELD",
+                "DEFINES"
+              ],
+              "code": true
+            }
+          ],
+          "kg_checks": {
+            "module_in_kg": true,
+            "models_in_footprint": [
+              "res.company",
+              "res.config.settings",
+              "stock.request",
+              "stock.request.order"
+            ],
+            "models_not_in_footprint": [],
+            "models_without_code": [],
+            "direct_depends": [
+              "stock"
+            ],
+            "transitive_depends": 18
+          },
+          "path": [
+            "stock_request",
+            "-[EXTENDS]-",
+            "stock.location"
+          ],
+          "functions": [
+            "stock_request:cancel_stock_requests_and_related_moves",
+            "stock_request:control_stock_request_access_permissions",
+            "stock_request:request_internal_product_transfers"
+          ],
+          "verdict": "supported",
+          "missing": [],
+          "evidence": [
+            "adds stock_request_allow_virtual_loc, stock_request_check_available_first",
+            "This module was written to allow users to request products that are frequently stocked by the company, to be transferred to their chosen location."
+          ],
+          "reason": "The stock_request module enables internal department product requests and includes a company-level setting (stock_request_check_available_first) in res.company and res.config.settings. This setting checks for existing available stock at the destination location before executing procurement rules to trigger replenishment."
+        }
+      ],
+      "verification": {
+        "verified": true,
+        "weak": false,
+        "changed_module": false,
+        "changed_models": true,
+        "rounds": [
+          {
+            "round": 1,
+            "candidates": [
+              "stock_request",
+              "stock",
+              "stock_move_location"
+            ],
+            "llm_cached": false,
+            "prompt_chars": 18409,
+            "with_issues": [
+              "stock_request",
+              "stock_move_location"
+            ],
+            "verdict": "supported",
+            "chosen_module": "stock_request",
+            "models": [
+              "res.company",
+              "res.config.settings",
+              "stock.request",
+              "stock.request.order"
+            ],
+            "invalid_module": null,
+            "invalid_models": [],
+            "candidate_checks": [
+              {
+                "module": "stock_request",
+                "fit": "yes",
+                "reason": "Provides internal stock requests and includes the company-wide setting stock_request_check_available_first to use available stock before triggering procurement."
+              },
+              {
+                "module": "stock",
+                "fit": "partly",
+                "reason": "Handles core inventory replenishment, but lacks departmental stock requests and the check-available-first company setting."
+              },
+              {
+                "module": "stock_move_location",
+                "fit": "no",
+                "reason": "Focuses on manual stock relocation wizards rather than rule-based stock requests or replenishment logic."
+              }
+            ],
+            "missing": [],
+            "evidence": [
+              "adds stock_request_allow_virtual_loc, stock_request_check_available_first",
+              "This module was written to allow users to request products that are frequently stocked by the company, to be transferred to their chosen location."
+            ],
+            "evidence_found": 2,
+            "reason": "The stock_request module enables internal department product requests and includes a company-level setting (stock_request_check_available_first) in res.company and res.config.settings. This setting checks for existing available stock at the destination location before executing procurement rules to trigger replenishment."
+          }
+        ],
+        "rejected": [],
+        "collector": [
+          {
+            "module": "stock_request",
+            "why": "low_confidence",
+            "status": "cache",
+            "issues": 5
+          },
+          {
+            "module": "stock",
+            "why": "low_confidence",
+            "status": "no_source",
+            "issues": 0
+          },
+          {
+            "module": "stock_move_location",
+            "why": "low_confidence",
+            "status": "cache",
+            "issues": 5
+          }
+        ],
+        "llm_calls": 1
+      },
+      "mapping": {
+        "modules": [
+          "stock_request"
+        ],
+        "models": [
+          "stock.request.order",
+          "res.company",
+          "stock.request",
+          "stock.request.allocation"
+        ],
+        "low_confidence": true
+      }
+    },
+    {
+      "id": "Q20",
+      "query": "One transfer may carry goods for several material requests; the manager needs to know, for each request, how much has been delivered, how much is still in progress and how much was cancelled.",
+      "analysis": {
+        "normalized_en": "A single transfer can carry goods for multiple material requests, requiring managers to view the breakdown of delivered, in-progress, and cancelled quantities for each material request.",
+        "low_level_keywords": [
+          "material request",
+          "stock transfer",
+          "delivered quantity",
+          "in progress quantity",
+          "cancelled quantity",
+          "fulfillment tracking"
+        ],
+        "high_level_keywords": [
+          "material request management",
+          "transfer tracking",
+          "inventory fulfillment"
+        ],
+        "objects": [
+          {
+            "mention": "transfer",
+            "odoo_model": "stock.picking"
+          },
+          {
+            "mention": "material request",
+            "odoo_model": null
+          }
+        ]
+      },
+      "llm_cached": false,
+      "entry_functions": [
+        {
+          "key": "stock_request:request_internal_product_transfers",
+          "module": "stock_request",
+          "name": "Request internal product transfers",
+          "score": 0.7091
+        },
+        {
+          "key": "stock_move_location:move_stock_between_locations_via_wizard",
+          "module": "stock_move_location",
+          "name": "Move stock between locations via wizard",
+          "score": 0.6264
+        },
+        {
+          "key": "stock_move_location:move_specific_stock_quants",
+          "module": "stock_move_location",
+          "name": "Move specific stock quants",
+          "score": 0.6219
+        },
+        {
+          "key": "sale_stock_picking_invoice_link:link_stock_pickings_and_invoices",
+          "module": "sale_stock_picking_invoice_link",
+          "name": "Link stock pickings and invoices",
+          "score": 0.5951
+        },
+        {
+          "key": "stock_picking_back2draft:reopen_canceled_transfers",
+          "module": "stock_picking_back2draft",
+          "name": "Reopen canceled transfers",
+          "score": 0.5834
+        }
+      ],
+      "entry_models": [
+        {
+          "mention": "transfer",
+          "model": "stock.picking",
+          "method": "exact_name",
+          "score": 1.0
+        },
+        {
+          "mention": "material request",
+          "model": null,
+          "method": "unlinked",
+          "score": 0.6172,
+          "nearest": "stock.request"
+        }
+      ],
+      "module_ranking": [
+        "stock_request",
+        "stock_picking_back2draft",
+        "stock_move_location",
+        "stock_sms",
+        "stock_picking_invoice_link",
+        "stock_picking_auto_create_lot",
+        "sale_stock",
+        "stock",
+        "stock_account",
+        "sale_stock_picking_invoice_link",
+        "sale_management",
+        "account_payment",
+        "resource",
+        "sale_async_emails",
+        "base_import",
+        "account",
+        "utm",
+        "sale",
+        "snailmail_account",
+        "stock_no_negative",
+        "snailmail",
+        "product",
+        "sale_edi_ubl",
+        "onboarding",
+        "account_add_gln",
+        "sales_team",
+        "digest",
+        "sms",
+        "uom",
+        "mail",
+        "bus",
+        "portal",
+        "payment",
+        "base_setup",
+        "phone_validation",
+        "spreadsheet",
+        "analytic",
+        "account_edi_ubl_cii",
+        "auth_signup",
+        "sale_pdf_quote_builder",
+        "partner_autocomplete",
+        "base",
+        "auth_totp_mail",
+        "base_install_request",
+        "iap_mail",
+        "web_tour",
+        "base_import_module",
+        "web",
+        "html_editor",
+        "barcodes",
+        "privacy_lookup",
+        "auth_totp",
+        "iap",
+        "resource_mail",
+        "google_gmail",
+        "spreadsheet_account",
+        "sale_sms",
+        "spreadsheet_dashboard_sale",
+        "auth_totp_portal",
+        "http_routing",
+        "spreadsheet_dashboard_stock_account",
+        "spreadsheet_dashboard_account",
+        "spreadsheet_dashboard",
+        "web_unsplash",
+        "barcodes_gs1_nomenclature",
+        "mail_bot",
+        "web_editor"
+      ],
+      "modules": [
+        "stock_request"
+      ],
+      "models": [
+        "stock.request",
+        "stock.request.allocation",
+        "stock.picking",
+        "stock.move"
+      ],
+      "answer": [
+        {
+          "module": "stock_request",
+          "models": [
+            {
+              "model": "stock.request",
+              "relations": [
+                "ADDS_FIELD",
+                "DEFINES"
+              ],
+              "code": true
+            },
+            {
+              "model": "stock.request.allocation",
+              "relations": [
+                "ADDS_FIELD",
+                "DEFINES"
+              ],
+              "code": true
+            },
+            {
+              "model": "stock.picking",
+              "relations": [
+                "ADDS_FIELD",
+                "EXTENDS"
+              ],
+              "code": true
+            },
+            {
+              "model": "stock.move",
+              "relations": [
+                "ADDS_FIELD",
+                "EXTENDS"
+              ],
+              "code": true
+            }
+          ],
+          "kg_checks": {
+            "module_in_kg": true,
+            "models_in_footprint": [
+              "stock.request",
+              "stock.request.allocation",
+              "stock.picking",
+              "stock.move"
+            ],
+            "models_not_in_footprint": [],
+            "models_without_code": [],
+            "direct_depends": [
+              "stock"
+            ],
+            "transitive_depends": 18
+          },
+          "path": [
+            "stock_request",
+            "-[ADDS_FIELD|EXTENDS]-",
+            "stock.picking"
+          ],
+          "functions": [
+            "stock_request:cancel_stock_requests_and_related_moves",
+            "stock_request:control_stock_request_access_permissions",
+            "stock_request:request_internal_product_transfers"
+          ],
+          "verdict": "supported",
+          "missing": [],
+          "evidence": [
+            "In case that transfers are created, the user will be able to access to them from the button 'Transfers' available in the Stock Request.",
+            "stock.picking (Transfer) [ADDS_FIELD, EXTENDS]; adds stock_request_count, stock_request_ids",
+            "stock.request.allocation (Stock Request Allocation) [ADDS_FIELD, DEFINES]; adds allocated_product_qty, company_id, open_product_qty, product_id, product_uom_id, requested_product_qty, requested_product_uom_qty, stock_move_id"
+          ],
+          "reason": "The stock_request module provides complete functionality for internal stock requests and their allocation across stock moves and pickings. Transfers can link to multiple stock requests via stock_request_ids, while stock.request and stock.request.allocation track requested, allocated, and open quantities."
+        }
+      ],
+      "verification": {
+        "verified": true,
+        "weak": false,
+        "changed_module": true,
+        "changed_models": true,
+        "rounds": [
+          {
+            "round": 1,
+            "candidates": [
+              "stock_picking_back2draft",
+              "stock_move_location",
+              "stock_request"
+            ],
+            "llm_cached": false,
+            "prompt_chars": 9358,
+            "with_issues": [],
+            "verdict": "supported",
+            "chosen_module": "stock_request",
+            "models": [
+              "stock.request",
+              "stock.request.allocation",
+              "stock.picking",
+              "stock.move"
+            ],
+            "invalid_module": null,
+            "invalid_models": [],
+            "candidate_checks": [
+              {
+                "module": "stock_picking_back2draft",
+                "fit": "no",
+                "reason": "Allows reopening cancelled transfers back to draft, which does not address material request tracking."
+              },
+              {
+                "module": "stock_move_location",
+                "fit": "no",
+                "reason": "Provides a wizard to move stock between locations, unrelated to material requests or request status tracking."
+              },
+              {
+                "module": "stock_request",
+                "fit": "yes",
+                "reason": "Enables internal stock requests, links transfers to multiple requests, and tracks requested, allocated, and open quantities per request."
+              }
+            ],
+            "missing": [],
+            "evidence": [
+              "In case that transfers are created, the user will be able to access to them from the button 'Transfers' available in the Stock Request.",
+              "stock.picking (Transfer) [ADDS_FIELD, EXTENDS]; adds stock_request_count, stock_request_ids",
+              "stock.request.allocation (Stock Request Allocation) [ADDS_FIELD, DEFINES]; adds allocated_product_qty, company_id, open_product_qty, product_id, product_uom_id, requested_product_qty, requested_product_uom_qty, stock_move_id"
+            ],
+            "evidence_found": 3,
+            "reason": "The stock_request module provides complete functionality for internal stock requests and their allocation across stock moves and pickings. Transfers can link to multiple stock requests via stock_request_ids, while stock.request and stock.request.allocation track requested, allocated, and open quantities."
+          }
+        ],
+        "rejected": [],
+        "collector": [],
+        "llm_calls": 1
+      },
+      "mapping": {
+        "modules": [
+          "stock_picking_back2draft"
+        ],
+        "models": [
+          "stock.picking",
+          "stock.move"
+        ],
+        "low_confidence": false
+      }
+    }
+  ]
+}

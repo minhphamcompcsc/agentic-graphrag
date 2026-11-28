@@ -1,0 +1,37 @@
+{
+  "id": "Q20",
+  "lang": "en",
+  "backend": "gemini",
+  "llm": "gemini-3.6-flash",
+  "temperature": 0,
+  "prompt_version": "map-v0.1",
+  "called_at": "2026-11-28T09:00:09+00:00",
+  "input_sha256": "be68ad54622a70e7",
+  "input": "One transfer may carry goods for several material requests; the manager needs to know, for each request, how much has been delivered, how much is still in progress and how much was cancelled.",
+  "output": {
+    "normalized_en": "A single transfer can carry goods for multiple material requests, requiring managers to view the breakdown of delivered, in-progress, and cancelled quantities for each material request.",
+    "low_level_keywords": [
+      "material request",
+      "stock transfer",
+      "delivered quantity",
+      "in progress quantity",
+      "cancelled quantity",
+      "fulfillment tracking"
+    ],
+    "high_level_keywords": [
+      "material request management",
+      "transfer tracking",
+      "inventory fulfillment"
+    ],
+    "objects": [
+      {
+        "mention": "transfer",
+        "odoo_model": "stock.picking"
+      },
+      {
+        "mention": "material request",
+        "odoo_model": null
+      }
+    ]
+  }
+}

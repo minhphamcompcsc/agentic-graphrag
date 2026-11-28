@@ -1,25 +1,26 @@
 \begin{table}[H]
 \centering
 \small
-\begin{tabularx}{\textwidth}{@{}LP{1.7cm}P{1.7cm}@{}}
+\begin{tabularx}{\textwidth}{@{}LP{1.7cm}P{1.7cm}P{1.7cm}P{1.7cm}@{}}
 \toprule
-& \multicolumn{2}{c}{\textbf{Dev split (4)}} \\
-\cmidrule(l){2-3}
-\textbf{Metric} & \textbf{P-V} & \textbf{P} \\
+& \multicolumn{2}{c}{\textbf{Dev split (4)}} & \multicolumn{2}{c}{\textbf{Test split (16)}} \\
+\cmidrule(lr){2-3}\cmidrule(l){4-5}
+\textbf{Metric} & \textbf{P-V} & \textbf{P} & \textbf{P-V} & \textbf{P} \\
 \midrule
-Hit@1 & 1.0 & 1.0 \\
-Model precision (lenient) & 1.0 & 1.0 \\
-Model recall & 0.75 & 1.0 \\
-Model F1 (lenient) & 0.833 & 1.0 \\
-Model F1 (strict) & 0.5 & 0.75 \\
+Hit@1 & 1.0 & 1.0 & 0.75 & 1.0 \\
+Model precision (lenient) & 1.0 & 1.0 & 0.828 & 0.969 \\
+Model recall & 0.75 & 1.0 & 0.719 & 0.938 \\
+Model F1 (lenient) & 0.833 & 1.0 & 0.716 & 0.945 \\
+Model F1 (strict) & 0.5 & 0.75 & 0.467 & 0.669 \\
 \addlinespace
-Requirements where the Verifier changed the module &  & 0 \\
-Requirements where the Verifier changed the models &  & 4 \\
-Verifier calls per requirement &  & 1.0 \\
-Requirements with a second round &  & 0 \\
-Unverified requirements &  & 0 \\
-Requirements with Mapping score below $\tau$ &  & 0 \\
-Requirements with GitHub issues given to the Verifier &  & 0 \\
+Requirements where the Verifier changed the module &  & 0 &  & 4 \\
+Requirements where the Verifier changed the models &  & 4 &  & 14 \\
+Verifier calls per requirement &  & 1.0 &  & 1.0 \\
+Requirements with a second round &  & 0 &  & 0 \\
+Unverified requirements &  & 0 &  & 0 \\
+Requirements with Mapping score below $\tau$ &  & 0 &  & 6 \\
+Requirements with GitHub issues given to the Verifier &  & 0 &  & 6 \\
+Wilcoxon on lenient model F1, P vs P-V (p) &  &  &  & 0.0312 \\
 \bottomrule
 \end{tabularx}
 \caption{P (Mapping and Verifier) against P-V (Mapping only). Dev numbers are illustrative only}

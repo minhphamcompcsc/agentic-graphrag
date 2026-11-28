@@ -1,25 +1,26 @@
 \begin{table}[H]
 \centering
 \small
-\begin{tabularx}{\textwidth}{@{}LP{1.7cm}P{1.7cm}@{}}
+\begin{tabularx}{\textwidth}{@{}LP{1.7cm}P{1.7cm}P{1.7cm}P{1.7cm}@{}}
 \toprule
-& \multicolumn{2}{c}{\textbf{Tập phát triển (4 câu)}} \\
-\cmidrule(l){2-3}
-\textbf{Chỉ số} & \textbf{P-V} & \textbf{P} \\
+& \multicolumn{2}{c}{\textbf{Tập phát triển (4 câu)}} & \multicolumn{2}{c}{\textbf{Tập kiểm thử (16 câu)}} \\
+\cmidrule(lr){2-3}\cmidrule(l){4-5}
+\textbf{Chỉ số} & \textbf{P-V} & \textbf{P} & \textbf{P-V} & \textbf{P} \\
 \midrule
-Hit@1 & 1,0 & 1,0 \\
-Model Precision (nới) & 1,0 & 1,0 \\
-Model Recall & 0,75 & 1,0 \\
-Model F1 (nới) & 0,833 & 1,0 \\
-Model F1 (chặt) & 0,5 & 0,75 \\
+Hit@1 & 1,0 & 1,0 & 0,75 & 1,0 \\
+Model Precision (nới) & 1,0 & 1,0 & 0,828 & 0,969 \\
+Model Recall & 0,75 & 1,0 & 0,719 & 0,938 \\
+Model F1 (nới) & 0,833 & 1,0 & 0,716 & 0,945 \\
+Model F1 (chặt) & 0,5 & 0,75 & 0,467 & 0,669 \\
 \addlinespace
-Số câu Verifier đổi module &  & 0 \\
-Số câu Verifier đổi model &  & 4 \\
-Số lời gọi Verifier mỗi câu &  & 1,0 \\
-Số câu có vòng 2 &  & 0 \\
-Số câu chưa xác minh &  & 0 \\
-Số câu điểm Mapping dưới $\tau$ &  & 0 \\
-Số câu Verifier nhận issue GitHub &  & 0 \\
+Số câu Verifier đổi module &  & 0 &  & 4 \\
+Số câu Verifier đổi model &  & 4 &  & 14 \\
+Số lời gọi Verifier mỗi câu &  & 1,0 &  & 1,0 \\
+Số câu có vòng 2 &  & 0 &  & 0 \\
+Số câu chưa xác minh &  & 0 &  & 0 \\
+Số câu điểm Mapping dưới $\tau$ &  & 0 &  & 6 \\
+Số câu Verifier nhận issue GitHub &  & 0 &  & 6 \\
+Wilcoxon model F1 nới, P so với P-V (p) &  &  &  & 0,0312 \\
 \bottomrule
 \end{tabularx}
 \caption{P (Mapping và Verifier) so với P-V (chỉ Mapping). Số liệu tập phát triển chỉ để minh hoạ, không dùng để kết luận}

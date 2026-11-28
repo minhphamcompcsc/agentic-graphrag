@@ -1,0 +1,41 @@
+{
+  "id": "Q04",
+  "lang": "en",
+  "backend": "gemini",
+  "llm": "gemini-3.6-flash",
+  "temperature": 0,
+  "prompt_version": "map-v0.1",
+  "called_at": "2026-11-27T10:53:31+00:00",
+  "input_sha256": "81472c4d2492f4a6",
+  "input": "Move all products from shelf A to shelf B in one operation",
+  "output": {
+    "normalized_en": "Relocate all products currently stored in a specific source location (shelf A) to a destination location (shelf B) within a single internal transfer operation.",
+    "low_level_keywords": [
+      "internal transfer",
+      "source location",
+      "destination location",
+      "stock move",
+      "inventory relocation",
+      "bulk move"
+    ],
+    "high_level_keywords": [
+      "inventory management",
+      "warehouse operations",
+      "transfer management"
+    ],
+    "objects": [
+      {
+        "mention": "product",
+        "odoo_model": "product.product"
+      },
+      {
+        "mention": "shelf",
+        "odoo_model": "stock.location"
+      },
+      {
+        "mention": "operation",
+        "odoo_model": "stock.picking"
+      }
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+Report tables from data/runs (test split, 16 requirements)
+  B1       en: Hit@1 0.625  MRR 0.747  model F1 0.123 (strict 0.113)  runs 1  <- b1_en_20261126
+  B1       vi: Hit@1 0.500  MRR 0.637  model F1 0.042 (strict 0.025)  runs 1  <- b1_vi_20261126
+  P-noLLM  en: Hit@1 0.875  MRR 0.938  model F1 0.695 (strict 0.512)  runs 1  <- pnollm_en_20261126_all_run1
+  P-noLLM  vi: Hit@1 0.812  MRR 0.885  model F1 0.638 (strict 0.446)  runs 1  <- pnollm_vi_20261126_all_run1
+  P        en: Hit@1 1.000  MRR 1.000  model F1 0.945 (strict 0.669)  runs 1  <- pfull_en_20261128_test_run1
+  Wilcoxon P-noLLM vs B1 (en), model F1: 12/3/1, n 13, p 0.0007, r +0.96
+  Wilcoxon P vs B1 (en), model F1: 16/0/0, n 16, p 0.0000, r +1.00
+  Wilcoxon P-noLLM vs B1 (vi), model F1: 12/4/0, n 12, p 0.0005, r +1.00
+  RQ3 dev: P-V model F1 0.833 -> P 1.000; Verifier changed module in 0 requirement(s)
+  RQ3 test: P-V model F1 0.716 -> P 0.945; Verifier changed module in 4 requirement(s)
+Written: 12 files in reports/tt1/ (+ summary.json)

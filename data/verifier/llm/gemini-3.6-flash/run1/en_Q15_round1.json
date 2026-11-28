@@ -1,0 +1,48 @@
+{
+  "id": "Q15",
+  "lang": "en",
+  "round": 1,
+  "backend": "gemini",
+  "llm": "gemini-3.6-flash",
+  "temperature": 0,
+  "prompt_version": "ver-v0.1",
+  "verifier_version": "ver-v0.1",
+  "called_at": "2026-11-28T08:55:48+00:00",
+  "seconds": 13.5,
+  "prompt_sha256": "a60f7c1dd5a9484c",
+  "prompt": "You are a senior Odoo 18 functional consultant. A search agent mapped the business requirement below\nto candidate Odoo modules. Check its answer.\n\nRequirement (written by a business analyst, may be in Vietnamese or English):\n<<<\nWhen an invoice is created from a partially delivered sales order, each invoice line should automatically record the deliveries it bills, without accounting picking them by hand.\n>>>\nEnglish restatement by the search agent: When generating an invoice from a sales order that has been partially delivered, each invoice line must automatically link to the specific delivery records it is billing, removing the need for manual selection by accounting staff.\n\nCandidate modules, best first. Everything below comes from a knowledge graph built from the installed\nOdoo 18 database (models, fields, dependencies) and from the module documentation.\n\n### Candidate 1: stock_picking_invoice_link (OCA module, \"Stock Picking Invoice Link\")\nDirect dependencies: stock_account\nDocumentation:\n# Stock Picking Invoice Link\n\n## SUMMARY\nAdds link between pickings and invoices\n\n## DESCRIPTION\nThe base module used by sale_stock_picking_invoice_link and purchase_stock_picking_invoice_link \nto adds a link between pickings and invoices as well as on the lines.\n\n## USAGE\n- Create a Sales Order and confirm.\n- Deliver its pickings totally or partially.\n- Create an invoice of the goods delivered.\n- If you open invoice form, you must see a new Pickings tab with\n  information about them.\nBusiness functions (knowledge graph):\n- Link stock pickings and invoices: Establishes a link between stock pickings and invoices at both the header and line levels, providing visibility of related pickings in a dedicated tab on the invoice.\nModels (relation of the module to the model; fields the module adds):\n- stock.move (Stock Move) [ADDS_FIELD, EXTENDS]; adds invoice_line_ids\n- stock.picking (Transfer) [ADDS_FIELD, EXTENDS]; adds invoice_count, invoice_ids\n- account.move (Journal Entry) [ADDS_FIELD, EXTENDS]; adds picking_count, picking_ids\n- account.move.line (Journal Item) [ADDS_FIELD, EXTENDS]; adds move_line_ids\n- account.move.reversal (Account Move Reversal) [EXTENDS]\n- account.bank.statement.line (Bank Statement Line) [ADDS_FIELD, delegated: no code here]; adds picking_count, picking_ids\n\n### Candidate 2: sale_stock (Odoo module, \"Sales and Warehouse Management\")\nDirect dependencies: sale, stock_account\nDocumentation:\n# Sales and Warehouse Management\n\n## SUMMARY\nQuotation, Sales Orders, Delivery & Invoicing Control\n\n## DESCRIPTION\nManage sales quotations and orders\n\nThis module makes the link between the sales and warehouses management applications.\n\nPreferences\n\n* Shipping: Choice of delivery at once or partial delivery\n* Invoicing: choose how invoices will be paid\n* Incoterms: International Commercial terms\nModels (relation of the module to the model; fields the module adds):\n- sale.order.line (Sales Order Line) [ADDS_FIELD, EXTENDS]; adds display_qty_widget, forecast_expected_date, free_qty_today, is_mto, is_storable, move_ids, qty_available_today, qty_to_deliver ...\n- stock.route (Inventory Routes) [ADDS_FIELD, EXTENDS]; adds sale_selectable\n- sale.order (Sales Order) [ADDS_FIELD, EXTENDS]; adds delivery_count, delivery_status, effective_date, incoterm, incoterm_location, json_popover, picking_ids, picking_policy ...\n- stock.picking (Transfer) [ADDS_FIELD, EXTENDS]; adds sale_id\n- sale.order.cancel (Sales Order Cancel) [ADDS_FIELD, EXTENDS]; adds display_delivery_alert\n- stock.lot (Lot/Serial) [ADDS_FIELD, EXTENDS]; adds sale_order_count, sale_order_ids\n- procurement.group (Procurement Group) [ADDS_FIELD, EXTENDS]; adds sale_id\n- sale.report (Sales Analysis Report) [ADDS_FIELD, EXTENDS]; adds warehouse_id\n- stock.move (Stock Move) [ADDS_FIELD, EXTENDS]; adds sale_line_id\n- stock.rules.report (Stock Rules report) [ADDS_FIELD, EXTENDS]; adds so_route_ids\n- stock.return.picking (Return Picking) [EXTENDS]\n- stock.move.line (Product Moves (Stock Move Line)) [EXTENDS]\n- account.move.line (Journal Item) [EXTENDS]\n- stock.forecasted_product_product (Stock Replenishment Report) [EXTENDS]\n- res.config.settings (Config Settings) [ADDS_FIELD, EXTENDS]; adds default_picking_policy, security_lead, use_security_lead\n- account.move (Journal Entry) [EXTENDS]\n- stock.warehouse (Warehouse) [EXTENDS]\n- report.stock.report_stock_rule (Stock rule report) [EXTENDS]\n- res.users (User) [ADDS_FIELD, EXTENDS]; adds property_warehouse_id\n- res.company (Companies) [ADDS_FIELD, EXTENDS]; adds security_lead\n- stock.valuation.layer (Stock Valuation Layer) [EXTENDS]\n- stock.rule (Stock Rule) [EXTENDS]\n- product.template (Product) [EXTENDS]\n\n### Candidate 3: sale_async_emails (Odoo module, \"Sales - Async Emails\")\nDirect dependencies: sale\nDocumentation:\n# Sales - Async Emails\n\n## SUMMARY\nSend order status emails asynchronously\nModels (relation of the module to the model; fields the module adds):\n- sale.order (Sales Order) [ADDS_FIELD, EXTENDS]; adds pending_email_template_id\n\nAnswer:\n1. candidates: for each candidate, does its functionality fit the requirement? \"yes\", \"partly\" or \"no\",\n   with one short reason based on the information above.\n2. chosen_module: the candidate that best fulfils the requirement (copy its name), or null if none fits.\n3. verdict:\n   - \"supported\": the chosen module covers the requirement;\n   - \"partial\": it covers the main need, but some parts need other settings or customization;\n   - \"not_supported\": no candidate covers the requirement;\n   - \"insufficient_evidence\": a candidate might fit, but the information above is too thin to decide.\n4. models: 1 to 4 models of the chosen module, copied exactly from its \"Models\" list, where this requirement\n   is configured or where the module's logic for it lives; most important first. Prefer models where the\n   module has code (DEFINES or EXTENDS) or adds the setting fields; avoid models that only receive fields\n   through delegation.\n5. missing: parts of the requirement that no candidate covers (empty list if none).\n6. evidence: 1 to 3 short quotes copied word for word from the information above.\n7. reason: 1 to 3 sentences.\nOnly judge the listed candidates. You may use general Odoo knowledge to interpret them, but do not\ninvent features that the information above does not support.\n",
+  "output": {
+    "candidates": [
+      {
+        "module": "stock_picking_invoice_link",
+        "fit": "yes",
+        "reason": "Automatically links stock pickings and moves to invoices and invoice lines when invoicing delivered sales orders."
+      },
+      {
+        "module": "sale_stock",
+        "fit": "partly",
+        "reason": "Integrates sales with delivery and invoicing control, but does not provide line-level linking between invoice lines and delivery pickings."
+      },
+      {
+        "module": "sale_async_emails",
+        "fit": "no",
+        "reason": "Sends sales order emails asynchronously and has no functionality related to invoicing or stock deliveries."
+      }
+    ],
+    "chosen_module": "stock_picking_invoice_link",
+    "verdict": "supported",
+    "models": [
+      "account.move.line",
+      "account.move",
+      "stock.move",
+      "stock.picking"
+    ],
+    "missing": [],
+    "evidence": [
+      "Adds link between pickings and invoices",
+      "Establishes a link between stock pickings and invoices at both the header and line levels, providing visibility of related pickings in a dedicated tab on the invoice.",
+      "Deliver its pickings totally or partially. Create an invoice of the goods delivered."
+    ],
+    "reason": "The stock_picking_invoice_link module automatically links stock pickings and stock moves directly to the resulting invoice and invoice lines. This allows accounting to automatically see which specific deliveries are billed per invoice line when invoicing a partially or fully delivered sales order."
+  }
+}
